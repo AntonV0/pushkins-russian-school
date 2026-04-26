@@ -32,10 +32,22 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+
+# source migration material for the existing business site
+docs/source-screenshots/*
+!docs/source-screenshots/.gitkeep
+docs/source-copy/*
+!docs/source-copy/.gitkeep
+docs/assets/private/*
+docs/assets/source/*
+
+# raw originals should be reviewed before becoming public website assets
+public/images/original/*
+!public/images/original/.gitkeep
 
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts

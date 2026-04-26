@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pushkins Russian School Website
 
-## Getting Started
+Next.js rebuild workspace for the Pushkins Russian School website.
 
-First, run the development server:
+## Stack
+
+- Next.js App Router
+- React
+- TypeScript
+- Tailwind CSS
+- Supabase
+- Vercel
+
+## Local Setup
+
+```bash
+npm install
+npm run dev
+```
+
+Create `.env.local` from `.env.example` once the Supabase project is ready.
+
+## Useful Scripts
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run lint
+npm run typecheck
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Migration Workflow
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Add source material before building the final site:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `docs/source-screenshots/` for screenshots of the existing site. This folder is ignored by Git by default.
+- `docs/source-copy/` for copied page text. This folder is ignored by Git by default.
+- `docs/assets/` for reviewed public references only. Put private/source material in ignored subfolders.
+- `docs/site-audit/page-inventory.md` for the current page list.
+- `docs/site-audit/content-map.md` for old-to-new content mapping.
+- `docs/site-audit/brand-notes.md` for rebrand direction.
 
-## Learn More
+See `docs/public-repo-checklist.md` before pushing to the public repository.
 
-To learn more about Next.js, take a look at the following resources:
+## Integration Notes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+GitHub, Supabase, and Vercel should be linked after the content audit folders are filled enough to confirm the first route plan.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Use `docs/integration-setup.md` as the setup checklist before connecting production services.
