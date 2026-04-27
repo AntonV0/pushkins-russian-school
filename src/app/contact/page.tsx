@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { EnquiryForm } from "@/components/site/enquiry-form";
+import { SectionIntro } from "@/components/site/section-intro";
 import { enquiryChecklist } from "@/data/admissions";
 import { contactDetails, paymentDetails } from "@/data/contact";
 import { schools } from "@/data/schools";
@@ -71,13 +72,15 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
       <section className="bg-background py-14 sm:py-16">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.72fr_1.28fr] lg:px-8">
           <div>
-            <h2 className="text-2xl font-semibold text-brand-blue-strong">
-              Before submitting
-            </h2>
-            <p className="mt-3 text-sm leading-6 text-slate-600">
-              The form is ready as a parent-facing experience, with final
-              delivery and privacy wording still to connect.
-            </p>
+            <SectionIntro
+              eyebrow="Enquiry route"
+              title="Before submitting"
+            >
+              <p>
+                The form is ready as a parent-facing experience, with final
+                delivery and privacy wording still to connect.
+              </p>
+            </SectionIntro>
             <div className="mt-6 grid gap-3">
               {schools.map((school) => (
                 <Link

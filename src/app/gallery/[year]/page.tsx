@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ButtonLink } from "@/components/site/button-link";
 import { galleryArchives, getGalleryArchive } from "@/data/gallery";
 
 type GalleryYearPageProps = {
@@ -68,7 +68,7 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
             {Array.from({ length: 4 }, (_, index) => (
               <div
                 key={`${archive.year}-${index}`}
-                className="flex aspect-[4/3] items-end rounded-lg border border-dashed border-border-soft bg-surface-muted p-5"
+                className="flex aspect-[4/3] items-end rounded-lg border border-dashed border-border-soft bg-surface-muted p-5 [background-image:linear-gradient(135deg,rgba(20,56,102,0.08)_25%,transparent_25%,transparent_50%,rgba(20,56,102,0.08)_50%,rgba(20,56,102,0.08)_75%,transparent_75%,transparent)] [background-size:28px_28px]"
               >
                 <p className="text-sm font-semibold text-brand-blue-strong">
                   Approved image slot {index + 1}
@@ -92,12 +92,9 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
                 </li>
               ))}
             </ul>
-            <Link
-              href="/gallery"
-              className="mt-8 inline-flex items-center justify-center rounded-full border border-brand-blue/20 px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
-            >
+            <ButtonLink href="/gallery" variant="secondary" className="mt-8">
               Back to gallery
-            </Link>
+            </ButtonLink>
           </aside>
         </div>
       </section>

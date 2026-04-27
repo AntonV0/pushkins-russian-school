@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ButtonLink } from "@/components/site/button-link";
 import { getPolicyBySlug, policies } from "@/data/policies";
 
 type PolicyPageProps = {
@@ -90,12 +90,9 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
               <li>Any personal, staff, or unpublished operational details removed.</li>
               <li>Download link and detail copy connected from this shell.</li>
             </ul>
-            <Link
-              href="/policies"
-              className="mt-8 inline-flex items-center justify-center rounded-full border border-brand-blue/20 px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
-            >
+            <ButtonLink href="/policies" variant="secondary" className="mt-8">
               Back to policy index
-            </Link>
+            </ButtonLink>
           </div>
         </div>
       </section>

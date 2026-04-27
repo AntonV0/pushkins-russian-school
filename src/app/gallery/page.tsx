@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { SectionIntro } from "@/components/site/section-intro";
 import { galleryArchives } from "@/data/gallery";
 
 export const metadata: Metadata = {
@@ -38,22 +39,33 @@ export default function GalleryPage() {
 
       <section className="bg-background py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <SectionIntro
+            eyebrow="Archive shells"
+            title="Year pages ready for reviewed public media"
+          >
+            <p>
+              The old gallery was organised by year. The rebuilt archive keeps
+              those routes while waiting for approved images, captions, and
+              privacy checks.
+            </p>
+          </SectionIntro>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {galleryArchives.map((archive) => (
               <Link
                 key={archive.year}
                 href={`/gallery/${archive.year}`}
-                className="aspect-[4/3] rounded-lg border border-border-soft bg-surface p-6"
+                className="group flex aspect-[4/3] flex-col justify-between rounded-lg border border-border-soft bg-surface p-6 transition hover:-translate-y-0.5 hover:border-brand-red hover:shadow-md"
               >
-                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-muted">
-                  Archive
-                </p>
-                <h2 className="mt-3 text-3xl font-semibold text-brand-blue-strong">
-                  {archive.year}
-                </h2>
-                <p className="mt-4 text-sm leading-6 text-slate-600">
-                  {archive.status}. Open the year shell for asset and caption
-                  readiness notes.
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-muted">
+                    Archive
+                  </p>
+                  <h2 className="mt-3 text-4xl font-semibold text-brand-blue-strong">
+                    {archive.year}
+                  </h2>
+                </div>
+                <p className="text-sm leading-6 text-slate-600">
+                  {archive.status}. Open readiness notes.
                 </p>
               </Link>
             ))}
