@@ -7,9 +7,11 @@ export type Policy = {
   title: string;
   slug: string;
   group: string;
+  documentType: "School policy" | "External guidance";
   summary: string;
   audience: string;
   status: string;
+  reviewCadence: string;
 };
 
 const policySummaries: Record<string, string> = {
@@ -59,16 +61,29 @@ function slugifyPolicy(title: string) {
     .replace(/^-|-$/g, "");
 }
 
-function createPolicies(group: string, audience: string, titles: string[]): Policy[] {
+function createPolicies(
+  group: string,
+  audience: string,
+  titles: string[],
+  documentType: Policy["documentType"] = "School policy",
+): Policy[] {
   return titles.map((title) => ({
     title,
     slug: slugifyPolicy(title),
     group,
+    documentType,
     audience,
     summary: policySummaries[title],
-    status: "Pending reviewed document upload",
+    status:
+      documentType === "External guidance"
+        ? "Pending current external guidance link review"
+        : "Pending reviewed document upload",
+    reviewCadence:
+      documentType === "External guidance"
+        ? "Check source guidance before publication"
+        : "Confirm owner and review date before publication",
   }));
-};
+}
 
 export const policyGroups: PolicyGroup[] = [
   {
@@ -103,15 +118,33 @@ export const policyGroups: PolicyGroup[] = [
   },
   {
     title: "Useful Guidance",
-    policies: createPolicies("Useful Guidance", "Reference", [
-      "Keeping Children Safe in Education",
-      "EYFS Statutory Framework",
-      "Teachers' Standards",
-    ]),
+    policies: createPolicies(
+      "Useful Guidance",
+      "Reference",
+      [
+        "Keeping Children Safe in Education",
+        "EYFS Statutory Framework",
+        "Teachers' Standards",
+      ],
+      "External guidance",
+    ),
   },
 ];
 
 export const policies = policyGroups.flatMap((group) => group.policies);
+
+export const policyPublicationChecklist = [
+  "Reviewed PDF or web document added to the approved public asset flow.",
+  "Owner, version, and review date confirmed before launch.",
+  "Personal, staff, or unpublished operational details removed.",
+  "Download link, summary copy, and last-reviewed label connected from this shell.",
+];
+
+export const policyIndexNotes = [
+  "Policy files will be downloaded or updated in a later content pass.",
+  "Unreviewed policy documents are intentionally not linked from the public site.",
+  "External guidance links should point to current official sources once verified.",
+];
 
 export function getPolicyBySlug(slug: string) {
   return policies.find((policy) => policy.slug === slug);

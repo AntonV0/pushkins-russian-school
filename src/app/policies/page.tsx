@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { MetricStrip } from "@/components/site/metric-strip";
 import { SectionIntro } from "@/components/site/section-intro";
-import { policies, policyGroups } from "@/data/policies";
+import { policies, policyGroups, policyIndexNotes } from "@/data/policies";
 
 export const metadata: Metadata = {
   title: "Policies",
@@ -41,9 +41,22 @@ export default function PoliciesPage() {
             metrics={[
               { label: "Groups", value: policyGroups.length },
               { label: "Policies", value: policies.length },
-              { label: "Status", value: "Shell" },
+              { label: "Downloads", value: "Pending" },
             ]}
           />
+        </div>
+      </section>
+
+      <section className="border-b border-border-soft bg-background py-12">
+        <div className="mx-auto grid max-w-7xl gap-4 px-6 md:grid-cols-3 lg:px-8">
+          {policyIndexNotes.map((note) => (
+            <div
+              key={note}
+              className="border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
+            >
+              {note}
+            </div>
+          ))}
         </div>
       </section>
 
@@ -72,14 +85,19 @@ export default function PoliciesPage() {
                   {group.policies.map((policy) => (
                     <li
                       key={policy.slug}
-                      className="flex items-center justify-between gap-4 py-3"
+                      className="grid gap-2 py-3 sm:grid-cols-[1fr_auto] sm:items-center"
                     >
-                      <Link
-                        href={`/policies/${policy.slug}`}
-                        className="font-medium text-slate-700 hover:text-brand-red"
-                      >
-                        {policy.title}
-                      </Link>
+                      <div>
+                        <Link
+                          href={`/policies/${policy.slug}`}
+                          className="font-medium text-slate-700 hover:text-brand-red"
+                        >
+                          {policy.title}
+                        </Link>
+                        <p className="mt-1 text-xs leading-5 text-muted">
+                          {policy.documentType} / {policy.status}
+                        </p>
+                      </div>
                       <Link
                         href={`/policies/${policy.slug}`}
                         className="shrink-0 text-xs font-semibold uppercase tracking-[0.12em] text-muted hover:text-brand-red"

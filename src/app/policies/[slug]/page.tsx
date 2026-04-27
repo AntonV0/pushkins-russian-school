@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ButtonLink } from "@/components/site/button-link";
-import { getPolicyBySlug, policies } from "@/data/policies";
+import {
+  getPolicyBySlug,
+  policies,
+  policyPublicationChecklist,
+} from "@/data/policies";
 
 type PolicyPageProps = {
   params: Promise<{ slug: string }>;
@@ -74,25 +78,48 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
                 <dd className="mt-1 text-slate-600">{policy.audience}</dd>
               </div>
               <div>
+                <dt className="font-semibold text-brand-blue-strong">
+                  Document type
+                </dt>
+                <dd className="mt-1 text-slate-600">{policy.documentType}</dd>
+              </div>
+              <div>
                 <dt className="font-semibold text-brand-blue-strong">Status</dt>
                 <dd className="mt-1 text-slate-600">{policy.status}</dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-brand-blue-strong">
+                  Review note
+                </dt>
+                <dd className="mt-1 text-slate-600">{policy.reviewCadence}</dd>
               </div>
             </dl>
           </aside>
 
           <div className="rounded-lg border border-border-soft bg-surface p-6 sm:p-8">
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
-              Publication checklist
+              What this page will include
             </h2>
+            <p className="mt-4 text-sm leading-6 text-slate-600">
+              This shell is ready for the approved document, a short parent-safe
+              summary, the review date, and the final download or external
+              guidance link.
+            </p>
             <ul className="mt-6 space-y-4 text-sm leading-6 text-slate-700">
-              <li>Reviewed PDF or web document added to the public asset flow.</li>
-              <li>Owner and review date confirmed before launch.</li>
-              <li>Any personal, staff, or unpublished operational details removed.</li>
-              <li>Download link and detail copy connected from this shell.</li>
+              {policyPublicationChecklist.map((item) => (
+                <li key={item} className="border-l border-brand-gold pl-4">
+                  {item}
+                </li>
+              ))}
             </ul>
-            <ButtonLink href="/policies" variant="secondary" className="mt-8">
-              Back to policy index
-            </ButtonLink>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/policies" variant="secondary">
+                Back to policy index
+              </ButtonLink>
+              <span className="inline-flex items-center justify-center rounded-full border border-border-soft px-5 py-3 text-sm font-semibold text-muted">
+                Download pending review
+              </span>
+            </div>
           </div>
         </div>
       </section>
