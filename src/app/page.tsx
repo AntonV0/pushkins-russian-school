@@ -44,12 +44,12 @@ export default function Home() {
   return (
     <main>
       <section className="border-b border-border-soft bg-surface">
-        <div className="mx-auto grid min-h-[calc(100vh-82px)] max-w-7xl items-center gap-12 px-6 py-14 lg:grid-cols-[0.98fr_1.02fr] lg:px-8">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-[0.98fr_1.02fr] lg:px-8">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
               Russian language, culture, and exam preparation
             </p>
-            <h1 className="mt-5 max-w-4xl text-5xl font-semibold leading-[1.02] text-brand-blue-strong sm:text-6xl">
+            <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-[1.04] text-brand-blue-strong sm:text-6xl">
               Pushkin&apos;s School
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">

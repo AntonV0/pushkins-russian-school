@@ -1,11 +1,11 @@
 import { schools } from "@/data/schools";
 
 const positions = [
-  "left-[28%] top-[42%]",
-  "left-[38%] top-[33%]",
-  "left-[48%] top-[58%]",
-  "left-[66%] top-[38%]",
-  "left-[75%] top-[57%]",
+  "left-[25%] top-[63%]",
+  "left-[45%] top-[38%]",
+  "left-[52%] top-[63%]",
+  "left-[68%] top-[42%]",
+  "left-[74%] top-[68%]",
 ];
 
 export function NetworkVisual() {
@@ -18,14 +18,16 @@ export function NetworkVisual() {
         <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
           Network view
         </p>
-        <p className="mt-3 text-3xl font-semibold text-brand-blue-strong">
+        <p className="mt-3 text-2xl font-semibold leading-tight text-brand-blue-strong">
           Five locations, one learning structure
         </p>
       </div>
       {schools.map((school, index) => (
         <div
           key={school.slug}
-          className={`absolute ${positions[index]} max-w-36 rounded-md border border-border-soft bg-white px-3 py-2 shadow-sm`}
+          className={`absolute ${positions[index]} max-w-36 rounded-md border border-border-soft bg-white px-3 py-2 shadow-sm ${
+            index > 1 ? "hidden sm:block" : ""
+          }`}
         >
           <span className="mb-2 block size-2 rounded-full bg-brand-red" />
           <p className="text-sm font-semibold leading-5 text-brand-blue-strong">

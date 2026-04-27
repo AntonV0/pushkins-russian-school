@@ -7,8 +7,13 @@ export function Header() {
   return (
     <header className="sticky top-0 z-20 border-b border-border-soft bg-background/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 lg:px-8">
-        <Link href="/" className="group">
-          <BrandMark />
+        <Link href="/" className="group min-w-0">
+          <span className="hidden sm:inline">
+            <BrandMark className="min-w-0" />
+          </span>
+          <span className="sm:hidden">
+            <BrandMark compact />
+          </span>
         </Link>
 
         <nav
@@ -29,7 +34,7 @@ export function Header() {
           </ButtonLink>
         </nav>
 
-        <details className="group relative lg:hidden">
+        <details className="group relative shrink-0 lg:hidden">
           <summary className="flex cursor-pointer list-none items-center justify-center rounded-full border border-brand-blue/20 px-4 py-2 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30">
             Menu
           </summary>
