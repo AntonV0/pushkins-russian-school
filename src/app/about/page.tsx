@@ -1,5 +1,30 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { ButtonLink } from "@/components/site/button-link";
+import { MetricStrip } from "@/components/site/metric-strip";
+import { NetworkVisual } from "@/components/site/network-visual";
+import { SectionIntro } from "@/components/site/section-intro";
+import { networkSummary } from "@/data/schools";
+
+const principles = [
+  {
+    title: "Balanced bilingualism",
+    body: "The source material describes a practical approach to Russian that develops verbal, written, social, and cultural confidence.",
+  },
+  {
+    title: "Shared curriculum",
+    body: "Branches follow a common school structure, with class groups and lesson plans that can be updated from central data.",
+  },
+  {
+    title: "Cultural confidence",
+    body: "Language learning is supported by literature, performance, traditions, and age-aware creative work.",
+  },
+];
+
+const reviewNotes = [
+  "Institutional partnerships and external references need current confirmation.",
+  "Trips, certificates, staff details, and media should be reviewed before publication.",
+  "Current branch statuses and timetables remain visible with verification notes.",
+];
 
 export const metadata: Metadata = {
   title: "About",
@@ -20,67 +45,106 @@ export default function AboutPage() {
   return (
     <main>
       <section className="border-b border-border-soft bg-surface py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
-            About Pushkin&apos;s School
-          </p>
-          <h1 className="mt-4 max-w-4xl text-4xl font-semibold text-brand-blue-strong sm:text-5xl">
-            A professional home for an established Russian school community
-          </h1>
-          <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-            This rebuild presents the school as warm, trustworthy, academic, and
-            easy for parents to understand. The old site is used for public
-            source content only; the visual language is intentionally renewed.
-          </p>
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
+              About Pushkin&apos;s School
+            </p>
+            <h1 className="mt-4 max-w-4xl text-4xl font-semibold text-brand-blue-strong sm:text-5xl">
+              A refined home for an established Russian school community
+            </h1>
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+              Pushkin&apos;s School is presented as a warm, academic weekend
+              network for children learning Russian language, literature, and
+              culture in the UK.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/schools">Explore schools</ButtonLink>
+              <ButtonLink href="/contact#enquiry-form" variant="secondary">
+                Start an enquiry
+              </ButtonLink>
+            </div>
+          </div>
+          <NetworkVisual />
         </div>
       </section>
 
       <section className="bg-background py-14 sm:py-16">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-3 lg:px-8">
-          {[
-            {
-              title: "Parent-facing clarity",
-              body: "Families should quickly understand locations, status, timetables, class groups, and how to enquire.",
-            },
-            {
-              title: "Academic warmth",
-              body: "The site uses a refined palette and spacious typography while keeping the school network human and welcoming.",
-            },
-            {
-              title: "Built to extend",
-              body: "School pages are powered by local TypeScript data so future locations can be added cleanly.",
-            },
-          ].map((item) => (
-            <article
-              key={item.title}
-              className="rounded-lg border border-border-soft bg-surface p-6"
-            >
-              <h2 className="text-xl font-semibold text-brand-blue-strong">
-                {item.title}
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-slate-600">{item.body}</p>
-            </article>
-          ))}
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Education philosophy"
+            title="Language learning that connects home, school, and culture"
+          >
+            <p>
+              The old About page centred on bilingual development, practical
+              communication, cultural literacy, and a shared curriculum. This
+              version keeps those themes while avoiding unverified institutional
+              claims until they are reviewed.
+            </p>
+          </SectionIntro>
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {principles.map((item) => (
+              <article
+                key={item.title}
+                className="rounded-lg border border-border-soft bg-surface p-6"
+              >
+                <h2 className="text-xl font-semibold text-brand-blue-strong">
+                  {item.title}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  {item.body}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="border-t border-border-soft bg-surface py-14 sm:py-16">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <h2 className="text-3xl font-semibold text-brand-blue-strong">
-              Next content pass
-            </h2>
-            <p className="mt-4 text-base leading-7 text-slate-600">
-              Public biography, staff, safeguarding, and richer history copy can
-              be layered in after the reviewed source documents are ready.
+      <section className="border-y border-border-soft bg-surface py-14 sm:py-16">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
+          <SectionIntro
+            eyebrow="Network"
+            title="A school model built to be consistent across locations"
+          >
+            <p>
+              The source site presented branches as one network with common
+              class groups and lesson structures. The rebuild makes that model
+              data-driven so future branches can be added without redesigning
+              pages.
             </p>
-            <Link
-              href="/schools"
-              className="mt-6 inline-flex items-center justify-center rounded-full bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
-            >
-              Explore schools
-            </Link>
+          </SectionIntro>
+          <MetricStrip
+            metrics={[
+              { label: "Locations", value: networkSummary.locations },
+              { label: "Counties", value: networkSummary.counties },
+              { label: "Class pathways", value: networkSummary.classGroupCount },
+            ]}
+          />
+        </div>
+      </section>
+
+      <section className="bg-brand-blue-strong py-14 text-white sm:py-16">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-[1fr_0.9fr] lg:px-8">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
+              Content review
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold">
+              What still needs confirmation
+            </h2>
+            <p className="mt-4 max-w-2xl text-sm leading-6 text-white/75">
+              This page intentionally stays polished but cautious until public
+              biography, partner references, staff details, trips, and media are
+              reviewed for current publication.
+            </p>
           </div>
+          <ul className="space-y-3 text-sm leading-6 text-white/80">
+            {reviewNotes.map((note) => (
+              <li key={note} className="border-l border-brand-gold pl-4">
+                {note}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
     </main>
