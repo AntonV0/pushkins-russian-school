@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Footer } from "@/components/site/footer";
 import { Header } from "@/components/site/header";
+import { contactDetails } from "@/data/contact";
+import { schools } from "@/data/schools";
+import { siteConfig } from "@/data/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,12 +18,49 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  applicationName: siteConfig.name,
   title: {
     default: "Pushkin's School | Russian Language School Network",
     template: "%s | Pushkin's School",
   },
-  description:
-    "A polished school network website for Pushkin's Russian language classes, weekend branches, policies, and family enquiries.",
+  description: siteConfig.description,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Pushkin's School | Russian Language School Network",
+    description: siteConfig.description,
+    url: "/",
+    siteName: siteConfig.name,
+    locale: siteConfig.locale,
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  name: siteConfig.name,
+  legalName: siteConfig.legalName,
+  url: siteConfig.url,
+  email: contactDetails.email,
+  description: siteConfig.description,
+  department: schools.map((school) => ({
+    "@type": "EducationalOrganization",
+    name: `${siteConfig.name} ${school.name}`,
+    url: `${siteConfig.url}/schools/${school.slug}`,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: school.address.join(", "),
+      postalCode: school.postcode,
+      addressCountry: "GB",
+    },
+  })),
 };
 
 export default function RootLayout({
@@ -45,6 +85,12 @@ export default function RootLayout({
           {children}
         </div>
         <Footer />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
       </body>
     </html>
   );

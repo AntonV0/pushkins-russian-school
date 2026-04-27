@@ -29,6 +29,15 @@ export async function generateMetadata({
   return {
     title: `${school.name} School`,
     description: `${school.name} Pushkin's School branch: venue, timetable, class groups, pricing notes, and enquiry information.`,
+    alternates: {
+      canonical: `/schools/${school.slug}`,
+    },
+    openGraph: {
+      title: `${school.name} School | Pushkin's School`,
+      description: school.lead,
+      url: `/schools/${school.slug}`,
+      type: "article",
+    },
   };
 }
 

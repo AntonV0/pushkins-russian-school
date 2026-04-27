@@ -6,6 +6,15 @@ export const metadata: Metadata = {
   title: "Policies",
   description:
     "Policy index shell for Pushkin's School safeguarding, parent, staff, and guidance documents.",
+  alternates: {
+    canonical: "/policies",
+  },
+  openGraph: {
+    title: "Pushkin's School Policies",
+    description:
+      "Safeguarding, parent, staff, and guidance policy index for Pushkin's School.",
+    url: "/policies",
+  },
 };
 
 export default function PoliciesPage() {

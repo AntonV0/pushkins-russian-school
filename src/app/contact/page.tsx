@@ -9,6 +9,15 @@ export const metadata: Metadata = {
   title: "Contact",
   description:
     "Contact Pushkin's School to enquire about school locations, future classes, and registration interest.",
+  alternates: {
+    canonical: "/contact",
+  },
+  openGraph: {
+    title: "Contact Pushkin's School",
+    description:
+      "Enquire about Pushkin's School branches, current places, future local classes, and Russian language learning.",
+    url: "/contact",
+  },
 };
 
 type ContactPageProps = {

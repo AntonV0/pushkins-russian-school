@@ -6,6 +6,15 @@ export const metadata: Metadata = {
   title: "Gallery",
   description:
     "Gallery shell for approved Pushkin's School public images and future year archives.",
+  alternates: {
+    canonical: "/gallery",
+  },
+  openGraph: {
+    title: "Pushkin's School Gallery",
+    description:
+      "Approved public gallery archive shells for Pushkin's School images and future year collections.",
+    url: "/gallery",
+  },
 };
 
 export default function GalleryPage() {

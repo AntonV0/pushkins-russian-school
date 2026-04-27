@@ -26,6 +26,15 @@ export async function generateMetadata({
   return {
     title: policy.title,
     description: `${policy.title} shell for Pushkin's School. Reviewed document upload pending.`,
+    alternates: {
+      canonical: `/policies/${policy.slug}`,
+    },
+    openGraph: {
+      title: `${policy.title} | Pushkin's School`,
+      description: policy.summary,
+      url: `/policies/${policy.slug}`,
+      type: "article",
+    },
   };
 }
 

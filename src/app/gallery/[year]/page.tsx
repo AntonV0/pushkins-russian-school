@@ -26,6 +26,15 @@ export async function generateMetadata({
   return {
     title: archive.title,
     description: `${archive.title} shell for approved Pushkin's School public images.`,
+    alternates: {
+      canonical: `/gallery/${archive.year}`,
+    },
+    openGraph: {
+      title: `${archive.title} | Pushkin's School Gallery`,
+      description: archive.summary,
+      url: `/gallery/${archive.year}`,
+      type: "article",
+    },
   };
 }
 

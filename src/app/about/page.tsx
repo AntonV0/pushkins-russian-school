@@ -5,6 +5,15 @@ export const metadata: Metadata = {
   title: "About",
   description:
     "About Pushkin's School, its Russian language learning network, and the website rebuild direction.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "About Pushkin's School",
+    description:
+      "Learn about Pushkin's School and the renewed parent-facing Russian language school network.",
+    url: "/about",
+  },
 };
 
 export default function AboutPage() {

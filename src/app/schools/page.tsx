@@ -6,6 +6,15 @@ export const metadata: Metadata = {
   title: "Schools",
   description:
     "Explore Pushkin's School locations, weekend timetables, class groups, and current branch status.",
+  alternates: {
+    canonical: "/schools",
+  },
+  openGraph: {
+    title: "Pushkin's School Locations",
+    description:
+      "Explore Pushkin's School branches, weekend timetables, class groups, and branch status.",
+    url: "/schools",
+  },
 };
 
 export default function SchoolsPage() {

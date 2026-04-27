@@ -1,10 +1,25 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { SchoolCard } from "@/components/site/school-card";
 import { admissionsSteps } from "@/data/admissions";
 import { contactDetails } from "@/data/contact";
 import { networkSummary, schools } from "@/data/schools";
+import { siteConfig } from "@/data/site";
 
 const featuredSchools = schools.slice(0, 3);
+
+export const metadata: Metadata = {
+  title: "Pushkin's School | Russian Language School Network",
+  description: siteConfig.description,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Pushkin's School | Russian Language School Network",
+    description: siteConfig.description,
+    url: "/",
+  },
+};
 
 export default function Home() {
   return (
