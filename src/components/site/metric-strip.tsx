@@ -1,0 +1,45 @@
+type Metric = {
+  label: string;
+  value: string | number;
+};
+
+type MetricStripProps = {
+  metrics: Metric[];
+  tone?: "light" | "dark";
+};
+
+export function MetricStrip({ metrics, tone = "light" }: MetricStripProps) {
+  const isDark = tone === "dark";
+
+  return (
+    <dl
+      className={`grid grid-cols-1 gap-px overflow-hidden rounded-lg border sm:[grid-template-columns:repeat(auto-fit,minmax(10rem,1fr))] ${
+        isDark
+          ? "border-white/15 bg-white/15"
+          : "border-border-soft bg-border-soft"
+      }`}
+    >
+      {metrics.map((metric) => (
+        <div
+          key={metric.label}
+          className={isDark ? "bg-white/10 p-5" : "bg-surface p-5"}
+        >
+          <dt
+            className={`text-xs font-semibold uppercase tracking-[0.14em] ${
+              isDark ? "text-white/60" : "text-muted"
+            }`}
+          >
+            {metric.label}
+          </dt>
+          <dd
+            className={`mt-2 text-3xl font-semibold ${
+              isDark ? "text-white" : "text-brand-blue-strong"
+            }`}
+          >
+            {metric.value}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  );
+}

@@ -5,6 +5,7 @@
   --foreground: #162033;
   --surface: #ffffff;
   --surface-muted: #f3f0e8;
+  --surface-blue: #eef5fb;
   --brand-blue: #143866;
   --brand-blue-strong: #0b2547;
   --brand-red: #b82e3a;
@@ -18,6 +19,7 @@
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
   --color-surface-muted: var(--surface-muted);
+  --color-surface-blue: var(--surface-blue);
   --color-brand-blue: var(--brand-blue);
   --color-brand-blue-strong: var(--brand-blue-strong);
   --color-brand-red: var(--brand-red);

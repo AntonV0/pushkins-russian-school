@@ -1,22 +1,14 @@
 import Link from "next/link";
 import { primaryNavigation } from "@/data/navigation";
+import { BrandMark } from "./brand-mark";
+import { ButtonLink } from "./button-link";
 
 export function Header() {
   return (
     <header className="sticky top-0 z-20 border-b border-border-soft bg-background/95 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 lg:px-8">
-        <Link href="/" className="group flex items-center gap-3">
-          <span className="flex size-11 items-center justify-center rounded-full border border-brand-blue/20 bg-brand-blue text-sm font-semibold text-white">
-            PS
-          </span>
-          <span className="leading-tight">
-            <span className="block text-base font-semibold text-brand-blue-strong">
-              Pushkin&apos;s School
-            </span>
-            <span className="block text-xs font-medium uppercase tracking-[0.16em] text-muted">
-              Russian language network
-            </span>
-          </span>
+        <Link href="/" className="group">
+          <BrandMark />
         </Link>
 
         <nav
@@ -32,12 +24,9 @@ export function Header() {
               {item.label}
             </Link>
           ))}
-          <Link
-            href="/contact#enquiry-form"
-            className="inline-flex items-center justify-center rounded-full bg-brand-red px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-red/30"
-          >
+          <ButtonLink href="/contact#enquiry-form" className="px-4 py-2">
             Enquire
-          </Link>
+          </ButtonLink>
         </nav>
 
         <details className="group relative lg:hidden">
@@ -58,12 +47,9 @@ export function Header() {
                   {item.label}
                 </Link>
               ))}
-              <Link
-                href="/contact#enquiry-form"
-                className="mt-2 inline-flex items-center justify-center rounded-full bg-brand-red px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-red/30"
-              >
+              <ButtonLink href="/contact#enquiry-form" className="mt-2">
                 Enquire
-              </Link>
+              </ButtonLink>
             </div>
           </nav>
         </details>

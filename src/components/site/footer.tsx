@@ -2,13 +2,14 @@ import Link from "next/link";
 import { contactDetails, paymentDetails } from "@/data/contact";
 import { primaryNavigation } from "@/data/navigation";
 import { schools } from "@/data/schools";
+import { BrandMark } from "./brand-mark";
 
 export function Footer() {
   return (
     <footer className="border-t border-border-soft bg-brand-blue-strong text-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-12 md:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
         <div>
-          <p className="text-lg font-semibold">{contactDetails.schoolName}</p>
+          <BrandMark className="[&_*]:text-white" />
           <p className="mt-3 max-w-md text-sm leading-6 text-white/75">
             A parent-facing Russian language school network with weekend
             classes, exam preparation, culture, and community across local
