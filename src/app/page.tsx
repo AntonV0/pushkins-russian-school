@@ -7,25 +7,11 @@ import { SchoolCard } from "@/components/site/school-card";
 import { SectionIntro } from "@/components/site/section-intro";
 import { admissionsSteps } from "@/data/admissions";
 import { contactDetails } from "@/data/contact";
+import { curriculumPillars, placementSteps } from "@/data/curriculum";
 import { networkSummary, schools } from "@/data/schools";
 import { siteConfig } from "@/data/site";
 
 const featuredSchools = schools.slice(0, 3);
-
-const learningPathways = [
-  {
-    title: "Language foundations",
-    body: "Age-aware groups support speaking, reading, writing, grammar, and confidence for children with different home-language backgrounds.",
-  },
-  {
-    title: "Culture and literature",
-    body: "Lessons connect language with stories, performance, traditions, and creative work so Russian feels lived-in rather than abstract.",
-  },
-  {
-    title: "Exam preparation",
-    body: "Older pupils can work towards GCSE and A Level preparation with a structured weekend rhythm and clear learning expectations.",
-  },
-];
 
 export const metadata: Metadata = {
   title: "Pushkin's School | Russian Language School Network",
@@ -127,7 +113,7 @@ export default function Home() {
           </SectionIntro>
 
           <div className="grid gap-4 md:grid-cols-3">
-            {learningPathways.map((pathway) => (
+            {curriculumPillars.map((pathway) => (
               <article
                 key={pathway.title}
                 className="rounded-lg border border-white/15 bg-white/10 p-5"
@@ -137,6 +123,39 @@ export default function Home() {
                 </h2>
                 <p className="mt-3 text-sm leading-6 text-white/75">
                   {pathway.body}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border-soft bg-surface py-16 sm:py-20">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.82fr_1.18fr] lg:px-8">
+          <SectionIntro
+            eyebrow="Class placement"
+            title="A thoughtful route into the right group"
+          >
+            <p>
+              The rebuilt site now separates parent enquiry, teacher placement,
+              and first-weeks review so the process feels clear without making
+              promises that still need school confirmation.
+            </p>
+          </SectionIntro>
+          <div className="grid gap-4 md:grid-cols-3">
+            {placementSteps.map((step, index) => (
+              <article
+                key={step.title}
+                className="rounded-lg border border-border-soft bg-background p-5"
+              >
+                <p className="font-mono text-sm font-semibold text-brand-red">
+                  0{index + 1}
+                </p>
+                <h2 className="mt-4 text-lg font-semibold text-brand-blue-strong">
+                  {step.title}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  {step.body}
                 </p>
               </article>
             ))}

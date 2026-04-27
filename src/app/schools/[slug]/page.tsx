@@ -5,6 +5,7 @@ import { SectionIntro } from "@/components/site/section-intro";
 import { StatusBadge } from "@/components/site/status-badge";
 import { enquiryChecklist, getSchoolEnquiryHref } from "@/data/admissions";
 import { contactDetails, paymentDetails } from "@/data/contact";
+import { curriculumMaterials, placementSteps } from "@/data/curriculum";
 import { getSchoolBySlug, schools } from "@/data/schools";
 
 type SchoolPageProps = {
@@ -141,6 +142,36 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
       </section>
 
       <section className="border-y border-border-soft bg-surface py-14 sm:py-16">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.82fr_1.18fr] lg:px-8">
+          <SectionIntro
+            eyebrow="Class placement"
+            title="Finding the right learning group"
+          >
+            <p>
+              Families can share the child&apos;s current Russian experience in
+              the enquiry. Teachers then use that context, and the first weeks
+              of learning, to guide the most suitable group.
+            </p>
+          </SectionIntro>
+          <div className="grid gap-4 md:grid-cols-3">
+            {placementSteps.map((step) => (
+              <article
+                key={step.title}
+                className="rounded-lg border border-border-soft bg-background p-5"
+              >
+                <h2 className="text-lg font-semibold text-brand-blue-strong">
+                  {step.title}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  {step.body}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border-soft bg-surface py-14 sm:py-16">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-3 lg:px-8">
           <div>
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
@@ -163,9 +194,11 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
               Programme highlights
             </h2>
             <ul className="mt-5 space-y-3 text-sm leading-6 text-slate-700">
-              {school.highlights.map((highlight) => (
-                <li key={highlight}>{highlight}</li>
-              ))}
+              {[...school.highlights, ...curriculumMaterials].map(
+                (highlight) => (
+                  <li key={highlight}>{highlight}</li>
+                ),
+              )}
             </ul>
           </div>
 
@@ -266,13 +299,11 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 Interested in {school.name}?
               </h2>
               <p className="mt-2 text-sm leading-6 text-slate-600">
-              Email {contactDetails.email} or use the enquiry route while the
+                Email {contactDetails.email} or use the enquiry route while the
                 final submission workflow is being connected.
               </p>
             </div>
-            <ButtonLink
-              href={getSchoolEnquiryHref(school)}
-            >
+            <ButtonLink href={getSchoolEnquiryHref(school)}>
               {school.enquiryCta}
             </ButtonLink>
           </div>

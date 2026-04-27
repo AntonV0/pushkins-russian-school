@@ -3,24 +3,16 @@ import { ButtonLink } from "@/components/site/button-link";
 import { MetricStrip } from "@/components/site/metric-strip";
 import { NetworkVisual } from "@/components/site/network-visual";
 import { SectionIntro } from "@/components/site/section-intro";
+import {
+  curriculumMaterials,
+  curriculumReviewNotes,
+  educationPrinciples,
+  placementSteps,
+} from "@/data/curriculum";
 import { networkSummary } from "@/data/schools";
 
-const principles = [
-  {
-    title: "Balanced bilingualism",
-    body: "The source material describes a practical approach to Russian that develops verbal, written, social, and cultural confidence.",
-  },
-  {
-    title: "Shared curriculum",
-    body: "Branches follow a common school structure, with class groups and lesson plans that can be updated from central data.",
-  },
-  {
-    title: "Cultural confidence",
-    body: "Language learning is supported by literature, performance, traditions, and age-aware creative work.",
-  },
-];
-
 const reviewNotes = [
+  ...curriculumReviewNotes,
   "Institutional partnerships and external references need current confirmation.",
   "Trips, certificates, staff details, and media should be reviewed before publication.",
   "Current branch statuses and timetables remain visible with verification notes.",
@@ -83,7 +75,7 @@ export default function AboutPage() {
             </p>
           </SectionIntro>
           <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {principles.map((item) => (
+            {educationPrinciples.map((item) => (
               <article
                 key={item.title}
                 className="rounded-lg border border-border-soft bg-surface p-6"
@@ -96,6 +88,49 @@ export default function AboutPage() {
                 </p>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-border-soft bg-surface py-14 sm:py-16">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
+          <SectionIntro
+            eyebrow="Curriculum and placement"
+            title="A shared route that still leaves room for the child"
+          >
+            <p>
+              The old source material described common class groups, an
+              introductory period, and teacher judgement when deciding the best
+              group for a new pupil. The rebuild keeps that guidance structured
+              and easy to update.
+            </p>
+          </SectionIntro>
+          <div className="grid gap-5 md:grid-cols-3">
+            {placementSteps.map((step) => (
+              <article
+                key={step.title}
+                className="rounded-lg border border-border-soft bg-background p-5"
+              >
+                <h2 className="text-lg font-semibold text-brand-blue-strong">
+                  {step.title}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  {step.body}
+                </p>
+              </article>
+            ))}
+          </div>
+          <div className="lg:col-start-2">
+            <ul className="grid gap-3 sm:grid-cols-3">
+              {curriculumMaterials.map((item) => (
+                <li
+                  key={item}
+                  className="border-l border-brand-gold bg-background px-4 py-3 text-sm leading-6 text-slate-700"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
