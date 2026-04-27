@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { StatusBadge } from "@/components/site/status-badge";
+import { enquiryChecklist } from "@/data/admissions";
 import { contactDetails, paymentDetails } from "@/data/contact";
 import { getSchoolBySlug, schools } from "@/data/schools";
 
@@ -246,8 +247,19 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
       </section>
 
       <section className="bg-surface py-14 sm:py-16">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="flex flex-col gap-5 border-l-4 border-brand-gold pl-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
+          <div className="border-l-4 border-brand-gold pl-6">
+            <h2 className="text-2xl font-semibold text-brand-blue-strong">
+              Before you enquire
+            </h2>
+            <ul className="mt-5 space-y-3 text-sm leading-6 text-slate-700">
+              {enquiryChecklist.slice(0, 4).map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="flex flex-col gap-5 sm:justify-center">
             <div>
               <h2 className="text-2xl font-semibold text-brand-blue-strong">
                 Interested in {school.name}?

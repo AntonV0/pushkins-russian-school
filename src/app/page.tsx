@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SchoolCard } from "@/components/site/school-card";
+import { admissionsSteps } from "@/data/admissions";
 import { contactDetails } from "@/data/contact";
 import { networkSummary, schools } from "@/data/schools";
 
@@ -113,20 +114,7 @@ export default function Home() {
 
       <section className="border-y border-border-soft bg-surface py-16 sm:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-3 lg:px-8">
-          {[
-            {
-              title: "Structured learning",
-              body: "Weekend lesson plans combine assembly, focused lessons, breaks, and age-aware class groups.",
-            },
-            {
-              title: "Transparent status",
-              body: "Closed or online locations remain visible as part of the network, with clear register-interest calls to action.",
-            },
-            {
-              title: "Policy-ready",
-              body: "The site includes a polished policy index shell ready for reviewed public documents.",
-            },
-          ].map((item) => (
+          {admissionsSteps.map((item) => (
             <div key={item.title} className="border-l border-brand-gold pl-5">
               <h2 className="text-xl font-semibold text-brand-blue-strong">
                 {item.title}
@@ -134,6 +122,25 @@ export default function Home() {
               <p className="mt-3 text-sm leading-6 text-slate-600">{item.body}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="bg-background py-16 sm:py-20">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-[0.9fr_1.1fr] lg:px-8">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
+              Parent journey
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold text-brand-blue-strong">
+              Enquiries stay clear even while details are being verified
+            </h2>
+          </div>
+          <p className="text-base leading-7 text-slate-600">
+            The site now separates confirmed structure from details that need a
+            final business check. Families can still choose a location, see its
+            current status, and register interest without the website guessing
+            operational facts.
+          </p>
         </div>
       </section>
     </main>

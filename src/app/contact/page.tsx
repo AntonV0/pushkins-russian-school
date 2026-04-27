@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { enquiryChecklist } from "@/data/admissions";
 import { contactDetails, paymentDetails } from "@/data/contact";
 import { schools } from "@/data/schools";
 
@@ -75,6 +76,30 @@ export default function ContactPage() {
       </section>
 
       <section className="border-t border-border-soft bg-surface py-14 sm:py-16">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
+          <div>
+            <h2 className="text-2xl font-semibold text-brand-blue-strong">
+              What to include
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-slate-600">
+              A short, structured enquiry helps the school respond with the
+              right branch, group, and next step.
+            </p>
+          </div>
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {enquiryChecklist.map((item) => (
+              <li
+                key={item}
+                className="border-l border-brand-gold bg-background px-4 py-3 text-sm text-slate-700"
+              >
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="border-t border-border-soft bg-background py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <h2 className="text-2xl font-semibold text-brand-blue-strong">
             Payment information
@@ -86,7 +111,7 @@ export default function ContactPage() {
             {paymentDetails.termFees.map((fee) => (
               <div
                 key={fee.label}
-                className="border-l border-brand-gold bg-background px-4 py-3"
+                className="border-l border-brand-gold bg-surface px-4 py-3"
               >
                 <p className="text-sm text-slate-600">{fee.label}</p>
                 <p className="mt-1 font-semibold text-brand-blue-strong">
