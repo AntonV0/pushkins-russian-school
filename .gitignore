@@ -34,6 +34,9 @@ yarn-error.log*
 .env*
 !.env.example
 
+# local audit and planning docs
+/docs/
+
 # source migration material for the existing business site
 docs/source-screenshots/*
 !docs/source-screenshots/.gitkeep
