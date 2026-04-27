@@ -3,9 +3,15 @@ export const contactDetails = {
   email: "info@pushkinsrussianschool.co.uk",
   phoneLabel: "Enquiries by email",
   enquiryFormNote:
-    "The form is prepared for families, with final submission handling still to connect.",
+    "The form prepares a structured email draft while final website submission handling is still to connect.",
   registrationCta: "Register interest",
 };
+
+export const contactSupportNotes = [
+  "Use the form to prepare a clear email with branch, age, level, and goals.",
+  "For closed or online-only branches, enquiries are treated as register-interest messages.",
+  "Do not send sensitive documents through the website form until final data handling is connected.",
+];
 
 export const paymentDetails = {
   acceptedMethods: ["Bank transfer", "Childcare vouchers"],

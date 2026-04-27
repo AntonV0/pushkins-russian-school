@@ -3,7 +3,11 @@ import Link from "next/link";
 import { EnquiryForm } from "@/components/site/enquiry-form";
 import { SectionIntro } from "@/components/site/section-intro";
 import { enquiryChecklist } from "@/data/admissions";
-import { contactDetails, paymentDetails } from "@/data/contact";
+import {
+  contactDetails,
+  contactSupportNotes,
+  paymentDetails,
+} from "@/data/contact";
 import { schools } from "@/data/schools";
 
 export const metadata: Metadata = {
@@ -47,9 +51,9 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               Enquire about a school place or future local classes
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-              Use the structured form shell to prepare a clear enquiry, or email
-              the school directly while the final submission workflow is being
-              connected.
+              Use the structured form to prepare a clear email enquiry, or write
+              to the school directly while the final website submission workflow
+              is being connected.
             </p>
           </div>
           <aside className="bg-surface-muted p-6 sm:p-8">
@@ -65,7 +69,28 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             <p className="mt-4 text-sm leading-6 text-slate-600">
               {contactDetails.enquiryFormNote}
             </p>
+            <div className="mt-6 flex">
+              <a
+                href={`mailto:${contactDetails.email}`}
+                className="inline-flex items-center justify-center rounded-full bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
+              >
+                Email directly
+              </a>
+            </div>
           </aside>
+        </div>
+      </section>
+
+      <section className="border-b border-border-soft bg-background py-12">
+        <div className="mx-auto grid max-w-7xl gap-4 px-6 md:grid-cols-3 lg:px-8">
+          {contactSupportNotes.map((note) => (
+            <div
+              key={note}
+              className="border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
+            >
+              {note}
+            </div>
+          ))}
         </div>
       </section>
 
@@ -77,8 +102,9 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               title="Before submitting"
             >
               <p>
-                The form is ready as a parent-facing experience, with final
-                delivery and privacy wording still to connect.
+                The form now opens a structured email draft. It does not store
+                details on the website, which keeps the temporary workflow
+                simple while final delivery and privacy wording are confirmed.
               </p>
             </SectionIntro>
             <div className="mt-6 grid gap-3">

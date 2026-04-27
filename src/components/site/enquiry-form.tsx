@@ -1,8 +1,13 @@
+"use client";
+
+import type { FormEvent } from "react";
+import { useMemo, useState } from "react";
 import {
   childAgeOptions,
   enquiryTypes,
   russianLevelOptions,
 } from "@/data/admissions";
+import { contactDetails } from "@/data/contact";
 import { schools } from "@/data/schools";
 
 type EnquiryFormProps = {
@@ -10,13 +15,82 @@ type EnquiryFormProps = {
   selectedIntent?: string;
 };
 
+type FormState = {
+  parentName: string;
+  email: string;
+  school: string;
+  enquiryType: string;
+  childAge: string;
+  russianLevel: string;
+  message: string;
+};
+
 export function EnquiryForm({
   selectedSchool,
   selectedIntent,
 }: EnquiryFormProps) {
+  const [formState, setFormState] = useState<FormState>({
+    parentName: "",
+    email: "",
+    school: selectedSchool ?? "",
+    enquiryType: selectedIntent ?? "general",
+    childAge: "",
+    russianLevel: "",
+    message: "",
+  });
+
+  const selectedSchoolName = useMemo(
+    () =>
+      schools.find((school) => school.slug === formState.school)?.name ??
+      "Not selected",
+    [formState.school],
+  );
+
+  const selectedEnquiryLabel = useMemo(
+    () =>
+      enquiryTypes.find((type) => type.value === formState.enquiryType)?.label ??
+      "General enquiry",
+    [formState.enquiryType],
+  );
+
+  const emailDraftHref = useMemo(() => {
+    const subject = `Pushkin's School enquiry: ${selectedSchoolName}`;
+    const body = [
+      "Hello Pushkin's School,",
+      "",
+      "I would like to enquire about classes.",
+      "",
+      `Parent or carer name: ${formState.parentName || "Not provided"}`,
+      `Email address: ${formState.email || "Not provided"}`,
+      `Preferred branch: ${selectedSchoolName}`,
+      `Enquiry type: ${selectedEnquiryLabel}`,
+      `Child age or stage: ${formState.childAge || "Not provided"}`,
+      `Current Russian level: ${formState.russianLevel || "Not provided"}`,
+      "",
+      "Message:",
+      formState.message || "Not provided",
+      "",
+      "Thank you.",
+    ].join("\n");
+
+    return `mailto:${contactDetails.email}?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(body)}`;
+  }, [formState, selectedEnquiryLabel, selectedSchoolName]);
+
+  function updateField(field: keyof FormState, value: string) {
+    setFormState((current) => ({ ...current, [field]: value }));
+  }
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    window.location.href = emailDraftHref;
+  }
+
   return (
     <form
       id="enquiry-form"
+      onSubmit={handleSubmit}
       className="rounded-lg border border-border-soft bg-surface p-6 shadow-sm sm:p-8"
       aria-describedby="enquiry-form-status"
     >
@@ -31,8 +105,9 @@ export function EnquiryForm({
           id="enquiry-form-status"
           className="mt-3 text-sm leading-6 text-slate-600"
         >
-          This is a polished form shell. Submission handling will be connected
-          once the public contact workflow is confirmed.
+          Complete the fields to prepare a structured email draft. A direct
+          backend submission can be connected once the public contact workflow is
+          confirmed.
         </p>
       </div>
 
@@ -49,6 +124,8 @@ export function EnquiryForm({
             name="parentName"
             type="text"
             autoComplete="name"
+            value={formState.parentName}
+            onChange={(event) => updateField("parentName", event.target.value)}
             className="mt-2 w-full rounded-md border border-border-soft bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/15"
           />
         </div>
@@ -65,6 +142,8 @@ export function EnquiryForm({
             name="email"
             type="email"
             autoComplete="email"
+            value={formState.email}
+            onChange={(event) => updateField("email", event.target.value)}
             className="mt-2 w-full rounded-md border border-border-soft bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/15"
           />
         </div>
@@ -79,7 +158,8 @@ export function EnquiryForm({
           <select
             id="school"
             name="school"
-            defaultValue={selectedSchool ?? ""}
+            value={formState.school}
+            onChange={(event) => updateField("school", event.target.value)}
             className="mt-2 w-full rounded-md border border-border-soft bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/15"
           >
             <option value="">Select a branch</option>
@@ -101,7 +181,10 @@ export function EnquiryForm({
           <select
             id="enquiry-type"
             name="enquiryType"
-            defaultValue={selectedIntent ?? "general"}
+            value={formState.enquiryType}
+            onChange={(event) =>
+              updateField("enquiryType", event.target.value)
+            }
             className="mt-2 w-full rounded-md border border-border-soft bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/15"
           >
             {enquiryTypes.map((type) => (
@@ -122,7 +205,8 @@ export function EnquiryForm({
           <select
             id="child-age"
             name="childAge"
-            defaultValue=""
+            value={formState.childAge}
+            onChange={(event) => updateField("childAge", event.target.value)}
             className="mt-2 w-full rounded-md border border-border-soft bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/15"
           >
             <option value="">Select an age range</option>
@@ -144,7 +228,8 @@ export function EnquiryForm({
           <select
             id="russian-level"
             name="russianLevel"
-            defaultValue=""
+            value={formState.russianLevel}
+            onChange={(event) => updateField("russianLevel", event.target.value)}
             className="mt-2 w-full rounded-md border border-border-soft bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/15"
           >
             <option value="">Select the closest option</option>
@@ -169,23 +254,22 @@ export function EnquiryForm({
           name="message"
           rows={6}
           placeholder="Share any useful context, such as home language exposure, previous lessons, exam goals, siblings, or preferred start date."
+          value={formState.message}
+          onChange={(event) => updateField("message", event.target.value)}
           className="mt-2 w-full rounded-md border border-border-soft bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/15"
         />
       </div>
 
       <div className="mt-6 flex flex-col gap-3 border-t border-border-soft pt-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-xl text-xs leading-5 text-slate-500">
-          The form is intentionally not submitting yet. This prevents enquiries
-          from disappearing before the final inbox, consent, and data handling
-          process is confirmed.
+          This opens your email app with the enquiry details filled in. It does
+          not store or send information through the website yet.
         </p>
         <button
-          type="button"
-          disabled
-          aria-disabled="true"
-          className="inline-flex cursor-not-allowed items-center justify-center rounded-full bg-slate-300 px-5 py-3 text-sm font-semibold text-slate-700"
+          type="submit"
+          className="inline-flex items-center justify-center rounded-full bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
         >
-          Submission coming soon
+          Open email draft
         </button>
       </div>
     </form>
