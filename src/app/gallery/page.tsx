@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-
-const galleryYears = ["2019", "2018", "2015", "2014", "2013", "2012"];
+import Link from "next/link";
+import { galleryArchives } from "@/data/gallery";
 
 export const metadata: Metadata = {
   title: "Gallery",
@@ -30,22 +30,23 @@ export default function GalleryPage() {
       <section className="bg-background py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {galleryYears.map((year) => (
-              <article
-                key={year}
+            {galleryArchives.map((archive) => (
+              <Link
+                key={archive.year}
+                href={`/gallery/${archive.year}`}
                 className="aspect-[4/3] rounded-lg border border-border-soft bg-surface p-6"
               >
                 <p className="text-sm font-semibold uppercase tracking-[0.16em] text-muted">
                   Archive
                 </p>
                 <h2 className="mt-3 text-3xl font-semibold text-brand-blue-strong">
-                  {year}
+                  {archive.year}
                 </h2>
                 <p className="mt-4 text-sm leading-6 text-slate-600">
-                  Redirected from the old year route. Images pending approved
-                  public asset selection.
+                  {archive.status}. Open the year shell for asset and caption
+                  readiness notes.
                 </p>
-              </article>
+              </Link>
             ))}
           </div>
         </div>

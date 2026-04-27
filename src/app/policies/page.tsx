@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { policyGroups } from "@/data/policies";
 
 export const metadata: Metadata = {
@@ -39,13 +40,21 @@ export default function PoliciesPage() {
               <ul className="mt-5 divide-y divide-border-soft text-sm">
                 {group.policies.map((policy) => (
                   <li
-                    key={policy}
+                    key={policy.slug}
                     className="flex items-center justify-between gap-4 py-3"
                   >
-                    <span className="text-slate-700">{policy}</span>
-                    <span className="shrink-0 text-xs font-semibold uppercase tracking-[0.12em] text-muted">
-                      Coming soon
-                    </span>
+                    <Link
+                      href={`/policies/${policy.slug}`}
+                      className="font-medium text-slate-700 hover:text-brand-red"
+                    >
+                      {policy.title}
+                    </Link>
+                    <Link
+                      href={`/policies/${policy.slug}`}
+                      className="shrink-0 text-xs font-semibold uppercase tracking-[0.12em] text-muted hover:text-brand-red"
+                    >
+                      View shell
+                    </Link>
                   </li>
                 ))}
               </ul>
