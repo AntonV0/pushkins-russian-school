@@ -2,6 +2,11 @@
 
 Use this file to map existing copy, screenshots, and assets to the new site structure.
 
-| Source page | Screenshot file | Copy file | Assets | Migration notes |
-| --- | --- | --- | --- | --- |
-| Home |  |  |  |  |
+| Source page | Screenshot file | Audit copy file | Likely future route | Assets observed | Migration notes |
+| --- | --- | --- | --- | --- | --- |
+| Home | `docs/source-screenshots/home-slider-children-crafts-contact.png`; `docs/source-screenshots/home-slider-boys-masks-contact.png` | `docs/site-audit/source-content.md#home` | `/` | Header logo/REC mark; hero slider photos of children; embedded class video/photo preview; contact form | Use screenshots only as audit inputs. Contact details, director name, school locations/times, and child images need verification before public use. |
+| About Us | `docs/source-screenshots/about-us-history-contact.png` | `docs/site-audit/source-content.md#about-us` | `/about` | Header logo/REC mark; embedded video/photo of child in costume; Facebook page widget; contact form | Copy can guide future messaging, but partner/institution references, trip details, director/contact details, and any child imagery need review. |
+| Our Schools | `docs/source-screenshots/our-schools-location-overview.png` | `docs/site-audit/source-content.md#our-schools` | `/schools` | Google map; school/location photos; location selector buttons; contact form | Treat all addresses, times, map markers, and online-only statuses as stale until confirmed. Photos show children/staff and require permission review. |
+| Bracknell school detail | `docs/source-screenshots/school-bracknell-detail-calendar-prices-gallery.png` | `docs/site-audit/source-content.md#bracknell-school-detail` | `/schools/bracknell` | Hero group photo; calendar graphic; gallery photos; Google map; contact form | Old Bracknell detail, calendar, prices, payment, address, and gallery content are audit-only. Do not migrate bank/account details or child images without explicit approval. |
+| Policies | `docs/source-screenshots/policies-document-links.png` | `docs/site-audit/source-content.md#policies` | `/policies` | Policy category panels; document action buttons; contact form | Document titles are captured for planning. Actual policy PDFs/links must be verified for currency, ownership, and publication readiness. |
+| Gallery year index | `docs/source-screenshots/gallery-year-index.png` | `docs/site-audit/source-content.md#gallery` | `/gallery` | Year cards/thumbnails for 2019, 2018, 2015, 2014, 2013, 2012; contact form | Gallery media is unreviewed child/event photography. Keep source screenshots ignored; future galleries need consent and asset review. |
