@@ -11,3 +11,8 @@ export const primaryNavigation: NavigationItem[] = [
   { label: "Gallery", href: "/gallery" },
   { label: "Contact", href: "/contact" },
 ];
+
+export const footerNavigation: NavigationItem[] = [
+  ...primaryNavigation,
+  { label: "Admissions and fees", href: "/admissions" },
+];

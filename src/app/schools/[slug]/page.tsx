@@ -303,9 +303,14 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 final submission workflow is being connected.
               </p>
             </div>
-            <ButtonLink href={getSchoolEnquiryHref(school)}>
-              {school.enquiryCta}
-            </ButtonLink>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href={getSchoolEnquiryHref(school)}>
+                {school.enquiryCta}
+              </ButtonLink>
+              <ButtonLink href="/admissions" variant="secondary">
+                Admissions and fees
+              </ButtonLink>
+            </div>
           </div>
         </div>
       </section>

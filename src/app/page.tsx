@@ -212,8 +212,8 @@ export default function Home() {
             <ButtonLink href="/contact#enquiry-form">
               Start an enquiry
             </ButtonLink>
-            <ButtonLink href="/policies" variant="secondary">
-              View policies
+            <ButtonLink href="/admissions" variant="secondary">
+              Admissions and fees
             </ButtonLink>
           </div>
         </div>

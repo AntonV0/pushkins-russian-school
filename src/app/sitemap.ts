@@ -5,7 +5,11 @@ import { policies } from "@/data/policies";
 import { schools } from "@/data/schools";
 import { absoluteUrl } from "@/data/site";
 
-const staticRoutes = ["/", ...primaryNavigation.map((item) => item.href)];
+const staticRoutes = [
+  "/",
+  ...primaryNavigation.map((item) => item.href),
+  "/admissions",
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

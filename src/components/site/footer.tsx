@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { contactDetails, paymentDetails } from "@/data/contact";
-import { primaryNavigation } from "@/data/navigation";
+import { footerNavigation } from "@/data/navigation";
 import { schools } from "@/data/schools";
 import { BrandMark } from "./brand-mark";
 
@@ -43,7 +43,7 @@ export function Footer() {
             Site
           </p>
           <ul className="mt-4 space-y-2 text-sm text-white/80">
-            {primaryNavigation.map((item) => (
+            {footerNavigation.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className="hover:text-white">
                   {item.label}
