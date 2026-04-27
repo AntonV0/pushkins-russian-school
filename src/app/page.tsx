@@ -1,12 +1,31 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ButtonLink } from "@/components/site/button-link";
+import { MetricStrip } from "@/components/site/metric-strip";
+import { NetworkVisual } from "@/components/site/network-visual";
 import { SchoolCard } from "@/components/site/school-card";
+import { SectionIntro } from "@/components/site/section-intro";
 import { admissionsSteps } from "@/data/admissions";
 import { contactDetails } from "@/data/contact";
 import { networkSummary, schools } from "@/data/schools";
 import { siteConfig } from "@/data/site";
 
 const featuredSchools = schools.slice(0, 3);
+
+const learningPathways = [
+  {
+    title: "Language foundations",
+    body: "Age-aware groups support speaking, reading, writing, grammar, and confidence for children with different home-language backgrounds.",
+  },
+  {
+    title: "Culture and literature",
+    body: "Lessons connect language with stories, performance, traditions, and creative work so Russian feels lived-in rather than abstract.",
+  },
+  {
+    title: "Exam preparation",
+    body: "Older pupils can work towards GCSE and A Level preparation with a structured weekend rhythm and clear learning expectations.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Pushkin's School | Russian Language School Network",
@@ -25,7 +44,7 @@ export default function Home() {
   return (
     <main>
       <section className="border-b border-border-soft bg-surface">
-        <div className="mx-auto grid min-h-[calc(100vh-82px)] max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-[1.08fr_0.92fr] lg:px-8">
+        <div className="mx-auto grid min-h-[calc(100vh-82px)] max-w-7xl items-center gap-12 px-6 py-14 lg:grid-cols-[0.98fr_1.02fr] lg:px-8">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
               Russian language, culture, and exam preparation
@@ -34,89 +53,55 @@ export default function Home() {
               Pushkin&apos;s School
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-              A warm, academically focused school network for children learning
-              Russian through weekend classes, structured lesson plans, cultural
-              study, and family-centred support.
+              A warm, academically focused weekend school network for families
+              raising children with Russian language, literature, culture, and
+              exam goals.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href="/schools"
-                className="inline-flex items-center justify-center rounded-full bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
-              >
-                Find your school
-              </Link>
-              <Link
-                href="/contact#enquiry-form"
-                className="inline-flex items-center justify-center rounded-full border border-brand-blue/20 px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
-              >
+              <ButtonLink href="/schools">Find your school</ButtonLink>
+              <ButtonLink href="/contact#enquiry-form" variant="secondary">
                 {contactDetails.registrationCta}
-              </Link>
+              </ButtonLink>
+            </div>
+            <div className="mt-10">
+              <MetricStrip
+                metrics={[
+                  { label: "Locations", value: networkSummary.locations },
+                  { label: "Counties", value: networkSummary.counties },
+                  { label: "Class pathways", value: networkSummary.classGroupCount },
+                ]}
+              />
             </div>
           </div>
 
-          <div className="border-l-4 border-brand-red bg-surface-muted p-6 sm:p-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-muted">
-              School network
-            </p>
-            <div className="mt-6 grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
-              <div>
-                <p className="text-4xl font-semibold text-brand-blue-strong">
-                  {networkSummary.locations}
-                </p>
-                <p className="mt-1 text-sm text-slate-600">Known locations</p>
-              </div>
-              <div>
-                <p className="text-4xl font-semibold text-brand-blue-strong">
-                  {networkSummary.counties}
-                </p>
-                <p className="mt-1 text-sm text-slate-600">Counties served</p>
-              </div>
-              <div>
-                <p className="text-4xl font-semibold text-brand-blue-strong">
-                  {networkSummary.classGroupCount}
-                </p>
-                <p className="mt-1 text-sm text-slate-600">Class pathways</p>
-              </div>
-            </div>
-            <div className="mt-8 grid gap-3">
-              {schools.map((school) => (
-                <Link
-                  key={school.slug}
-                  href={`/schools/${school.slug}`}
-                  className="flex items-center justify-between border-t border-border-soft py-3 text-sm font-semibold text-brand-blue-strong hover:text-brand-red"
-                >
-                  <span>{school.name}</span>
-                  <span className="text-xs font-medium uppercase tracking-[0.12em] text-muted">
-                    {school.county}
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
+          <NetworkVisual />
         </div>
       </section>
 
       <section className="bg-background py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
-              Local branches
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold text-brand-blue-strong sm:text-4xl">
-              Weekend schools with clear status for every location
-            </h2>
-            <p className="mt-4 text-base leading-7 text-slate-600">
-              Each branch has its own page so families can see venue details,
+          <SectionIntro
+            eyebrow="Local branches"
+            title="Weekend schools with clear status for every location"
+          >
+            <p>
+              Every branch has its own page so families can see venue details,
               lesson structure, class groups, and whether in-person classes are
               open, online, or currently closed.
             </p>
-          </div>
+          </SectionIntro>
+
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {featuredSchools.map((school) => (
               <SchoolCard key={school.slug} school={school} />
             ))}
           </div>
-          <div className="mt-8">
+
+          <div className="mt-8 flex flex-col gap-4 border-l-4 border-brand-gold bg-surface px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm leading-6 text-slate-600">
+              Closed and online branches remain visible as part of the school
+              network, with transparent register-interest wording.
+            </p>
             <Link
               href="/schools"
               className="text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/40 hover:text-brand-red"
@@ -127,35 +112,91 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="bg-brand-blue-strong py-16 text-white sm:py-20">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
+          <SectionIntro
+            eyebrow="Learning approach"
+            title="Structured, stimulating, and built around children"
+            tone="dark"
+          >
+            <p>
+              The source site emphasised weekend supplementary education,
+              specialist lessons, and a shared curriculum. This rebuild presents
+              that message with calmer, clearer hierarchy for parents.
+            </p>
+          </SectionIntro>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            {learningPathways.map((pathway) => (
+              <article
+                key={pathway.title}
+                className="rounded-lg border border-white/15 bg-white/10 p-5"
+              >
+                <h2 className="text-lg font-semibold text-white">
+                  {pathway.title}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-white/75">
+                  {pathway.body}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="border-y border-border-soft bg-surface py-16 sm:py-20">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-3 lg:px-8">
-          {admissionsSteps.map((item) => (
-            <div key={item.title} className="border-l border-brand-gold pl-5">
-              <h2 className="text-xl font-semibold text-brand-blue-strong">
-                {item.title}
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-slate-600">{item.body}</p>
-            </div>
-          ))}
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Parent journey"
+            title="From branch choice to a useful enquiry"
+            align="center"
+          >
+            <p>
+              The enquiry path is designed to help families share the details
+              the school needs, without hiding source uncertainties that still
+              require business confirmation.
+            </p>
+          </SectionIntro>
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {admissionsSteps.map((item, index) => (
+              <article
+                key={item.title}
+                className="rounded-lg border border-border-soft bg-background p-6"
+              >
+                <p className="font-mono text-sm font-semibold text-brand-red">
+                  0{index + 1}
+                </p>
+                <h2 className="mt-4 text-xl font-semibold text-brand-blue-strong">
+                  {item.title}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  {item.body}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="bg-background py-16 sm:py-20">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-[0.9fr_1.1fr] lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[1fr_0.85fr] lg:px-8">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
-              Parent journey
+              Ready to start?
             </p>
-            <h2 className="mt-3 text-3xl font-semibold text-brand-blue-strong">
-              Enquiries stay clear even while details are being verified
+            <h2 className="mt-3 max-w-3xl text-3xl font-semibold text-brand-blue-strong sm:text-4xl">
+              Ask about current classes or register interest in a future local
+              branch
             </h2>
           </div>
-          <p className="text-base leading-7 text-slate-600">
-            The site now separates confirmed structure from details that need a
-            final business check. Families can still choose a location, see its
-            current status, and register interest without the website guessing
-            operational facts.
-          </p>
+          <div className="flex flex-col justify-center gap-4 sm:flex-row lg:justify-end">
+            <ButtonLink href="/contact#enquiry-form">
+              Start an enquiry
+            </ButtonLink>
+            <ButtonLink href="/policies" variant="secondary">
+              View policies
+            </ButtonLink>
+          </div>
         </div>
       </section>
     </main>
