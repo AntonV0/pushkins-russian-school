@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ButtonLink } from "@/components/site/button-link";
+import { SectionIntro } from "@/components/site/section-intro";
 import { StatusBadge } from "@/components/site/status-badge";
 import { enquiryChecklist, getSchoolEnquiryHref } from "@/data/admissions";
 import { contactDetails, paymentDetails } from "@/data/contact";
@@ -68,12 +69,9 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
               {school.statusDescription}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link
-                href={getSchoolEnquiryHref(school)}
-                className="inline-flex items-center justify-center rounded-full bg-brand-red px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-red/30"
-              >
+              <ButtonLink href={getSchoolEnquiryHref(school)}>
                 {school.enquiryCta}
-              </Link>
+              </ButtonLink>
               <a
                 href={school.mapHref}
                 target="_blank"
@@ -118,19 +116,13 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
 
       <section className="bg-background py-14 sm:py-16">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
-              Learning plan
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold text-brand-blue-strong">
-              A clear school-day rhythm
-            </h2>
-            <p className="mt-4 text-base leading-7 text-slate-600">
+          <SectionIntro eyebrow="Learning plan" title="A clear school-day rhythm">
+            <p>
               The source timetable is represented as structured data so each
               branch can adjust session times without changing the page
               template.
             </p>
-          </div>
+          </SectionIntro>
 
           <ol className="divide-y divide-border-soft border-y border-border-soft bg-surface">
             {school.lessonPlan.map((item) => (
@@ -278,12 +270,11 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 final submission workflow is being connected.
               </p>
             </div>
-            <Link
+            <ButtonLink
               href={getSchoolEnquiryHref(school)}
-              className="inline-flex items-center justify-center rounded-full bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
             >
               {school.enquiryCta}
-            </Link>
+            </ButtonLink>
           </div>
         </div>
       </section>

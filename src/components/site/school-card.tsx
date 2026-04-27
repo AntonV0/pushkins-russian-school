@@ -1,5 +1,5 @@
-import Link from "next/link";
 import type { School } from "@/data/schools";
+import { ButtonLink } from "./button-link";
 import { StatusBadge } from "./status-badge";
 
 type SchoolCardProps = {
@@ -8,7 +8,7 @@ type SchoolCardProps = {
 
 export function SchoolCard({ school }: SchoolCardProps) {
   return (
-    <article className="flex h-full flex-col justify-between rounded-lg border border-border-soft bg-surface p-6 shadow-sm">
+    <article className="flex h-full flex-col justify-between rounded-lg border border-border-soft bg-surface p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
       <div>
         <StatusBadge status={school.status} label={school.statusLabel} />
         <div className="mt-5">
@@ -31,14 +31,21 @@ export function SchoolCard({ school }: SchoolCardProps) {
             <dt className="font-semibold text-brand-blue-strong">Schedule</dt>
             <dd className="mt-1 text-slate-600">{school.schedule}</dd>
           </div>
+          <div>
+            <dt className="font-semibold text-brand-blue-strong">Address</dt>
+            <dd className="mt-1 text-slate-600">
+              {school.address.join(", ")} {school.postcode}
+            </dd>
+          </div>
         </dl>
       </div>
-      <Link
+      <ButtonLink
         href={`/schools/${school.slug}`}
-        className="mt-7 inline-flex items-center justify-center rounded-full border border-brand-blue/20 px-4 py-2 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+        variant="secondary"
+        className="mt-7 px-4 py-2"
       >
         View school page
-      </Link>
+      </ButtonLink>
     </article>
   );
 }
