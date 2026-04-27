@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { StatusBadge } from "@/components/site/status-badge";
-import { enquiryChecklist } from "@/data/admissions";
+import { enquiryChecklist, getSchoolEnquiryHref } from "@/data/admissions";
 import { contactDetails, paymentDetails } from "@/data/contact";
 import { getSchoolBySlug, schools } from "@/data/schools";
 
@@ -60,7 +60,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
-                href="/contact"
+                href={getSchoolEnquiryHref(school)}
                 className="inline-flex items-center justify-center rounded-full bg-brand-red px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-red/30"
               >
                 {school.enquiryCta}
@@ -265,12 +265,12 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 Interested in {school.name}?
               </h2>
               <p className="mt-2 text-sm leading-6 text-slate-600">
-                Email {contactDetails.email} or use the enquiry route while the
-                public form is being finalised.
+              Email {contactDetails.email} or use the enquiry route while the
+                final submission workflow is being connected.
               </p>
             </div>
             <Link
-              href="/contact"
+              href={getSchoolEnquiryHref(school)}
               className="inline-flex items-center justify-center rounded-full bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
             >
               {school.enquiryCta}

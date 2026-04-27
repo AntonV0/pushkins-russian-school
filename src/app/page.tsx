@@ -31,7 +31,7 @@ export default function Home() {
                 Find your school
               </Link>
               <Link
-                href="/contact"
+                href="/contact#enquiry-form"
                 className="inline-flex items-center justify-center rounded-full border border-brand-blue/20 px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
               >
                 {contactDetails.registrationCta}

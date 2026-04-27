@@ -3,7 +3,7 @@ export const contactDetails = {
   email: "info@pushkinsrussianschool.co.uk",
   phoneLabel: "Enquiries by email",
   enquiryFormNote:
-    "A dedicated enquiry form will be added once the public contact workflow is confirmed.",
+    "The form is prepared for families, with final submission handling still to connect.",
   registrationCta: "Register interest",
 };
 
