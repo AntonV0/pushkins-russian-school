@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ButtonLink } from "@/components/site/button-link";
 import { SectionIntro } from "@/components/site/section-intro";
+import { VisualStoryPanel } from "@/components/site/visual-story-panel";
 import {
   admissionsSteps,
   childAgeOptions,
@@ -12,7 +13,10 @@ import {
   curriculumRouteRecommendations,
   placementSignals,
 } from "@/data/curriculum";
+import { getVisualPlaceholderSlot } from "@/data/media-assets";
 import { schools } from "@/data/schools";
+
+const admissionsVisual = getVisualPlaceholderSlot("admissions-learning-journey");
 
 export const metadata: Metadata = {
   title: "Admissions and Fees",
@@ -62,31 +66,40 @@ export default function AdmissionsPage() {
               </ButtonLink>
             </div>
           </div>
-          <aside className="bg-surface-muted p-6 sm:p-8">
-            <h2 className="text-xl font-semibold text-brand-blue-strong">
-              Current network status
-            </h2>
-            <dl className="mt-6 grid gap-4 text-sm">
-              <div className="border-l border-brand-gold pl-4">
-                <dt className="font-semibold text-brand-blue-strong">
-                  Weekend branches
-                </dt>
-                <dd className="mt-1 text-slate-600">{openSchools.length}</dd>
-              </div>
-              <div className="border-l border-brand-gold pl-4">
-                <dt className="font-semibold text-brand-blue-strong">
-                  Online or register-interest branches
-                </dt>
-                <dd className="mt-1 text-slate-600">{interestSchools.length}</dd>
-              </div>
-              <div className="border-l border-brand-gold pl-4">
-                <dt className="font-semibold text-brand-blue-strong">
-                  Direct enquiries
-                </dt>
-                <dd className="mt-1 text-slate-600">{contactDetails.email}</dd>
-              </div>
-            </dl>
-          </aside>
+          <div className="grid content-start gap-4">
+            {admissionsVisual ? (
+              <VisualStoryPanel slot={admissionsVisual} compact />
+            ) : null}
+            <aside className="bg-surface-muted p-6 sm:p-8">
+              <h2 className="text-xl font-semibold text-brand-blue-strong">
+                Current network status
+              </h2>
+              <dl className="mt-6 grid gap-4 text-sm">
+                <div className="border-l border-brand-gold pl-4">
+                  <dt className="font-semibold text-brand-blue-strong">
+                    Weekend branches
+                  </dt>
+                  <dd className="mt-1 text-slate-600">{openSchools.length}</dd>
+                </div>
+                <div className="border-l border-brand-gold pl-4">
+                  <dt className="font-semibold text-brand-blue-strong">
+                    Online or register-interest branches
+                  </dt>
+                  <dd className="mt-1 text-slate-600">
+                    {interestSchools.length}
+                  </dd>
+                </div>
+                <div className="border-l border-brand-gold pl-4">
+                  <dt className="font-semibold text-brand-blue-strong">
+                    Direct enquiries
+                  </dt>
+                  <dd className="mt-1 text-slate-600">
+                    {contactDetails.email}
+                  </dd>
+                </div>
+              </dl>
+            </aside>
+          </div>
         </div>
       </section>
 

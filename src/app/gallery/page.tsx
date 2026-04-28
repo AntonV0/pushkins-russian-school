@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ButtonLink } from "@/components/site/button-link";
 import { MetricStrip } from "@/components/site/metric-strip";
 import { SectionIntro } from "@/components/site/section-intro";
+import { VisualStoryPanel } from "@/components/site/visual-story-panel";
 import {
   galleryArchives,
   galleryReadinessNotes,
@@ -10,7 +11,13 @@ import {
   galleryThemes,
   galleryWorkflowStages,
 } from "@/data/gallery";
-import { approvedMediaAssets, mediaReadinessNotes } from "@/data/media-assets";
+import {
+  approvedMediaAssets,
+  getVisualPlaceholderSlot,
+  mediaReadinessNotes,
+} from "@/data/media-assets";
+
+const galleryVisual = getVisualPlaceholderSlot("gallery-approved-archive");
 
 export const metadata: Metadata = {
   title: "Gallery",
@@ -51,13 +58,18 @@ export default function GalleryPage() {
               </ButtonLink>
             </div>
           </div>
-          <MetricStrip
-            metrics={[
-              { label: "Year routes", value: galleryArchives.length },
-              { label: "Themes", value: galleryThemes.length },
-              { label: "Approved", value: approvedMediaAssets.length },
-            ]}
-          />
+          <div className="grid content-start gap-4">
+            {galleryVisual ? (
+              <VisualStoryPanel slot={galleryVisual} compact />
+            ) : null}
+            <MetricStrip
+              metrics={[
+                { label: "Year routes", value: galleryArchives.length },
+                { label: "Themes", value: galleryThemes.length },
+                { label: "Approved", value: approvedMediaAssets.length },
+              ]}
+            />
+          </div>
         </div>
       </section>
 

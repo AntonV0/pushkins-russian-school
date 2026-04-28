@@ -14,9 +14,22 @@ The typed registry lives in `src/data/media-assets.ts`. It is intentionally empt
 for now:
 
 - `approvedMediaAssets`: approved images that may be rendered publicly.
+- `visualPlaceholderSlots`: generic, non-identifying visual slots used while
+  approved school photos are unavailable.
 - `mediaIntakeFields`: required metadata for each future image.
 - `mediaIngestionSteps`: the publication checklist.
 - `mediaReadinessNotes`: public-safe notes used by gallery readiness UI.
+
+Current public pages use visual slots rather than unreviewed photography:
+
+- About: a warm language-table illustration slot.
+- Curriculum: a books, culture, and study-materials slot.
+- Admissions: a parent-journey/process slot.
+- Gallery: an honest archive-readiness slot and empty approved-image frames.
+
+The homepage and schools page currently use the network status visual rather
+than photo placeholders. Keep those surfaces data-driven unless approved public
+media is provided.
 
 ## Folder Intent
 
@@ -95,9 +108,28 @@ Before an archive year is populated, confirm that each image has:
 
 ## Generated Visuals
 
-Generated illustrations may be useful later for warmer, less text-heavy pages,
-especially when approved photos are unavailable. Treat them as a separate
-editorial decision and do not add generated imagery unless explicitly requested.
+Generated illustrations can make public pages warmer while approved school
+photos are unavailable, but they must stay generic and non-identifying. The
+prepared prompts in `visualPlaceholderSlots` are intentionally limited to
+academic materials, books, notebooks, Cyrillic letter cards, culture details,
+route markers, and archive frames.
+
+Generated visuals must not include:
+
+- identifiable people, children, faces, portraits, or staff likenesses,
+- school logos or implied official badges unless approved,
+- private documents, forms, bank details, names, or real pupil work,
+- old-site screenshots or imitation archive photos,
+- stock-looking classroom filler that suggests a real photographed lesson.
+
+When a generated visual is approved for use:
+
+1. Save only the final approved image under `public/images/optimised`.
+2. Add an approved media record if the image should be managed as a site asset.
+3. Use the `altTextWhenGenerated` field as a starting point for accessible alt
+   text.
+4. Keep gallery archives honest: generated visuals may explain the workflow, but
+   they must not stand in for historical school photos.
 
 ## Coordinator Notes
 

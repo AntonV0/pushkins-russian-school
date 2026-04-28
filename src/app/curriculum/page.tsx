@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ButtonLink } from "@/components/site/button-link";
 import { LearningOptions } from "@/components/site/learning-options";
 import { SectionIntro } from "@/components/site/section-intro";
+import { VisualStoryPanel } from "@/components/site/visual-story-panel";
 import {
   curriculumDetailsPendingReview,
   curriculumMaterials,
@@ -12,7 +13,10 @@ import {
   placementSignals,
   placementSteps,
 } from "@/data/curriculum";
+import { getVisualPlaceholderSlot } from "@/data/media-assets";
 import { classGroups } from "@/data/schools";
+
+const curriculumVisual = getVisualPlaceholderSlot("curriculum-culture-shelf");
 
 export const metadata: Metadata = {
   title: "Curriculum",
@@ -54,17 +58,22 @@ export default function CurriculumPage() {
               </ButtonLink>
             </div>
           </div>
-          <div className="grid content-start gap-3">
-            {classGroups.map((group) => (
-              <div
-                key={group}
-                className="border-l-4 border-brand-gold bg-background px-5 py-4"
-              >
-                <p className="text-sm font-semibold text-brand-blue-strong">
-                  {group}
-                </p>
-              </div>
-            ))}
+          <div className="grid content-start gap-4">
+            {curriculumVisual ? (
+              <VisualStoryPanel slot={curriculumVisual} compact />
+            ) : null}
+            <div className="grid gap-3 sm:grid-cols-2">
+              {classGroups.map((group) => (
+                <div
+                  key={group}
+                  className="border-l-4 border-brand-gold bg-background px-5 py-4"
+                >
+                  <p className="text-sm font-semibold text-brand-blue-strong">
+                    {group}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

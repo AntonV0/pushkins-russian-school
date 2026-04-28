@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
 import { ButtonLink } from "@/components/site/button-link";
 import { MetricStrip } from "@/components/site/metric-strip";
-import { NetworkVisual } from "@/components/site/network-visual";
 import { SectionIntro } from "@/components/site/section-intro";
 import { TrustSignals } from "@/components/site/trust-signals";
+import { VisualStoryPanel } from "@/components/site/visual-story-panel";
 import {
   curriculumMaterials,
   curriculumReviewNotes,
   educationPrinciples,
   placementSteps,
 } from "@/data/curriculum";
+import { getVisualPlaceholderSlot } from "@/data/media-assets";
 import { networkSummary } from "@/data/schools";
+
+const aboutVisual = getVisualPlaceholderSlot("about-community-table");
 
 const reviewNotes = [
   ...curriculumReviewNotes,
@@ -58,7 +61,7 @@ export default function AboutPage() {
               </ButtonLink>
             </div>
           </div>
-          <NetworkVisual />
+          {aboutVisual ? <VisualStoryPanel slot={aboutVisual} /> : null}
         </div>
       </section>
 

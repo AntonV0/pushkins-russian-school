@@ -56,9 +56,21 @@ export function MediaAssetGrid({
         {Array.from({ length: slotCount }, (_, index) => (
           <figure
             key={`${emptyLabel}-${index}`}
-            className="flex aspect-[4/3] items-end rounded-lg border border-dashed border-border-soft bg-surface-muted p-5 [background-image:linear-gradient(135deg,rgba(20,56,102,0.08)_25%,transparent_25%,transparent_50%,rgba(20,56,102,0.08)_50%,rgba(20,56,102,0.08)_75%,transparent_75%,transparent)] [background-size:28px_28px]"
+            className="relative flex aspect-[4/3] items-end overflow-hidden rounded-lg border border-dashed border-border-soft bg-surface-muted p-5"
           >
-            <figcaption>
+            <div
+              className="absolute inset-0 bg-[linear-gradient(90deg,rgba(20,56,102,0.07)_1px,transparent_1px),linear-gradient(0deg,rgba(20,56,102,0.07)_1px,transparent_1px)] bg-[size:30px_30px]"
+              aria-hidden="true"
+            />
+            <div
+              className="absolute left-6 top-6 h-24 w-32 rounded-md border border-dashed border-brand-blue/25 bg-white/70"
+              aria-hidden="true"
+            />
+            <div
+              className="absolute right-8 top-10 h-20 w-28 rounded-md border border-dashed border-brand-gold/40 bg-white/60"
+              aria-hidden="true"
+            />
+            <figcaption className="relative">
               <p className="text-sm font-semibold text-brand-blue-strong">
                 {emptyLabel} {index + 1}
               </p>
