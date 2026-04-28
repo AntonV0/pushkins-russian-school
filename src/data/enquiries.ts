@@ -51,6 +51,32 @@ export type EnquirySubmissionState = {
   values?: EnquiryValues;
 };
 
+export type EnquiryStorageMode = "disabled" | "supabase";
+
+export type EnquiryDeliveryMode = "disabled";
+
+export type EnquiryRateLimitMode = "off" | "memory";
+
+export type EnquiryInboxStatus =
+  | "new"
+  | "triage"
+  | "invited"
+  | "closed";
+
+export type SampleEnquiryRecord = {
+  id: string;
+  receivedAt: string;
+  parentLabel: string;
+  childLabel: string;
+  preferredRoute: string;
+  enquiryType: string;
+  russianLevel: string;
+  status: EnquiryInboxStatus;
+  lastActivity: string;
+  nextAction: string;
+  source: "sample-only";
+};
+
 export const initialEnquirySubmissionState: EnquirySubmissionState = {
   status: "idle",
 };
@@ -60,6 +86,42 @@ export const enquiryPrivacyNotice =
 
 export const enquiryStorageDecision =
   "Supabase storage should be enabled only after the enquiry table, row-level security, retention period, staff access model, and privacy wording are confirmed.";
+
+export const enquiryDeliveryDecision =
+  "Email delivery is disabled by default. Add a transactional email provider only after credentials, sender domains, acknowledgement wording, and failure handling are approved.";
+
+export const enquirySpamProtectionDecision =
+  "Spam protection starts with a honeypot. Optional in-memory rate limiting must hash request metadata with a server-only salt and should be replaced by durable edge or database-backed protection before heavy traffic.";
+
+export const enquiryStatusMeta: Record<
+  EnquiryInboxStatus,
+  {
+    label: string;
+    description: string;
+    tone: "info" | "warning" | "success" | "neutral";
+  }
+> = {
+  new: {
+    label: "New",
+    description: "Needs first staff review.",
+    tone: "info",
+  },
+  triage: {
+    label: "Triage",
+    description: "Awaiting branch, level, or timetable decision.",
+    tone: "warning",
+  },
+  invited: {
+    label: "Invited",
+    description: "Ready for the second-stage registration flow.",
+    tone: "success",
+  },
+  closed: {
+    label: "Closed",
+    description: "No further enquiry follow-up expected.",
+    tone: "neutral",
+  },
+};
 
 export const enquiryRouteOptions = [
   {
@@ -172,6 +234,11 @@ export function validateEnquiryForm(formData: FormData): EnquiryValidationResult
     errors.privacyConsent = "Confirm that this is only an initial enquiry.";
   }
 
+  if (hasSensitiveRegistrationContent(values.message)) {
+    errors.message =
+      "Please remove medical, safeguarding, document, address, or full registration details from the initial enquiry.";
+  }
+
   if (Object.keys(errors).length > 0) {
     return {
       success: false,
@@ -206,12 +273,93 @@ export function createEnquiryEmailDraft(values: EnquiryValues) {
   ].join("\n");
 }
 
+export const sampleEnquiries: SampleEnquiryRecord[] = [
+  {
+    id: "sample-enquiry-001",
+    receivedAt: "2026-04-24",
+    parentLabel: "Sample Parent A",
+    childLabel: "Sample child, age 7",
+    preferredRoute: "school:high-wycombe",
+    enquiryType: "current-classes",
+    russianLevel: "Understands some Russian at home",
+    status: "new",
+    lastActivity: "Initial enquiry received in the sample workflow.",
+    nextAction: "Check class fit and prepare a careful first reply.",
+    source: "sample-only",
+  },
+  {
+    id: "sample-enquiry-002",
+    receivedAt: "2026-04-23",
+    parentLabel: "Sample Parent B",
+    childLabel: "Two sample children, ages 10 and 12",
+    preferredRoute: "learning:volna-online",
+    enquiryType: "online-learning",
+    russianLevel: "Reads and writes in Russian",
+    status: "triage",
+    lastActivity: "Tutor availability needs confirmation before replying.",
+    nextAction: "Confirm route owner and avoid collecting registration details.",
+    source: "sample-only",
+  },
+  {
+    id: "sample-enquiry-003",
+    receivedAt: "2026-04-21",
+    parentLabel: "Sample Parent C",
+    childLabel: "Sample GCSE learner",
+    preferredRoute: "learning:gcse-russian",
+    enquiryType: "exam-preparation",
+    russianLevel: "Preparing for GCSE",
+    status: "invited",
+    lastActivity: "Sample guidance sent; ready for the next-stage workflow.",
+    nextAction: "Send approved registration invitation if the family proceeds.",
+    source: "sample-only",
+  },
+];
+
+export const enquiryInboxSummary = {
+  totalEnquiries: sampleEnquiries.length,
+  newCount: countSampleEnquiriesByStatus(["new"]),
+  activeCount: countSampleEnquiriesByStatus(["new", "triage"]),
+  registrationReadyCount: countSampleEnquiriesByStatus(["invited"]),
+};
+
+export function getSampleEnquiryRouteLabel(enquiry: SampleEnquiryRecord) {
+  return getPreferredRouteLabel(enquiry.preferredRoute);
+}
+
+export function getSampleEnquiryTypeLabel(enquiry: SampleEnquiryRecord) {
+  return getEnquiryTypeLabel(enquiry.enquiryType);
+}
+
 function cleanText(value: FormDataEntryValue | null, maxLength: number) {
   if (typeof value !== "string") {
     return "";
   }
 
   return value.replace(/\s+/g, " ").trim().slice(0, maxLength);
+}
+
+function hasSensitiveRegistrationContent(value: string) {
+  if (!value) {
+    return false;
+  }
+
+  const normalized = value.toLowerCase();
+  const blockedTerms = [
+    "allergy",
+    "allergies",
+    "birth certificate",
+    "diagnosis",
+    "doctor",
+    "emergency contact",
+    "home address",
+    "medical",
+    "medication",
+    "passport",
+    "safeguarding",
+    "social worker",
+  ];
+
+  return blockedTerms.some((term) => normalized.includes(term));
 }
 
 function isKnownPreferredRoute(value: string) {
@@ -222,4 +370,9 @@ function isKnownPreferredRoute(value: string) {
 
 function isLikelyEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function countSampleEnquiriesByStatus(statuses: EnquiryInboxStatus[]) {
+  return sampleEnquiries.filter((enquiry) => statuses.includes(enquiry.status))
+    .length;
 }

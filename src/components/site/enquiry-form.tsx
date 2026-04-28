@@ -83,6 +83,7 @@ export function EnquiryForm({
             name="parentName"
             type="text"
             autoComplete="name"
+            maxLength={120}
             required
             defaultValue={state.values?.parentName ?? ""}
             className={fieldClassName(Boolean(fieldErrors.parentName))}
@@ -101,6 +102,7 @@ export function EnquiryForm({
             name="email"
             type="email"
             autoComplete="email"
+            maxLength={160}
             required
             defaultValue={state.values?.email ?? ""}
             className={fieldClassName(Boolean(fieldErrors.email))}
@@ -120,6 +122,7 @@ export function EnquiryForm({
             name="phone"
             type="tel"
             autoComplete="tel"
+            maxLength={40}
             defaultValue={state.values?.phone ?? ""}
             className={fieldClassName(Boolean(fieldErrors.phone))}
           />
@@ -163,6 +166,8 @@ export function EnquiryForm({
             id="child-names"
             name="childNames"
             type="text"
+            autoComplete="off"
+            maxLength={180}
             required
             placeholder="e.g. Sasha, Mila"
             defaultValue={state.values?.childNames ?? ""}
@@ -182,6 +187,7 @@ export function EnquiryForm({
             name="childAges"
             type="text"
             inputMode="text"
+            maxLength={120}
             required
             placeholder="e.g. 6 and 9, or Year 10"
             defaultValue={state.values?.childAges ?? ""}
@@ -246,10 +252,19 @@ export function EnquiryForm({
           id="message"
           name="message"
           rows={6}
+          maxLength={1200}
+          aria-describedby="enquiry-message-guidance"
           placeholder="Share useful learning context only, such as previous lessons, exam goals, siblings, or preferred start date."
           defaultValue={state.values?.message ?? ""}
           className={fieldClassName(Boolean(fieldErrors.message))}
         />
+        <p
+          id="enquiry-message-guidance"
+          className="mt-2 text-xs leading-5 text-slate-500"
+        >
+          Keep this to learning context. Do not include medical, safeguarding,
+          document, address, emergency contact, or full registration details.
+        </p>
       </FieldError>
 
       <div className="mt-6 border-t border-border-soft pt-6">
