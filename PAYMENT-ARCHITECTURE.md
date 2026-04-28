@@ -8,15 +8,43 @@ external APIs, or committing real invoices/customer data.
 Pushkin's School should move away from manually created PDF invoices as the
 primary workflow. The target model is:
 
-- Admin creates or edits an invoice.
+- Admin creates or edits an invoice in the protected school admin workflow.
 - Each invoice has a stable reference for bank-transfer reconciliation.
 - Cash and bank-transfer payments can be marked manually.
-- Online payment uses a provider-hosted checkout link when available.
+- Online payment uses a provider-hosted payment page when available.
 - Stripe is the likely default provider for online invoice payment.
 - PayPal remains optional and unconfirmed.
 
 Bank details are intentionally not included here. They should stay centralized
 and only be published after final verification.
+
+## Product Surface Recommendation
+
+Recommended first build: **Stripe Checkout Sessions** for one-off invoice
+payments.
+
+Why this fits the school workflow:
+
+- The website can keep a school-owned invoice register, invoice reference, and
+  admin audit trail.
+- Each approved invoice can create one Stripe-hosted Checkout Session for the
+  exact outstanding balance.
+- Stripe collects card details on its hosted page; the school website does not.
+- Apple Pay and Google Pay can appear through Stripe where the account, payment
+  method settings, customer device, browser, currency, and region support them.
+- Webhooks can update local invoice payment status after Stripe confirms the
+  terminal payment state.
+
+Use **Stripe Invoicing** instead if the school wants Stripe to own invoice
+emails, hosted invoice pages, reminder emails, automatic collection settings, and
+invoice PDFs. This is a strong fallback, but it requires a clearer decision
+about whether Stripe or the website is the source of truth for invoice numbers,
+PDFs, and parent-facing invoice history.
+
+Use **Stripe Payment Links** only for simple fixed-price or reusable payments,
+such as an introductory course or annual enrolment fee. Payment Links are less
+natural for unique invoice balances unless every generated link is carefully
+matched back to the local invoice reference.
 
 ## Stripe-Only Option
 
@@ -25,7 +53,7 @@ Stripe-only is the recommended default for the first online payment milestone.
 Practical benefits:
 
 - One provider to configure, test, support, and reconcile.
-- Stripe Checkout can handle card payments through a hosted payment page.
+- Stripe Checkout can handle payment collection through a hosted payment page.
 - Wallet methods such as Apple Pay and Google Pay can be available where the
   Stripe account, device, browser, and region support them.
 - Webhooks can update invoice status after successful or failed payment.
@@ -41,12 +69,59 @@ Practical tradeoffs:
 
 Recommended first implementation:
 
-- Use Stripe Checkout Sessions for one-time invoice payment links.
+- Use Stripe Checkout Sessions for one-off invoice payment links.
 - Avoid custom card forms for the first version.
 - Enable payment methods in the Stripe Dashboard rather than hard-coding a
   narrow card-only list.
-- Keep invoice PDFs separate from payment processing unless the admin workflow
-  later needs generated PDFs.
+- Store the local invoice reference in Stripe metadata so webhooks can safely
+  reconcile the payment to one school invoice.
+- Keep invoice PDFs separate from Checkout unless the admin workflow later needs
+  generated PDFs.
+
+## Implementation Shape
+
+No Stripe APIs should be called until credentials, admin authorization, and
+storage are approved. The safe implementation sequence is:
+
+1. Finalize invoice numbering and reference format.
+2. Add authenticated admin storage for invoices, line items, payment method,
+   provider references, status history, and audit events.
+3. Add a server-only Stripe client behind environment variables.
+4. Add a `POST /api/payments/stripe/checkout` route that creates a Checkout
+   Session only for an authorized, issued invoice with a positive balance.
+5. Include local invoice ID, invoice reference, and expected amount in Stripe
+   metadata.
+6. Add a Stripe webhook route that verifies signatures and updates invoices
+   idempotently.
+7. Add success and cancelled parent routes that read local state; do not rely on
+   the redirect alone as payment proof.
+
+## Webhook Event Mapping
+
+For Checkout Sessions and Payment Links:
+
+- `checkout.session.completed`: mark paid only after matching metadata and
+  expected amount.
+- `checkout.session.async_payment_succeeded`: mark paid for delayed methods.
+- `checkout.session.async_payment_failed`: keep issued and show failed payment
+  follow-up.
+- `checkout.session.expired`: keep issued and allow a new session.
+- `payment_intent.processing`: show processing and prevent duplicate payment
+  actions.
+- `payment_intent.payment_failed`: keep issued and show failed payment follow-up.
+- `charge.refunded`: move to a refund review state before closing locally.
+
+For Stripe Invoicing:
+
+- `invoice.finalized`: mark issued with hosted payment pending.
+- `invoice.paid`: mark paid after matching the school invoice reference.
+- `invoice.payment_failed`: keep issued and show failed payment follow-up.
+- `invoice.voided`: void locally only after the same admin decision is confirmed.
+- `invoice.marked_uncollectible`: keep a manual review state for business
+  approval.
+
+The source-of-truth mappings live in `src/data/payment-providers.ts` so future UI
+and route handlers can share the same labels and planning states.
 
 ## Stripe Plus PayPal Option
 
@@ -145,6 +220,10 @@ Future environment variable names:
 
 Do not add these values to the repository. Local values belong in ignored
 environment files or deployment-provider environment settings.
+
+`NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` is only needed if a future client-side
+Stripe surface is added. A pure redirect-to-hosted-Checkout flow can usually keep
+Stripe work server-side.
 
 ## Coordinator Notes
 

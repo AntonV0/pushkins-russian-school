@@ -3,6 +3,7 @@ import {
   invoiceReferenceGuidance,
   invoiceWorkflowNotes,
 } from "@/data/invoices";
+import { hostedPaymentReadinessItems } from "@/data/payment-providers";
 
 const workflowColumns = [
   {
@@ -36,14 +37,6 @@ const futureActions = [
   "Send follow-up",
 ];
 
-const readinessItems = [
-  ["Auth", "Pending"],
-  ["Storage", "Pending"],
-  ["Audit log", "Pending"],
-  ["Provider keys", "Not included"],
-  ["Live bank text", "Not included"],
-];
-
 export function InvoiceWorkflowPanel() {
   return (
     <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
@@ -72,13 +65,22 @@ export function InvoiceWorkflowPanel() {
           ))}
         </div>
         <dl className="mt-6 grid gap-2 border-t border-border-soft pt-5">
-          {readinessItems.map(([label, value]) => (
+          {hostedPaymentReadinessItems.map((item) => (
             <div
-              key={label}
-              className="flex items-center justify-between gap-4 text-sm"
+              key={item.label}
+              className="grid gap-1 text-sm sm:grid-cols-[9rem_1fr]"
             >
-              <dt className="font-semibold text-brand-blue-strong">{label}</dt>
-              <dd className="text-slate-600">{value}</dd>
+              <dt className="font-semibold text-brand-blue-strong">
+                {item.label}
+              </dt>
+              <dd className="text-slate-600">
+                <span className="font-semibold text-slate-700">
+                  {item.status}
+                </span>
+                <span className="block text-xs leading-5 text-slate-500">
+                  {item.detail}
+                </span>
+              </dd>
             </div>
           ))}
         </dl>
