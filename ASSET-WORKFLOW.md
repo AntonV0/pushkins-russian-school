@@ -77,6 +77,22 @@ explicitly approved for publication.
 7. Use hero-rated images sparingly on high-value pages.
 8. Use archive-rated images mainly on year gallery pages.
 
+## Gallery Publication Gate
+
+The public gallery routes may exist before photos are approved. In that state,
+keep the year pages as intentional placeholders with clear readiness notes.
+Do not use old-site screenshots as substitutes for real gallery images, and do
+not add empty image records just to make a route look populated.
+
+Before an archive year is populated, confirm that each image has:
+
+- an approved optimised file under `public/images/optimised`,
+- a matching typed record in `src/data/media-assets.ts`,
+- consent and current suitability checked,
+- public-safe alt text and caption,
+- no names of children, families, staff, or private venues unless explicitly
+  approved for publication.
+
 ## Generated Visuals
 
 Generated illustrations may be useful later for warmer, less text-heavy pages,

@@ -1,5 +1,8 @@
 export type PolicyGroup = {
   title: string;
+  description: string;
+  audience: string;
+  reassurance: string;
   policies: Policy[];
 };
 
@@ -16,6 +19,7 @@ export type Policy = {
   owner: string;
   documentType: "School policy" | "External guidance";
   summary: string;
+  parentGuidance: string;
   audience: string;
   publicationStatus: PolicyPublicationStatus;
   status: string;
@@ -28,6 +32,12 @@ export type Policy = {
   externalGuidanceUrl?: string;
   externalGuidanceLabel?: string;
   externalGuidanceLastChecked?: string;
+};
+
+export type PolicySupportLink = {
+  label: string;
+  href: string;
+  description: string;
 };
 
 const policySummaries: Record<string, string> = {
@@ -67,6 +77,45 @@ const policySummaries: Record<string, string> = {
     "External early years guidance relevant to younger pupils.",
   "Teachers' Standards":
     "External professional standards for teaching conduct and practice.",
+};
+
+const parentGuidanceByTitle: Record<string, string> = {
+  "Safeguarding Policy":
+    "Start here for the school's safeguarding responsibilities, reporting route, and child protection approach.",
+  "Health and Safety Policy":
+    "Useful when checking how weekend lessons, premises, supervision, and activities are managed safely.",
+  "GDPR and Data Protection Policy":
+    "Useful when families want to understand how personal information is handled before enrolment or ongoing contact.",
+  "Special Educational Needs (SEN) Policy":
+    "Useful when a child may need extra learning support or a conversation about classroom adjustments.",
+  "Fire Safety and Emergency Evacuation Policy":
+    "Useful for understanding emergency planning expectations across school sessions and events.",
+  "Prevent Duty Policy Statement":
+    "Useful for understanding the school's responsibilities around safeguarding from radicalisation risks.",
+  "Allegations Against Staff Policy":
+    "Useful for understanding how concerns about adults working with children are escalated and handled.",
+  "Safer Recruitment and Selection Policy":
+    "Useful for understanding how the school approaches recruitment for adults working with pupils.",
+  "Pupil and Parent Code of Conduct":
+    "Useful before joining, renewing, or raising questions about respectful behaviour in the school community.",
+  "Pupil and Parent Privacy Notice":
+    "Useful when families want a plain route to the future formal privacy notice before sharing detailed information.",
+  "Complaints Procedure":
+    "Useful when parents or carers need a clear, calm route for raising and resolving concerns.",
+  "Staff Code of Conduct":
+    "Useful for setting professional expectations for adults working with pupils.",
+  "Staff Privacy Notice":
+    "Useful for explaining staff data handling once the formal notice is reviewed for publication.",
+  "Staff Grievance Procedure":
+    "Useful for staff-facing governance and internal concern routes once approved for public publication.",
+  "Whistleblowing Policy":
+    "Useful for understanding how serious public-interest concerns can be raised.",
+  "Keeping Children Safe in Education":
+    "Useful for checking the official Department for Education safeguarding guidance referenced by schools.",
+  "EYFS Statutory Framework":
+    "Useful for checking the official early years requirements relevant to younger pupils.",
+  "Teachers' Standards":
+    "Useful for checking the official professional standards referenced in staff and recruitment guidance.",
 };
 
 function slugifyPolicy(title: string) {
@@ -161,6 +210,7 @@ function createPolicies(
     documentType,
     audience,
     summary: policySummaries[title],
+    parentGuidance: parentGuidanceByTitle[title],
     ...(documentType === "External guidance"
       ? externalGuidanceOverrides[title] ?? {
           publicationStatus: "external-review-needed" as const,
@@ -180,6 +230,11 @@ function createPolicies(
 export const policyGroups: PolicyGroup[] = [
   {
     title: "Child Safety and Well-Being",
+    description:
+      "Safeguarding, health, emergency planning, and child welfare documents that parents usually look for first.",
+    audience: "Families, staff, and safeguarding leads",
+    reassurance:
+      "Formal school PDFs stay unpublished until reviewed, approved, and connected through the public asset workflow.",
     policies: createPolicies("Child Safety and Well-Being", "Families and staff", [
       "Safeguarding Policy",
       "Health and Safety Policy",
@@ -193,6 +248,11 @@ export const policyGroups: PolicyGroup[] = [
   },
   {
     title: "Parent and Carer",
+    description:
+      "Family-facing expectations, privacy, and complaints routes in one practical parent section.",
+    audience: "Parents and carers",
+    reassurance:
+      "These summaries are safe for launch planning; downloadable documents remain gated until final review.",
     policies: createPolicies("Parent and Carer", "Parents and carers", [
       "Pupil and Parent Code of Conduct",
       "Pupil and Parent Privacy Notice",
@@ -201,6 +261,11 @@ export const policyGroups: PolicyGroup[] = [
   },
   {
     title: "Staff",
+    description:
+      "Staff and volunteer governance shells kept visible as structure without publishing unreviewed internal detail.",
+    audience: "Staff, volunteers, and leadership",
+    reassurance:
+      "Internal procedures are represented by public-safe summaries only until a publication decision is made.",
     policies: createPolicies("Staff", "Staff and volunteers", [
       "Staff Code of Conduct",
       "Staff Privacy Notice",
@@ -210,6 +275,11 @@ export const policyGroups: PolicyGroup[] = [
   },
   {
     title: "Useful Guidance",
+    description:
+      "Official external guidance links that support policy review and parent confidence.",
+    audience: "Reference for families and staff",
+    reassurance:
+      "External links point to official publication pages rather than copied documents.",
     policies: createPolicies(
       "Useful Guidance",
       "Reference",
@@ -236,6 +306,39 @@ export const policyIndexNotes = [
   "Policy summaries are public-ready, but formal school PDFs remain pending until reviewed.",
   "Unreviewed policy documents are intentionally not linked from the public site.",
   "External guidance links point to official GOV.UK publication pages that should be checked before launch.",
+];
+
+export const policyPublicationStates = [
+  {
+    label: "Reviewed public document",
+    description:
+      "A PDF or web document can be linked only after approval, privacy review, and version checks.",
+  },
+  {
+    label: "Download-ready placeholder",
+    description:
+      "The route, metadata, and call to action are prepared, but no unreviewed PDF is published.",
+  },
+  {
+    label: "Official external guidance",
+    description:
+      "Reference pages link to authoritative GOV.UK publication pages and should be checked before launch.",
+  },
+];
+
+export const policySupportLinks: PolicySupportLink[] = [
+  {
+    label: "Ask a policy question",
+    href: "/contact#enquiry-form",
+    description:
+      "Use the enquiry form for parent questions while downloadable documents are being finalised.",
+  },
+  {
+    label: "Compare school locations",
+    href: "/schools",
+    description:
+      "Check branch, timetable, and status information before choosing the most relevant enquiry route.",
+  },
 ];
 
 export function getPolicyAction(policy: Policy) {
@@ -307,6 +410,30 @@ export function getPolicyAvailabilitySummary(policy: Policy) {
   return policy.documentType === "External guidance"
     ? "External link pending"
     : "PDF pending review";
+}
+
+export function getPolicyDownloadReadiness(policy: Policy) {
+  if (policy.publicationStatus === "reviewed-public") {
+    return {
+      label: "Download available",
+      description:
+        "The reviewed public document is connected and ready for families to download.",
+    };
+  }
+
+  if (policy.publicationStatus === "external-current") {
+    return {
+      label: "Official guidance linked",
+      description:
+        "This page sends visitors to the official publication page instead of hosting a local copy.",
+    };
+  }
+
+  return {
+    label: "Download pending review",
+    description:
+      "The public route is ready, but the file remains unpublished until the approved document workflow is complete.",
+  };
 }
 
 export function getPolicyBySlug(slug: string) {

@@ -6,10 +6,12 @@ import { JsonLd } from "@/components/site/json-ld";
 import {
   getPolicyAction,
   getPolicyBySlug,
+  getPolicyDownloadReadiness,
   getPolicyMetadata,
   getPolicyStatusTone,
   policies,
   policyPublicationChecklist,
+  policySupportLinks,
 } from "@/data/policies";
 import { absoluteUrl, siteConfig } from "@/data/site";
 
@@ -76,6 +78,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
   };
   const action = getPolicyAction(policy);
   const metadata = getPolicyMetadata(policy);
+  const downloadReadiness = getPolicyDownloadReadiness(policy);
 
   return (
     <main>
@@ -113,7 +116,11 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
               >
                 {action.label}
               </a>
-            ) : null}
+            ) : (
+              <span className="inline-flex items-center justify-center rounded-full border border-border-soft bg-background px-5 py-2.5 text-sm font-semibold text-muted">
+                Download pending review
+              </span>
+            )}
           </div>
         </div>
       </section>
@@ -134,12 +141,29 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
                 </div>
               ))}
             </dl>
+            <div className="mt-8 border-t border-border-soft pt-6">
+              <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-brand-red">
+                Download state
+              </h3>
+              <p className="mt-3 text-sm font-semibold text-brand-blue-strong">
+                {downloadReadiness.label}
+              </p>
+              <p className="mt-2 text-sm leading-6 text-slate-600">
+                {downloadReadiness.description}
+              </p>
+            </div>
           </aside>
 
           <div className="rounded-lg border border-border-soft bg-surface p-6 sm:p-8">
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
               Parent summary
             </h2>
+            <p className="mt-4 text-sm leading-6 text-slate-600">
+              {policy.parentGuidance}
+            </p>
+            <h3 className="mt-8 text-sm font-semibold uppercase tracking-[0.14em] text-brand-red">
+              Publication status
+            </h3>
             <p className="mt-4 text-sm leading-6 text-slate-600">
               {policy.statusDescription}
             </p>
@@ -176,6 +200,33 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
                 </span>
               )}
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-border-soft bg-surface py-12">
+        <div className="mx-auto grid max-w-7xl gap-6 px-6 md:grid-cols-[0.8fr_1.2fr] lg:px-8">
+          <div>
+            <h2 className="text-2xl font-semibold text-brand-blue-strong">
+              Practical next steps
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-slate-600">
+              This page is public-safe while the formal document workflow is
+              completed. Families can still use the enquiry and school routes
+              for current practical information.
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {policySupportLinks.map((link) => (
+              <ButtonLink
+                key={link.href}
+                href={link.href}
+                variant={link.href === "/contact#enquiry-form" ? "primary" : "secondary"}
+                className="h-full items-start text-left"
+              >
+                {link.label}
+              </ButtonLink>
+            ))}
           </div>
         </div>
       </section>

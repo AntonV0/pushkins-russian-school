@@ -10,6 +10,8 @@ import { JsonLd } from "@/components/site/json-ld";
 import {
   galleryArchives,
   galleryReadinessNotes,
+  gallerySupportLinks,
+  galleryWorkflowStages,
   getGalleryArchive,
 } from "@/data/gallery";
 import {
@@ -101,6 +103,14 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
               {archive.summary}
             </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              <span className="inline-flex items-center rounded-full border border-brand-gold/40 bg-brand-gold/10 px-4 py-2 text-sm font-semibold text-brand-blue-strong">
+                {archive.readinessLabel}
+              </span>
+              <span className="inline-flex items-center rounded-full border border-border-soft bg-background px-4 py-2 text-sm font-semibold text-muted">
+                Raw screenshots excluded
+              </span>
+            </div>
           </div>
           <aside className="bg-surface-muted p-6 sm:p-8">
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
@@ -108,6 +118,9 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
             </p>
             <p className="mt-4 text-sm leading-6 text-slate-600">
               {archive.tone}
+            </p>
+            <p className="mt-4 border-l border-brand-gold pl-4 text-sm leading-6 text-slate-700">
+              {archive.readinessDetail}
             </p>
             <div className="mt-5 flex flex-wrap gap-2">
               {archive.highlights.map((highlight) => (
@@ -128,10 +141,12 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
           <MediaAssetGrid
             assets={approvedAssets}
             emptyLabel={`${archive.year} approved image slot`}
+            emptyDescription="Reserved for a reviewed image with consent, alt text, caption, and optimised public file."
           />
 
           <div>
             <AssetReadinessPanel
+              title="Publication gate"
               status={`${archive.status}. This page intentionally avoids source screenshots and waits for reviewed, optimised public images.`}
               notes={[...archive.expectedContent, ...mediaReadinessNotes]}
             />
@@ -139,11 +154,44 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
               <ButtonLink href="/gallery" variant="secondary">
                 Back to gallery
               </ButtonLink>
+              <ButtonLink href="/schools">Explore schools</ButtonLink>
               <span className="inline-flex items-center justify-center rounded-full border border-border-soft px-5 py-3 text-sm font-semibold text-muted">
                 Uploads pending review
               </span>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="border-t border-border-soft bg-surface py-14 sm:py-16">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
+          <div>
+            <h2 className="text-2xl font-semibold text-brand-blue-strong">
+              Before this archive goes live
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-slate-600">
+              The year route can be published as a credible shell now, then
+              populated only when approved media records are ready.
+            </p>
+          </div>
+          <ol className="grid gap-3 sm:grid-cols-3">
+            {galleryWorkflowStages.map((stage, index) => (
+              <li
+                key={stage.label}
+                className="border-l border-brand-gold bg-background px-4 py-3"
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">
+                  Step {index + 1}
+                </p>
+                <h3 className="mt-2 text-sm font-semibold text-brand-blue-strong">
+                  {stage.label}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  {stage.description}
+                </p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
@@ -156,6 +204,21 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
             >
               {note}
             </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-t border-border-soft bg-brand-blue-strong py-12 text-white">
+        <div className="mx-auto grid max-w-7xl gap-4 px-6 sm:grid-cols-2 lg:px-8">
+          {gallerySupportLinks.map((link) => (
+            <ButtonLink
+              key={link.href}
+              href={link.href}
+              variant="light"
+              className="h-full items-start text-left"
+            >
+              {link.label}
+            </ButtonLink>
           ))}
         </div>
       </section>

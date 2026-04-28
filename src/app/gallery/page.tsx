@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ButtonLink } from "@/components/site/button-link";
 import { MetricStrip } from "@/components/site/metric-strip";
 import { SectionIntro } from "@/components/site/section-intro";
 import {
   galleryArchives,
   galleryReadinessNotes,
+  gallerySupportLinks,
   galleryThemes,
+  galleryWorkflowStages,
 } from "@/data/gallery";
 import { approvedMediaAssets, mediaReadinessNotes } from "@/data/media-assets";
 
@@ -41,6 +44,12 @@ export default function GalleryPage() {
               section is ready for approved, optimised images from the public
               assets workflow.
             </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/schools">Explore schools</ButtonLink>
+              <ButtonLink href="/contact#enquiry-form" variant="secondary">
+                Start an enquiry
+              </ButtonLink>
+            </div>
           </div>
           <MetricStrip
             metrics={[
@@ -52,8 +61,14 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      <section className="border-b border-border-soft bg-background py-12">
+      <section
+        className="border-b border-border-soft bg-background py-12"
+        aria-labelledby="gallery-readiness-notes"
+      >
         <div className="mx-auto grid max-w-7xl gap-4 px-6 md:grid-cols-3 lg:px-8">
+          <h2 id="gallery-readiness-notes" className="sr-only">
+            Gallery readiness notes
+          </h2>
           {[...galleryReadinessNotes, ...mediaReadinessNotes].map((note) => (
             <div
               key={note}
@@ -62,6 +77,38 @@ export default function GalleryPage() {
               {note}
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="border-b border-border-soft bg-surface py-14 sm:py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Approved media workflow"
+            title="A gallery path that keeps source material private"
+          >
+            <p>
+              The public site can show archive depth only after images pass
+              review, optimisation, consent checks, and caption checks.
+            </p>
+          </SectionIntro>
+          <ol className="mt-8 grid gap-4 md:grid-cols-3">
+            {galleryWorkflowStages.map((stage, index) => (
+              <li
+                key={stage.label}
+                className="border border-border-soft bg-background p-5"
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-red">
+                  Step {index + 1}
+                </p>
+                <h2 className="mt-2 text-base font-semibold text-brand-blue-strong">
+                  {stage.label}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  {stage.description}
+                </p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
@@ -94,6 +141,9 @@ export default function GalleryPage() {
                   <p className="mt-4 text-sm leading-6 text-slate-600">
                     {archive.tone}
                   </p>
+                  <p className="mt-4 border-l border-brand-gold pl-4 text-sm leading-6 text-slate-700">
+                    {archive.readinessDetail}
+                  </p>
                 </div>
                 <div>
                   <div className="mt-6 flex flex-wrap gap-2">
@@ -107,9 +157,42 @@ export default function GalleryPage() {
                     ))}
                   </div>
                   <p className="mt-5 text-sm font-semibold text-muted">
-                    {archive.status}
+                    {archive.readinessLabel}
                   </p>
                 </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-border-soft bg-brand-blue-strong py-14 text-white sm:py-16">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-[1fr_1fr] lg:px-8">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
+              While photos are pending
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold">
+              Keep the journey focused on current school information
+            </h2>
+            <p className="mt-4 max-w-2xl text-sm leading-6 text-white/75">
+              The gallery can wait for approved media without blocking families
+              from comparing branches or sending an initial enquiry.
+            </p>
+          </div>
+          <div className="grid gap-3">
+            {gallerySupportLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="border border-white/15 bg-white/5 p-5 transition hover:border-white/35 hover:bg-white/10"
+              >
+                <span className="block text-sm font-semibold">
+                  {link.label}
+                </span>
+                <span className="mt-2 block text-sm leading-6 text-white/75">
+                  {link.description}
+                </span>
               </Link>
             ))}
           </div>

@@ -10,6 +10,7 @@ type AssetReadinessPanelProps = {
 type MediaAssetGridProps = {
   assets: MediaAsset[];
   emptyLabel?: string;
+  emptyDescription?: string;
   slotCount?: number;
 };
 
@@ -18,9 +19,16 @@ export function AssetReadinessPanel({
   status,
   notes,
 }: AssetReadinessPanelProps) {
+  const headingId = `${title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}-heading`;
+
   return (
-    <aside className="bg-surface p-6 sm:p-8">
-      <h2 className="text-2xl font-semibold text-brand-blue-strong">{title}</h2>
+    <aside
+      className="border border-border-soft bg-surface p-6 sm:p-8"
+      aria-labelledby={headingId}
+    >
+      <h2 id={headingId} className="text-2xl font-semibold text-brand-blue-strong">
+        {title}
+      </h2>
       <p className="mt-3 text-sm leading-6 text-slate-600">{status}</p>
       <ul className="mt-6 space-y-3 text-sm text-slate-700">
         {notes.map((note) => (
@@ -36,25 +44,32 @@ export function AssetReadinessPanel({
 export function MediaAssetGrid({
   assets,
   emptyLabel = "Approved image slot",
+  emptyDescription = "Reserved for an approved, optimised public image.",
   slotCount = 4,
 }: MediaAssetGridProps) {
   if (assets.length === 0) {
     return (
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div
+        className="grid gap-4 sm:grid-cols-2"
+        aria-label="Approved media placeholders"
+      >
         {Array.from({ length: slotCount }, (_, index) => (
-          <div
+          <figure
             key={`${emptyLabel}-${index}`}
             className="flex aspect-[4/3] items-end rounded-lg border border-dashed border-border-soft bg-surface-muted p-5 [background-image:linear-gradient(135deg,rgba(20,56,102,0.08)_25%,transparent_25%,transparent_50%,rgba(20,56,102,0.08)_50%,rgba(20,56,102,0.08)_75%,transparent_75%,transparent)] [background-size:28px_28px]"
           >
-            <div>
+            <figcaption>
               <p className="text-sm font-semibold text-brand-blue-strong">
                 {emptyLabel} {index + 1}
               </p>
               <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-muted">
                 Caption pending
               </p>
-            </div>
-          </div>
+              <p className="mt-2 max-w-xs text-xs leading-5 text-slate-600">
+                {emptyDescription}
+              </p>
+            </figcaption>
+          </figure>
         ))}
       </div>
     );
