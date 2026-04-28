@@ -62,7 +62,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             </h2>
             <a
               href={`mailto:${contactDetails.email}`}
-              className="mt-4 block text-lg font-semibold text-brand-blue-strong underline decoration-brand-red/40 hover:text-brand-red"
+              className="mt-4 block break-all text-lg font-semibold text-brand-blue-strong underline decoration-brand-red/40 hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
             >
               {contactDetails.email}
             </a>

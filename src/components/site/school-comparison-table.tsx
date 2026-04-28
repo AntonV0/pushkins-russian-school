@@ -38,7 +38,11 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
           current classes from future-interest routes.
         </p>
       </div>
-      <div className="overflow-x-auto">
+      <div
+        className="overflow-x-auto focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+        tabIndex={0}
+        aria-label="Scrollable branch comparison table"
+      >
         <table className="min-w-[58rem] text-left text-sm">
           <caption className="sr-only">
             Compare Pushkin&apos;s School branches by status, venue, schedule,

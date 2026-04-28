@@ -17,7 +17,7 @@ export function Footer() {
           </p>
           <a
             href={`mailto:${contactDetails.email}`}
-            className="mt-5 inline-flex text-sm font-semibold text-white underline decoration-white/30 underline-offset-4 hover:decoration-white"
+            className="mt-5 inline-flex max-w-full break-all text-sm font-semibold text-white underline decoration-white/30 underline-offset-4 hover:decoration-white focus:outline-none focus:ring-2 focus:ring-white/40"
           >
             {contactDetails.email}
           </a>
@@ -30,7 +30,10 @@ export function Footer() {
           <ul className="mt-4 space-y-2 text-sm text-white/80">
             {schools.map((school) => (
               <li key={school.slug}>
-                <Link href={`/schools/${school.slug}`} className="hover:text-white">
+                <Link
+                  href={`/schools/${school.slug}`}
+                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40"
+                >
                   {school.name}
                 </Link>
               </li>
@@ -45,7 +48,10 @@ export function Footer() {
           <ul className="mt-4 space-y-2 text-sm text-white/80">
             {footerNavigation.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="hover:text-white">
+                <Link
+                  href={item.href}
+                  className="hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40"
+                >
                   {item.label}
                 </Link>
               </li>

@@ -70,7 +70,11 @@ export function RegistrationTable() {
           </div>
         </div>
       </div>
-      <div className="overflow-x-auto">
+      <div
+        className="overflow-x-auto focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+        tabIndex={0}
+        aria-label="Scrollable registration queue table"
+      >
         <table className="min-w-[68rem] divide-y divide-border-soft text-left text-sm">
           <thead className="bg-surface-muted text-xs font-semibold uppercase tracking-[0.12em] text-slate-600">
             <tr>

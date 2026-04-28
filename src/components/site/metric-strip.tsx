@@ -10,10 +10,14 @@ type MetricStripProps = {
 
 export function MetricStrip({ metrics, tone = "light" }: MetricStripProps) {
   const isDark = tone === "dark";
+  const gridClassName =
+    metrics.length === 4
+      ? "sm:grid-cols-2"
+      : "sm:[grid-template-columns:repeat(auto-fit,minmax(9rem,1fr))]";
 
   return (
     <dl
-      className={`grid grid-cols-1 gap-px overflow-hidden rounded-lg border sm:[grid-template-columns:repeat(auto-fit,minmax(9rem,1fr))] ${
+      className={`grid grid-cols-1 gap-px overflow-hidden rounded-lg border ${gridClassName} ${
         isDark
           ? "border-white/15 bg-white/15"
           : "border-border-soft bg-border-soft"
