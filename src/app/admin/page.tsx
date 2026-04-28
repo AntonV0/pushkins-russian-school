@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { enquiryInboxSummary } from "@/data/enquiries";
 import {
   formatCurrencyFromPence,
   invoiceSummary,
   sampleInvoices,
 } from "@/data/invoices";
+import { registrationSummary } from "@/data/registration";
+import { getAdminAccessDecision } from "@/lib/admin/access";
 
 export const metadata: Metadata = {
   title: "Admin Workspace",
   description:
-    "Protected admin workspace shell for future Pushkin's School operations.",
+    "Non-operational admin workspace shell for future Pushkin's School operations.",
 };
 
-export default function AdminPage() {
+export default async function AdminPage() {
+  const access = await getAdminAccessDecision("admin:overview");
   const adminTiles = [
     {
       label: "Invoices",
@@ -32,6 +36,30 @@ export default function AdminPage() {
       detail: "Sent, part-paid, or overdue sample invoices",
       href: "/admin/invoices",
     },
+    {
+      label: "Enquiries",
+      value: enquiryInboxSummary.totalEnquiries.toString(),
+      detail: "Sample-only inbox for initial contact triage",
+      href: "/admin/enquiries",
+    },
+    {
+      label: "Registrations",
+      value: registrationSummary.totalRecords.toString(),
+      detail: "Prototype invitation and review queue",
+      href: "/admin/registrations",
+    },
+    {
+      label: "Sections",
+      value: registrationSummary.sectionCount.toString(),
+      detail: "Registration sections modelled for future onboarding",
+      href: "/admin/registrations",
+    },
+  ];
+  const adminNotes = [
+    access.notice,
+    "No real parent, student, enquiry, registration, or invoice data is stored in this shell.",
+    "No bank details, payment credentials, or provider API calls are included.",
+    "Do not treat this route as secure until real auth is implemented.",
   ];
 
   return (
@@ -50,12 +78,19 @@ export default function AdminPage() {
             complete.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/admin/invoices"
-              className="inline-flex rounded-full bg-white px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:bg-surface-muted focus:outline-none focus:ring-2 focus:ring-white/40"
-            >
-              View invoice foundation
-            </Link>
+            {[
+              { label: "View invoices", href: "/admin/invoices" },
+              { label: "View enquiries", href: "/admin/enquiries" },
+              { label: "View registrations", href: "/admin/registrations" },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="inline-flex rounded-full bg-white px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:bg-surface-muted focus:outline-none focus:ring-2 focus:ring-white/40"
+              >
+                {link.label}
+              </Link>
+            ))}
             <Link
               href="/"
               className="inline-flex rounded-full border border-white/30 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40"
@@ -67,7 +102,7 @@ export default function AdminPage() {
       </section>
 
       <section className="border-b border-border-soft bg-surface py-12">
-        <div className="mx-auto grid max-w-7xl gap-4 px-6 md:grid-cols-3 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-4 px-6 md:grid-cols-3 xl:grid-cols-6 lg:px-8">
           {adminTiles.map((tile) => (
             <Link
               key={tile.label}
@@ -90,11 +125,7 @@ export default function AdminPage() {
 
       <section className="py-14 sm:py-16">
         <div className="mx-auto grid max-w-7xl gap-5 px-6 md:grid-cols-3 lg:px-8">
-          {[
-            "No real parent, student, or invoice data is stored in this shell.",
-            "No bank details, payment credentials, or provider API calls are included.",
-            "Do not treat this route as secure until real auth is implemented.",
-          ].map((note) => (
+          {adminNotes.map((note) => (
             <div
               key={note}
               className="border-l border-brand-gold bg-surface px-5 py-4 text-sm leading-6 text-slate-700 shadow-sm"
