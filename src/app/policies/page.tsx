@@ -8,7 +8,9 @@ import {
   getPolicyAvailabilitySummary,
   getPolicyDownloadReadiness,
   getPolicyStatusTone,
+  hasReviewedPublicPolicyPdf,
   policies,
+  policyAssetConvention,
   policyGroups,
   policyIndexNotes,
   policyPublicationStates,
@@ -31,7 +33,12 @@ export const metadata: Metadata = {
 };
 
 export default function PoliciesPage() {
-  const availableActions = policies.filter((policy) => getPolicyAction(policy));
+  const reviewedPublicPdfs = policies.filter((policy) =>
+    hasReviewedPublicPolicyPdf(policy),
+  );
+  const currentExternalGuidanceLinks = policies.filter(
+    (policy) => getPolicyAction(policy)?.kind === "external",
+  );
   const pendingSchoolPolicies = policies.filter(
     (policy) =>
       policy.documentType === "School policy" &&
@@ -68,7 +75,11 @@ export default function PoliciesPage() {
               { label: "Groups", value: policyGroups.length },
               { label: "Policies", value: policies.length },
               { label: "Pending PDFs", value: pendingSchoolPolicies.length },
-              { label: "Guidance links", value: availableActions.length },
+              { label: "Reviewed PDFs", value: reviewedPublicPdfs.length },
+              {
+                label: "Guidance links",
+                value: currentExternalGuidanceLinks.length,
+              },
             ]}
           />
         </div>
@@ -119,6 +130,19 @@ export default function PoliciesPage() {
                 </p>
               </article>
             ))}
+          </div>
+          <div className="mt-8 border border-border-soft bg-surface p-5">
+            <h2 className="text-base font-semibold text-brand-blue-strong">
+              Approved document convention
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-slate-600">
+              {policyAssetConvention.summary} Public links must use the{" "}
+              <code className="rounded bg-surface-muted px-1.5 py-0.5 text-xs text-brand-blue-strong">
+                {policyAssetConvention.publicPathPrefix}*.pdf
+              </code>{" "}
+              pattern after owner, version, review date, and next review date
+              are confirmed.
+            </p>
           </div>
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             {policyGroups.map((group) => (

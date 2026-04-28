@@ -40,6 +40,29 @@ export type PolicySupportLink = {
   description: string;
 };
 
+export type PolicyAction =
+  | {
+      kind: "pdf";
+      href: string;
+      label: string;
+      description: string;
+      isExternal: false;
+    }
+  | {
+      kind: "external";
+      href: string;
+      label: string;
+      description: string;
+      isExternal: true;
+    };
+
+const policyPdfPublicPathPrefix = "/policies/";
+const policyPdfExtension = ".pdf";
+const unconfirmedMetadataValues = new Set([
+  "publication shell",
+  "to be confirmed",
+]);
+
 const policySummaries: Record<string, string> = {
   "Safeguarding Policy":
     "Sets out how the school protects children and responds to safeguarding concerns.",
@@ -296,8 +319,9 @@ export const policyGroups: PolicyGroup[] = [
 export const policies = policyGroups.flatMap((group) => group.policies);
 
 export const policyPublicationChecklist = [
-  "Reviewed PDF or web document added to the approved public asset flow.",
+  "Reviewed PDF added under public/policies and linked with a /policies/*.pdf path.",
   "Owner, version, and review date confirmed before launch.",
+  "Next review date agreed before the download is made public.",
   "Personal, staff, or unpublished operational details removed.",
   "Download link, summary copy, and last-reviewed label connected from this shell.",
 ];
@@ -312,12 +336,12 @@ export const policyPublicationStates = [
   {
     label: "Reviewed public document",
     description:
-      "A PDF or web document can be linked only after approval, privacy review, and version checks.",
+      "A PDF can be linked only after approval, privacy review, metadata checks, and placement under /policies.",
   },
   {
-    label: "Download-ready placeholder",
+    label: "Publication shell only",
     description:
-      "The route, metadata, and call to action are prepared, but no unreviewed PDF is published.",
+      "The route and metadata are prepared, but no unreviewed school PDF is published.",
   },
   {
     label: "Official external guidance",
@@ -325,6 +349,14 @@ export const policyPublicationStates = [
       "Reference pages link to authoritative GOV.UK publication pages and should be checked before launch.",
   },
 ];
+
+export const policyAssetConvention = {
+  publicFolder: "public/policies",
+  publicPathPrefix: policyPdfPublicPathPrefix,
+  allowedExtension: policyPdfExtension,
+  summary:
+    "Only reviewed, approved, public-safe PDFs should be placed in public/policies and linked from policy data.",
+};
 
 export const policySupportLinks: PolicySupportLink[] = [
   {
@@ -341,9 +373,63 @@ export const policySupportLinks: PolicySupportLink[] = [
   },
 ];
 
-export function getPolicyAction(policy: Policy) {
-  if (policy.pdfPath && policy.publicationStatus === "reviewed-public") {
+export function isValidPolicyPdfPath(path?: string) {
+  if (!path) {
+    return false;
+  }
+
+  const normalizedPath = path.trim();
+
+  return (
+    normalizedPath === path &&
+    normalizedPath.startsWith(policyPdfPublicPathPrefix) &&
+    normalizedPath.endsWith(policyPdfExtension) &&
+    !normalizedPath.includes("..") &&
+    !normalizedPath.includes("//") &&
+    !normalizedPath.includes("?") &&
+    !normalizedPath.includes("#") &&
+    normalizedPath.length > policyPdfPublicPathPrefix.length + policyPdfExtension.length
+  );
+}
+
+function isConfirmedPolicyMetadataValue(value?: string) {
+  const normalizedValue = value?.trim().toLowerCase();
+
+  return Boolean(
+    normalizedValue &&
+      !unconfirmedMetadataValues.has(normalizedValue) &&
+      !normalizedValue.includes("pending"),
+  );
+}
+
+export function getMissingPolicyPublicationMetadata(policy: Policy) {
+  return [
+    { label: "owner", value: policy.owner },
+    { label: "version", value: policy.version },
+    { label: "review date", value: policy.reviewDate },
+    { label: "next review date", value: policy.nextReviewDate },
+  ]
+    .filter((item) => !isConfirmedPolicyMetadataValue(item.value))
+    .map((item) => item.label);
+}
+
+export function hasReviewedPolicyPublicationMetadata(policy: Policy) {
+  return getMissingPolicyPublicationMetadata(policy).length === 0;
+}
+
+export function hasReviewedPublicPolicyPdf(policy: Policy) {
+  return (
+    policy.documentType === "School policy" &&
+    policy.publicationStatus === "reviewed-public" &&
+    hasReviewedPolicyPublicationMetadata(policy) &&
+    isValidPolicyPdfPath(policy.pdfPath)
+  );
+}
+
+export function getPolicyAction(policy: Policy): PolicyAction | null {
+  if (hasReviewedPublicPolicyPdf(policy) && policy.pdfPath) {
     return {
+      kind: "pdf",
       href: policy.pdfPath,
       label: "Download PDF",
       description: "Reviewed public document",
@@ -356,6 +442,7 @@ export function getPolicyAction(policy: Policy) {
     policy.publicationStatus === "external-current"
   ) {
     return {
+      kind: "external",
       href: policy.externalGuidanceUrl,
       label: policy.externalGuidanceLabel ?? "Open guidance",
       description: "Current external guidance",
@@ -399,8 +486,12 @@ export function getPolicyStatusTone(policy: Policy) {
 }
 
 export function getPolicyAvailabilitySummary(policy: Policy) {
-  if (policy.publicationStatus === "reviewed-public") {
+  if (hasReviewedPublicPolicyPdf(policy)) {
     return "Formal PDF available";
+  }
+
+  if (policy.publicationStatus === "reviewed-public") {
+    return "PDF metadata needs review";
   }
 
   if (policy.publicationStatus === "external-current") {
@@ -413,11 +504,30 @@ export function getPolicyAvailabilitySummary(policy: Policy) {
 }
 
 export function getPolicyDownloadReadiness(policy: Policy) {
-  if (policy.publicationStatus === "reviewed-public") {
+  if (hasReviewedPublicPolicyPdf(policy)) {
     return {
       label: "Download available",
       description:
         "The reviewed public document is connected and ready for families to download.",
+    };
+  }
+
+  if (policy.publicationStatus === "reviewed-public") {
+    const missingMetadata = getMissingPolicyPublicationMetadata(policy);
+
+    if (missingMetadata.length > 0) {
+      return {
+        label: "Publication metadata needs review",
+        description: `This policy is marked reviewed, but ${missingMetadata.join(
+          ", ",
+        )} must be confirmed before a download button appears.`,
+      };
+    }
+
+    return {
+      label: "PDF metadata needs review",
+      description:
+        "This policy is marked reviewed, but a valid /policies/*.pdf path is still required before a download button appears.",
     };
   }
 

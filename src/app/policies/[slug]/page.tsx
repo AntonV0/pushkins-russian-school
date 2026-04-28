@@ -10,6 +10,7 @@ import {
   getPolicyMetadata,
   getPolicyStatusTone,
   policies,
+  policyAssetConvention,
   policyPublicationChecklist,
   policySupportLinks,
 } from "@/data/policies";
@@ -118,7 +119,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
               </a>
             ) : (
               <span className="inline-flex items-center justify-center rounded-full border border-border-soft bg-background px-5 py-2.5 text-sm font-semibold text-muted">
-                Download pending review
+                {downloadReadiness.label}
               </span>
             )}
           </div>
@@ -150,6 +151,17 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
               </p>
               <p className="mt-2 text-sm leading-6 text-slate-600">
                 {downloadReadiness.description}
+              </p>
+              <p className="mt-4 text-xs leading-5 text-muted">
+                Approved PDFs must be stored in{" "}
+                <code className="rounded bg-background px-1.5 py-0.5 text-[0.7rem] text-brand-blue-strong">
+                  {policyAssetConvention.publicFolder}
+                </code>{" "}
+                and linked as{" "}
+                <code className="rounded bg-background px-1.5 py-0.5 text-[0.7rem] text-brand-blue-strong">
+                  {policyAssetConvention.publicPathPrefix}*.pdf
+                </code>
+                .
               </p>
             </div>
           </aside>
@@ -196,7 +208,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
                 </a>
               ) : (
                 <span className="inline-flex items-center justify-center rounded-full border border-border-soft px-5 py-3 text-sm font-semibold text-muted">
-                  Download pending review
+                  {downloadReadiness.label}
                 </span>
               )}
             </div>
