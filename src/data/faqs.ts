@@ -40,7 +40,7 @@ export const faqGroups: FaqGroup[] = [
       {
         question: "Do I need to know the exact class group before enquiring?",
         answer:
-          "No. The enquiry route is designed to gather context first. Teachers can then use the child's age, language experience, and early lessons to guide the most suitable group.",
+          "No. The enquiry route is designed to gather context first. Teachers can then use the child's age, language experience, branch availability, and early lessons to guide the most suitable group or recommend another learning route.",
       },
       {
         question: "What Russian level should I choose on the form?",
@@ -48,9 +48,14 @@ export const faqGroups: FaqGroup[] = [
           "Choose the closest option. It is fine to select 'Not sure yet' if the child has mixed experience across speaking, reading, and writing.",
       },
       {
+        question: "What information helps with placement?",
+        answer:
+          "The most useful details are how much Russian the child hears or uses at home, whether they read or write in Russian, their age and school year, any previous lessons, and whether GCSE or A Level preparation is a goal.",
+      },
+      {
         question: "Is exam preparation included?",
         answer:
-          "The data model includes GCSE and A Level exam preparation as a class pathway. Families should mention exam goals in the enquiry so the school can confirm suitability.",
+          "The data model includes GCSE and A Level exam preparation as a pathway, but exact public curriculum detail still needs school review. Families should mention exam goals in the enquiry so the school can confirm whether Pushkin's School, Volna online lessons, or GCSERussian.com is the best fit.",
       },
     ],
   },

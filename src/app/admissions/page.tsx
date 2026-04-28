@@ -8,6 +8,10 @@ import {
   russianLevelOptions,
 } from "@/data/admissions";
 import { contactDetails, paymentDetails } from "@/data/contact";
+import {
+  curriculumRouteRecommendations,
+  placementSignals,
+} from "@/data/curriculum";
 import { schools } from "@/data/schools";
 
 export const metadata: Metadata = {
@@ -42,9 +46,9 @@ export default function AdmissionsPage() {
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
               Families can enquire for current weekend classes, register
-              interest in future local provision, or ask about exam preparation.
-              The final placement is confirmed by the school after reviewing the
-              child&apos;s learning context.
+              interest in future local provision, ask about Volna online
+              lessons, or flag GCSE self-study goals. The final placement is
+              confirmed after the school reviews the child&apos;s learning context.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/contact#enquiry-form">
@@ -83,6 +87,45 @@ export default function AdmissionsPage() {
               </div>
             </dl>
           </aside>
+        </div>
+      </section>
+
+      <section className="border-b border-border-soft bg-background py-14 sm:py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Choosing the best route"
+            title="One enquiry can point families to the right option"
+          >
+            <p>
+              Pushkin&apos;s School remains the local weekend route where a
+              branch fits. If distance, branch status, or exam goals suggest a
+              different path, the enquiry can also point families towards Volna
+              Online Russian School or GCSERussian.com.
+            </p>
+          </SectionIntro>
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            {curriculumRouteRecommendations.map((route) => (
+              <article
+                key={route.title}
+                className="rounded-lg border border-border-soft bg-surface p-6"
+              >
+                <h2 className="text-xl font-semibold text-brand-blue-strong">
+                  {route.title}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  {route.bestWhen}
+                </p>
+                <p className="mt-4 text-sm leading-6 text-slate-600">
+                  {route.recommendation}
+                </p>
+                <div className="mt-6">
+                  <ButtonLink href={route.href} variant="secondary">
+                    {route.ctaLabel}
+                  </ButtonLink>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -170,6 +213,26 @@ export default function AdmissionsPage() {
             </ul>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
+            <div>
+              <h2 className="text-2xl font-semibold text-brand-blue-strong">
+                Placement signals
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-slate-600">
+                These details help the school understand whether the child is
+                ready for a local class, online support, exam preparation, or a
+                first confidence-building step.
+              </p>
+              <ul className="mt-5 grid gap-2">
+                {placementSignals.slice(0, 4).map((signal) => (
+                  <li
+                    key={signal}
+                    className="border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
+                  >
+                    {signal}
+                  </li>
+                ))}
+              </ul>
+            </div>
             <div>
               <h2 className="text-2xl font-semibold text-brand-blue-strong">
                 Age ranges

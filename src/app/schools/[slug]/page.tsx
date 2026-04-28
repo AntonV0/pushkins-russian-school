@@ -9,7 +9,12 @@ import { SectionIntro } from "@/components/site/section-intro";
 import { StatusBadge } from "@/components/site/status-badge";
 import { enquiryChecklist, getSchoolEnquiryHref } from "@/data/admissions";
 import { contactDetails, paymentDetails } from "@/data/contact";
-import { curriculumMaterials, placementSteps } from "@/data/curriculum";
+import {
+  curriculumMaterials,
+  curriculumProgressionStages,
+  placementSignals,
+  placementSteps,
+} from "@/data/curriculum";
 import { getLearningOptionsForBranchStatus } from "@/data/learning-options";
 import { getSchoolBySlug, schools } from "@/data/schools";
 import { absoluteUrl, siteConfig } from "@/data/site";
@@ -188,8 +193,9 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
           >
             <p>
               Families can share the child&apos;s current Russian experience in
-              the enquiry. Teachers then use that context, and the first weeks
-              of learning, to guide the most suitable group.
+              the enquiry. Teachers then use that context, branch availability,
+              and the first weeks of learning to guide the most suitable group
+              or alternative route.
             </p>
           </SectionIntro>
           <div className="grid gap-4 md:grid-cols-3">
@@ -203,6 +209,50 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 </h2>
                 <p className="mt-3 text-sm leading-6 text-slate-600">
                   {step.body}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-background py-14 sm:py-16">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.82fr_1.18fr] lg:px-8">
+          <div>
+            <h2 className="text-2xl font-semibold text-brand-blue-strong">
+              Progression at this branch
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-slate-600">
+              The exact class-by-class curriculum still needs headteacher
+              approval before publication. For now, parents can use these
+              stages to understand the broad journey and decide what to mention
+              in the enquiry.
+            </p>
+            <ul className="mt-5 grid gap-2">
+              {placementSignals.slice(0, 3).map((signal) => (
+                <li
+                  key={signal}
+                  className="border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
+                >
+                  {signal}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {curriculumProgressionStages.map((stage) => (
+              <article
+                key={stage.title}
+                className="rounded-lg border border-border-soft bg-surface p-5"
+              >
+                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-brand-red">
+                  {stage.audience}
+                </p>
+                <h2 className="mt-3 text-lg font-semibold text-brand-blue-strong">
+                  {stage.title}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  {stage.parentValue}
                 </p>
               </article>
             ))}

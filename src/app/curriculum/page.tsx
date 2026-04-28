@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
 import { ButtonLink } from "@/components/site/button-link";
+import { LearningOptions } from "@/components/site/learning-options";
 import { SectionIntro } from "@/components/site/section-intro";
 import {
+  curriculumDetailsPendingReview,
   curriculumMaterials,
   curriculumPillars,
+  curriculumProgressionStages,
   curriculumReviewNotes,
+  curriculumRouteRecommendations,
+  placementSignals,
   placementSteps,
 } from "@/data/curriculum";
 import { classGroups } from "@/data/schools";
@@ -38,9 +43,9 @@ export default function CurriculumPage() {
               progression
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-              The network curriculum is presented as shared, flexible guidance:
-              enough structure for parents to understand the pathway, with room
-              for teachers to place each child thoughtfully.
+              A parent-friendly view of the pathway: enough structure to choose
+              the right next step, with space for teachers to place each child
+              thoughtfully after learning more about their Russian.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/schools">Choose a branch</ButtonLink>
@@ -68,12 +73,12 @@ export default function CurriculumPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="Pathways"
-            title="Three strands parents can understand quickly"
+            title="Three outcomes parents can understand quickly"
           >
             <p>
-              These strands are deliberately written as reusable content so the
-              school can expand the model later with detailed syllabuses,
-              termly outcomes, and branch-specific notes.
+              This page keeps the promise clear: confidence in Russian, a
+              stronger connection to culture, and the right level of exam
+              guidance when qualifications become the goal.
             </p>
           </SectionIntro>
           <div className="mt-10 grid gap-5 md:grid-cols-3">
@@ -95,15 +100,53 @@ export default function CurriculumPage() {
       </section>
 
       <section className="border-y border-border-soft bg-surface py-14 sm:py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Progression"
+            title="A simple journey from first confidence to exam focus"
+          >
+            <p>
+              The detailed class-by-class curriculum still needs headteacher
+              review. Until then, these high-level stages help parents see where
+              their child may fit without treating age as the only factor.
+            </p>
+          </SectionIntro>
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            {curriculumProgressionStages.map((stage) => (
+              <article
+                key={stage.title}
+                className="rounded-lg border border-border-soft bg-background p-6"
+              >
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
+                  {stage.audience}
+                </p>
+                <h2 className="mt-3 text-xl font-semibold text-brand-blue-strong">
+                  {stage.title}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  {stage.parentValue}
+                </p>
+                <ul className="mt-5 space-y-2 text-sm leading-6 text-slate-700">
+                  {stage.focusAreas.map((area) => (
+                    <li key={area}>{area}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-border-soft bg-surface py-14 sm:py-16">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
           <SectionIntro
             eyebrow="Placement"
             title="A careful start for new pupils"
           >
             <p>
-              Placement copy is intentionally transparent. It explains the
-              parent enquiry route and teacher judgement without overpromising
-              final group allocation before the school has met the child.
+              Placement is not just a form field. The school needs a rounded
+              picture of the child&apos;s Russian before confirming the best
+              group or recommending a different learning route.
             </p>
           </SectionIntro>
           <div className="grid gap-4 md:grid-cols-3">
@@ -131,16 +174,96 @@ export default function CurriculumPage() {
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
           <div>
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
-              Materials and next content pass
+              What helps teachers place a child well
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              This page is ready for approved curriculum documents, textbook
-              references, teacher notes, and termly outcomes when the school
-              confirms what should be public.
+              Parents do not need perfect answers before enquiring. These
+              prompts simply make the first conversation more useful.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
-            {[...curriculumMaterials, ...curriculumReviewNotes].map((item) => (
+            {placementSignals.map((signal) => (
+              <div
+                key={signal}
+                className="border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
+              >
+                {signal}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-border-soft bg-brand-blue-strong py-14 text-white sm:py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Choosing the route"
+            title="Local school, online lessons, or GCSE self-study"
+            tone="dark"
+          >
+            <p>
+              The strongest enquiry path is the one that matches the family&apos;s
+              location and goal. These routes keep Pushkin&apos;s School, Volna
+              Online Russian School, and GCSERussian.com connected but distinct.
+            </p>
+          </SectionIntro>
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            {curriculumRouteRecommendations.map((route) => (
+              <article
+                key={route.title}
+                className="rounded-lg border border-white/15 bg-white/10 p-6"
+              >
+                <h2 className="text-xl font-semibold text-white">
+                  {route.title}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-white/75">
+                  {route.bestWhen}
+                </p>
+                <p className="mt-4 text-sm leading-6 text-white/75">
+                  {route.recommendation}
+                </p>
+                <div className="mt-6">
+                  <ButtonLink href={route.href} variant="light">
+                    {route.ctaLabel}
+                  </ButtonLink>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-background py-14 sm:py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <LearningOptions
+            eyebrow="Learning network"
+            title="Three connected options for different family needs"
+            intro="Families can start with local weekend classes, ask about online support when distance is a barrier, or choose a GCSE-focused route when exam preparation is the main priority."
+            compact
+          />
+        </div>
+      </section>
+
+      <section className="bg-background py-14 sm:py-16">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
+          <div>
+            <h2 className="text-2xl font-semibold text-brand-blue-strong">
+              Details still waiting for review
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-slate-600">
+              The page is deliberately useful without pretending the full
+              teaching scheme has been approved for publication. These details
+              can be added later once the headteacher confirms them.
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {[
+              ...curriculumMaterials,
+              ...curriculumReviewNotes,
+              ...curriculumDetailsPendingReview.map(
+                (item) => `${item.title}: ${item.body}`,
+              ),
+            ].map((item) => (
               <div
                 key={item}
                 className="border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
