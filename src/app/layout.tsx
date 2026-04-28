@@ -2,8 +2,13 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Footer } from "@/components/site/footer";
 import { Header } from "@/components/site/header";
-import { contactDetails } from "@/data/contact";
-import { schools } from "@/data/schools";
+import { JsonLd } from "@/components/site/json-ld";
+import {
+  buildOrganizationJsonLd,
+  buildSiteNavigationJsonLd,
+  buildWebsiteJsonLd,
+  seoKeywords,
+} from "@/data/seo";
 import { siteConfig } from "@/data/site";
 import "./globals.css";
 
@@ -21,14 +26,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   applicationName: siteConfig.name,
   category: "education",
-  keywords: [
-    "Russian school",
-    "Russian language classes",
-    "weekend school",
-    "GCSE Russian",
-    "A Level Russian",
-    "Pushkin's School",
-  ],
+  keywords: seoKeywords,
   title: {
     default: "Pushkin's School | Russian Language School Network",
     template: "%s | Pushkin's School",
@@ -62,27 +60,6 @@ export const viewport: Viewport = {
   colorScheme: "light",
 };
 
-const organizationJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
-  name: siteConfig.name,
-  legalName: siteConfig.legalName,
-  url: siteConfig.url,
-  email: contactDetails.email,
-  description: siteConfig.description,
-  department: schools.map((school) => ({
-    "@type": "EducationalOrganization",
-    name: `${siteConfig.name} ${school.name}`,
-    url: `${siteConfig.url}/schools/${school.slug}`,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: school.address.join(", "),
-      postalCode: school.postcode,
-      addressCountry: "GB",
-    },
-  })),
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -105,12 +82,9 @@ export default function RootLayout({
           {children}
         </div>
         <Footer />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationJsonLd).replace(/</g, "\\u003c"),
-          }}
-        />
+        <JsonLd data={buildOrganizationJsonLd()} />
+        <JsonLd data={buildWebsiteJsonLd()} />
+        <JsonLd data={buildSiteNavigationJsonLd()} />
       </body>
     </html>
   );
