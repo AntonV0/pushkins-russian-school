@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Footer } from "@/components/site/footer";
 import { Header } from "@/components/site/header";
@@ -20,11 +20,21 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   applicationName: siteConfig.name,
+  category: "education",
+  keywords: [
+    "Russian school",
+    "Russian language classes",
+    "weekend school",
+    "GCSE Russian",
+    "A Level Russian",
+    "Pushkin's School",
+  ],
   title: {
     default: "Pushkin's School | Russian Language School Network",
     template: "%s | Pushkin's School",
   },
   description: siteConfig.description,
+  manifest: "/manifest.webmanifest",
   alternates: {
     canonical: "/",
   },
@@ -36,10 +46,20 @@ export const metadata: Metadata = {
     locale: siteConfig.locale,
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pushkin's School | Russian Language School Network",
+    description: siteConfig.description,
+  },
   robots: {
     index: true,
     follow: true,
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#fbfaf7",
+  colorScheme: "light",
 };
 
 const organizationJsonLd = {
