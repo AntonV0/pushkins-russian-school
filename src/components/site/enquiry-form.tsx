@@ -90,6 +90,7 @@ export function EnquiryForm({
   return (
     <form
       id="enquiry-form"
+      action={emailDraftHref}
       onSubmit={handleSubmit}
       className="rounded-lg border border-border-soft bg-surface p-6 shadow-sm sm:p-8"
       aria-describedby="enquiry-form-status"
