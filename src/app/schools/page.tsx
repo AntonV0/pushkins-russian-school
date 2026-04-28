@@ -3,6 +3,7 @@ import Link from "next/link";
 import { MetricStrip } from "@/components/site/metric-strip";
 import { NetworkVisual } from "@/components/site/network-visual";
 import { SchoolCard } from "@/components/site/school-card";
+import { SchoolComparisonTable } from "@/components/site/school-comparison-table";
 import { SectionIntro } from "@/components/site/section-intro";
 import { networkSummary, schools } from "@/data/schools";
 
@@ -52,6 +53,24 @@ export default function SchoolsPage() {
             </div>
           </div>
           <NetworkVisual />
+        </div>
+      </section>
+
+      <section className="border-b border-border-soft bg-background py-14 sm:py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Compare branches"
+            title="One scan across the full school network"
+          >
+            <p>
+              This comparison keeps current, online, and register-interest
+              locations together so families can quickly understand the right
+              next step for each branch.
+            </p>
+          </SectionIntro>
+          <div className="mt-8">
+            <SchoolComparisonTable schools={schools} />
+          </div>
         </div>
       </section>
 
