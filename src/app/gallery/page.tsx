@@ -7,6 +7,7 @@ import {
   galleryReadinessNotes,
   galleryThemes,
 } from "@/data/gallery";
+import { approvedMediaAssets, mediaReadinessNotes } from "@/data/media-assets";
 
 export const metadata: Metadata = {
   title: "Gallery",
@@ -45,7 +46,7 @@ export default function GalleryPage() {
             metrics={[
               { label: "Year routes", value: galleryArchives.length },
               { label: "Themes", value: galleryThemes.length },
-              { label: "Status", value: "Review" },
+              { label: "Approved", value: approvedMediaAssets.length },
             ]}
           />
         </div>
@@ -53,7 +54,7 @@ export default function GalleryPage() {
 
       <section className="border-b border-border-soft bg-background py-12">
         <div className="mx-auto grid max-w-7xl gap-4 px-6 md:grid-cols-3 lg:px-8">
-          {galleryReadinessNotes.map((note) => (
+          {[...galleryReadinessNotes, ...mediaReadinessNotes].map((note) => (
             <div
               key={note}
               className="border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"

@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import {
+  AssetReadinessPanel,
+  MediaAssetGrid,
+} from "@/components/site/asset-readiness";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { ButtonLink } from "@/components/site/button-link";
 import { JsonLd } from "@/components/site/json-ld";
@@ -8,6 +12,10 @@ import {
   galleryReadinessNotes,
   getGalleryArchive,
 } from "@/data/gallery";
+import {
+  getApprovedMediaByYear,
+  mediaReadinessNotes,
+} from "@/data/media-assets";
 import { absoluteUrl, siteConfig } from "@/data/site";
 
 type GalleryYearPageProps = {
@@ -52,6 +60,8 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
   if (!archive) {
     notFound();
   }
+
+  const approvedAssets = getApprovedMediaByYear(archive.year);
 
   const galleryJsonLd = {
     "@context": "https://schema.org",
@@ -115,39 +125,16 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
 
       <section className="bg-background py-14 sm:py-16">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
-          <div className="grid gap-4 sm:grid-cols-2">
-            {Array.from({ length: 4 }, (_, index) => (
-              <div
-                key={`${archive.year}-${index}`}
-                className="flex aspect-[4/3] items-end rounded-lg border border-dashed border-border-soft bg-surface-muted p-5 [background-image:linear-gradient(135deg,rgba(20,56,102,0.08)_25%,transparent_25%,transparent_50%,rgba(20,56,102,0.08)_50%,rgba(20,56,102,0.08)_75%,transparent_75%,transparent)] [background-size:28px_28px]"
-              >
-                <div>
-                  <p className="text-sm font-semibold text-brand-blue-strong">
-                    Approved image slot {index + 1}
-                  </p>
-                  <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-muted">
-                    Caption pending
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <MediaAssetGrid
+            assets={approvedAssets}
+            emptyLabel={`${archive.year} approved image slot`}
+          />
 
-          <aside className="bg-surface p-6 sm:p-8">
-            <h2 className="text-2xl font-semibold text-brand-blue-strong">
-              Asset readiness
-            </h2>
-            <p className="mt-3 text-sm leading-6 text-slate-600">
-              {archive.status}. This page intentionally avoids source screenshots
-              and waits for reviewed, optimised public images.
-            </p>
-            <ul className="mt-6 space-y-3 text-sm text-slate-700">
-              {archive.expectedContent.map((item) => (
-                <li key={item} className="border-l border-brand-gold pl-4">
-                  {item}
-                </li>
-              ))}
-            </ul>
+          <div>
+            <AssetReadinessPanel
+              status={`${archive.status}. This page intentionally avoids source screenshots and waits for reviewed, optimised public images.`}
+              notes={[...archive.expectedContent, ...mediaReadinessNotes]}
+            />
             <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col">
               <ButtonLink href="/gallery" variant="secondary">
                 Back to gallery
@@ -156,7 +143,7 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
                 Uploads pending review
               </span>
             </div>
-          </aside>
+          </div>
         </div>
       </section>
 

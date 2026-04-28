@@ -73,6 +73,7 @@ Core content is centralized under `src/data/`:
 - `contact.ts` - public contact and centralized payment placeholders
 - `policies.ts` - policy groups, document states, publication checklist
 - `gallery.ts` - archive shells and approved-media readiness notes
+- `media-assets.ts` - approved photo metadata and image workflow notes
 - `navigation.ts` and `site.ts` - shared navigation and site metadata
 
 ## Launch Blockers
@@ -86,3 +87,4 @@ details, fee/payment values, policy documents, and approved public images.
 - `PROJECT-DECISIONS.md` captures current business decisions and open questions.
 - `SUBAGENT-PROMPTS.md` contains scoped prompts for the next implementation
   phase.
+- `ASSET-WORKFLOW.md` documents the approved public photo ingestion process.
