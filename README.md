@@ -19,7 +19,7 @@ be reviewed and extended safely.
 - `/faq` - parent FAQ hub
 - `/policies` and `/policies/[slug]` - polished policy index and document shells
 - `/gallery` and `/gallery/[year]` - approved-media archive shells
-- `/contact` - mail-ready enquiry flow
+- `/contact` - server-validated initial enquiry flow with safe disabled defaults
 
 ## Stack
 
@@ -70,7 +70,7 @@ Core content is centralized under `src/data/`:
 - `schools.ts` - branches, statuses, venues, schedules, maps, notes
 - `curriculum.ts` - pathways, placement, materials, review notes
 - `admissions.ts` - enquiry route, checklist, age/level options
-- `contact.ts` - public contact and centralized payment placeholders
+- `contact.ts` - public contact and centralized payment categories
 - `policies.ts` - policy groups, document states, publication checklist
 - `gallery.ts` - archive shells and approved-media readiness notes
 - `media-assets.ts` - approved photo metadata and image workflow notes
@@ -81,7 +81,8 @@ Core content is centralized under `src/data/`:
 
 The current implementation is polished but deliberately cautious. Before public
 launch, the business still needs to confirm current branch statuses, timetable
-details, fee/payment values, policy documents, and approved public images.
+details, exact fee/payment values, policy documents, and approved public images.
+Public pages show payment categories only until exact values are approved.
 
 ## Planning Docs
 
@@ -89,3 +90,5 @@ details, fee/payment values, policy documents, and approved public images.
 - `SUBAGENT-PROMPTS.md` contains scoped prompts for the next implementation
   phase.
 - `ASSET-WORKFLOW.md` documents the approved public photo ingestion process.
+- `LAUNCH-AUDIT.md` records the current launch-readiness review and remaining
+  public-safe blockers.

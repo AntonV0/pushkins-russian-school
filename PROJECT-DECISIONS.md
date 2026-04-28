@@ -80,6 +80,8 @@ slow and should be replaced with a more automated and logical system.
 Current direction:
 
 - Keep public fee/payment copy centralized and editable.
+- Show fee categories rather than exact amounts until current academic-year
+  values are confirmed for publication.
 - Do not publish exact bank details until final values and workflow are
   confirmed.
 - Build toward an admin invoice section.

@@ -65,17 +65,18 @@ confirmed for launch.
 
 ## Central Pricing And Payment Review
 
-The rebuild currently has central fee/payment notes in `src/data/contact.ts`.
-Confirm what should be public before launch.
+The rebuild currently keeps fee/payment categories in `src/data/contact.ts`, but
+does not publish exact fee amounts or bank details. Confirm what should become
+public before launch.
 
 | Item | Currently modelled | Business confirmation needed |
 | --- | --- | --- |
-| Accepted payment methods | Bank transfer; childcare vouchers | [ ] Confirm [ ] Replace [ ] Hide until after enquiry |
-| Annual enrolment fee | GBP30 annual enrolment fee | [ ] Confirm amount [ ] Remove from public copy [ ] Branch-specific |
-| Introductory course | GBP90 three-week introductory course | [ ] Confirm amount and availability [ ] Remove from public copy |
-| Term fees | Term 1 GBP390; Term 2 GBP360; Term 3 GBP330 | [ ] Confirm current academic-year fees [ ] Replace with "ask on enquiry" |
-| Single school day | GBP45 | [ ] Confirm [ ] Remove from public copy |
-| Second child | GBP25 per 3-hour school day | [ ] Confirm discount [ ] Remove from public copy |
+| Accepted payment methods | Bank transfer; childcare vouchers listed as methods to confirm | [ ] Confirm [ ] Replace [ ] Hide until after enquiry |
+| Annual enrolment fee | Category shown; exact amount withheld from public UI | [ ] Confirm amount [ ] Remove from public copy [ ] Branch-specific |
+| Introductory course | Category shown; exact amount and availability withheld from public UI | [ ] Confirm amount and availability [ ] Remove from public copy |
+| Term fees | Category shown; exact term amounts withheld from public UI | [ ] Confirm current academic-year fees [ ] Replace with "ask on enquiry" |
+| Single school day | Category shown; exact rate withheld from public UI | [ ] Confirm [ ] Remove from public copy |
+| Sibling discount | Category shown; exact discount withheld from public UI | [ ] Confirm discount [ ] Remove from public copy |
 | Bank details | Exact account details are not in public data | [ ] Keep private [ ] Publish only after final approval |
 
 ## Trust Signal Verification
@@ -137,4 +138,3 @@ this checklist before adding more specific curriculum content.
 | Curriculum detail and exam-preparation wording |  |  |  |
 | Policies and downloadable documents |  |  |  |
 | Gallery/media publication |  |  |  |
-
