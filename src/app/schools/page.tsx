@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ButtonLink } from "@/components/site/button-link";
 import { LearningOptions } from "@/components/site/learning-options";
 import { MetricStrip } from "@/components/site/metric-strip";
 import { NetworkVisual } from "@/components/site/network-visual";
@@ -25,6 +26,8 @@ export const metadata: Metadata = {
 
 export default function SchoolsPage() {
   const openSchools = schools.filter((school) => school.status === "open");
+  const onlineSchools = schools.filter((school) => school.status === "online");
+  const closedSchools = schools.filter((school) => school.status === "closed");
   const otherSchools = schools.filter((school) => school.status !== "open");
 
   return (
@@ -39,16 +42,23 @@ export default function SchoolsPage() {
               A clear network view for every branch
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-              Active, online, and currently closed branches use the same page
-              template so every location can present venue, timetable, pricing,
-              enquiry, and status information.
+              Compare open weekend branches, online/status-to-confirm routes,
+              and currently closed in-person locations before choosing the most
+              useful enquiry path.
             </p>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="#open-branches">View open branches</ButtonLink>
+              <ButtonLink href="#compare-branches" variant="secondary">
+                Compare all locations
+              </ButtonLink>
+            </div>
             <div className="mt-8">
               <MetricStrip
                 metrics={[
                   { label: "Locations", value: networkSummary.locations },
                   { label: "Open branches", value: openSchools.length },
-                  { label: "Register interest", value: otherSchools.length },
+                  { label: "Online / confirm", value: onlineSchools.length },
+                  { label: "Closed in person", value: closedSchools.length },
                 ]}
               />
             </div>
@@ -57,11 +67,14 @@ export default function SchoolsPage() {
         </div>
       </section>
 
-      <section className="border-b border-border-soft bg-background py-14 sm:py-16">
+      <section
+        id="compare-branches"
+        className="scroll-mt-24 border-b border-border-soft bg-background py-14 sm:py-16"
+      >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="Compare branches"
-            title="One scan across the full school network"
+            title="One scan before you enquire"
           >
             <p>
               This comparison keeps current, online, and register-interest
@@ -75,11 +88,14 @@ export default function SchoolsPage() {
         </div>
       </section>
 
-      <section className="bg-background py-14 sm:py-16">
+      <section
+        id="open-branches"
+        className="scroll-mt-24 bg-background py-14 sm:py-16"
+      >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="Weekend schools"
-            title="Listed branches with in-person schedules"
+            title="Open branches with listed in-person schedules"
           >
             <p>
               These branches are shown as weekend schools in the current source
@@ -99,7 +115,7 @@ export default function SchoolsPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="Network continuity"
-            title="Online or register-interest locations"
+            title="Online, status-to-confirm, and register-interest locations"
           >
             <p className="mt-3 text-sm leading-6 text-slate-600">
               These locations remain part of the school network and have full
@@ -132,7 +148,7 @@ export default function SchoolsPage() {
               Choosing a location
             </p>
             <h2 className="mt-3 text-3xl font-semibold">
-              Not sure which branch is right?
+              Send one useful enquiry, even if the branch status is pending
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-white/75">
               Share your preferred area, child&apos;s age, current Russian

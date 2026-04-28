@@ -18,7 +18,9 @@ import { learningOptionSummary } from "@/data/learning-options";
 import { networkSummary, schools } from "@/data/schools";
 import { siteConfig } from "@/data/site";
 
-const featuredSchools = schools.slice(0, 3);
+const openSchools = schools.filter((school) => school.status === "open");
+const interestSchools = schools.filter((school) => school.status !== "open");
+const featuredSchools = openSchools.slice(0, 3);
 
 export const metadata: Metadata = {
   title: "Pushkin's School | Russian Language School Network",
@@ -50,6 +52,11 @@ export default function Home() {
               raising children with Russian language, literature, culture, and
               exam goals.
             </p>
+            <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-600">
+              Current branch details are presented with clear status notes, so
+              parents can distinguish open weekend classes from online or
+              register-interest locations.
+            </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/schools">Find your school</ButtonLink>
               <ButtonLink href="/contact#enquiry-form" variant="secondary">
@@ -60,8 +67,11 @@ export default function Home() {
               <MetricStrip
                 metrics={[
                   { label: "Locations", value: networkSummary.locations },
-                  { label: "Counties", value: networkSummary.counties },
-                  { label: "Class pathways", value: networkSummary.classGroupCount },
+                  { label: "Open branches", value: openSchools.length },
+                  {
+                    label: "Register interest",
+                    value: interestSchools.length,
+                  },
                 ]}
               />
             </div>
@@ -75,14 +85,36 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="Local branches"
-            title="Weekend schools with clear status for every location"
+            title="Start with the branch status, then choose the next step"
           >
             <p>
               Every branch has its own page so families can see venue details,
-              lesson structure, class groups, and whether in-person classes are
-              open, online, or currently closed.
+              lesson structure, class groups, and whether the right route is a
+              current place enquiry, an online question, or future local
+              interest.
             </p>
           </SectionIntro>
+
+          <div className="mt-8 grid gap-3 text-sm leading-6 text-slate-600 md:grid-cols-3">
+            <div className="border-l-4 border-emerald-500 bg-surface px-4 py-3">
+              <p className="font-semibold text-brand-blue-strong">
+                Open weekend branches
+              </p>
+              <p>Ask about current places and class fit.</p>
+            </div>
+            <div className="border-l-4 border-sky-500 bg-surface px-4 py-3">
+              <p className="font-semibold text-brand-blue-strong">
+                Online or status to confirm
+              </p>
+              <p>Check online options or future local plans.</p>
+            </div>
+            <div className="border-l-4 border-zinc-300 bg-surface px-4 py-3">
+              <p className="font-semibold text-brand-blue-strong">
+                Currently closed in person
+              </p>
+              <p>Register interest without losing the local route.</p>
+            </div>
+          </div>
 
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {featuredSchools.map((school) => (
@@ -92,8 +124,8 @@ export default function Home() {
 
           <div className="mt-8 flex flex-col gap-4 border-l-4 border-brand-gold bg-surface px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm leading-6 text-slate-600">
-              Closed and online branches remain visible as part of the school
-              network, with transparent register-interest wording.
+              The full schools page keeps open, online, and register-interest
+              branches together for a direct comparison.
             </p>
             <Link
               href="/schools"

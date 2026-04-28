@@ -13,7 +13,7 @@ export function MetricStrip({ metrics, tone = "light" }: MetricStripProps) {
 
   return (
     <dl
-      className={`grid grid-cols-1 gap-px overflow-hidden rounded-lg border sm:[grid-template-columns:repeat(auto-fit,minmax(10rem,1fr))] ${
+      className={`grid grid-cols-1 gap-px overflow-hidden rounded-lg border sm:[grid-template-columns:repeat(auto-fit,minmax(9rem,1fr))] ${
         isDark
           ? "border-white/15 bg-white/15"
           : "border-border-soft bg-border-soft"
@@ -22,7 +22,7 @@ export function MetricStrip({ metrics, tone = "light" }: MetricStripProps) {
       {metrics.map((metric) => (
         <div
           key={metric.label}
-          className={isDark ? "bg-white/10 p-5" : "bg-surface p-5"}
+          className={isDark ? "bg-white/10 p-4 sm:p-5" : "bg-surface p-4 sm:p-5"}
         >
           <dt
             className={`text-xs font-semibold uppercase tracking-[0.14em] ${
@@ -32,7 +32,7 @@ export function MetricStrip({ metrics, tone = "light" }: MetricStripProps) {
             {metric.label}
           </dt>
           <dd
-            className={`mt-2 text-3xl font-semibold ${
+            className={`mt-2 text-2xl font-semibold sm:text-3xl ${
               isDark ? "text-white" : "text-brand-blue-strong"
             }`}
           >
