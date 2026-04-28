@@ -85,6 +85,8 @@ export function EnquiryForm({
             autoComplete="name"
             maxLength={120}
             required
+            aria-invalid={Boolean(fieldErrors.parentName)}
+            aria-describedby={errorDescribedBy("parentName", fieldErrors)}
             defaultValue={state.values?.parentName ?? ""}
             className={fieldClassName(Boolean(fieldErrors.parentName))}
           />
@@ -104,6 +106,8 @@ export function EnquiryForm({
             autoComplete="email"
             maxLength={160}
             required
+            aria-invalid={Boolean(fieldErrors.email)}
+            aria-describedby={errorDescribedBy("email", fieldErrors)}
             defaultValue={state.values?.email ?? ""}
             className={fieldClassName(Boolean(fieldErrors.email))}
           />
@@ -123,6 +127,8 @@ export function EnquiryForm({
             type="tel"
             autoComplete="tel"
             maxLength={40}
+            aria-invalid={Boolean(fieldErrors.phone)}
+            aria-describedby={errorDescribedBy("phone", fieldErrors)}
             defaultValue={state.values?.phone ?? ""}
             className={fieldClassName(Boolean(fieldErrors.phone))}
           />
@@ -139,6 +145,8 @@ export function EnquiryForm({
             id="preferred-route"
             name="preferredRoute"
             required
+            aria-invalid={Boolean(fieldErrors.preferredRoute)}
+            aria-describedby={errorDescribedBy("preferredRoute", fieldErrors)}
             defaultValue={state.values?.preferredRoute ?? initialPreferredRoute}
             className={fieldClassName(Boolean(fieldErrors.preferredRoute))}
           >
@@ -169,6 +177,8 @@ export function EnquiryForm({
             autoComplete="off"
             maxLength={180}
             required
+            aria-invalid={Boolean(fieldErrors.childNames)}
+            aria-describedby={errorDescribedBy("childNames", fieldErrors)}
             placeholder="e.g. Sasha, Mila"
             defaultValue={state.values?.childNames ?? ""}
             className={fieldClassName(Boolean(fieldErrors.childNames))}
@@ -189,6 +199,8 @@ export function EnquiryForm({
             inputMode="text"
             maxLength={120}
             required
+            aria-invalid={Boolean(fieldErrors.childAges)}
+            aria-describedby={errorDescribedBy("childAges", fieldErrors)}
             placeholder="e.g. 6 and 9, or Year 10"
             defaultValue={state.values?.childAges ?? ""}
             className={fieldClassName(Boolean(fieldErrors.childAges))}
@@ -206,6 +218,8 @@ export function EnquiryForm({
             id="russian-level"
             name="russianLevel"
             required
+            aria-invalid={Boolean(fieldErrors.russianLevel)}
+            aria-describedby={errorDescribedBy("russianLevel", fieldErrors)}
             defaultValue={state.values?.russianLevel ?? ""}
             className={fieldClassName(Boolean(fieldErrors.russianLevel))}
           >
@@ -229,6 +243,8 @@ export function EnquiryForm({
             id="enquiry-type"
             name="enquiryType"
             required
+            aria-invalid={Boolean(fieldErrors.enquiryType)}
+            aria-describedby={errorDescribedBy("enquiryType", fieldErrors)}
             defaultValue={state.values?.enquiryType ?? initialIntent}
             className={fieldClassName(Boolean(fieldErrors.enquiryType))}
           >
@@ -253,7 +269,12 @@ export function EnquiryForm({
           name="message"
           rows={6}
           maxLength={1200}
-          aria-describedby="enquiry-message-guidance"
+          aria-invalid={Boolean(fieldErrors.message)}
+          aria-describedby={errorDescribedBy(
+            "message",
+            fieldErrors,
+            "enquiry-message-guidance",
+          )}
           placeholder="Share useful learning context only, such as previous lessons, exam goals, siblings, or preferred start date."
           defaultValue={state.values?.message ?? ""}
           className={fieldClassName(Boolean(fieldErrors.message))}
@@ -275,6 +296,12 @@ export function EnquiryForm({
               value="yes"
               type="checkbox"
               required
+              aria-invalid={Boolean(fieldErrors.privacyConsent)}
+              aria-describedby={errorDescribedBy(
+                "privacyConsent",
+                fieldErrors,
+                "enquiry-privacy-notice",
+              )}
               defaultChecked={state.values?.privacyConsent ?? false}
               className="mt-1 size-4 rounded border-border-soft text-brand-blue focus:ring-brand-blue/30"
             />
@@ -348,12 +375,30 @@ function FieldError({
     <div className={className}>
       {children}
       {error ? (
-        <p className="mt-2 text-sm font-medium text-red-700" role="alert">
+        <p
+          id={fieldErrorId(field)}
+          className="mt-2 text-sm font-medium text-red-700"
+          role="alert"
+        >
           {error}
         </p>
       ) : null}
     </div>
   );
+}
+
+function fieldErrorId(field: EnquiryField) {
+  return `enquiry-${field}-error`;
+}
+
+function errorDescribedBy(
+  field: EnquiryField,
+  errors: Partial<Record<EnquiryField, string>>,
+  existingId?: string,
+) {
+  return [existingId, errors[field] ? fieldErrorId(field) : undefined]
+    .filter(Boolean)
+    .join(" ") || undefined;
 }
 
 function SubmitButton() {
