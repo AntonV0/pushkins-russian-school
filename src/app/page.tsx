@@ -6,9 +6,14 @@ import { MetricStrip } from "@/components/site/metric-strip";
 import { NetworkVisual } from "@/components/site/network-visual";
 import { SchoolCard } from "@/components/site/school-card";
 import { SectionIntro } from "@/components/site/section-intro";
+import { TrustSignals } from "@/components/site/trust-signals";
 import { admissionsSteps } from "@/data/admissions";
 import { contactDetails } from "@/data/contact";
-import { curriculumPillars, placementSteps } from "@/data/curriculum";
+import {
+  curriculumPillars,
+  curriculumProgressionStages,
+  placementSteps,
+} from "@/data/curriculum";
 import { learningOptionSummary } from "@/data/learning-options";
 import { networkSummary, schools } from "@/data/schools";
 import { siteConfig } from "@/data/site";
@@ -100,6 +105,15 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="border-b border-border-soft bg-surface py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <TrustSignals
+            align="center"
+            intro="Families should be able to see what is confirmed, what is structured, and what is still being reviewed. These signals build confidence without relying on unverified testimonials or partner claims."
+          />
+        </div>
+      </section>
+
       <section className="border-b border-border-soft bg-background py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <LearningOptions
@@ -112,13 +126,13 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
           <SectionIntro
             eyebrow="Learning approach"
-            title="Structured, stimulating, and built around children"
+            title="Structured, stimulating, and easy for parents to understand"
             tone="dark"
           >
             <p>
-              The source site emphasised weekend supplementary education,
-              specialist lessons, and a shared curriculum. This rebuild presents
-              that message with calmer, clearer hierarchy for parents.
+              The curriculum message is intentionally high-level until the
+              headteacher approves class-by-class detail: language confidence,
+              cultural connection, and exam-aware progression.
             </p>
           </SectionIntro>
 
@@ -169,6 +183,46 @@ export default function Home() {
                 </p>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-background py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <SectionIntro
+            eyebrow="Progression"
+            title="From first confidence to exam preparation"
+            align="center"
+          >
+            <p>
+              Families do not need to diagnose the perfect level before
+              enquiring. The pathway is designed to help parents describe the
+              child&apos;s current confidence and goals, then choose the right
+              next step.
+            </p>
+          </SectionIntro>
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            {curriculumProgressionStages.map((stage) => (
+              <article
+                key={stage.title}
+                className="rounded-lg border border-border-soft bg-surface p-6"
+              >
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
+                  {stage.audience}
+                </p>
+                <h2 className="mt-3 text-xl font-semibold text-brand-blue-strong">
+                  {stage.title}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  {stage.parentValue}
+                </p>
+              </article>
+            ))}
+          </div>
+          <div className="mt-8 text-center">
+            <ButtonLink href="/curriculum" variant="secondary">
+              Explore curriculum pathways
+            </ButtonLink>
           </div>
         </div>
       </section>

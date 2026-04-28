@@ -1,0 +1,113 @@
+import Link from "next/link";
+import { SectionIntro } from "@/components/site/section-intro";
+import {
+  pendingTrustSignals,
+  publishableTrustSignals,
+  trustHistoryNotes,
+  type TrustSignal,
+} from "@/data/trust";
+
+type TrustSignalsProps = {
+  intro?: string;
+  align?: "left" | "center";
+  includeReviewQueue?: boolean;
+};
+
+function TrustSignalCard({ signal }: { signal: TrustSignal }) {
+  const content = (
+    <article className="flex h-full flex-col rounded-lg border border-border-soft bg-background p-6">
+      <p className="font-mono text-sm font-semibold text-brand-red">
+        {signal.value}
+      </p>
+      <h3 className="mt-4 text-xl font-semibold text-brand-blue-strong">
+        {signal.title}
+      </h3>
+      <p className="mt-3 flex-1 text-sm leading-6 text-slate-600">
+        {signal.summary}
+      </p>
+      {signal.href ? (
+        <span className="mt-5 text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/40">
+          Review this area
+        </span>
+      ) : null}
+    </article>
+  );
+
+  if (!signal.href) {
+    return content;
+  }
+
+  return (
+    <Link href={signal.href} className="block h-full focus:outline-none focus:ring-2 focus:ring-brand-red/30">
+      {content}
+    </Link>
+  );
+}
+
+export function TrustSignals({
+  intro = "These proof points are intentionally cautious: they make the school feel established and transparent without publishing claims that still need business review.",
+  align = "left",
+  includeReviewQueue = false,
+}: TrustSignalsProps) {
+  return (
+    <div>
+      <SectionIntro
+        eyebrow="Trust signals"
+        title="Credibility parents can check"
+        align={align}
+      >
+        <p>{intro}</p>
+      </SectionIntro>
+
+      <div className="mt-10 grid gap-5 md:grid-cols-3">
+        {publishableTrustSignals.map((signal) => (
+          <TrustSignalCard key={signal.id} signal={signal} />
+        ))}
+      </div>
+
+      {includeReviewQueue ? (
+        <div className="mt-10 grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+          <div className="border-l-4 border-brand-gold bg-surface px-6 py-5">
+            <h3 className="text-lg font-semibold text-brand-blue-strong">
+              History scaffolding
+            </h3>
+            <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-600">
+              {trustHistoryNotes.map((note) => (
+                <li key={note}>{note}</li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {pendingTrustSignals.map((signal) => (
+              <article
+                key={signal.id}
+                className="rounded-lg border border-border-soft bg-background p-5"
+              >
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="rounded-full border border-brand-gold/40 bg-brand-gold/10 px-3 py-1 text-xs font-semibold text-brand-blue-strong">
+                    Pending review
+                  </span>
+                  <span className="font-mono text-xs font-semibold text-slate-500">
+                    {signal.value}
+                  </span>
+                </div>
+                <h3 className="mt-4 text-lg font-semibold text-brand-blue-strong">
+                  {signal.title}
+                </h3>
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  {signal.summary}
+                </p>
+                {signal.reviewNote ? (
+                  <p className="mt-4 border-t border-border-soft pt-4 text-xs leading-5 text-slate-500">
+                    {signal.reviewNote}
+                  </p>
+                ) : null}
+              </article>
+            ))}
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}

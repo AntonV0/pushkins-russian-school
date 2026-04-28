@@ -74,6 +74,7 @@ Core content is centralized under `src/data/`:
 - `policies.ts` - policy groups, document states, publication checklist
 - `gallery.ts` - archive shells and approved-media readiness notes
 - `media-assets.ts` - approved photo metadata and image workflow notes
+- `trust.ts` - safe trust signals and pending proof-point scaffolding
 - `navigation.ts` and `site.ts` - shared navigation and site metadata
 
 ## Launch Blockers

@@ -3,6 +3,7 @@ import { ButtonLink } from "@/components/site/button-link";
 import { MetricStrip } from "@/components/site/metric-strip";
 import { NetworkVisual } from "@/components/site/network-visual";
 import { SectionIntro } from "@/components/site/section-intro";
+import { TrustSignals } from "@/components/site/trust-signals";
 import {
   curriculumMaterials,
   curriculumReviewNotes,
@@ -154,6 +155,15 @@ export default function AboutPage() {
               { label: "Counties", value: networkSummary.counties },
               { label: "Class pathways", value: networkSummary.classGroupCount },
             ]}
+          />
+        </div>
+      </section>
+
+      <section className="bg-background py-14 sm:py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <TrustSignals
+            includeReviewQueue
+            intro="The site now separates public credibility signals from proof points that still need verification, so future history, testimonial, partner, staff, and exam-result claims can be added cleanly."
           />
         </div>
       </section>

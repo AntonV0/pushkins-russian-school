@@ -225,6 +225,8 @@ Current direction:
 - Add years established after verification.
 - Add partnerships, staff details, testimonials, exam outcomes, or named proof
   points only after explicit review.
+- Keep unverified trust claims in a data-driven pending state so the public UI can
+  improve now without overstating proof points.
 
 Future decision needed:
 
