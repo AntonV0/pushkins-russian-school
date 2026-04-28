@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { ButtonLink } from "@/components/site/button-link";
 import {
   getPolicyBySlug,
@@ -54,6 +55,12 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
     <main>
       <section className="border-b border-border-soft bg-surface py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Breadcrumbs
+            items={[
+              { label: "Policies", href: "/policies" },
+              { label: policy.title },
+            ]}
+          />
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
             {policy.group}
           </p>

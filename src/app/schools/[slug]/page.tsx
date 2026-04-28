@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { ButtonLink } from "@/components/site/button-link";
 import { SectionIntro } from "@/components/site/section-intro";
 import { StatusBadge } from "@/components/site/status-badge";
@@ -56,6 +57,12 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
       <section className="border-b border-border-soft bg-surface">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 lg:grid-cols-[1.08fr_0.92fr] lg:px-8">
           <div>
+            <Breadcrumbs
+              items={[
+                { label: "Schools", href: "/schools" },
+                { label: school.name },
+              ]}
+            />
             <StatusBadge status={school.status} label={school.statusLabel} />
             <p className="mt-6 text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
               {school.county}

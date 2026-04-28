@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { ButtonLink } from "@/components/site/button-link";
 import {
   galleryArchives,
@@ -55,6 +56,12 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
       <section className="border-b border-border-soft bg-surface py-16 sm:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_0.78fr] lg:px-8">
           <div>
+            <Breadcrumbs
+              items={[
+                { label: "Gallery", href: "/gallery" },
+                { label: archive.year },
+              ]}
+            />
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
               Gallery archive
             </p>
