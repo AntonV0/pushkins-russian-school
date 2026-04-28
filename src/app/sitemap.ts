@@ -9,6 +9,7 @@ const staticRoutes = [
   "/",
   ...primaryNavigation.map((item) => item.href),
   "/admissions",
+  "/faq",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

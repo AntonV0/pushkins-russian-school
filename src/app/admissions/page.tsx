@@ -53,6 +53,9 @@ export default function AdmissionsPage() {
               <ButtonLink href="/schools" variant="secondary">
                 Compare branches
               </ButtonLink>
+              <ButtonLink href="/faq" variant="secondary">
+                Read FAQ
+              </ButtonLink>
             </div>
           </div>
           <aside className="bg-surface-muted p-6 sm:p-8">

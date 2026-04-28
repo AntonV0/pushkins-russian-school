@@ -15,4 +15,5 @@ export const primaryNavigation: NavigationItem[] = [
 export const footerNavigation: NavigationItem[] = [
   ...primaryNavigation,
   { label: "Admissions and fees", href: "/admissions" },
+  { label: "FAQ", href: "/faq" },
 ];

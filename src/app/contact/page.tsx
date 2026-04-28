@@ -107,6 +107,14 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                 simple while final delivery and privacy wording are confirmed.
               </p>
             </SectionIntro>
+            <div className="mt-6">
+              <Link
+                href="/faq"
+                className="text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/40 hover:text-brand-red"
+              >
+                Read common questions before enquiring
+              </Link>
+            </div>
             <div className="mt-6 grid gap-3">
               {schools.map((school) => (
                 <Link
