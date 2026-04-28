@@ -86,14 +86,14 @@ export const schools: School[] = [
     status: "open",
     statusLabel: "Weekend school",
     statusDescription:
-      "Local weekend classes are listed from the source site; session times need final confirmation.",
+      "Local weekend classes are available for families around High Wycombe; session times should be confirmed before attending.",
     lead: "A long-standing Saturday school for families around High Wycombe, with grouped Russian language and culture lessons.",
     venueName: "Hughenden Primary School",
     address: ["Spring Valley Drive"],
     postcode: "HP14 4LR",
     schedule: "Saturdays, 9:00 to 12:00",
     scheduleNote:
-      "Needs verification: the old overview also listed this branch as 9:30 to 12:30.",
+      "Final timing to confirm: older source material also listed 9:30 to 12:30.",
     lessonPlan: saturdayMorningPlan,
     classGroups,
     highlights: sharedHighlights,
@@ -113,7 +113,7 @@ export const schools: School[] = [
     status: "open",
     statusLabel: "Weekend school",
     statusDescription:
-      "Saturday afternoon classes are listed from legacy content and should be confirmed before launch.",
+      "Saturday afternoon classes are presented for local families, with final details confirmed through enquiry.",
     lead: "A Saturday afternoon branch supporting Russian language learning for families in and around Hemel Hempstead.",
     venueName: "South Hill Primary School",
     address: ["Heath Lane"],
@@ -138,7 +138,7 @@ export const schools: School[] = [
     status: "open",
     statusLabel: "Weekend school",
     statusDescription:
-      "Sunday morning classes are listed from legacy content and should be confirmed before launch.",
+      "Sunday morning classes are presented for local families, with final details confirmed through enquiry.",
     lead: "A Sunday branch for children learning Russian language, culture, reading, writing, and exam skills.",
     venueName: "Saint Joseph's Primary School",
     address: ["Gipsy Lane"],
@@ -170,12 +170,12 @@ export const schools: School[] = [
     postcode: "CM1 3ET",
     schedule: "Sundays, 10:00 to 13:00 when in-person classes are available",
     scheduleNote:
-      "Needs verification: old source also described the branch as online only.",
+      "Final route to confirm: older source material also described the branch as online only.",
     lessonPlan: sundayPlan,
     classGroups,
     highlights: [
       ...sharedHighlights,
-      "Online provision information retained as historical source content pending confirmation",
+      "Online provision information retained while the current Chelmsford route is confirmed",
     ],
     enquiryCta: "Register interest in Chelmsford classes",
     mapHref:
@@ -191,7 +191,7 @@ export const schools: School[] = [
       details: [
         "Same class groups, lesson plans, and curriculum were described in the source copy.",
         "Two one-hour lessons weekly.",
-        "GBP10 per hour, with the first two lessons free in the old copy.",
+        "Pricing and introductory-trial wording appeared in old copy and should be confirmed before publication.",
       ],
       links: [
         { label: "volnaschool.com", href: "https://volnaschool.com" },

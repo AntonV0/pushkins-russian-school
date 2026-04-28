@@ -84,22 +84,22 @@ export const faqGroups: FaqGroup[] = [
   {
     title: "Fees and payment",
     summary:
-      "What can be shown now, and what still needs final payment verification.",
+      "How families should treat fee and payment information before joining.",
     items: [
       {
-        question: "Where are the fees listed?",
+        question: "Where can I confirm current fees?",
         answer:
-          "The admissions page and each school page show the legacy fee summary from centralized payment data so it can be updated in one place.",
+          "The admissions page and each school page show fee categories, but current amounts are confirmed directly by the school after enquiry.",
       },
       {
         question: "Are bank details published yet?",
         answer:
-          "No exact account values are guessed. Bank details are approved for future inclusion, but the account information remains a verification placeholder until final values are confirmed.",
+          "No. Payment instructions and bank details are provided directly by the school until the final public payment wording is approved.",
       },
       {
         question: "Can families use childcare vouchers?",
         answer:
-          "The legacy payment source lists childcare vouchers as an accepted method, alongside bank transfer. This remains centralized for final confirmation.",
+          "Childcare vouchers are listed as a payment route to confirm. Ask in the enquiry so the school can confirm the current method and any required reference.",
       },
     ],
   },
@@ -121,7 +121,7 @@ export const faqGroups: FaqGroup[] = [
       {
         question: "Will the website store enquiry form information?",
         answer:
-          "Not yet. The current enquiry form prepares a structured email draft and does not store or submit information through the website backend.",
+          "The enquiry form validates only the first details needed for a reply. Live storage should be enabled only after privacy wording, retention, staff access, and Supabase row-level security are approved.",
       },
     ],
   },

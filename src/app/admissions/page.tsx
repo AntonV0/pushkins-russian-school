@@ -178,12 +178,12 @@ export default function AdmissionsPage() {
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.78fr_1.22fr] lg:px-8">
           <SectionIntro
             eyebrow="Fees"
-            title="Published fee summary from legacy source material"
+            title="Fee categories to confirm before joining"
           >
             <p>
-              Fees are centralized in one editable data object. Exact bank
-              details are approved for future inclusion, but no account values
-              are guessed here.
+              Fee and payment categories are centralized in one editable data
+              object. Current amounts and payment instructions are confirmed
+              directly by the school after enquiry.
             </p>
           </SectionIntro>
           <div className="grid gap-3 sm:grid-cols-2">

@@ -141,7 +141,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <TrustSignals
             align="center"
-            intro="Families should be able to see what is confirmed, what is structured, and what is still being reviewed. These signals build confidence without relying on unverified testimonials or partner claims."
+            intro="Families can check the shape of the school network, curriculum, and policy structure before they enquire, with stronger proof points added only after review."
           />
         </div>
       </section>
@@ -162,9 +162,9 @@ export default function Home() {
             tone="dark"
           >
             <p>
-              The curriculum message is intentionally high-level until the
-              headteacher approves class-by-class detail: language confidence,
-              cultural connection, and exam-aware progression.
+              The curriculum page gives parents a clear route into language
+              confidence, cultural connection, and exam-aware progression while
+              detailed class guidance remains easy to update.
             </p>
           </SectionIntro>
 
@@ -268,8 +268,8 @@ export default function Home() {
           >
             <p>
               The enquiry path is designed to help families share the details
-              the school needs, without hiding source uncertainties that still
-              require business confirmation.
+              the school needs, with practical status notes where branch details
+              need final confirmation.
             </p>
           </SectionIntro>
           <div className="mt-10 grid gap-5 md:grid-cols-3">

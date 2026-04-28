@@ -3,8 +3,8 @@ export const contactDetails = {
   email: "info@pushkinsrussianschool.co.uk",
   phoneLabel: "Enquiries by email",
   enquiryFormNote:
-    "The website form now validates initial enquiries server-side. Live delivery/storage still needs final deployment configuration before launch.",
-  registrationCta: "Register interest",
+    "Email directly if you prefer, or use the enquiry form to share the first details the school needs for a helpful reply.",
+  registrationCta: "Start an enquiry",
 };
 
 export const contactSupportNotes = [
@@ -15,15 +15,16 @@ export const contactSupportNotes = [
 
 export const paymentDetails = {
   acceptedMethods: ["Bank transfer", "Childcare vouchers"],
-  enrolmentFee: "GBP30 annual enrolment fee",
-  introductoryCourse: "GBP90 three-week introductory course",
+  enrolmentFee: "Annual enrolment fee",
+  introductoryCourse: "Introductory course",
   termFees: [
-    { label: "Term 1", value: "GBP390" },
-    { label: "Term 2", value: "GBP360" },
-    { label: "Term 3", value: "GBP330" },
-    { label: "Single school day", value: "GBP45" },
-    { label: "Second child", value: "GBP25 per 3-hour school day" },
+    { label: "Annual enrolment", value: "Confirm before joining" },
+    { label: "Introductory course", value: "Confirm availability and fee" },
+    { label: "Term fees", value: "Confirmed directly by the school" },
+    { label: "Single school day", value: "Confirm current rate" },
+    { label: "Sibling discount", value: "Confirm current discount" },
+    { label: "Payment method", value: "Confirmed after enquiry" },
   ],
   bankDetailsStatus:
-    "Approved for publication, but exact account details need final verification before going live.",
+    "Current fees, discounts, payment instructions, and bank details are confirmed directly by the school until final public payment wording is approved.",
 };

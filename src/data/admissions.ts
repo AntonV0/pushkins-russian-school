@@ -1,7 +1,7 @@
 export const admissionsSteps = [
   {
     title: "Choose a preferred branch",
-    body: "Review the branch status, venue, schedule, class groups, and any verification notes before enquiring.",
+    body: "Review the branch status, venue, schedule, class groups, and next-step guidance before enquiring.",
   },
   {
     title: "Share the child's learning context",

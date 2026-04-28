@@ -223,10 +223,9 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
               Progression at this branch
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              The exact class-by-class curriculum still needs headteacher
-              approval before publication. For now, parents can use these
-              stages to understand the broad journey and decide what to mention
-              in the enquiry.
+              Parents can use these stages to understand the broad learning
+              journey and decide what to mention in the enquiry. Detailed class
+              guidance can be expanded after school review.
             </p>
             <ul className="mt-5 grid gap-2">
               {placementSignals.slice(0, 3).map((signal) => (
@@ -370,10 +369,10 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
       <section className="bg-brand-blue-strong py-14 text-white sm:py-16">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-[1fr_0.8fr] lg:px-8">
           <div>
-            <h2 className="text-3xl font-semibold">Content verification notes</h2>
+            <h2 className="text-3xl font-semibold">Branch detail checks</h2>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-white/75">
-              These notes keep inherited source uncertainty visible during the
-              rebuild, so the public launch can be checked branch by branch.
+              These practical checks keep branch details clear while final
+              operating information is confirmed.
             </p>
           </div>
           <ul className="space-y-3 text-sm leading-6 text-white/80">
@@ -403,8 +402,8 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 Interested in {school.name}?
               </h2>
               <p className="mt-2 text-sm leading-6 text-slate-600">
-                Email {contactDetails.email} or use the enquiry route while the
-                final submission workflow is being connected.
+                Use the enquiry route or email {contactDetails.email} directly
+                to ask about the most suitable next step.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row">

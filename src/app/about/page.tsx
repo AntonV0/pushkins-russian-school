@@ -166,7 +166,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <TrustSignals
             includeReviewQueue
-            intro="The site now separates public credibility signals from proof points that still need verification, so future history, testimonial, partner, staff, and exam-result claims can be added cleanly."
+            intro="The site separates public credibility signals from proof points that need approval, so future history, testimonial, partner, staff, and exam-result claims can be added cleanly."
           />
         </div>
       </section>

@@ -98,9 +98,8 @@ export default function SchoolsPage() {
             title="Open branches with listed in-person schedules"
           >
             <p>
-              These branches are shown as weekend schools in the current source
-              data. Timetables remain visible with verification notes where old
-              copy conflicts.
+              These branches are presented as weekend schools, with timetable
+              notes shown where older source material needs final confirmation.
             </p>
           </SectionIntro>
           <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -148,7 +147,7 @@ export default function SchoolsPage() {
               Choosing a location
             </p>
             <h2 className="mt-3 text-3xl font-semibold">
-              Send one useful enquiry, even if the branch status is pending
+              Send one useful enquiry, even when details need confirmation
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-white/75">
               Share your preferred area, child&apos;s age, current Russian

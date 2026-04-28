@@ -75,7 +75,7 @@ export const learningOptions: LearningOption[] = [
       href: "/contact?intent=online-learning#enquiry-form",
     },
     verificationNote:
-      "Volna URL is retained from existing source data; current offer details should be confirmed before launch.",
+      "Confirm current Volna offer details before relying on specific pricing, lesson format, or availability.",
   },
   {
     id: "gcse-russian",
@@ -97,7 +97,7 @@ export const learningOptions: LearningOption[] = [
       href: "/contact?intent=exam-preparation#enquiry-form",
     },
     verificationNote:
-      "Public URL/linking for GCSERussian.com should be confirmed before adding an external button.",
+      "Confirm the public GCSERussian.com URL before adding an external button.",
   },
 ];
 
