@@ -4,24 +4,55 @@ import {
   invoiceWorkflowNotes,
 } from "@/data/invoices";
 
+const workflowColumns = [
+  {
+    title: "Draft",
+    detail:
+      "Prepare line items, confirm school branch, and keep the record internal.",
+  },
+  {
+    title: "Send",
+    detail:
+      "Share an approved invoice reference and parent-facing payment route.",
+  },
+  {
+    title: "Reconcile",
+    detail:
+      "Match bank, cash, voucher, or hosted provider evidence to the reference.",
+  },
+  {
+    title: "Close",
+    detail:
+      "Mark paid, void, or follow-up only after an auditable admin decision.",
+  },
+];
+
 const futureActions = [
-  "Create invoice",
-  "Edit selected invoice",
-  "Mark cash paid",
-  "Record bank transfer",
+  "New invoice",
+  "Edit draft",
+  "Record payment",
   "Generate PDF",
-  "Create Stripe link",
+  "Create hosted link",
+  "Send follow-up",
+];
+
+const readinessItems = [
+  ["Auth", "Pending"],
+  ["Storage", "Pending"],
+  ["Audit log", "Pending"],
+  ["Provider keys", "Not included"],
+  ["Live bank text", "Not included"],
 ];
 
 export function InvoiceWorkflowPanel() {
   return (
-    <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
+    <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
       <section className="border border-border-soft bg-surface p-6 shadow-sm">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">
-          Access state
+          Admin controls
         </p>
         <h2 className="mt-3 text-xl font-semibold text-brand-blue-strong">
-          Protected admin shell
+          Non-operational by design
         </h2>
         <p className="mt-3 text-sm leading-6 text-slate-600">
           Authentication and admin roles are not connected yet, so this page is
@@ -40,24 +71,49 @@ export function InvoiceWorkflowPanel() {
             </button>
           ))}
         </div>
+        <dl className="mt-6 grid gap-2 border-t border-border-soft pt-5">
+          {readinessItems.map(([label, value]) => (
+            <div
+              key={label}
+              className="flex items-center justify-between gap-4 text-sm"
+            >
+              <dt className="font-semibold text-brand-blue-strong">{label}</dt>
+              <dd className="text-slate-600">{value}</dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
       <section className="border border-border-soft bg-surface p-6 shadow-sm">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">
-          Payment routes
+          Payment method clarity
         </p>
         <h2 className="mt-3 text-xl font-semibold text-brand-blue-strong">
-          Manual now, Stripe-ready later
+          Manual now, hosted later
         </h2>
+        <p className="mt-3 text-sm leading-6 text-slate-600">
+          Each route separates what the school can reconcile manually from what
+          will need a future provider record. The UI stores labels and sample
+          states only.
+        </p>
         <div className="mt-5 grid gap-3 md:grid-cols-2">
           {Object.entries(invoicePaymentMethodMeta).map(([method, meta]) => (
             <div
               key={method}
               className="border-l border-brand-gold bg-background px-4 py-3"
             >
-              <p className="font-semibold text-brand-blue-strong">
-                {meta.label}
-              </p>
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <p className="font-semibold text-brand-blue-strong">
+                  {meta.label}
+                </p>
+                <span className="rounded-full border border-border-soft px-2.5 py-1 text-xs font-semibold text-slate-600">
+                  {meta.online
+                    ? "Hosted"
+                    : meta.manual
+                      ? "Manual"
+                      : "Unset"}
+                </span>
+              </div>
               <p className="mt-1 text-sm leading-6 text-slate-600">
                 {meta.description}
               </p>
@@ -67,7 +123,7 @@ export function InvoiceWorkflowPanel() {
       </section>
 
       <section className="border border-border-soft bg-surface p-6 shadow-sm lg:col-span-2">
-        <div className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr]">
+        <div className="grid gap-6 lg:grid-cols-[0.7fr_1.3fr]">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">
               Invoice references
@@ -78,8 +134,26 @@ export function InvoiceWorkflowPanel() {
             <p className="mt-3 text-sm leading-6 text-slate-600">
               {invoiceReferenceGuidance.summary}
             </p>
+            <p className="mt-3 border-l-4 border-brand-red bg-background px-4 py-3 text-sm leading-6 text-slate-700">
+              {invoiceReferenceGuidance.parentInstruction}
+            </p>
           </div>
-          <ul className="grid gap-3 md:grid-cols-2">
+          <div className="grid gap-3 md:grid-cols-4">
+            {workflowColumns.map((item) => (
+              <div
+                key={item.title}
+                className="border border-border-soft bg-background p-4"
+              >
+                <p className="font-semibold text-brand-blue-strong">
+                  {item.title}
+                </p>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  {item.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+          <ul className="grid gap-3 md:grid-cols-2 lg:col-span-2">
             {invoiceWorkflowNotes.map((note) => (
               <li
                 key={note}

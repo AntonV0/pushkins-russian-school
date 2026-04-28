@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import {
+  formatCurrencyFromPence,
+  invoiceSummary,
+  sampleInvoices,
+} from "@/data/invoices";
 
 export const metadata: Metadata = {
   title: "Admin Workspace",
@@ -8,6 +13,27 @@ export const metadata: Metadata = {
 };
 
 export default function AdminPage() {
+  const adminTiles = [
+    {
+      label: "Invoices",
+      value: sampleInvoices.length.toString(),
+      detail: "Sample register with disabled operational controls",
+      href: "/admin/invoices",
+    },
+    {
+      label: "Outstanding",
+      value: formatCurrencyFromPence(invoiceSummary.totalOutstandingPence),
+      detail: "Prototype balance across sample records",
+      href: "/admin/invoices",
+    },
+    {
+      label: "Follow-up",
+      value: invoiceSummary.activeFollowUpCount.toString(),
+      detail: "Sent, part-paid, or overdue sample invoices",
+      href: "/admin/invoices",
+    },
+  ];
+
   return (
     <main className="bg-background">
       <section className="border-b border-border-soft bg-brand-blue-strong py-16 text-white sm:py-20">
@@ -37,6 +63,28 @@ export default function AdminPage() {
               Return to public site
             </Link>
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border-soft bg-surface py-12">
+        <div className="mx-auto grid max-w-7xl gap-4 px-6 md:grid-cols-3 lg:px-8">
+          {adminTiles.map((tile) => (
+            <Link
+              key={tile.label}
+              href={tile.href}
+              className="border border-border-soft bg-background p-5 shadow-sm transition hover:border-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">
+                {tile.label}
+              </p>
+              <p className="mt-3 text-3xl font-semibold text-brand-blue-strong">
+                {tile.value}
+              </p>
+              <p className="mt-2 text-sm leading-6 text-slate-600">
+                {tile.detail}
+              </p>
+            </Link>
+          ))}
         </div>
       </section>
 

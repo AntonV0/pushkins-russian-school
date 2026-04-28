@@ -22,9 +22,10 @@ export function InvoiceStatusBadge({ status }: InvoiceStatusBadgeProps) {
 
   return (
     <span
-      className={`inline-flex rounded-full border px-3 py-1 text-xs font-semibold ${statusToneClasses[meta.tone]}`}
+      className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold ${statusToneClasses[meta.tone]}`}
       title={meta.description}
     >
+      <span className="size-1.5 rounded-full bg-current" aria-hidden="true" />
       {meta.label}
     </span>
   );
@@ -44,9 +45,10 @@ export function PaymentMethodBadge({ method }: PaymentMethodBadgeProps) {
 
   return (
     <span
-      className={`inline-flex rounded-full border px-3 py-1 text-xs font-semibold ${className}`}
+      className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold ${className}`}
       title={meta.description}
     >
+      <span className="size-1.5 rounded-full bg-current" aria-hidden="true" />
       {meta.label}
     </span>
   );

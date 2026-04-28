@@ -44,6 +44,7 @@ export type SchoolInvoice = {
   paymentMethod: InvoicePaymentMethod;
   lineItems: InvoiceLineItem[];
   amountPaidPence: number;
+  lastActivity: string;
   notes?: string[];
   providerLinks?: InvoiceProviderLinks;
 };
@@ -140,6 +141,8 @@ export const invoiceReferenceGuidance = {
   example: "PRS-2026-0001",
   summary:
     "Use a short unique reference on every invoice so bank transfers, cash notes, and future Stripe records can be matched reliably.",
+  parentInstruction:
+    "Ask parents to quote the invoice reference exactly when paying by bank transfer, cash note, childcare voucher, or any future hosted payment flow.",
 };
 
 export const invoiceWorkflowNotes = [
@@ -161,6 +164,7 @@ export const sampleInvoices: SchoolInvoice[] = [
     paymentStatus: "sent",
     paymentMethod: "bank-transfer",
     amountPaidPence: 0,
+    lastActivity: "Invoice sent; awaiting transfer reference match.",
     lineItems: [
       {
         id: "term-1",
@@ -191,6 +195,7 @@ export const sampleInvoices: SchoolInvoice[] = [
     paymentStatus: "part-paid",
     paymentMethod: "cash",
     amountPaidPence: 4500,
+    lastActivity: "Manual cash payment recorded for one session.",
     lineItems: [
       {
         id: "single-day",
@@ -212,6 +217,7 @@ export const sampleInvoices: SchoolInvoice[] = [
     paymentStatus: "draft",
     paymentMethod: "stripe-invoice",
     amountPaidPence: 0,
+    lastActivity: "Draft prepared; provider fields intentionally empty.",
     lineItems: [
       {
         id: "intro-course",
@@ -225,6 +231,31 @@ export const sampleInvoices: SchoolInvoice[] = [
       "Stripe fields are intentionally empty until provider setup is approved.",
     ],
     providerLinks: {},
+  },
+  {
+    id: "sample-invoice-004",
+    reference: "PRS-2026-0004",
+    customerLabel: "Sample Parent D",
+    studentLabel: "Sample Student D",
+    schoolSlug: "hemel-hempstead",
+    issueDate: "2026-04-01",
+    dueDate: "2026-04-15",
+    paymentStatus: "overdue",
+    paymentMethod: "childcare-voucher",
+    amountPaidPence: 0,
+    lastActivity: "Voucher payment not yet confirmed in the sample workflow.",
+    lineItems: [
+      {
+        id: "term-balance",
+        description: "Term balance",
+        quantity: 1,
+        unitAmountPence: 18000,
+      },
+    ],
+    notes: [
+      "Sample record only.",
+      "Requires admin follow-up before any live reminder wording is used.",
+    ],
   },
 ];
 
@@ -250,6 +281,104 @@ export function getInvoiceSchool(invoice: SchoolInvoice) {
   return schools.find((school) => school.slug === invoice.schoolSlug);
 }
 
+export function getInvoicePaymentRoute(invoice: SchoolInvoice) {
+  const methodMeta = invoicePaymentMethodMeta[invoice.paymentMethod];
+
+  if (methodMeta.online) {
+    return "Online placeholder";
+  }
+
+  if (methodMeta.manual) {
+    return "Manual reconciliation";
+  }
+
+  return "Route not selected";
+}
+
+export function getInvoiceProviderState(invoice: SchoolInvoice) {
+  const methodMeta = invoicePaymentMethodMeta[invoice.paymentMethod];
+
+  if (!methodMeta.online) {
+    return "No provider record expected";
+  }
+
+  if (
+    invoice.providerLinks?.stripeInvoiceId ||
+    invoice.providerLinks?.stripeCheckoutSessionId ||
+    invoice.providerLinks?.hostedInvoiceUrl ||
+    invoice.providerLinks?.paymentLinkUrl
+  ) {
+    return "Provider reference present";
+  }
+
+  return "Provider setup required";
+}
+
+export function getInvoiceNextAction(invoice: SchoolInvoice) {
+  const balance = getInvoiceBalance(invoice);
+  const methodMeta = invoicePaymentMethodMeta[invoice.paymentMethod];
+
+  if (invoice.paymentStatus === "void") {
+    return "Keep excluded from active follow-up.";
+  }
+
+  if (invoice.paymentStatus === "paid" || balance === 0) {
+    return "Check audit trail and close the record.";
+  }
+
+  if (invoice.paymentStatus === "draft") {
+    return methodMeta.online
+      ? "Confirm provider setup before sending."
+      : "Review details before sending.";
+  }
+
+  if (invoice.paymentStatus === "overdue") {
+    return "Prepare a careful manual follow-up.";
+  }
+
+  if (invoice.paymentStatus === "part-paid") {
+    return "Match the remaining balance before closing.";
+  }
+
+  if (methodMeta.online && getInvoiceProviderState(invoice) === "Provider setup required") {
+    return "Create hosted payment reference after approval.";
+  }
+
+  return "Wait for payment and reconcile by reference.";
+}
+
+export function getInvoiceWorkflowState(invoice: SchoolInvoice) {
+  const balance = getInvoiceBalance(invoice);
+
+  if (invoice.paymentStatus === "void") {
+    return "Excluded";
+  }
+
+  if (invoice.paymentStatus === "paid" || balance === 0) {
+    return "Complete";
+  }
+
+  if (invoice.paymentStatus === "overdue") {
+    return "Needs follow-up";
+  }
+
+  if (invoice.paymentStatus === "draft") {
+    return "Draft review";
+  }
+
+  if (invoice.paymentStatus === "part-paid") {
+    return "Part-payment review";
+  }
+
+  return "Awaiting payment";
+}
+
+export function countInvoicesByStatus(statuses: InvoicePaymentStatus[]) {
+  return sampleInvoices.filter((invoice) =>
+    statuses.includes(invoice.paymentStatus),
+  ).length;
+}
+
 export const invoiceSummary = {
   totalInvoices: sampleInvoices.length,
   totalOutstandingPence: sampleInvoices.reduce(
@@ -261,5 +390,11 @@ export const invoiceSummary = {
   ).length,
   onlineReadyCount: sampleInvoices.filter(
     (invoice) => invoicePaymentMethodMeta[invoice.paymentMethod].online,
+  ).length,
+  activeFollowUpCount: countInvoicesByStatus(["sent", "part-paid", "overdue"]),
+  overdueCount: countInvoicesByStatus(["overdue"]),
+  draftCount: countInvoicesByStatus(["draft"]),
+  providerSetupCount: sampleInvoices.filter(
+    (invoice) => getInvoiceProviderState(invoice) === "Provider setup required",
   ).length,
 };

@@ -6,24 +6,34 @@ import {
 
 const summaryCards = [
   {
-    label: "Sample invoices",
+    label: "Register size",
     value: invoiceSummary.totalInvoices.toString(),
-    detail: "Demo records only",
+    detail: "Sample invoice records only",
+    accent: "border-brand-blue/25",
   },
   {
     label: "Outstanding balance",
     value: formatCurrencyFromPence(invoiceSummary.totalOutstandingPence),
-    detail: "Calculated from sample balances",
+    detail: "Calculated from unpaid sample balances",
+    accent: "border-brand-red/30",
   },
   {
-    label: "Manual routes",
-    value: invoiceSummary.manualPaymentCount.toString(),
-    detail: "Cash, transfer, voucher, or other",
+    label: "Active follow-up",
+    value: invoiceSummary.activeFollowUpCount.toString(),
+    detail: `${invoiceSummary.overdueCount} overdue, ${invoiceSummary.draftCount} draft`,
+    accent: "border-brand-gold/50",
   },
   {
-    label: "Online-ready routes",
-    value: invoiceSummary.onlineReadyCount.toString(),
-    detail: "Stripe-ready placeholders",
+    label: "Payment routes",
+    value: `${invoiceSummary.manualPaymentCount}/${invoiceSummary.onlineReadyCount}`,
+    detail: "Manual routes / online placeholders",
+    accent: "border-brand-blue/25",
+  },
+  {
+    label: "Provider setup",
+    value: invoiceSummary.providerSetupCount.toString(),
+    detail: "Hosted payment records still absent",
+    accent: "border-slate-200",
   },
 ];
 
@@ -31,12 +41,12 @@ export function InvoiceSummaryCards() {
   return (
     <section
       aria-label="Invoice summary"
-      className="grid gap-4 md:grid-cols-2 xl:grid-cols-4"
+      className="grid gap-4 md:grid-cols-2 xl:grid-cols-5"
     >
       {summaryCards.map((card) => (
         <div
           key={card.label}
-          className="border border-border-soft bg-surface p-5 shadow-sm"
+          className={`border border-l-4 bg-surface p-5 shadow-sm ${card.accent}`}
         >
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">
             {card.label}
