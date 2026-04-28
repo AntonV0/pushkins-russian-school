@@ -3,14 +3,14 @@ export const contactDetails = {
   email: "info@pushkinsrussianschool.co.uk",
   phoneLabel: "Enquiries by email",
   enquiryFormNote:
-    "The form prepares a structured email draft while final website submission handling is still to connect.",
+    "The website form now validates initial enquiries server-side. Live delivery/storage still needs final deployment configuration before launch.",
   registrationCta: "Register interest",
 };
 
 export const contactSupportNotes = [
-  "Use the form to prepare a clear email with branch, age, level, and goals.",
+  "Use the form to share branch, age, level, goals, and basic contact details.",
   "For closed or online-only branches, enquiries are treated as register-interest messages.",
-  "Do not send sensitive documents through the website form until final data handling is connected.",
+  "Do not include medical, safeguarding, emergency contact, or full registration details in the initial enquiry.",
 ];
 
 export const paymentDetails = {

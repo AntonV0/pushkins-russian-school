@@ -5,20 +5,23 @@ export const admissionsSteps = [
   },
   {
     title: "Share the child's learning context",
-    body: "Include age, Russian language experience, reading and writing confidence, and any exam goals.",
+    body: "Include age, home-language exposure, Russian speaking, reading and writing confidence, and any GCSE or A Level goals.",
   },
   {
     title: "Confirm availability and fit",
-    body: "The school can confirm current places, future local interest, introductory options, and the most suitable group.",
+    body: "The school can confirm current places, future local interest, online alternatives, introductory options, and the most suitable starting group.",
   },
 ];
 
 export const enquiryChecklist = [
-  "Child's age and school year",
-  "Preferred school location",
+  "Parent or carer name and contact email",
+  "Child first name or children's first names",
+  "Child age or ages",
+  "Preferred school location or online learning route",
+  "How much Russian the child hears or uses at home",
   "Current Russian language level",
   "Interest in GCSE or A Level preparation, if relevant",
-  "Whether the enquiry is for current classes or future local classes",
+  "Whether the enquiry is for current classes, future local classes, or online learning",
 ];
 
 export const enquiryTypes = [

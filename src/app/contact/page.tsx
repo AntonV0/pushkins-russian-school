@@ -52,9 +52,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               Enquire about a school place or future local classes
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-              Use the structured form to prepare a clear email enquiry, or write
-              to the school directly while the final website submission workflow
-              is being connected.
+              Use the structured form to submit a simple initial enquiry, or
+              write to the school directly if you prefer email.
             </p>
           </div>
           <aside className="bg-surface-muted p-6 sm:p-8">
@@ -114,9 +113,11 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               title="Before submitting"
             >
               <p>
-                The form now opens a structured email draft. It does not store
-                details on the website, which keeps the temporary workflow
-                simple while final delivery and privacy wording are confirmed.
+                The form collects only the first details needed to respond:
+                parent contact details, preferred route, child first names and
+                ages, Russian level, and the reason for enquiring. Full
+                registration, health, safeguarding, emergency contact, and
+                consent information belongs in the later onboarding workflow.
               </p>
             </SectionIntro>
             <div className="mt-6">

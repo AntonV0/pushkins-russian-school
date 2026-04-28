@@ -1,99 +1,49 @@
 "use client";
 
-import type { FormEvent } from "react";
-import { useMemo, useState } from "react";
+import type { ReactNode } from "react";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
+import { submitEnquiry } from "@/app/contact/actions";
 import {
-  childAgeOptions,
   enquiryTypes,
   russianLevelOptions,
 } from "@/data/admissions";
 import { contactDetails } from "@/data/contact";
-import { schools } from "@/data/schools";
+import {
+  enquiryPrivacyNotice,
+  enquiryRouteOptions,
+  getInitialPreferredRoute,
+  initialEnquirySubmissionState,
+  normalizeEnquiryIntent,
+  type EnquiryField,
+  type EnquirySubmissionState,
+} from "@/data/enquiries";
 
 type EnquiryFormProps = {
   selectedSchool?: string;
   selectedIntent?: string;
 };
 
-type FormState = {
-  parentName: string;
-  email: string;
-  school: string;
-  enquiryType: string;
-  childAge: string;
-  russianLevel: string;
-  message: string;
-};
-
 export function EnquiryForm({
   selectedSchool,
   selectedIntent,
 }: EnquiryFormProps) {
-  const [formState, setFormState] = useState<FormState>({
-    parentName: "",
-    email: "",
-    school: selectedSchool ?? "",
-    enquiryType: selectedIntent ?? "general",
-    childAge: "",
-    russianLevel: "",
-    message: "",
-  });
-
-  const selectedSchoolName = useMemo(
-    () =>
-      schools.find((school) => school.slug === formState.school)?.name ??
-      "Not selected",
-    [formState.school],
+  const [state, formAction] = useActionState(
+    submitEnquiry,
+    initialEnquirySubmissionState,
   );
-
-  const selectedEnquiryLabel = useMemo(
-    () =>
-      enquiryTypes.find((type) => type.value === formState.enquiryType)?.label ??
-      "General enquiry",
-    [formState.enquiryType],
-  );
-
-  const emailDraftHref = useMemo(() => {
-    const subject = `Pushkin's School enquiry: ${selectedSchoolName}`;
-    const body = [
-      "Hello Pushkin's School,",
-      "",
-      "I would like to enquire about classes.",
-      "",
-      `Parent or carer name: ${formState.parentName || "Not provided"}`,
-      `Email address: ${formState.email || "Not provided"}`,
-      `Preferred branch: ${selectedSchoolName}`,
-      `Enquiry type: ${selectedEnquiryLabel}`,
-      `Child age or stage: ${formState.childAge || "Not provided"}`,
-      `Current Russian level: ${formState.russianLevel || "Not provided"}`,
-      "",
-      "Message:",
-      formState.message || "Not provided",
-      "",
-      "Thank you.",
-    ].join("\n");
-
-    return `mailto:${contactDetails.email}?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(body)}`;
-  }, [formState, selectedEnquiryLabel, selectedSchoolName]);
-
-  function updateField(field: keyof FormState, value: string) {
-    setFormState((current) => ({ ...current, [field]: value }));
-  }
-
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    window.location.href = emailDraftHref;
-  }
+  const fieldErrors = state.fieldErrors ?? {};
+  const initialPreferredRoute = getInitialPreferredRoute(selectedSchool);
+  const initialIntent = normalizeEnquiryIntent(selectedIntent);
+  const statusId = "enquiry-form-status";
 
   return (
     <form
       id="enquiry-form"
-      action={emailDraftHref}
-      onSubmit={handleSubmit}
+      action={formAction}
       className="rounded-lg border border-border-soft bg-surface p-6 shadow-sm sm:p-8"
-      aria-describedby="enquiry-form-status"
+      aria-describedby={`${statusId} enquiry-privacy-notice`}
+      noValidate
     >
       <div>
         <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
@@ -103,17 +53,25 @@ export function EnquiryForm({
           Tell us what you are looking for
         </h2>
         <p
-          id="enquiry-form-status"
+          id={statusId}
           className="mt-3 text-sm leading-6 text-slate-600"
+          aria-live="polite"
         >
-          Complete the fields to prepare a structured email draft. A direct
-          backend submission can be connected once the public contact workflow is
-          confirmed.
+          Submit a simple initial enquiry. The detailed registration form for
+          health, safeguarding, emergency contacts, and consents comes later if
+          your family joins.
         </p>
       </div>
 
+      <SubmissionNotice state={state} />
+
+      <div className="hidden" aria-hidden="true">
+        <label htmlFor="website">Website</label>
+        <input id="website" name="website" type="text" tabIndex={-1} />
+      </div>
+
       <div className="mt-8 grid gap-5 md:grid-cols-2">
-        <div>
+        <FieldError field="parentName" errors={fieldErrors}>
           <label
             htmlFor="parent-name"
             className="text-sm font-semibold text-brand-blue-strong"
@@ -125,13 +83,13 @@ export function EnquiryForm({
             name="parentName"
             type="text"
             autoComplete="name"
-            value={formState.parentName}
-            onChange={(event) => updateField("parentName", event.target.value)}
-            className="mt-2 w-full rounded-md border border-border-soft bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/15"
+            required
+            defaultValue={state.values?.parentName ?? ""}
+            className={fieldClassName(Boolean(fieldErrors.parentName))}
           />
-        </div>
+        </FieldError>
 
-        <div>
+        <FieldError field="email" errors={fieldErrors}>
           <label
             htmlFor="email"
             className="text-sm font-semibold text-brand-blue-strong"
@@ -143,83 +101,95 @@ export function EnquiryForm({
             name="email"
             type="email"
             autoComplete="email"
-            value={formState.email}
-            onChange={(event) => updateField("email", event.target.value)}
-            className="mt-2 w-full rounded-md border border-border-soft bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/15"
+            required
+            defaultValue={state.values?.email ?? ""}
+            className={fieldClassName(Boolean(fieldErrors.email))}
           />
-        </div>
+        </FieldError>
 
-        <div>
+        <FieldError field="phone" errors={fieldErrors}>
           <label
-            htmlFor="school"
+            htmlFor="phone"
             className="text-sm font-semibold text-brand-blue-strong"
           >
-            Preferred branch
+            Phone number{" "}
+            <span className="font-normal text-slate-500">(optional)</span>
           </label>
-          <select
-            id="school"
-            name="school"
-            value={formState.school}
-            onChange={(event) => updateField("school", event.target.value)}
-            className="mt-2 w-full rounded-md border border-border-soft bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/15"
-          >
-            <option value="">Select a branch</option>
-            {schools.map((school) => (
-              <option key={school.slug} value={school.slug}>
-                {school.name} - {school.statusLabel}
-              </option>
-            ))}
-          </select>
-        </div>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            defaultValue={state.values?.phone ?? ""}
+            className={fieldClassName(Boolean(fieldErrors.phone))}
+          />
+        </FieldError>
 
-        <div>
+        <FieldError field="preferredRoute" errors={fieldErrors}>
           <label
-            htmlFor="enquiry-type"
+            htmlFor="preferred-route"
             className="text-sm font-semibold text-brand-blue-strong"
           >
-            Enquiry type
+            Preferred school or learning route
           </label>
           <select
-            id="enquiry-type"
-            name="enquiryType"
-            value={formState.enquiryType}
-            onChange={(event) =>
-              updateField("enquiryType", event.target.value)
-            }
-            className="mt-2 w-full rounded-md border border-border-soft bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/15"
+            id="preferred-route"
+            name="preferredRoute"
+            required
+            defaultValue={state.values?.preferredRoute ?? initialPreferredRoute}
+            className={fieldClassName(Boolean(fieldErrors.preferredRoute))}
           >
-            {enquiryTypes.map((type) => (
-              <option key={type.value} value={type.value}>
-                {type.label}
-              </option>
+            <option value="">Select a route</option>
+            {enquiryRouteOptions.map((group) => (
+              <optgroup key={group.groupLabel} label={group.groupLabel}>
+                {group.options.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </optgroup>
             ))}
           </select>
-        </div>
+        </FieldError>
 
-        <div>
+        <FieldError field="childNames" errors={fieldErrors}>
           <label
-            htmlFor="child-age"
+            htmlFor="child-names"
             className="text-sm font-semibold text-brand-blue-strong"
           >
-            Child age or school stage
+            Child first name(s)
           </label>
-          <select
-            id="child-age"
-            name="childAge"
-            value={formState.childAge}
-            onChange={(event) => updateField("childAge", event.target.value)}
-            className="mt-2 w-full rounded-md border border-border-soft bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/15"
-          >
-            <option value="">Select an age range</option>
-            {childAgeOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </div>
+          <input
+            id="child-names"
+            name="childNames"
+            type="text"
+            required
+            placeholder="e.g. Sasha, Mila"
+            defaultValue={state.values?.childNames ?? ""}
+            className={fieldClassName(Boolean(fieldErrors.childNames))}
+          />
+        </FieldError>
 
-        <div>
+        <FieldError field="childAges" errors={fieldErrors}>
+          <label
+            htmlFor="child-ages"
+            className="text-sm font-semibold text-brand-blue-strong"
+          >
+            Child age(s)
+          </label>
+          <input
+            id="child-ages"
+            name="childAges"
+            type="text"
+            inputMode="text"
+            required
+            placeholder="e.g. 6 and 9, or Year 10"
+            defaultValue={state.values?.childAges ?? ""}
+            className={fieldClassName(Boolean(fieldErrors.childAges))}
+          />
+        </FieldError>
+
+        <FieldError field="russianLevel" errors={fieldErrors}>
           <label
             htmlFor="russian-level"
             className="text-sm font-semibold text-brand-blue-strong"
@@ -229,9 +199,9 @@ export function EnquiryForm({
           <select
             id="russian-level"
             name="russianLevel"
-            value={formState.russianLevel}
-            onChange={(event) => updateField("russianLevel", event.target.value)}
-            className="mt-2 w-full rounded-md border border-border-soft bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/15"
+            required
+            defaultValue={state.values?.russianLevel ?? ""}
+            className={fieldClassName(Boolean(fieldErrors.russianLevel))}
           >
             <option value="">Select the closest option</option>
             {russianLevelOptions.map((option) => (
@@ -240,39 +210,156 @@ export function EnquiryForm({
               </option>
             ))}
           </select>
-        </div>
+        </FieldError>
+
+        <FieldError field="enquiryType" errors={fieldErrors}>
+          <label
+            htmlFor="enquiry-type"
+            className="text-sm font-semibold text-brand-blue-strong"
+          >
+            Enquiry type
+          </label>
+          <select
+            id="enquiry-type"
+            name="enquiryType"
+            required
+            defaultValue={state.values?.enquiryType ?? initialIntent}
+            className={fieldClassName(Boolean(fieldErrors.enquiryType))}
+          >
+            {enquiryTypes.map((type) => (
+              <option key={type.value} value={type.value}>
+                {type.label}
+              </option>
+            ))}
+          </select>
+        </FieldError>
       </div>
 
-      <div className="mt-5">
+      <FieldError field="message" errors={fieldErrors} className="mt-5">
         <label
           htmlFor="message"
           className="text-sm font-semibold text-brand-blue-strong"
         >
-          Message
+          Message <span className="font-normal text-slate-500">(optional)</span>
         </label>
         <textarea
           id="message"
           name="message"
           rows={6}
-          placeholder="Share any useful context, such as home language exposure, previous lessons, exam goals, siblings, or preferred start date."
-          value={formState.message}
-          onChange={(event) => updateField("message", event.target.value)}
-          className="mt-2 w-full rounded-md border border-border-soft bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/15"
+          placeholder="Share useful learning context only, such as previous lessons, exam goals, siblings, or preferred start date."
+          defaultValue={state.values?.message ?? ""}
+          className={fieldClassName(Boolean(fieldErrors.message))}
         />
+      </FieldError>
+
+      <div className="mt-6 border-t border-border-soft pt-6">
+        <FieldError field="privacyConsent" errors={fieldErrors}>
+          <label className="flex gap-3 text-sm leading-6 text-slate-700">
+            <input
+              name="privacyConsent"
+              value="yes"
+              type="checkbox"
+              required
+              defaultChecked={state.values?.privacyConsent ?? false}
+              className="mt-1 size-4 rounded border-border-soft text-brand-blue focus:ring-brand-blue/30"
+            />
+            <span id="enquiry-privacy-notice">
+              I understand this is only an initial enquiry and I should not add
+              medical, safeguarding, emergency contact, full registration, or
+              document details here.
+            </span>
+          </label>
+        </FieldError>
       </div>
 
       <div className="mt-6 flex flex-col gap-3 border-t border-border-soft pt-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-xl text-xs leading-5 text-slate-500">
-          This opens your email app with the enquiry details filled in. It does
-          not store or send information through the website yet.
+          {enquiryPrivacyNotice} For urgent or direct contact, email{" "}
+          <a
+            href={`mailto:${contactDetails.email}`}
+            className="font-semibold text-brand-blue-strong underline decoration-brand-red/40 hover:text-brand-red"
+          >
+            {contactDetails.email}
+          </a>
+          .
         </p>
-        <button
-          type="submit"
-          className="inline-flex items-center justify-center rounded-full bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
-        >
-          Open email draft
-        </button>
+        <SubmitButton />
       </div>
     </form>
   );
+}
+
+function SubmissionNotice({
+  state,
+}: {
+  state: EnquirySubmissionState;
+}) {
+  if (state.status === "idle") {
+    return null;
+  }
+
+  const tone =
+    state.status === "success"
+      ? "border-emerald-200 bg-emerald-50 text-emerald-900"
+      : state.status === "not-configured"
+        ? "border-amber-200 bg-amber-50 text-amber-950"
+        : "border-red-200 bg-red-50 text-red-950";
+
+  return (
+    <div
+      className={`mt-6 rounded-md border px-4 py-3 text-sm leading-6 ${tone}`}
+      role={state.status === "error" ? "alert" : "status"}
+      aria-live="polite"
+    >
+      {state.message}
+    </div>
+  );
+}
+
+function FieldError({
+  field,
+  errors,
+  children,
+  className,
+}: {
+  field: EnquiryField;
+  errors: Partial<Record<EnquiryField, string>>;
+  children: ReactNode;
+  className?: string;
+}) {
+  const error = errors[field];
+
+  return (
+    <div className={className}>
+      {children}
+      {error ? (
+        <p className="mt-2 text-sm font-medium text-red-700" role="alert">
+          {error}
+        </p>
+      ) : null}
+    </div>
+  );
+}
+
+function SubmitButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className="inline-flex items-center justify-center rounded-full bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30 disabled:cursor-not-allowed disabled:bg-slate-400"
+    >
+      {pending ? "Submitting..." : "Submit initial enquiry"}
+    </button>
+  );
+}
+
+function fieldClassName(hasError: boolean) {
+  return [
+    "mt-2 w-full rounded-md border bg-background px-4 py-3 text-sm text-foreground outline-none transition focus:ring-2",
+    hasError
+      ? "border-red-300 focus:border-red-500 focus:ring-red-500/15"
+      : "border-border-soft focus:border-brand-blue focus:ring-brand-blue/15",
+  ].join(" ");
 }
