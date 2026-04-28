@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { ButtonLink } from "@/components/site/button-link";
+import { JsonLd } from "@/components/site/json-ld";
 import {
   getPolicyBySlug,
   policies,
   policyPublicationChecklist,
 } from "@/data/policies";
+import { absoluteUrl, siteConfig } from "@/data/site";
 
 type PolicyPageProps = {
   params: Promise<{ slug: string }>;
@@ -51,8 +53,26 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
     notFound();
   }
 
+  const policyJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: policy.title,
+    url: absoluteUrl(`/policies/${policy.slug}`),
+    description: policy.summary,
+    isPartOf: {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    about: {
+      "@type": "Thing",
+      name: policy.documentType,
+    },
+  };
+
   return (
     <main>
+      <JsonLd data={policyJsonLd} />
       <section className="border-b border-border-soft bg-surface py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Breadcrumbs

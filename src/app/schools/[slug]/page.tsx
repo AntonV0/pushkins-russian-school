@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { ButtonLink } from "@/components/site/button-link";
+import { JsonLd } from "@/components/site/json-ld";
 import { SectionIntro } from "@/components/site/section-intro";
 import { StatusBadge } from "@/components/site/status-badge";
 import { enquiryChecklist, getSchoolEnquiryHref } from "@/data/admissions";
 import { contactDetails, paymentDetails } from "@/data/contact";
 import { curriculumMaterials, placementSteps } from "@/data/curriculum";
 import { getSchoolBySlug, schools } from "@/data/schools";
+import { absoluteUrl, siteConfig } from "@/data/site";
 
 type SchoolPageProps = {
   params: Promise<{ slug: string }>;
@@ -52,8 +54,30 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
     notFound();
   }
 
+  const schoolJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    name: `${siteConfig.name} ${school.name}`,
+    url: absoluteUrl(`/schools/${school.slug}`),
+    email: contactDetails.email,
+    description: school.lead,
+    areaServed: school.county,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: school.address.join(", "),
+      postalCode: school.postcode,
+      addressCountry: "GB",
+    },
+    parentOrganization: {
+      "@type": "EducationalOrganization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+  };
+
   return (
     <main>
+      <JsonLd data={schoolJsonLd} />
       <section className="border-b border-border-soft bg-surface">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 lg:grid-cols-[1.08fr_0.92fr] lg:px-8">
           <div>

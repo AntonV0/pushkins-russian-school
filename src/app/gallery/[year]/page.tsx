@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { ButtonLink } from "@/components/site/button-link";
+import { JsonLd } from "@/components/site/json-ld";
 import {
   galleryArchives,
   galleryReadinessNotes,
   getGalleryArchive,
 } from "@/data/gallery";
+import { absoluteUrl, siteConfig } from "@/data/site";
 
 type GalleryYearPageProps = {
   params: Promise<{ year: string }>;
@@ -51,8 +53,26 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
     notFound();
   }
 
+  const galleryJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: archive.title,
+    url: absoluteUrl(`/gallery/${archive.year}`),
+    description: archive.summary,
+    isPartOf: {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    about: archive.highlights.map((highlight) => ({
+      "@type": "Thing",
+      name: highlight,
+    })),
+  };
+
   return (
     <main>
+      <JsonLd data={galleryJsonLd} />
       <section className="border-b border-border-soft bg-surface py-16 sm:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_0.78fr] lg:px-8">
           <div>
