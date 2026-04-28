@@ -3,15 +3,31 @@ export type PolicyGroup = {
   policies: Policy[];
 };
 
+export type PolicyPublicationStatus =
+  | "pending-review"
+  | "reviewed-public"
+  | "external-current"
+  | "external-review-needed";
+
 export type Policy = {
   title: string;
   slug: string;
   group: string;
+  owner: string;
   documentType: "School policy" | "External guidance";
   summary: string;
   audience: string;
+  publicationStatus: PolicyPublicationStatus;
   status: string;
+  statusDescription: string;
   reviewCadence: string;
+  reviewDate?: string;
+  nextReviewDate?: string;
+  version?: string;
+  pdfPath?: string;
+  externalGuidanceUrl?: string;
+  externalGuidanceLabel?: string;
+  externalGuidanceLastChecked?: string;
 };
 
 const policySummaries: Record<string, string> = {
@@ -56,10 +72,77 @@ const policySummaries: Record<string, string> = {
 function slugifyPolicy(title: string) {
   return title
     .toLowerCase()
-    .replace(/['’]/g, "")
+    .replace(/['\u2019]/g, "")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 }
+
+const pendingSchoolPolicyMetadata: Pick<
+  Policy,
+  "publicationStatus" | "status" | "statusDescription" | "reviewCadence" | "version"
+> = {
+  publicationStatus: "pending-review",
+  status: "Reviewed PDF pending",
+  statusDescription:
+    "The public summary is ready, but the formal policy PDF will only be linked after the document is reviewed and approved for publication.",
+  reviewCadence: "Confirm document owner, version, and review date before launch.",
+  version: "Publication shell",
+};
+
+const externalGuidanceOverrides: Record<
+  string,
+  Pick<
+    Policy,
+    | "externalGuidanceUrl"
+    | "externalGuidanceLabel"
+    | "externalGuidanceLastChecked"
+    | "publicationStatus"
+    | "status"
+    | "statusDescription"
+    | "reviewCadence"
+    | "version"
+  >
+> = {
+  "Keeping Children Safe in Education": {
+    externalGuidanceUrl:
+      "https://www.gov.uk/government/publications/keeping-children-safe-in-education--2",
+    externalGuidanceLabel: "Open current GOV.UK guidance",
+    externalGuidanceLastChecked: "2026-04-28",
+    publicationStatus: "external-current",
+    status: "Current external guidance linked",
+    statusDescription:
+      "This page links to the current Department for Education publication page rather than hosting a local copy.",
+    reviewCadence:
+      "Check the GOV.UK publication page before each safeguarding review cycle and before launch.",
+    version: "GOV.UK publication page",
+  },
+  "EYFS Statutory Framework": {
+    externalGuidanceUrl:
+      "https://www.gov.uk/government/publications/early-years-foundation-stage-framework--2",
+    externalGuidanceLabel: "Open current GOV.UK framework",
+    externalGuidanceLastChecked: "2026-04-28",
+    publicationStatus: "external-current",
+    status: "Current external guidance linked",
+    statusDescription:
+      "This page links to the Department for Education EYFS framework page for the current provider guidance.",
+    reviewCadence:
+      "Check the GOV.UK publication page before referencing early years requirements publicly.",
+    version: "GOV.UK publication page",
+  },
+  "Teachers' Standards": {
+    externalGuidanceUrl:
+      "https://www.gov.uk/government/publications/teachers-standards",
+    externalGuidanceLabel: "Open current GOV.UK standards",
+    externalGuidanceLastChecked: "2026-04-28",
+    publicationStatus: "external-current",
+    status: "Current external guidance linked",
+    statusDescription:
+      "This page links to the Department for Education Teachers' Standards publication page.",
+    reviewCadence:
+      "Check the GOV.UK publication page before staff policy or recruitment content is finalized.",
+    version: "GOV.UK publication page",
+  },
+};
 
 function createPolicies(
   group: string,
@@ -71,17 +154,26 @@ function createPolicies(
     title,
     slug: slugifyPolicy(title),
     group,
+    owner:
+      documentType === "External guidance"
+        ? "Department for Education"
+        : group,
     documentType,
     audience,
     summary: policySummaries[title],
-    status:
-      documentType === "External guidance"
-        ? "Pending current external guidance link review"
-        : "Pending reviewed document upload",
-    reviewCadence:
-      documentType === "External guidance"
-        ? "Check source guidance before publication"
-        : "Confirm owner and review date before publication",
+    ...(documentType === "External guidance"
+      ? externalGuidanceOverrides[title] ?? {
+          publicationStatus: "external-review-needed" as const,
+          status: "External guidance link pending review",
+          statusDescription:
+            "The guidance source still needs to be checked before a public link is shown.",
+          reviewCadence: "Check source guidance before publication.",
+          version: "External source pending review",
+        }
+      : pendingSchoolPolicyMetadata),
+    reviewDate: undefined,
+    nextReviewDate: undefined,
+    pdfPath: undefined,
   }));
 }
 
@@ -141,10 +233,81 @@ export const policyPublicationChecklist = [
 ];
 
 export const policyIndexNotes = [
-  "Policy files will be downloaded or updated in a later content pass.",
+  "Policy summaries are public-ready, but formal school PDFs remain pending until reviewed.",
   "Unreviewed policy documents are intentionally not linked from the public site.",
-  "External guidance links should point to current official sources once verified.",
+  "External guidance links point to official GOV.UK publication pages that should be checked before launch.",
 ];
+
+export function getPolicyAction(policy: Policy) {
+  if (policy.pdfPath && policy.publicationStatus === "reviewed-public") {
+    return {
+      href: policy.pdfPath,
+      label: "Download PDF",
+      description: "Reviewed public document",
+      isExternal: false,
+    };
+  }
+
+  if (
+    policy.externalGuidanceUrl &&
+    policy.publicationStatus === "external-current"
+  ) {
+    return {
+      href: policy.externalGuidanceUrl,
+      label: policy.externalGuidanceLabel ?? "Open guidance",
+      description: "Current external guidance",
+      isExternal: true,
+    };
+  }
+
+  return null;
+}
+
+export function getPolicyMetadata(policy: Policy) {
+  return [
+    { label: "Audience", value: policy.audience },
+    { label: "Owner or category", value: policy.owner },
+    { label: "Document type", value: policy.documentType },
+    { label: "Publication status", value: policy.status },
+    { label: "Version", value: policy.version ?? "To be confirmed" },
+    { label: "Review date", value: policy.reviewDate ?? "To be confirmed" },
+    { label: "Next review", value: policy.nextReviewDate ?? "To be confirmed" },
+    ...(policy.externalGuidanceLastChecked
+      ? [
+          {
+            label: "External link checked",
+            value: policy.externalGuidanceLastChecked,
+          },
+        ]
+      : []),
+  ];
+}
+
+export function getPolicyStatusTone(policy: Policy) {
+  if (policy.publicationStatus === "reviewed-public") {
+    return "border-emerald-200 bg-emerald-50 text-emerald-800";
+  }
+
+  if (policy.publicationStatus === "external-current") {
+    return "border-brand-blue/15 bg-brand-blue/5 text-brand-blue-strong";
+  }
+
+  return "border-brand-gold/40 bg-brand-gold/10 text-brand-blue-strong";
+}
+
+export function getPolicyAvailabilitySummary(policy: Policy) {
+  if (policy.publicationStatus === "reviewed-public") {
+    return "Formal PDF available";
+  }
+
+  if (policy.publicationStatus === "external-current") {
+    return "External guidance linked";
+  }
+
+  return policy.documentType === "External guidance"
+    ? "External link pending"
+    : "PDF pending review";
+}
 
 export function getPolicyBySlug(slug: string) {
   return policies.find((policy) => policy.slug === slug);

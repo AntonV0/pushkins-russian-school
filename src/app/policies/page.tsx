@@ -2,7 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { MetricStrip } from "@/components/site/metric-strip";
 import { SectionIntro } from "@/components/site/section-intro";
-import { policies, policyGroups, policyIndexNotes } from "@/data/policies";
+import {
+  getPolicyAction,
+  getPolicyAvailabilitySummary,
+  getPolicyStatusTone,
+  policies,
+  policyGroups,
+  policyIndexNotes,
+} from "@/data/policies";
 
 export const metadata: Metadata = {
   title: "Policies",
@@ -20,6 +27,8 @@ export const metadata: Metadata = {
 };
 
 export default function PoliciesPage() {
+  const availableActions = policies.filter((policy) => getPolicyAction(policy));
+
   return (
     <main>
       <section className="border-b border-border-soft bg-surface py-16 sm:py-20">
@@ -41,7 +50,7 @@ export default function PoliciesPage() {
             metrics={[
               { label: "Groups", value: policyGroups.length },
               { label: "Policies", value: policies.length },
-              { label: "Downloads", value: "Pending" },
+              { label: "Available links", value: availableActions.length },
             ]}
           />
         </div>
@@ -82,30 +91,58 @@ export default function PoliciesPage() {
                   {group.title}
                 </h2>
                 <ul className="mt-5 divide-y divide-border-soft text-sm">
-                  {group.policies.map((policy) => (
-                    <li
-                      key={policy.slug}
-                      className="grid gap-2 py-3 sm:grid-cols-[1fr_auto] sm:items-center"
-                    >
-                      <div>
-                        <Link
-                          href={`/policies/${policy.slug}`}
-                          className="font-medium text-slate-700 hover:text-brand-red"
-                        >
-                          {policy.title}
-                        </Link>
-                        <p className="mt-1 text-xs leading-5 text-muted">
-                          {policy.documentType} / {policy.status}
+                  {group.policies.map((policy) => {
+                    const action = getPolicyAction(policy);
+
+                    return (
+                      <li key={policy.slug} className="py-4">
+                        <div className="grid gap-3 sm:grid-cols-[1fr_auto] sm:items-start">
+                          <div>
+                            <Link
+                              href={`/policies/${policy.slug}`}
+                              className="font-medium text-slate-700 hover:text-brand-red"
+                            >
+                              {policy.title}
+                            </Link>
+                            <p className="mt-1 text-xs leading-5 text-muted">
+                              {policy.documentType} / {policy.owner}
+                            </p>
+                          </div>
+                          <span
+                            className={`inline-flex w-fit items-center rounded-full border px-3 py-1 text-xs font-semibold ${getPolicyStatusTone(policy)}`}
+                          >
+                            {getPolicyAvailabilitySummary(policy)}
+                          </span>
+                        </div>
+                        <p className="mt-2 text-sm leading-6 text-slate-600">
+                          {policy.summary}
                         </p>
-                      </div>
-                      <Link
-                        href={`/policies/${policy.slug}`}
-                        className="shrink-0 text-xs font-semibold uppercase tracking-[0.12em] text-muted hover:text-brand-red"
-                      >
-                        View shell
-                      </Link>
-                    </li>
-                  ))}
+                        <div className="mt-3 flex flex-wrap items-center gap-3">
+                          <Link
+                            href={`/policies/${policy.slug}`}
+                            className="text-xs font-semibold uppercase tracking-[0.12em] text-muted hover:text-brand-red"
+                          >
+                            View summary
+                          </Link>
+                          {action ? (
+                            <a
+                              href={action.href}
+                              target={action.isExternal ? "_blank" : undefined}
+                              rel={
+                                action.isExternal
+                                  ? "noopener noreferrer"
+                                  : undefined
+                              }
+                              download={action.isExternal ? undefined : true}
+                              className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-blue-strong hover:text-brand-red"
+                            >
+                              {action.label}
+                            </a>
+                          ) : null}
+                        </div>
+                      </li>
+                    );
+                  })}
                 </ul>
               </section>
             ))}
