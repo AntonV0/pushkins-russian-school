@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { ButtonLink } from "@/components/site/button-link";
 import { JsonLd } from "@/components/site/json-ld";
+import { RelatedSchools } from "@/components/site/related-schools";
 import { SectionIntro } from "@/components/site/section-intro";
 import { StatusBadge } from "@/components/site/status-badge";
 import { enquiryChecklist, getSchoolEnquiryHref } from "@/data/admissions";
@@ -345,6 +346,8 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
           </div>
         </div>
       </section>
+
+      <RelatedSchools currentSlug={school.slug} schools={schools} />
     </main>
   );
 }

@@ -1,0 +1,54 @@
+import Link from "next/link";
+import type { School } from "@/data/schools";
+import { StatusBadge } from "./status-badge";
+
+type RelatedSchoolsProps = {
+  currentSlug: string;
+  schools: School[];
+};
+
+export function RelatedSchools({ currentSlug, schools }: RelatedSchoolsProps) {
+  const relatedSchools = schools.filter((school) => school.slug !== currentSlug);
+
+  return (
+    <section className="border-t border-border-soft bg-background py-14 sm:py-16">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
+              Explore the network
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold text-brand-blue-strong">
+              Other Pushkin&apos;s School branches
+            </h2>
+          </div>
+          <Link
+            href="/schools"
+            className="text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/40 hover:text-brand-red"
+          >
+            Compare all schools
+          </Link>
+        </div>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {relatedSchools.map((school) => (
+            <Link
+              key={school.slug}
+              href={`/schools/${school.slug}`}
+              className="rounded-lg border border-border-soft bg-surface p-5 transition hover:-translate-y-0.5 hover:border-brand-red hover:shadow-md"
+            >
+              <StatusBadge status={school.status} label={school.statusLabel} />
+              <h3 className="mt-4 text-xl font-semibold text-brand-blue-strong">
+                {school.name}
+              </h3>
+              <p className="mt-2 text-sm text-muted">{school.county}</p>
+              <p className="mt-4 text-sm leading-6 text-slate-600">
+                {school.schedule}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
