@@ -55,6 +55,28 @@ export const faqGroups: FaqGroup[] = [
     ],
   },
   {
+    title: "Related learning options",
+    summary:
+      "How Pushkin's School, Volna Online Russian School, and GCSERussian.com fit together.",
+    items: [
+      {
+        question: "What if there is no open Pushkin's School branch near us?",
+        answer:
+          "Families can still register interest for future local classes and can also ask about Volna Online Russian School as a fully online option with group and private lessons.",
+      },
+      {
+        question: "Is Volna Online Russian School the same as Pushkin's School?",
+        answer:
+          "No. It is presented as a related but distinct online Russian-learning option, useful for families who need fully online lessons or live support outside a local branch.",
+      },
+      {
+        question: "Where does GCSERussian.com fit?",
+        answer:
+          "GCSERussian.com is treated as a separate GCSE Russian self-study project. It gives exam-focused families another route alongside local weekend classes or online lessons.",
+      },
+    ],
+  },
+  {
     title: "Fees and payment",
     summary:
       "What can be shown now, and what still needs final payment verification.",

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { EnquiryForm } from "@/components/site/enquiry-form";
+import { LearningOptions } from "@/components/site/learning-options";
 import { SectionIntro } from "@/components/site/section-intro";
 import { enquiryChecklist } from "@/data/admissions";
 import {
@@ -91,6 +92,17 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               {note}
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="border-b border-border-soft bg-surface py-14 sm:py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <LearningOptions
+            eyebrow="Choose a route"
+            title="Local school, online lessons, or GCSE self-study"
+            intro="If a branch is not nearby or is not currently open, families can still ask about the wider set of Russian-learning options before deciding the next step."
+            compact
+          />
         </div>
       </section>
 

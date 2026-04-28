@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { LearningOptions } from "@/components/site/learning-options";
 import { MetricStrip } from "@/components/site/metric-strip";
 import { NetworkVisual } from "@/components/site/network-visual";
 import { SchoolCard } from "@/components/site/school-card";
@@ -110,6 +111,17 @@ export default function SchoolsPage() {
               <SchoolCard key={school.slug} school={school} />
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="border-t border-border-soft bg-background py-14 sm:py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <LearningOptions
+            eyebrow="Beyond local branches"
+            title="If a nearby school is not currently available"
+            intro="Families can still stay within the wider Russian-learning network: register interest locally, ask about online lessons, or explore GCSE-focused self-study support."
+            compact
+          />
         </div>
       </section>
 

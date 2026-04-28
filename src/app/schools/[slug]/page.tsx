@@ -3,12 +3,14 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { ButtonLink } from "@/components/site/button-link";
 import { JsonLd } from "@/components/site/json-ld";
+import { LearningOptions } from "@/components/site/learning-options";
 import { RelatedSchools } from "@/components/site/related-schools";
 import { SectionIntro } from "@/components/site/section-intro";
 import { StatusBadge } from "@/components/site/status-badge";
 import { enquiryChecklist, getSchoolEnquiryHref } from "@/data/admissions";
 import { contactDetails, paymentDetails } from "@/data/contact";
 import { curriculumMaterials, placementSteps } from "@/data/curriculum";
+import { getLearningOptionsForBranchStatus } from "@/data/learning-options";
 import { getSchoolBySlug, schools } from "@/data/schools";
 import { absoluteUrl, siteConfig } from "@/data/site";
 
@@ -54,6 +56,11 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
   if (!school) {
     notFound();
   }
+
+  const isLocalProvisionUnconfirmed = school.status !== "open";
+  const learningOptions = getLearningOptionsForBranchStatus(school.status);
+  const highlightedLearningOption =
+    school.status === "online" ? "volna-online" : undefined;
 
   const schoolJsonLd = {
     "@context": "https://schema.org",
@@ -291,6 +298,21 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 ))}
               </div>
             </div>
+          </div>
+        </section>
+      ) : null}
+
+      {isLocalProvisionUnconfirmed ? (
+        <section className="border-y border-border-soft bg-surface py-14 sm:py-16">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <LearningOptions
+              options={learningOptions}
+              eyebrow="Alternative routes"
+              title={`More ways to learn Russian while ${school.name} is being confirmed`}
+              intro="This branch keeps its full page for local interest, but families can also consider online Russian lessons or GCSE-focused self-study support without leaving the wider learning network."
+              highlightId={highlightedLearningOption}
+              compact
+            />
           </div>
         </section>
       ) : null}

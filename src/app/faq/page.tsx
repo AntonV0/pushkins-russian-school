@@ -3,6 +3,7 @@ import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { ButtonLink } from "@/components/site/button-link";
 import { FaqList } from "@/components/site/faq-list";
 import { JsonLd } from "@/components/site/json-ld";
+import { LearningOptions } from "@/components/site/learning-options";
 import { faqGroups, faqs } from "@/data/faqs";
 import { absoluteUrl, siteConfig } from "@/data/site";
 
@@ -70,6 +71,17 @@ export default function FaqPage() {
               Compare schools
             </ButtonLink>
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border-soft bg-background py-14 sm:py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <LearningOptions
+            eyebrow="Learning routes"
+            title="Which Russian-learning option should I ask about?"
+            intro="The FAQ answers branch questions first, but the wider network gives families sensible alternatives when a local place is unavailable or the goal is exam-specific."
+            compact
+          />
         </div>
       </section>
 

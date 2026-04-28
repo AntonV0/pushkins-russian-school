@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ButtonLink } from "@/components/site/button-link";
+import { LearningOptions } from "@/components/site/learning-options";
 import { MetricStrip } from "@/components/site/metric-strip";
 import { NetworkVisual } from "@/components/site/network-visual";
 import { SchoolCard } from "@/components/site/school-card";
@@ -8,6 +9,7 @@ import { SectionIntro } from "@/components/site/section-intro";
 import { admissionsSteps } from "@/data/admissions";
 import { contactDetails } from "@/data/contact";
 import { curriculumPillars, placementSteps } from "@/data/curriculum";
+import { learningOptionSummary } from "@/data/learning-options";
 import { networkSummary, schools } from "@/data/schools";
 import { siteConfig } from "@/data/site";
 
@@ -95,6 +97,14 @@ export default function Home() {
               View all school locations
             </Link>
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border-soft bg-background py-16 sm:py-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <LearningOptions
+            intro={`${learningOptionSummary} Families can start with a local branch, move online when distance is a barrier, or choose focused GCSE self-study support.`}
+          />
         </div>
       </section>
 
