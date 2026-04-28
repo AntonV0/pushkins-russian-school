@@ -80,3 +80,9 @@ Core content is centralized under `src/data/`:
 The current implementation is polished but deliberately cautious. Before public
 launch, the business still needs to confirm current branch statuses, timetable
 details, fee/payment values, policy documents, and approved public images.
+
+## Planning Docs
+
+- `PROJECT-DECISIONS.md` captures current business decisions and open questions.
+- `SUBAGENT-PROMPTS.md` contains scoped prompts for the next implementation
+  phase.
