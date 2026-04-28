@@ -453,6 +453,32 @@ Recommended future commits:
 The current safe next step is documentation only. The first code milestone
 should add TypeScript types and non-sensitive section metadata, not a live form.
 
+## Scaffold Added in This Branch
+
+The first safe code scaffold now includes static TypeScript metadata and
+prototype-only route shells. It is intentionally non-operational.
+
+Added safe surfaces:
+
+- Registration section, invitation status, consent category, and admin review
+  state types in `src/data/registration.ts`.
+- Sample-only registration records using generic labels and `.invalid` example
+  addresses.
+- A static admin queue at `/admin/registrations`.
+- A static admin detail shell at `/admin/registrations/[id]`.
+- A public-safe invitation landing shell at `/register/[token]`.
+
+Important boundaries:
+
+- No Supabase tables, writes, server actions, or live storage are connected.
+- No file uploads, medical forms, safeguarding notes, parent portal auth, or
+  email sending are implemented.
+- No real parent, child, staff, medical, collection, or safeguarding data should
+  be placed into these sample records.
+- The public invitation shell does not validate, decode, store, or reveal token
+  data. A live version must use hashed expiring tokens, rate limiting, and
+  access-controlled server-side checks.
+
 ## Coordinator Notes
 
 Open decisions for the project owner:
