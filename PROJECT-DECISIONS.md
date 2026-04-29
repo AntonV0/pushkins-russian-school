@@ -28,11 +28,15 @@ network areas, because the broader network footprint is valuable.
 
 Current direction:
 
+- Only Bracknell is currently represented as an active in-person school in the
+  public data model.
 - Keep full pages for every known location.
 - Keep transparent wording for online-only or interest-gathering branches.
 - Use register-interest CTAs where local in-person provision is not confirmed.
 - Preserve verification notes until current operating information is confirmed.
 - Support adding more locations through the school data model.
+- A further active Devon school is known to exist but should not be published
+  until approved details are supplied.
 
 Future decision needed:
 

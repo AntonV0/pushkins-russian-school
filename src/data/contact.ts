@@ -14,7 +14,7 @@ export const contactSupportNotes = [
 ];
 
 export const paymentDetails = {
-  acceptedMethods: ["Bank transfer", "Childcare vouchers"],
+  acceptedMethods: ["Confirmed after enquiry"],
   enrolmentFee: "Annual enrolment fee",
   introductoryCourse: "Introductory course",
   termFees: [

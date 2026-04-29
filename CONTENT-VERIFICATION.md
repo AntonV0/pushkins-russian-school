@@ -43,16 +43,19 @@ confirmed for launch.
 
 | Branch | Currently modelled status | Business status to confirm | Venue to confirm | Address to confirm | Timetable to confirm | Enquiry CTA to confirm | Pricing notes | Exact schedule public? |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| High Wycombe | Open / weekend school | [ ] Open [ ] Closed [ ] Online [ ] Opening soon [ ] Other | Hughenden Primary School | Spring Valley Drive, HP14 4LR | Saturdays, 9:00 to 12:00. Existing audit notes contain a conflicting 9:30 to 12:30 reference. | Enquire about High Wycombe places | [ ] Use central fees [ ] Hide fees [ ] Branch-specific fees needed [ ] Confirm no public bank details | [ ] Yes, publish exact times [ ] No, use "times to be confirmed" |
-| Hemel Hempstead | Open / weekend school | [ ] Open [ ] Closed [ ] Online [ ] Opening soon [ ] Other | South Hill Primary School | Heath Lane, HP1 1TT | Saturdays, 14:00 to 17:00 | Enquire about Hemel Hempstead places | [ ] Use central fees [ ] Hide fees [ ] Branch-specific fees needed [ ] Confirm no public bank details | [ ] Yes, publish exact times [ ] No, use "times to be confirmed" |
+| High Wycombe | Online only / register interest | [ ] Open [ ] Closed [ ] Online [ ] Opening soon [ ] Other | Local venue not published while in-person provision is unconfirmed | Buckinghamshire network area | Register interest for future local classes. Legacy audit notes contain conflicting Saturday times and should not be treated as current. | Register interest in High Wycombe classes | [ ] Use central fees [ ] Hide fees [ ] Branch-specific fees needed [ ] Confirm no public bank details | [ ] Yes, publish exact times [ ] No, use "times to be confirmed" |
+| Hemel Hempstead | Online only / register interest | [ ] Open [ ] Closed [ ] Online [ ] Opening soon [ ] Other | Local venue not published while in-person provision is unconfirmed | Hertfordshire network area | Register interest for future local classes. Legacy audit notes include Saturday afternoon provision and old payment/calendar material. | Register interest in Hemel Hempstead classes | [ ] Use central fees [ ] Hide fees [ ] Branch-specific fees needed [ ] Confirm no public bank details | [ ] Yes, publish exact times [ ] No, use "times to be confirmed" |
 | Bracknell | Open / weekend school | [ ] Open [ ] Closed [ ] Online [ ] Opening soon [ ] Other | Saint Joseph's Primary School | Gipsy Lane, RG12 9AP | Sundays, 10:00 to 13:00 | Enquire about Bracknell places | [ ] Use central fees [ ] Hide fees [ ] Branch-specific fees needed [ ] Confirm no public bank details | [ ] Yes, publish exact times [ ] No, use "times to be confirmed" |
-| Chelmsford | Online / status to confirm | [ ] Open [ ] Closed [ ] Online [ ] Opening soon [ ] Other | Hylands School | Chelmsford Road, Writtle, CM1 3ET | Sundays, 10:00 to 13:00 when in-person classes are available; old source also says online only. | Register interest in Chelmsford classes | [ ] Use central fees [ ] Hide fees [ ] Branch-specific fees needed [ ] Confirm Volna pricing/free-trial wording separately | [ ] Yes, publish exact times [ ] No, use "times to be confirmed" |
-| Southend-on-Sea | Closed for in-person classes | [ ] Open [ ] Closed [ ] Online [ ] Opening soon [ ] Other | Westcliff High School for Girls | Kenilworth Gardens, SS0 0BS | Register interest for future local classes; old source included an online-only/planned-opening note. | Register interest in Southend-on-Sea classes | [ ] Use central fees [ ] Hide fees [ ] Branch-specific fees needed [ ] Confirm no public bank details | [ ] Yes, publish exact times [ ] No, use "times to be confirmed" |
+| Chelmsford | Online only / register interest | [ ] Open [ ] Closed [ ] Online [ ] Opening soon [ ] Other | Local venue not published while in-person provision is unconfirmed | Essex network area | Register interest for future local classes. Legacy source also contains Covid-era Volna wording and old Sunday venue details. | Register interest in Chelmsford classes | [ ] Use central fees [ ] Hide fees [ ] Branch-specific fees needed [ ] Confirm Volna pricing/free-trial wording separately | [ ] Yes, publish exact times [ ] No, use "times to be confirmed" |
+| Southend-on-Sea | Online only / register interest | [ ] Open [ ] Closed [ ] Online [ ] Opening soon [ ] Other | Local venue not published while in-person provision is unconfirmed | Essex network area | Register interest for future local classes; old source included an online-only/planned-opening note. | Register interest in Southend-on-Sea classes | [ ] Use central fees [ ] Hide fees [ ] Branch-specific fees needed [ ] Confirm no public bank details | [ ] Yes, publish exact times [ ] No, use "times to be confirmed" |
 
 ### Branch Review Notes
 
-- Current data keeps every known branch page, including uncertain, online, or
-  closed locations, so families can register interest.
+- Current data keeps every known branch page, including online-only or
+  interest-gathering locations, so families can register interest without the
+  site implying a local venue is active.
+- Only Bracknell is currently represented as an active in-person school in the
+  public data model.
 - High Wycombe has a timetable conflict in source material and needs a clear
   final answer before exact public times are shown.
 - Chelmsford has Covid-era online wording and Volna references in the audit
@@ -62,6 +65,8 @@ confirmed for launch.
   whether the old venue/address should stay public while classes are not active.
 - Old calendars, pricing, childcare voucher notes, registration identifiers, and
   payment instructions should be treated as stale until reviewed.
+- Another active school in Devon is known to exist but is intentionally not
+  modelled or published until details are supplied and approved.
 
 ## Central Pricing And Payment Review
 

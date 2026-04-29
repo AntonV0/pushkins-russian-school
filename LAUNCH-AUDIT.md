@@ -40,6 +40,113 @@ Supporting files reviewed:
 - `CONTENT-VERIFICATION.md`
 - admin, enquiry, registration, payment, and asset workflow docs
 
+## Deep Audit Update - 2026-04-29
+
+This pass rechecked the tracked site against the ignored local source audit,
+source screenshot inventory, and public-safe planning notes. Raw source material
+was used only for comparison; no private screenshots, policy bodies, bank
+details, staff/client data, or unreviewed business copy were copied into tracked
+content.
+
+### Highest-Impact Findings From This Pass
+
+1. The biggest launch blocker is still business verification, not code shape.
+   The original site contains useful depth around school history, branch pages,
+   lesson structures, policies, galleries, prices, calendars, payment notes, and
+   contact details, but most of that material is stale or approval-sensitive.
+
+2. The current public journey is coherent and conversion-oriented, especially
+   from `/`, `/schools`, `/schools/bracknell`, `/admissions`, and `/contact`.
+   Online-only areas now feel intentional when the wording avoids showing old
+   venue and timetable details as if they are current.
+
+3. The site still needs more approved proof before it can feel fully established:
+   founding year, approved photos, policy PDFs, testimonials, staff/teacher
+   credibility, partnership wording, and exam outcomes are all withheld for good
+   reasons but leave the public experience lighter than the original.
+
+4. Admin prototypes remain clearly non-operational and recruiter-friendly. The
+   main prelaunch concern is exposure, not behavior: admin and invitation
+   prototype routes should stay noindexed, blocked from robots, and protected or
+   removed before a real public launch.
+
+5. Technical launch foundations are solid. Metadata, route generation, sitemap,
+   JSON-LD, robots, manifest, OG image, and data-driven content structures are in
+   place. The remaining technical risk is stale wording after business decisions
+   change.
+
+### Original-Site Content Missing Or Incomplete
+
+- School history and mission: the rebuild captures the broad philosophy, but
+  founding timeline, institutional history, named collaborators, trips, and
+  certificate/testing claims need approval before publication.
+- Branch detail depth: old pages had venues, maps, day schedules, class groups,
+  calendars, pricing, payment, and galleries. Only Bracknell is currently
+  represented as active in-person; other locations are intentionally
+  online-only/register-interest until confirmed.
+- Devon active school: known to exist but intentionally absent until approved
+  details are supplied.
+- Fees and payments: old amounts, discounts, childcare voucher notes, payment
+  references, registration identifiers, and bank details remain blocked.
+- Policies: the original site exposed many policy pages/documents. The rebuild
+  has public-safe summaries and current external guidance links, but formal
+  school PDFs are not published.
+- Gallery and visual storytelling: year archive routes exist, but old child and
+  event images are excluded until consent, caption, quality, and asset review
+  are complete.
+- Trust proof: testimonials, staff names/photos, parent quotes, exam outcomes,
+  and partner logos/names are still missing because approval evidence is not yet
+  in tracked data.
+
+### Public Journey Notes
+
+- `/` clearly introduces the school and leads to branch comparison or enquiry.
+- `/schools` is the strongest parent-decision page; it explains the active hub
+  versus online-only network areas without deleting geographic reach.
+- `/schools/bracknell` is the only active branch page with venue and timetable
+  detail. Online-only pages should keep local interest and alternatives visible
+  but avoid legacy school-day times.
+- `/curriculum` and `/admissions` are useful, though still high-level until
+  headteacher-approved curriculum detail and current fee decisions are supplied.
+- `/faq`, `/policies`, and `/gallery` are honest about gated content. They build
+  trust structurally, but will feel stronger once approved documents and media
+  exist.
+- `/contact` has a strong low-risk initial enquiry model. It deliberately avoids
+  collecting medical, safeguarding, emergency contact, document, or registration
+  details.
+
+### Safe Fixes Made In This Pass
+
+- Removed public claims that bank transfer or childcare vouchers are currently
+  accepted methods; payment method now says it is confirmed after enquiry.
+- Online-only school detail pages no longer present legacy session times as a
+  current school-day rhythm.
+- Robots now disallows `/admin/` and `/register/` in addition to `/api/`.
+- Open Graph image copy now says "Learning routes" and "Current classes and
+  register-interest routes" rather than implying all network pages are active
+  weekend schools.
+- `CONTENT-VERIFICATION.md` now matches the Bracknell-only active in-person
+  direction and records the unpublished Devon school as blocked pending details.
+- `PROJECT-DECISIONS.md` now explicitly records the current Bracknell-only public
+  model and Devon publication gate.
+
+### Business Decisions Still Blocked
+
+- Confirm branch statuses, including Bracknell, online-only areas, and the Devon
+  school details.
+- Confirm venues, addresses, maps, public timetable visibility, and whether old
+  venues should remain hidden for inactive areas.
+- Confirm fees, discounts, payment methods, voucher acceptance, invoice wording,
+  and whether any bank/payment details should ever be public.
+- Supply reviewed policy PDFs with owner, version, review date, next review
+  date, and publication approval.
+- Approve photo/video assets, captions, consent posture, and whether children are
+  shown prominently.
+- Confirm founding year, testimonials, staff/public bio approach, partnerships,
+  exam outcomes, trip wording, and social links.
+- Decide real enquiry delivery/storage, admin authentication, RLS, audit logs,
+  retention, and registration privacy wording.
+
 ## Highest-Impact Findings
 
 1. Public fee values needed stronger gating.

@@ -176,28 +176,80 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
       </section>
 
       <section className="bg-background py-14 sm:py-16">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
-          <SectionIntro eyebrow="Learning plan" title="A clear school-day rhythm">
-            <p>
-              The source timetable is represented as structured data so each
-              branch can adjust session times without changing the page
-              template.
-            </p>
-          </SectionIntro>
-
-          <ol className="divide-y divide-border-soft border-y border-border-soft bg-surface">
-            {school.lessonPlan.map((item) => (
-              <li
-                key={`${item.time}-${item.activity}`}
-                className="grid gap-2 px-5 py-4 sm:grid-cols-[9rem_1fr]"
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          {hasCurrentVenue ? (
+            <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+              <SectionIntro
+                eyebrow="Learning plan"
+                title="A clear school-day rhythm"
               >
-                <time className="font-mono text-sm font-semibold text-brand-blue-strong">
-                  {item.time}
-                </time>
-                <span className="text-sm text-slate-700">{item.activity}</span>
-              </li>
-            ))}
-          </ol>
+                <p>
+                  The current branch timetable is represented as structured
+                  data so session details can be adjusted without changing the
+                  page template.
+                </p>
+              </SectionIntro>
+
+              <ol className="divide-y divide-border-soft border-y border-border-soft bg-surface">
+                {school.lessonPlan.map((item) => (
+                  <li
+                    key={`${item.time}-${item.activity}`}
+                    className="grid gap-2 px-5 py-4 sm:grid-cols-[9rem_1fr]"
+                  >
+                    <time className="font-mono text-sm font-semibold text-brand-blue-strong">
+                      {item.time}
+                    </time>
+                    <span className="text-sm text-slate-700">
+                      {item.activity}
+                    </span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ) : (
+            <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
+              <SectionIntro
+                eyebrow="Current route"
+                title={`What ${school.name} families can ask about now`}
+              >
+                <p>
+                  This page keeps the local network area visible without showing
+                  old venue or lesson-time details as current provision.
+                  Families can still send useful context and choose the next
+                  learning route.
+                </p>
+              </SectionIntro>
+
+              <div className="grid gap-4 md:grid-cols-3">
+                {[
+                  {
+                    title: "Register local interest",
+                    body: school.statusDescription,
+                  },
+                  {
+                    title: "Ask about online options",
+                    body: "Families can discuss online Russian learning while local venue, staffing, and timetable details are unconfirmed.",
+                  },
+                  {
+                    title: "Share class context",
+                    body: "Age, current Russian confidence, reading and writing level, and exam goals help the school recommend the next step.",
+                  },
+                ].map((item) => (
+                  <article
+                    key={item.title}
+                    className="rounded-lg border border-border-soft bg-surface p-5"
+                  >
+                    <h2 className="text-lg font-semibold text-brand-blue-strong">
+                      {item.title}
+                    </h2>
+                    <p className="mt-3 text-sm leading-6 text-slate-600">
+                      {item.body}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 

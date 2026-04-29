@@ -83,7 +83,7 @@ export default function OpenGraphImage() {
               padding: "18px 26px",
             }}
           >
-            Weekend schools
+            Learning routes
           </div>
         </div>
 
@@ -135,7 +135,7 @@ export default function OpenGraphImage() {
             paddingTop: 26,
           }}
         >
-          <span>Schools across the UK network</span>
+          <span>Current classes and register-interest routes</span>
           <span>pushkinsrussianschool.co.uk</span>
         </div>
       </div>
