@@ -76,6 +76,10 @@ export function RegistrationTable() {
         aria-label="Scrollable registration queue table"
       >
         <table className="min-w-[68rem] divide-y divide-border-soft text-left text-sm">
+          <caption className="sr-only">
+            Sample registration queue showing registration reference, family
+            label, invitation status, review state, dates, and next step.
+          </caption>
           <thead className="bg-surface-muted text-xs font-semibold uppercase tracking-[0.12em] text-slate-600">
             <tr>
               <th scope="col" className="px-5 py-3">

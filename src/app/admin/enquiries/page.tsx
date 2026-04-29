@@ -108,8 +108,16 @@ export default function AdminEnquiriesPage() {
                 complete.
               </p>
             </div>
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-border-soft text-left text-sm">
+            <div
+              className="overflow-x-auto focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+              tabIndex={0}
+              aria-label="Scrollable sample enquiry inbox table"
+            >
+              <table className="min-w-[68rem] divide-y divide-border-soft text-left text-sm">
+                <caption className="sr-only">
+                  Sample enquiry inbox records showing received date, family
+                  label, route, enquiry type, status, and next action.
+                </caption>
                 <thead className="bg-surface-muted text-xs font-semibold uppercase tracking-[0.14em] text-slate-600">
                   <tr>
                     <th scope="col" className="px-5 py-3">
@@ -134,7 +142,10 @@ export default function AdminEnquiriesPage() {
                 </thead>
                 <tbody className="divide-y divide-border-soft">
                   {sampleEnquiries.map((enquiry) => (
-                    <tr key={enquiry.id} className="align-top">
+                    <tr
+                      key={enquiry.id}
+                      className="align-top transition hover:bg-surface-muted/60"
+                    >
                       <td className="whitespace-nowrap px-5 py-4 font-medium text-slate-700">
                         {enquiry.receivedAt}
                       </td>

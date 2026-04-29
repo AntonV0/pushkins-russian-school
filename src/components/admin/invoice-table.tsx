@@ -80,6 +80,10 @@ export function InvoiceTable() {
         aria-label="Scrollable invoice register table"
       >
         <table className="min-w-[68rem] divide-y divide-border-soft text-left text-sm">
+          <caption className="sr-only">
+            Sample invoice register showing invoice reference, family label,
+            status, payment route, dates, and amount.
+          </caption>
           <thead className="bg-surface-muted text-xs font-semibold uppercase tracking-[0.12em] text-slate-600">
             <tr>
               <th scope="col" className="px-5 py-3">

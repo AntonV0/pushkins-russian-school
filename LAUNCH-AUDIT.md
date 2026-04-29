@@ -144,6 +144,8 @@ Working well:
 - Validation errors are announced with `role="alert"`.
 - The school comparison table has a caption, column scopes, and a keyboard
   focusable scroll region.
+- Admin invoice, enquiry, and registration tables have captions and keyboard
+  focusable horizontal scroll regions.
 - Links and buttons generally have clear targets and visible focus states.
 - Long email text uses wrapping.
 
