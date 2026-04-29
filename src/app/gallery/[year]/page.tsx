@@ -40,9 +40,18 @@ export async function generateMetadata({
     };
   }
 
+  const approvedAssets = getApprovedMediaByYear(archive.year);
+
   return {
     title: archive.title,
     description: `${archive.title} shell for approved Pushkin's School public images.`,
+    robots:
+      approvedAssets.length > 0
+        ? undefined
+        : {
+            index: false,
+            follow: true,
+          },
     alternates: {
       canonical: `/gallery/${archive.year}`,
     },

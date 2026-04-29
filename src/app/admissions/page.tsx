@@ -77,7 +77,7 @@ export default function AdmissionsPage() {
               <dl className="mt-6 grid gap-4 text-sm">
                 <div className="border-l border-brand-gold pl-4">
                   <dt className="font-semibold text-brand-blue-strong">
-                    Weekend branches
+                    Current weekend hub
                   </dt>
                   <dd className="mt-1 text-slate-600">{openSchools.length}</dd>
                 </div>
@@ -201,7 +201,7 @@ export default function AdmissionsPage() {
           </div>
           <div className="lg:col-start-2">
             <p className="text-sm leading-6 text-slate-600">
-              Accepted methods: {paymentDetails.acceptedMethods.join(", ")}.
+              Payment method: {paymentDetails.acceptedMethods.join(", ")}.
               {` ${paymentDetails.bankDetailsStatus}`}
             </p>
           </div>

@@ -14,7 +14,7 @@ import { schools } from "@/data/schools";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Pushkin's School to enquire about school locations, future classes, and registration interest.",
+    "Contact Pushkin's School to enquire about current classes, online routes, future local classes, and registration interest.",
   alternates: {
     canonical: "/contact",
   },

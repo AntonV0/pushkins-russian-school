@@ -13,14 +13,14 @@ import { networkSummary, schools } from "@/data/schools";
 export const metadata: Metadata = {
   title: "Schools",
   description:
-    "Explore Pushkin's School locations, weekend timetables, class groups, and current branch status.",
+    "Explore Pushkin's School current classes, online-only network areas, register-interest routes, and branch status.",
   alternates: {
     canonical: "/schools",
   },
   openGraph: {
-    title: "Pushkin's School Locations",
+    title: "Pushkin's School Routes",
     description:
-      "Explore Pushkin's School branches, weekend timetables, class groups, and branch status.",
+      "Explore Pushkin's School current classes, online-only network areas, register-interest routes, and branch status.",
     url: "/schools",
   },
 };
@@ -29,6 +29,14 @@ export default function SchoolsPage() {
   const openSchools = schools.filter((school) => school.status === "open");
   const onlineSchools = schools.filter((school) => school.status === "online");
   const otherSchools = schools.filter((school) => school.status !== "open");
+  const openHubTitle =
+    openSchools.length === 1
+      ? "Current weekend school hub"
+      : "Current weekend school hubs";
+  const openHubDescription =
+    openSchools.length === 1
+      ? "This is the in-person weekend school location currently listed for parent enquiries. Additional current hubs can be added once their details are approved."
+      : "These are the in-person weekend school locations currently listed for parent enquiries. Additional current hubs can be added once their details are approved.";
 
   return (
     <main>
@@ -36,10 +44,10 @@ export default function SchoolsPage() {
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
-              School locations
+              School routes
             </p>
             <h1 className="mt-4 max-w-4xl text-4xl font-semibold text-brand-blue-strong sm:text-5xl">
-              A clear network view for every branch
+              Current classes, online routes, and local interest
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
               Compare the current weekend hub, online-only network areas, and
@@ -48,17 +56,17 @@ export default function SchoolsPage() {
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="#open-branches">
-                View current schools
+                View current hub
               </ButtonLink>
               <ButtonLink href="#compare-branches" variant="secondary">
-                Compare all locations
+                Compare all routes
               </ButtonLink>
             </div>
             <div className="mt-8">
               <MetricStrip
                 metrics={[
-                  { label: "Locations", value: networkSummary.locations },
-                  { label: "Current hubs", value: openSchools.length },
+                  { label: "Network areas", value: networkSummary.locations },
+                  { label: "Current hub", value: openSchools.length },
                   { label: "Online / interest", value: onlineSchools.length },
                 ]}
               />
@@ -85,7 +93,7 @@ export default function SchoolsPage() {
           >
             <p>
               This comparison keeps current, online, and register-interest
-              locations together so families can quickly understand the right
+              routes together so families can quickly understand the right
               next step for each branch.
             </p>
           </SectionIntro>
@@ -100,15 +108,8 @@ export default function SchoolsPage() {
         className="scroll-mt-24 bg-background py-14 sm:py-16"
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <SectionIntro
-            eyebrow="Weekend schools"
-            title="Current weekend school hubs"
-          >
-            <p>
-              These are the in-person weekend school locations currently listed
-              for parent enquiries. Additional current hubs can be added once
-              their details are approved.
-            </p>
+          <SectionIntro eyebrow="Weekend schools" title={openHubTitle}>
+            <p>{openHubDescription}</p>
           </SectionIntro>
           <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {openSchools.map((school) => (
@@ -156,7 +157,7 @@ export default function SchoolsPage() {
               Choosing a location
             </p>
             <h2 className="mt-3 text-3xl font-semibold">
-              Send one useful enquiry, even when details need confirmation
+              Send one useful enquiry, even while local routes evolve
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-white/75">
               Share your preferred area, child&apos;s age, current Russian

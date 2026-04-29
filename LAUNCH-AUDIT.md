@@ -147,6 +147,31 @@ content.
 - Decide real enquiry delivery/storage, admin authentication, RLS, audit logs,
   retention, and registration privacy wording.
 
+## No-Decision Improvement Pass - 2026-04-29
+
+After the deeper audit, a second implementation pass handled the remaining
+highest-impact items that did not require new business facts:
+
+- Reframed public wording from "locations" and "schools" toward "routes" and
+  "network areas" where pages represent online-only/register-interest areas.
+- Made school detail metadata conditional so inactive areas are not titled as
+  active school pages in browser/search metadata.
+- Removed awkward public payment wording such as "Accepted methods: confirmed
+  after enquiry" and replaced it with clearer payment-method confirmation copy.
+- Replaced internal-sounding learning-option notes with parent-facing guidance.
+- Reworked branch detail notes so active and online-only pages show practical
+  parent next steps rather than source/audit notes.
+- Added `X-Robots-Tag: noindex, nofollow` headers for `/admin/*` and
+  `/register/*` prototype routes.
+- Added noindex metadata to gallery year routes until an approved-media record
+  exists for the year.
+- Updated README and content verification wording to match the route/network-area
+  model.
+
+Remaining no-decision work after this pass is mostly visual QA and future
+approved-content import. Stronger trust proof still depends on business-approved
+facts, documents, photos, and wording.
+
 ## Highest-Impact Findings
 
 1. Public fee values needed stronger gating.

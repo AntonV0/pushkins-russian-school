@@ -366,7 +366,7 @@ export const policySupportLinks: PolicySupportLink[] = [
       "Use the enquiry form for parent questions while downloadable documents are being finalised.",
   },
   {
-    label: "Compare school locations",
+    label: "Compare school routes",
     href: "/schools",
     description:
       "Check branch, timetable, and status information before choosing the most relevant enquiry route.",

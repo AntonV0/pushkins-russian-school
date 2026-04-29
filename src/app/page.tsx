@@ -48,17 +48,17 @@ export default function Home() {
               Pushkin&apos;s School
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-              A warm, academically focused weekend school network for families
-              raising children with Russian language, literature, culture, and
+              A warm, academically focused Russian learning network for
+              families raising children with language, literature, culture, and
               exam goals.
             </p>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-600">
-              Current in-person teaching is centred on active hubs, while wider
+              Current in-person teaching is centred on the active hub, while wider
               network areas stay open for online learning and future local
               interest.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/schools">Find your school</ButtonLink>
+              <ButtonLink href="/schools">Find your route</ButtonLink>
               <ButtonLink href="/contact#enquiry-form" variant="secondary">
                 {contactDetails.registrationCta}
               </ButtonLink>
@@ -66,8 +66,8 @@ export default function Home() {
             <div className="mt-10">
               <MetricStrip
                 metrics={[
-                  { label: "Locations", value: networkSummary.locations },
-                  { label: "Current hubs", value: openSchools.length },
+                  { label: "Network areas", value: networkSummary.locations },
+                  { label: "Current hub", value: openSchools.length },
                   {
                     label: "Online / interest",
                     value: interestSchools.length,
@@ -84,7 +84,7 @@ export default function Home() {
       <section className="bg-background py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
-            eyebrow="Local branches"
+            eyebrow="Local routes"
             title="Start with the nearest route, then choose the next step"
           >
             <p>
@@ -97,7 +97,7 @@ export default function Home() {
           <div className="mt-8 grid gap-3 text-sm leading-6 text-slate-600 md:grid-cols-3">
             <div className="border-l-4 border-emerald-500 bg-surface px-4 py-3">
               <p className="font-semibold text-brand-blue-strong">
-                Current weekend hub
+                Current weekend class
               </p>
               <p>Ask about current places and class fit.</p>
             </div>
@@ -130,7 +130,7 @@ export default function Home() {
               href="/schools"
               className="text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/40 hover:text-brand-red"
             >
-              View all school locations
+              View all school routes
             </Link>
           </div>
         </div>

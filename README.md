@@ -3,17 +3,17 @@
 Public portfolio repository for a professional rebuild of Pushkin's School, a
 Russian language school network website.
 
-The rebuild is intentionally data-driven and parent-facing: school locations,
-status wording, curriculum pathways, admissions content, policy shells, gallery
-archives, and contact details live in local TypeScript data files so the site can
-be reviewed and extended safely.
+The rebuild is intentionally data-driven and parent-facing: school routes,
+network-area status wording, curriculum pathways, admissions content, policy
+shells, gallery archives, and contact details live in local TypeScript data
+files so the site can be reviewed and extended safely.
 
 ## Current Site Shape
 
 - `/` - homepage with school network overview and parent journey
 - `/about` - school philosophy and content review notes
-- `/schools` - school overview, cards, and branch comparison table
-- `/schools/[slug]` - reusable school detail template for five known locations
+- `/schools` - route overview, cards, and branch comparison table
+- `/schools/[slug]` - reusable detail template for known network areas
 - `/curriculum` - curriculum pathways and placement guidance
 - `/admissions` - admissions, enquiry, fees, and payment-status guidance
 - `/faq` - parent FAQ hub

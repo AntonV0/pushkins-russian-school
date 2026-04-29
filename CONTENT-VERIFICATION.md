@@ -100,7 +100,7 @@ proof points.
 | Exam outcomes | Evidence needed | [ ] Results evidence approved [ ] Anonymisation approved [ ] Date range approved | [ ] Statistics [ ] Case studies [ ] Exam-preparation wording only |
 | Policy transparency | Publishable structure; formal PDFs pending | [ ] Reviewed policy documents supplied [ ] Owners/dates/versions approved | [ ] Link PDFs [ ] Keep summaries only |
 | Curriculum structure | High-level public scaffolding is ready | [ ] Headteacher confirms class-by-class details [ ] Materials and outcomes approved | [ ] High-level only [ ] Add detailed class pages |
-| Network scale | Website has five known location pages | [ ] Confirm whether all five should be described as a current network | [ ] "Locations" [ ] "Known branches" [ ] Avoid scale claim |
+| Network scale | Website has five known network-area pages | [ ] Confirm whether all five should be described as a current network | [ ] "Network areas" [ ] "Known branches" [ ] Avoid scale claim |
 
 ## Curriculum Verification
 

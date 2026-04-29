@@ -39,17 +39,22 @@ export async function generateMetadata({
     };
   }
 
+  const pageTitle =
+    school.status === "open"
+      ? `${school.name} School`
+      : `${school.name} Russian Learning Route`;
+
   return {
-    title: `${school.name} School`,
+    title: pageTitle,
     description:
       school.status === "open"
-        ? `${school.name} Pushkin's School branch: venue, timetable, class groups, fee notes, and enquiry information.`
+        ? `${school.name} Pushkin's School branch: venue, timetable, class groups, fee categories, and enquiry information.`
         : `${school.name} Pushkin's School network area: online-only learning route, register-interest option, class groups, and enquiry information.`,
     alternates: {
       canonical: `/schools/${school.slug}`,
     },
     openGraph: {
-      title: `${school.name} School | Pushkin's School`,
+      title: `${pageTitle} | Pushkin's School`,
       description: school.lead,
       url: `/schools/${school.slug}`,
       type: "article",
@@ -376,7 +381,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
               ))}
             </dl>
             <p className="mt-4 text-sm leading-6 text-slate-600">
-              Accepted methods: {paymentDetails.acceptedMethods.join(", ")}.
+              Payment method: {paymentDetails.acceptedMethods.join(", ")}.
               {` ${paymentDetails.bankDetailsStatus}`}
             </p>
           </div>
@@ -388,7 +393,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="max-w-4xl border-l-4 border-brand-red bg-surface p-6 sm:p-8">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
-                Online source note
+                Online learning option
               </p>
               <h2 className="mt-3 text-2xl font-semibold text-brand-blue-strong">
                 {school.onlineProgramme.name}
@@ -425,7 +430,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
             <LearningOptions
               options={learningOptions}
               eyebrow="Alternative routes"
-              title={`More ways to learn Russian while ${school.name} is being confirmed`}
+              title={`More ways to learn Russian while local classes in ${school.name} are not available`}
               intro="This network area keeps its full page for local interest, while families can also consider online Russian lessons or GCSE-focused self-study support without leaving the wider learning network."
               highlightId={highlightedLearningOption}
               compact
@@ -437,14 +442,26 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
       <section className="bg-brand-blue-strong py-14 text-white sm:py-16">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-[1fr_0.8fr] lg:px-8">
           <div>
-            <h2 className="text-3xl font-semibold">Branch detail checks</h2>
+            <h2 className="text-3xl font-semibold">
+              Before local details are published
+            </h2>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-white/75">
-              These practical checks keep branch details clear while final
-              operating information is confirmed.
+              These practical notes help families choose the next step without
+              relying on old venue, timetable, or payment information.
             </p>
           </div>
           <ul className="space-y-3 text-sm leading-6 text-white/80">
-            {school.sourceNotes.map((note) => (
+            {(hasCurrentVenue
+              ? [
+                  "Ask about current spaces, class fit, and start date before attending.",
+                  "Current fees and payment instructions are confirmed directly after enquiry.",
+                ]
+              : [
+                  `Register interest if you would use local classes in the ${school.name} area.`,
+                  "Local venue and timetable details will be published only when they are confirmed.",
+                  "Ask about online learning if you would like to start sooner.",
+                ]
+            ).map((note) => (
               <li key={note}>{note}</li>
             ))}
           </ul>

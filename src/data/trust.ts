@@ -30,10 +30,10 @@ export const trustSignals: TrustSignal[] = [
   {
     id: "known-school-network",
     kind: "network-scale",
-    title: "Visible school network",
-    value: `${networkSummary.locations} location pages`,
+    title: "Known network areas",
+    value: `${networkSummary.locations} area pages`,
     summary:
-      "Every known branch has a full page with venue, schedule, status wording, enquiry route, and review notes where current details still need confirmation.",
+      "Every known area has a full page with clear status wording and a practical enquiry route, whether families are asking about a current class or future local interest.",
     status: "publishable",
     href: "/schools",
     evidenceNote:
@@ -45,11 +45,11 @@ export const trustSignals: TrustSignal[] = [
     title: "Policy transparency",
     value: `${policyGroups.length} policy groups`,
     summary:
-      "Safeguarding, parent, staff, and useful guidance policies are organised with clear publication states before formal PDFs are linked.",
+      "Safeguarding, parent, staff, and useful guidance policies are organised so families can see the document structure while formal PDFs are reviewed.",
     status: "publishable",
     href: "/policies",
     evidenceNote:
-      `Generated from ${policies.length} policy records. Formal school PDFs remain pending until reviewed and approved.`,
+      `Generated from ${policies.length} policy records. Formal school PDFs are linked only after review and approval.`,
   },
   {
     id: "curriculum-pathways",
@@ -139,7 +139,7 @@ export const pendingTrustSignals = trustSignals.filter(
 );
 
 export const trustHistoryNotes = [
-  "The rebuild is ready to support a 'since' or 'years established' proof point once the official opening year is confirmed.",
-  "Historic gallery/archive material found in ignored audit notes should be used only after image, consent, and quality review.",
-  "Partnership, certificate, trip, staff, and exam-result claims are modelled as pending proof points rather than public claims.",
+  "A 'since' or 'years established' proof point can be added once the official opening year is confirmed.",
+  "Historic gallery material should be published only after image, consent, caption, and quality review.",
+  "Partnership, certificate, trip, staff, and exam-result claims should be added only when the school approves the exact public wording.",
 ];

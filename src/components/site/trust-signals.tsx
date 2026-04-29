@@ -27,7 +27,7 @@ function TrustSignalCard({ signal }: { signal: TrustSignal }) {
       </p>
       {signal.href ? (
         <span className="mt-5 text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/40">
-          Review this area
+          Explore this area
         </span>
       ) : null}
     </article>

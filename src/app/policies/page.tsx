@@ -57,16 +57,16 @@ export default function PoliciesPage() {
               A clear index for reviewed school documents
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-              Document downloads and detail pages will be added after the policy
-              files are reviewed and updated. This shell keeps the public
-              structure ready without publishing unreviewed material.
+              Policy summaries and official guidance links are organised for
+              families now. Formal school downloads are added only after the
+              files are reviewed and updated.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/contact#enquiry-form">
                 Ask a policy question
               </ButtonLink>
               <ButtonLink href="/schools" variant="secondary">
-                View school locations
+                View school routes
               </ButtonLink>
             </div>
           </div>
@@ -74,7 +74,10 @@ export default function PoliciesPage() {
             metrics={[
               { label: "Groups", value: policyGroups.length },
               { label: "Policies", value: policies.length },
-              { label: "Pending PDFs", value: pendingSchoolPolicies.length },
+              {
+                label: "PDFs awaiting review",
+                value: pendingSchoolPolicies.length,
+              },
               { label: "Reviewed PDFs", value: reviewedPublicPdfs.length },
               {
                 label: "Guidance links",
@@ -111,9 +114,9 @@ export default function PoliciesPage() {
             title="Grouped for families, staff, and statutory guidance"
           >
             <p>
-              The old policy index grouped documents into clear categories. The
-              rebuild keeps that clarity while making every document page
-              explicitly pending review.
+              The policy index keeps documents in clear categories for families,
+              staff, and statutory reference, with formal school PDFs held until
+              they are approved for publication.
             </p>
           </SectionIntro>
           <div className="mt-8 grid gap-4 md:grid-cols-3">

@@ -51,8 +51,8 @@ export default function AboutPage() {
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
               Pushkin&apos;s School is presented as a warm, academic weekend
-              network for children learning Russian language, literature, and
-              culture in the UK.
+              learning network for children studying Russian language,
+              literature, and culture in the UK.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/schools">Explore schools</ButtonLink>
@@ -144,15 +144,14 @@ export default function AboutPage() {
             title="A school model built to be consistent across locations"
           >
             <p>
-              The source site presented branches as one network with common
-              class groups and lesson structures. The rebuild makes that model
-              data-driven so future branches can be added without redesigning
-              pages.
+              The school model keeps a shared learning structure across current
+              and future locations. The rebuild makes that model data-driven so
+              approved branch details can be added without redesigning pages.
             </p>
           </SectionIntro>
           <MetricStrip
             metrics={[
-              { label: "Locations", value: networkSummary.locations },
+              { label: "Network areas", value: networkSummary.locations },
               { label: "Counties", value: networkSummary.counties },
               { label: "Class pathways", value: networkSummary.classGroupCount },
             ]}

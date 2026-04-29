@@ -147,7 +147,7 @@ export const curriculumRouteRecommendations: CurriculumRouteRecommendation[] = [
     bestWhen:
       "The main goal is GCSE Russian and the family wants a focused self-study route alongside or instead of lessons.",
     recommendation:
-      "Use the exam-preparation enquiry route while the public GCSE project link is being confirmed.",
+      "Use the exam-preparation enquiry route to discuss whether focused GCSE self-study is the right fit.",
     href: "/contact?intent=exam-preparation#enquiry-form",
     ctaLabel: "Ask about GCSE self-study",
   },
@@ -169,6 +169,6 @@ export const curriculumDetailsPendingReview: CurriculumReviewItem[] = [
   },
   {
     title: "Branch-specific teaching notes",
-    body: "Individual locations may need their own notes later, especially where current status, staffing, or timetable details are still being confirmed.",
+    body: "Individual network areas may need their own notes later, especially where current status, staffing, or timetable details still need approval.",
   },
 ];

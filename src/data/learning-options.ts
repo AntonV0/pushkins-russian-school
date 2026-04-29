@@ -32,7 +32,7 @@ export const learningOptions: LearningOption[] = [
     label: "Local weekend classes",
     delivery: "In-person branches where available",
     summary:
-      "Weekend Russian school locations for children learning language, literacy, culture, and exam preparation in a structured school setting.",
+      "Weekend Russian school routes for children learning language, literacy, culture, and exam preparation in a structured school setting.",
     bestFor: [
       "Families near a current or future local branch",
       "Children who benefit from classroom rhythm and community",
@@ -75,7 +75,7 @@ export const learningOptions: LearningOption[] = [
       href: "/contact?intent=online-learning#enquiry-form",
     },
     verificationNote:
-      "Confirm current Volna offer details before relying on specific pricing, lesson format, or availability.",
+      "Ask for current lesson format, timetable, and pricing before choosing this route.",
   },
   {
     id: "gcse-russian",
@@ -97,7 +97,7 @@ export const learningOptions: LearningOption[] = [
       href: "/contact?intent=exam-preparation#enquiry-form",
     },
     verificationNote:
-      "Confirm the public GCSERussian.com URL before adding an external button.",
+      "Ask through the enquiry form if GCSE self-study is the main goal.",
   },
 ];
 
