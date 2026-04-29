@@ -40,7 +40,7 @@ export const learningOptions: LearningOption[] = [
     ],
     audience: "Children and young people, including GCSE and A Level learners.",
     relationship:
-      "This is the core school network. Closed and online-status branches still keep full pages so families can register interest locally.",
+      "This is the core school network. Online-only network areas keep full pages so families can register interest locally.",
     primaryCta: {
       label: "Compare school branches",
       href: "/schools",

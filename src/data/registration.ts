@@ -517,7 +517,7 @@ export const sampleRegistrationRecords: RegistrationPrototypeRecord[] = [
     invitedEmailLabel: "parent-c@example.invalid",
     childrenLabel: "One sample child",
     childCount: 1,
-    preferredBranchLabel: "Chelmsford status to confirm",
+    preferredBranchLabel: "Chelmsford online-only interest",
     invitationStatus: "submitted",
     reviewState: "under-review",
     createdAt: "2026-04-18",

@@ -50,7 +50,7 @@ Supporting files reviewed:
 
 2. The parent journey is structurally strong.
    Home, schools, school detail, admissions, curriculum, and contact routes
-   provide a clear path from comparison to enquiry. Closed and online/status
+   provide a clear path from comparison to enquiry. Online-only and interest
    branches already route families toward register-interest, Volna, or GCSE
    alternatives without deleting useful local pages.
 
@@ -85,12 +85,12 @@ Supporting files reviewed:
 Working well:
 
 - Homepage presents Pushkin's School clearly and routes to schools or enquiry.
-- `/schools` gives a useful open/online/closed comparison and a horizontal table.
+- `/schools` gives a useful current-hub/online-interest comparison and a horizontal table.
 - School detail pages have status badges, venue/timetable blocks, enquiry CTAs,
   related schools, and alternatives for non-open locations.
 - `/curriculum` and `/admissions` both route naturally to school choice and
   contact.
-- Closed and online/status branches retain full pages and include alternative
+- Online-only and interest branches retain full pages and include alternative
   learning routes instead of dead ends.
 
 Safe improvements:

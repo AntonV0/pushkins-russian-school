@@ -9,7 +9,7 @@ details, credentials, raw screenshots, and unreviewed business documents.
 The main conversion goal is for parents to register interest or contact the
 school, then join the nearest suitable Russian school location.
 
-If a local branch is closed, too far away, or not the right fit, the wider
+If a local branch is online-only, too far away, or not the right fit, the wider
 learning network should give families clear alternatives:
 
 - Pushkin's School: in-person weekend school locations where available.
@@ -23,20 +23,20 @@ distinct businesses/projects.
 ## Branch Statuses
 
 Current branch statuses are not fully confirmed yet. The website should keep all
-known school locations and pages, including closed or uncertain branches, because
-the broader network footprint is valuable.
+known school locations and pages, including online-only or interest-gathering
+network areas, because the broader network footprint is valuable.
 
 Current direction:
 
 - Keep full pages for every known location.
-- Keep transparent wording for closed or uncertain branches.
+- Keep transparent wording for online-only or interest-gathering branches.
 - Use register-interest CTAs where local in-person provision is not confirmed.
 - Preserve verification notes until current operating information is confirmed.
 - Support adding more locations through the school data model.
 
 Future decision needed:
 
-- Confirm each branch's current open/closed/online/opening-soon status.
+- Confirm each branch's current open/online/opening-soon/closed status.
 - Confirm whether any new locations should be added before launch.
 
 ## Timetables and Venues
@@ -46,7 +46,8 @@ Timetables and venues are not fully confirmed yet.
 Current direction:
 
 - Keep known legacy venues and schedules visible with verification notes.
-- Do not remove school pages just because a location may be closed.
+- Do not remove school pages just because a location is not currently open
+  in-person.
 - Avoid overstating exact times until confirmed.
 
 Future decision needed:
@@ -55,9 +56,9 @@ Future decision needed:
 - Decide which branch pages should show exact schedules versus "times to be
   confirmed."
 
-## Closed Locations
+## Online-Only Network Areas
 
-Closed locations should keep full pages.
+Locations without current in-person classes should keep full pages.
 
 Rationale:
 
@@ -68,9 +69,9 @@ Rationale:
 
 Recommended implementation:
 
-- Keep closed pages visually equal in quality to active pages.
+- Keep online-only pages visually equal in quality to active pages.
 - Use clear status badges and register-interest CTAs.
-- Add related-learning alternatives on closed/online branch pages.
+- Add related-learning alternatives on online-only branch pages.
 
 ## Payment and Invoicing
 

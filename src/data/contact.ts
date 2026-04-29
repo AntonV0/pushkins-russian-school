@@ -9,7 +9,7 @@ export const contactDetails = {
 
 export const contactSupportNotes = [
   "Use the form to share branch, age, level, goals, and basic contact details.",
-  "For closed or online-only branches, enquiries are treated as register-interest messages.",
+  "For online-only network areas, enquiries are treated as register-interest messages for future local classes.",
   "Do not include medical, safeguarding, emergency contact, or full registration details in the initial enquiry.",
 ];
 

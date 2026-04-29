@@ -16,9 +16,9 @@ export const faqGroups: FaqGroup[] = [
       "How families can compare current, online, and register-interest locations.",
     items: [
       {
-        question: "Can I enquire about a branch that is currently closed?",
+        question: "Can I enquire about an online-only network area?",
         answer:
-          "Yes. Closed and online-only branches remain part of the school network, and the site uses register-interest wording where in-person classes are not currently confirmed.",
+          "Yes. Online-only areas remain part of the school network, and the site uses register-interest wording where in-person classes are not currently available.",
       },
       {
         question: "Are all listed timetables final?",

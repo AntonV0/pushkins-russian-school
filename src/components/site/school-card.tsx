@@ -21,7 +21,7 @@ function getNextStepLabel(school: School) {
   }
 
   if (school.status === "online") {
-    return "Ask about online or future classes";
+    return "Register interest";
   }
 
   return "Register interest";
@@ -57,7 +57,9 @@ export function SchoolCard({ school }: SchoolCardProps) {
         </div>
         <dl className="mt-6 space-y-3 text-sm">
           <div>
-            <dt className="font-semibold text-brand-blue-strong">Venue</dt>
+            <dt className="font-semibold text-brand-blue-strong">
+              {school.status === "open" ? "Venue" : "Network area"}
+            </dt>
             <dd className="mt-1 text-slate-600">{school.venueName}</dd>
           </div>
           <div>
@@ -70,9 +72,12 @@ export function SchoolCard({ school }: SchoolCardProps) {
             ) : null}
           </div>
           <div>
-            <dt className="font-semibold text-brand-blue-strong">Address</dt>
+            <dt className="font-semibold text-brand-blue-strong">
+              {school.status === "open" ? "Address" : "Area"}
+            </dt>
             <dd className="mt-1 text-slate-600">
-              {school.address.join(", ")} {school.postcode}
+              {school.address.join(", ")}
+              {school.postcode ? ` ${school.postcode}` : ""}
             </dd>
           </div>
         </dl>

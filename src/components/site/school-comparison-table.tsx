@@ -20,7 +20,7 @@ function getNextStepLabel(school: School) {
   }
 
   if (school.status === "online") {
-    return "Ask about online or future classes";
+    return "Register interest";
   }
 
   return "Register interest";
@@ -35,7 +35,7 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
         </p>
         <p className="mt-1 text-sm leading-6 text-slate-600">
           Status and schedule notes are shown together so families can separate
-          current classes from future-interest routes.
+          current classes from online-only and register-interest routes.
         </p>
       </div>
       <div
@@ -45,7 +45,7 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
       >
         <table className="min-w-[58rem] text-left text-sm">
           <caption className="sr-only">
-            Compare Pushkin&apos;s School branches by status, venue, schedule,
+            Compare Pushkin&apos;s School branches by status, location, schedule,
             and enquiry action.
           </caption>
           <thead className="bg-surface-muted text-xs font-semibold uppercase tracking-[0.14em] text-muted">
@@ -57,7 +57,7 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
                 Status
               </th>
               <th scope="col" className="px-5 py-4">
-                Venue
+                Location
               </th>
               <th scope="col" className="px-5 py-4">
                 Schedule
@@ -93,7 +93,8 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
                     {school.venueName}
                   </p>
                   <p className="mt-1">
-                    {school.address.join(", ")} {school.postcode}
+                    {school.address.join(", ")}
+                    {school.postcode ? ` ${school.postcode}` : ""}
                   </p>
                 </td>
                 <td className="px-5 py-5 text-slate-600">

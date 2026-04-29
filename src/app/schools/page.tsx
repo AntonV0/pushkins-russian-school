@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ButtonLink } from "@/components/site/button-link";
+import { GoogleMapsNetworkPanel } from "@/components/site/google-maps-network-panel";
 import { LearningOptions } from "@/components/site/learning-options";
 import { MetricStrip } from "@/components/site/metric-strip";
 import { NetworkVisual } from "@/components/site/network-visual";
@@ -27,7 +28,6 @@ export const metadata: Metadata = {
 export default function SchoolsPage() {
   const openSchools = schools.filter((school) => school.status === "open");
   const onlineSchools = schools.filter((school) => school.status === "online");
-  const closedSchools = schools.filter((school) => school.status === "closed");
   const otherSchools = schools.filter((school) => school.status !== "open");
 
   return (
@@ -42,12 +42,14 @@ export default function SchoolsPage() {
               A clear network view for every branch
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-              Compare open weekend branches, online/status-to-confirm routes,
-              and currently closed in-person locations before choosing the most
-              useful enquiry path.
+              Compare the current weekend hub, online-only network areas, and
+              register-interest routes before choosing the most useful enquiry
+              path.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="#open-branches">View open branches</ButtonLink>
+              <ButtonLink href="#open-branches">
+                View current schools
+              </ButtonLink>
               <ButtonLink href="#compare-branches" variant="secondary">
                 Compare all locations
               </ButtonLink>
@@ -56,14 +58,19 @@ export default function SchoolsPage() {
               <MetricStrip
                 metrics={[
                   { label: "Locations", value: networkSummary.locations },
-                  { label: "Open branches", value: openSchools.length },
-                  { label: "Online / confirm", value: onlineSchools.length },
-                  { label: "Closed in person", value: closedSchools.length },
+                  { label: "Current hubs", value: openSchools.length },
+                  { label: "Online / interest", value: onlineSchools.length },
                 ]}
               />
             </div>
           </div>
           <NetworkVisual />
+        </div>
+      </section>
+
+      <section className="border-b border-border-soft bg-background py-14 sm:py-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <GoogleMapsNetworkPanel schools={schools} />
         </div>
       </section>
 
@@ -95,11 +102,12 @@ export default function SchoolsPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="Weekend schools"
-            title="Open branches with listed in-person schedules"
+            title="Current weekend school hubs"
           >
             <p>
-              These branches are presented as weekend schools, with timetable
-              notes shown where older records need final confirmation.
+              These are the in-person weekend school locations currently listed
+              for parent enquiries. Additional current hubs can be added once
+              their details are approved.
             </p>
           </SectionIntro>
           <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -114,11 +122,12 @@ export default function SchoolsPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="Network continuity"
-            title="Online, status-to-confirm, and register-interest locations"
+            title="Online-only and register-interest network areas"
           >
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              These locations remain part of the school network and have full
-              pages with transparent status wording for families.
+              These locations remain part of the wider network. Families can use
+              online routes now and register interest to support future local
+              reopening.
             </p>
           </SectionIntro>
           <div className="mt-8 grid gap-5 md:grid-cols-2">

@@ -51,18 +51,26 @@ export function buildOrganizationJsonLd() {
       "@type": "EducationalOrganization",
       name: `${siteConfig.name} ${school.name}`,
       url: absoluteUrl(`/schools/${school.slug}`),
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: school.address.join(", "),
-        addressLocality: school.area,
-        addressRegion: school.county,
-        postalCode: school.postcode,
-        addressCountry: "GB",
+      areaServed: {
+        "@type": "AdministrativeArea",
+        name: `${school.area}, ${school.county}`,
       },
-      openingHoursSpecification: {
-        "@type": "OpeningHoursSpecification",
-        description: school.schedule,
-      },
+      ...(school.status === "open"
+        ? {
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: school.address.join(", "),
+              addressLocality: school.area,
+              addressRegion: school.county,
+              postalCode: school.postcode,
+              addressCountry: "GB",
+            },
+            openingHoursSpecification: {
+              "@type": "OpeningHoursSpecification",
+              description: school.schedule,
+            },
+          }
+        : {}),
     })),
   };
 }

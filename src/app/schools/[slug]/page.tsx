@@ -41,7 +41,10 @@ export async function generateMetadata({
 
   return {
     title: `${school.name} School`,
-    description: `${school.name} Pushkin's School branch: venue, timetable, class groups, pricing notes, and enquiry information.`,
+    description:
+      school.status === "open"
+        ? `${school.name} Pushkin's School branch: venue, timetable, class groups, fee notes, and enquiry information.`
+        : `${school.name} Pushkin's School network area: online-only learning route, register-interest option, class groups, and enquiry information.`,
     alternates: {
       canonical: `/schools/${school.slug}`,
     },
@@ -63,6 +66,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
   }
 
   const isLocalProvisionUnconfirmed = school.status !== "open";
+  const hasCurrentVenue = school.status === "open";
   const learningOptions = getLearningOptionsForBranchStatus(school.status);
   const highlightedLearningOption =
     school.status === "online" ? "volna-online" : undefined;
@@ -75,12 +79,16 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
     email: contactDetails.email,
     description: school.lead,
     areaServed: school.county,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: school.address.join(", "),
-      postalCode: school.postcode,
-      addressCountry: "GB",
-    },
+    ...(hasCurrentVenue
+      ? {
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: school.address.join(", "),
+            postalCode: school.postcode,
+            addressCountry: "GB",
+          },
+        }
+      : {}),
     parentOrganization: {
       "@type": "EducationalOrganization",
       name: siteConfig.name,
@@ -123,26 +131,34 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 rel="noreferrer"
                 className="inline-flex items-center justify-center rounded-full border border-brand-blue/20 px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
               >
-                View map
+                {hasCurrentVenue ? "View map" : "View area map"}
               </a>
             </div>
           </div>
 
           <aside className="bg-surface-muted p-6 sm:p-8">
             <h2 className="text-xl font-semibold text-brand-blue-strong">
-              Venue and timetable
+              {hasCurrentVenue ? "Venue and timetable" : "Network area and route"}
             </h2>
             <dl className="mt-6 space-y-5 text-sm">
               <div>
-                <dt className="font-semibold text-brand-blue-strong">Venue</dt>
+                <dt className="font-semibold text-brand-blue-strong">
+                  {hasCurrentVenue ? "Venue" : "Network area"}
+                </dt>
                 <dd className="mt-1 text-slate-600">{school.venueName}</dd>
               </div>
               <div>
-                <dt className="font-semibold text-brand-blue-strong">Address</dt>
+                <dt className="font-semibold text-brand-blue-strong">
+                  {hasCurrentVenue ? "Address" : "Area"}
+                </dt>
                 <dd className="mt-1 text-slate-600">
                   {school.address.join(", ")}
-                  <br />
-                  {school.postcode}
+                  {school.postcode ? (
+                    <>
+                      <br />
+                      {school.postcode}
+                    </>
+                  ) : null}
                 </dd>
               </div>
               <div>
@@ -358,7 +374,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
               options={learningOptions}
               eyebrow="Alternative routes"
               title={`More ways to learn Russian while ${school.name} is being confirmed`}
-              intro="This branch keeps its full page for local interest, but families can also consider online Russian lessons or GCSE-focused self-study support without leaving the wider learning network."
+              intro="This network area keeps its full page for local interest, while families can also consider online Russian lessons or GCSE-focused self-study support without leaving the wider learning network."
               highlightId={highlightedLearningOption}
               compact
             />

@@ -136,7 +136,7 @@ export const curriculumRouteRecommendations: CurriculumRouteRecommendation[] = [
   {
     title: "Ask about Volna Online Russian School",
     bestWhen:
-      "A local branch is closed, too far away, or the child needs live online group or private lessons.",
+      "A local branch is online-only, too far away, or the child needs live online group or private lessons.",
     recommendation:
       "Use the online-learning enquiry route or visit Volna's own site once the family is ready to compare online support.",
     href: "/contact?intent=online-learning#enquiry-form",

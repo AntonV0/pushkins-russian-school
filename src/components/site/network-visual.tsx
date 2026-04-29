@@ -41,16 +41,16 @@ export function NetworkVisual() {
           Network view
         </p>
         <p className="mt-3 text-2xl font-semibold leading-tight text-brand-blue-strong">
-          Five locations, one learning structure
+          Five network areas, one learning structure
         </p>
         <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold text-muted">
           <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 shadow-sm">
             <span className="size-2 rounded-full bg-emerald-500" />
-            {openCount} open
+            {openCount} current hub
           </span>
           <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 shadow-sm">
             <span className="size-2 rounded-full bg-sky-500" />
-            {interestCount} interest routes
+            {interestCount} online / interest areas
           </span>
         </div>
       </div>

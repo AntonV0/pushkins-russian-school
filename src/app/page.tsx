@@ -20,7 +20,7 @@ import { siteConfig } from "@/data/site";
 
 const openSchools = schools.filter((school) => school.status === "open");
 const interestSchools = schools.filter((school) => school.status !== "open");
-const featuredSchools = openSchools.slice(0, 3);
+const featuredSchools = [...openSchools, ...interestSchools].slice(0, 3);
 
 export const metadata: Metadata = {
   title: "Pushkin's School | Russian Language School Network",
@@ -53,9 +53,9 @@ export default function Home() {
               exam goals.
             </p>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-600">
-              Current branch details are presented with clear status notes, so
-              parents can distinguish open weekend classes from online or
-              register-interest locations.
+              Current in-person teaching is centred on active hubs, while wider
+              network areas stay open for online learning and future local
+              interest.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/schools">Find your school</ButtonLink>
@@ -67,9 +67,9 @@ export default function Home() {
               <MetricStrip
                 metrics={[
                   { label: "Locations", value: networkSummary.locations },
-                  { label: "Open branches", value: openSchools.length },
+                  { label: "Current hubs", value: openSchools.length },
                   {
-                    label: "Register interest",
+                    label: "Online / interest",
                     value: interestSchools.length,
                   },
                 ]}
@@ -85,34 +85,33 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="Local branches"
-            title="Start with the branch status, then choose the next step"
+            title="Start with the nearest route, then choose the next step"
           >
             <p>
-              Every branch has its own page so families can see venue details,
-              lesson structure, class groups, and whether the right route is a
-              current place enquiry, an online question, or future local
-              interest.
+              Every network area has its own page so families can see the
+              current route: a weekend school place, an online-only path, or
+              register-interest option for future local classes.
             </p>
           </SectionIntro>
 
           <div className="mt-8 grid gap-3 text-sm leading-6 text-slate-600 md:grid-cols-3">
             <div className="border-l-4 border-emerald-500 bg-surface px-4 py-3">
               <p className="font-semibold text-brand-blue-strong">
-                Open weekend branches
+                Current weekend hub
               </p>
               <p>Ask about current places and class fit.</p>
             </div>
             <div className="border-l-4 border-sky-500 bg-surface px-4 py-3">
               <p className="font-semibold text-brand-blue-strong">
-                Online or status to confirm
+                Online-only network areas
               </p>
-              <p>Check online options or future local plans.</p>
+              <p>Keep learning while local demand rebuilds.</p>
             </div>
             <div className="border-l-4 border-zinc-300 bg-surface px-4 py-3">
               <p className="font-semibold text-brand-blue-strong">
-                Currently closed in person
+                Future local interest
               </p>
-              <p>Register interest without losing the local route.</p>
+              <p>Register interest to support possible reopening.</p>
             </div>
           </div>
 
@@ -124,8 +123,8 @@ export default function Home() {
 
           <div className="mt-8 flex flex-col gap-4 border-l-4 border-brand-gold bg-surface px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm leading-6 text-slate-600">
-              The full schools page keeps open, online, and register-interest
-              branches together for a direct comparison.
+              The full schools page keeps the current hub and wider online-only
+              network areas together for a direct comparison.
             </p>
             <Link
               href="/schools"

@@ -77,32 +77,40 @@ const sharedHighlights = [
   "Structured weekend timetable with assembly, lessons, and supervised breaks",
 ];
 
+const onlineOnlyStatusDescription =
+  "This network area is online-only for now while local demand, staffing, and venue options are being confirmed. Families can register interest for future in-person classes.";
+
+const onlineOnlyHighlights = [
+  "Online learning route available while local classes are paused",
+  "Register-interest route helps the school understand local demand",
+  "Future local classes can reopen when enough families and operational capacity align",
+];
+
 export const schools: School[] = [
   {
     slug: "high-wycombe",
     name: "High Wycombe",
     area: "High Wycombe",
     county: "Buckinghamshire",
-    status: "open",
-    statusLabel: "Weekend school",
-    statusDescription:
-      "Local weekend classes are available for families around High Wycombe; session times should be confirmed before attending.",
-    lead: "A long-standing Saturday school for families around High Wycombe, with grouped Russian language and culture lessons.",
-    venueName: "Hughenden Primary School",
-    address: ["Spring Valley Drive"],
-    postcode: "HP14 4LR",
-    schedule: "Saturdays, 9:00 to 12:00",
+    status: "online",
+    statusLabel: "Online only / register interest",
+    statusDescription: onlineOnlyStatusDescription,
+    lead: "A long-standing network area for families around High Wycombe, currently kept open for online learning and future local interest.",
+    venueName: "High Wycombe area",
+    address: ["Buckinghamshire"],
+    postcode: "",
+    schedule: "Online only for now; register interest for future local classes",
     scheduleNote:
-      "Final timing to confirm: older records also listed 9:30 to 12:30.",
+      "Local venue and timetable will be confirmed only if in-person classes reopen.",
     lessonPlan: saturdayMorningPlan,
     classGroups,
-    highlights: sharedHighlights,
-    enquiryCta: "Enquire about High Wycombe places",
+    highlights: onlineOnlyHighlights,
+    enquiryCta: "Register interest in High Wycombe classes",
     mapHref:
-      "https://www.google.com/maps/search/?api=1&query=Hughenden%20Primary%20School%20Spring%20Valley%20Drive%20HP14%204LR",
+      "https://www.google.com/maps/search/?api=1&query=High%20Wycombe%20Buckinghamshire",
     sourceNotes: [
-      "Venue and address retained from the previous public branch listing.",
-      "Saturday start and finish times conflict across old pages and need confirmation.",
+      "Confirm whether local demand is high enough to reopen in-person classes.",
+      "Confirm venue, timetable, staffing, and fees before publishing a weekend schedule.",
     ],
   },
   {
@@ -110,24 +118,23 @@ export const schools: School[] = [
     name: "Hemel Hempstead",
     area: "Hemel Hempstead",
     county: "Hertfordshire",
-    status: "open",
-    statusLabel: "Weekend school",
-    statusDescription:
-      "Saturday afternoon classes are presented for local families, with final details confirmed through enquiry.",
-    lead: "A Saturday afternoon branch supporting Russian language learning for families in and around Hemel Hempstead.",
-    venueName: "South Hill Primary School",
-    address: ["Heath Lane"],
-    postcode: "HP1 1TT",
-    schedule: "Saturdays, 14:00 to 17:00",
+    status: "online",
+    statusLabel: "Online only / register interest",
+    statusDescription: onlineOnlyStatusDescription,
+    lead: "A Hertfordshire network area for Russian-learning families, currently online-only with a register-interest route for future local classes.",
+    venueName: "Hemel Hempstead area",
+    address: ["Hertfordshire"],
+    postcode: "",
+    schedule: "Online only for now; register interest for future local classes",
     lessonPlan: saturdayAfternoonPlan,
     classGroups,
-    highlights: sharedHighlights,
-    enquiryCta: "Enquire about Hemel Hempstead places",
+    highlights: onlineOnlyHighlights,
+    enquiryCta: "Register interest in Hemel Hempstead classes",
     mapHref:
-      "https://www.google.com/maps/search/?api=1&query=South%20Hill%20Primary%20School%20Heath%20Lane%20HP1%201TT",
+      "https://www.google.com/maps/search/?api=1&query=Hemel%20Hempstead%20Hertfordshire",
     sourceNotes: [
-      "Old source included calendar, pricing, and payment content for this branch.",
-      "Current operating status needs final business confirmation.",
+      "Confirm whether local demand is high enough to reopen in-person classes.",
+      "Confirm venue, timetable, staffing, and fees before publishing a weekend schedule.",
     ],
   },
   {
@@ -161,37 +168,33 @@ export const schools: School[] = [
     area: "Chelmsford",
     county: "Essex",
     status: "online",
-    statusLabel: "Online / status to confirm",
-    statusDescription:
-      "Legacy copy says this branch moved online during the Covid period. Register interest for future local classes.",
-    lead: "A Chelmsford school page retained for the network, with transparent wording while in-person provision is confirmed.",
-    venueName: "Hylands School",
-    address: ["Chelmsford Road", "Writtle"],
-    postcode: "CM1 3ET",
-    schedule: "Sundays, 10:00 to 13:00 when in-person classes are available",
+    statusLabel: "Online only / register interest",
+    statusDescription: onlineOnlyStatusDescription,
+    lead: "An Essex network area for families around Chelmsford, currently online-only with interest gathered for future local provision.",
+    venueName: "Chelmsford area",
+    address: ["Essex"],
+    postcode: "",
+    schedule: "Online only for now; register interest for future local classes",
     scheduleNote:
-      "Final route to confirm: older records also described the branch as online only.",
+      "Local venue and timetable will be confirmed only if in-person classes reopen.",
     lessonPlan: sundayPlan,
     classGroups,
-    highlights: [
-      ...sharedHighlights,
-      "Online provision information retained while the current Chelmsford route is confirmed",
-    ],
+    highlights: onlineOnlyHighlights,
     enquiryCta: "Register interest in Chelmsford classes",
     mapHref:
-      "https://www.google.com/maps/search/?api=1&query=Hylands%20School%20Chelmsford%20Road%20Writtle%20CM1%203ET",
+      "https://www.google.com/maps/search/?api=1&query=Chelmsford%20Essex",
     sourceNotes: [
-      "Old source says Sundays 10:00 to 13:00 and also says online only.",
-      "Volna Online Russian School copy is retained as source reference, not final current operating copy.",
+      "Confirm whether local demand is high enough to reopen in-person classes.",
+      "Confirm venue, timetable, staffing, and fees before publishing a weekend schedule.",
     ],
     onlineProgramme: {
       name: "Volna Online Russian School",
       summary:
-        "The old Chelmsford page referred families to an online school launched on 7 September 2020.",
+        "Chelmsford families can ask about Volna Online Russian School while local in-person classes are not available.",
       details: [
-        "Same class groups, lesson plans, and curriculum were described in earlier public copy.",
-        "Two one-hour lessons weekly.",
-        "Pricing and introductory-trial wording appeared in old copy and should be confirmed before publication.",
+        "Online group and private lesson options can be discussed after enquiry.",
+        "Exam-focused pupils can ask whether online support or GCSE self-study is the better fit.",
+        "Specific timetable, pricing, and trial details should be confirmed directly before joining.",
       ],
       links: [
         { label: "volnaschool.com", href: "https://volnaschool.com" },
@@ -207,28 +210,23 @@ export const schools: School[] = [
     name: "Southend-on-Sea",
     area: "Southend-on-Sea",
     county: "Essex",
-    status: "closed",
-    statusLabel: "Currently closed for in-person classes",
-    statusDescription:
-      "This branch remains part of the Pushkin's School network. Families can register interest for future local classes.",
-    lead: "A Southend-on-Sea school page retained for families and future planning, with clear current status wording.",
-    venueName: "Westcliff High School for Girls",
-    address: ["Kenilworth Gardens"],
-    postcode: "SS0 0BS",
-    schedule: "Register interest for future local classes",
+    status: "online",
+    statusLabel: "Online only / register interest",
+    statusDescription: onlineOnlyStatusDescription,
+    lead: "A Southend-on-Sea network area retained for online learning and future local class interest.",
+    venueName: "Southend-on-Sea area",
+    address: ["Essex"],
+    postcode: "",
+    schedule: "Online only for now; register interest for future local classes",
     lessonPlan: sundayPlan,
     classGroups,
-    highlights: [
-      "Part of the wider Pushkin's School network",
-      "Future local classes can follow the same weekend lesson structure",
-      "Interest can be registered while in-person classes are closed",
-    ],
+    highlights: onlineOnlyHighlights,
     enquiryCta: "Register interest in Southend-on-Sea classes",
     mapHref:
-      "https://www.google.com/maps/search/?api=1&query=Westcliff%20High%20School%20for%20Girls%20Kenilworth%20Gardens%20SS0%200BS",
+      "https://www.google.com/maps/search/?api=1&query=Southend-on-Sea%20Essex",
     sourceNotes: [
-      "Old overview described this branch as online only with a planned opening from January 2021.",
-      "Current status should be confirmed before launch.",
+      "Confirm whether local demand is high enough to reopen in-person classes.",
+      "Confirm venue, timetable, staffing, and fees before publishing a weekend schedule.",
     ],
   },
 ];
