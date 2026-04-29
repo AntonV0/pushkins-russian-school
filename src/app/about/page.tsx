@@ -19,7 +19,7 @@ const reviewNotes = [
   ...curriculumReviewNotes,
   "Institutional partnerships and external references need current confirmation.",
   "Trips, certificates, staff details, and media should be reviewed before publication.",
-  "Current branch statuses and timetables remain visible with verification notes.",
+  "Current branch statuses and timetables remain visible with practical review notes.",
 ];
 
 export const metadata: Metadata = {
@@ -72,10 +72,9 @@ export default function AboutPage() {
             title="Language learning that connects home, school, and culture"
           >
             <p>
-              The old About page centred on bilingual development, practical
-              communication, cultural literacy, and a shared curriculum. This
-              version keeps those themes while avoiding unverified institutional
-              claims until they are reviewed.
+              The school message centres on bilingual development, practical
+              communication, cultural literacy, and a shared curriculum while
+              leaving unapproved institutional claims out of public copy.
             </p>
           </SectionIntro>
           <div className="mt-10 grid gap-5 md:grid-cols-3">
@@ -103,10 +102,9 @@ export default function AboutPage() {
             title="A shared route that still leaves room for the child"
           >
             <p>
-              The old source material described common class groups, an
-              introductory period, and teacher judgement when deciding the best
-              group for a new pupil. The rebuild keeps that guidance structured
-              and easy to update.
+              Common class groups, an introductory period, and teacher judgement
+              help new pupils start in a sensible place. The rebuild keeps that
+              guidance structured and easy to update.
             </p>
           </SectionIntro>
           <div className="grid gap-5 md:grid-cols-3">

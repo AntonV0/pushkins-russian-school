@@ -99,7 +99,7 @@ export default function SchoolsPage() {
           >
             <p>
               These branches are presented as weekend schools, with timetable
-              notes shown where older source material needs final confirmation.
+              notes shown where older records need final confirmation.
             </p>
           </SectionIntro>
           <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">

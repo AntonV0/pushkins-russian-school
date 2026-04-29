@@ -23,7 +23,7 @@ export const faqGroups: FaqGroup[] = [
       {
         question: "Are all listed timetables final?",
         answer:
-          "Some branch timetables come from legacy source material and are marked with verification notes where old pages conflict or need current confirmation.",
+          "Some branch timetables are shown with review notes where older records conflict or current details still need confirmation.",
       },
       {
         question: "What should I send if I am not sure which branch fits?",

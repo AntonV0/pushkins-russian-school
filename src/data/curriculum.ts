@@ -46,7 +46,7 @@ export const curriculumPillars: CurriculumPillar[] = [
 export const educationPrinciples: CurriculumPillar[] = [
   {
     title: "Balanced bilingualism",
-    body: "The source material describes a practical approach to Russian that develops verbal, written, social, and cultural confidence.",
+    body: "The school approach develops verbal, written, social, and cultural confidence through practical Russian learning.",
   },
   {
     title: "Shared curriculum",

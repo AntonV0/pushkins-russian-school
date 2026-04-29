@@ -93,7 +93,7 @@ export const schools: School[] = [
     postcode: "HP14 4LR",
     schedule: "Saturdays, 9:00 to 12:00",
     scheduleNote:
-      "Final timing to confirm: older source material also listed 9:30 to 12:30.",
+      "Final timing to confirm: older records also listed 9:30 to 12:30.",
     lessonPlan: saturdayMorningPlan,
     classGroups,
     highlights: sharedHighlights,
@@ -101,7 +101,7 @@ export const schools: School[] = [
     mapHref:
       "https://www.google.com/maps/search/?api=1&query=Hughenden%20Primary%20School%20Spring%20Valley%20Drive%20HP14%204LR",
     sourceNotes: [
-      "Venue and address copied from old public site source material.",
+      "Venue and address retained from the previous public branch listing.",
       "Saturday start and finish times conflict across old pages and need confirmation.",
     ],
   },
@@ -170,7 +170,7 @@ export const schools: School[] = [
     postcode: "CM1 3ET",
     schedule: "Sundays, 10:00 to 13:00 when in-person classes are available",
     scheduleNote:
-      "Final route to confirm: older source material also described the branch as online only.",
+      "Final route to confirm: older records also described the branch as online only.",
     lessonPlan: sundayPlan,
     classGroups,
     highlights: [
@@ -189,7 +189,7 @@ export const schools: School[] = [
       summary:
         "The old Chelmsford page referred families to an online school launched on 7 September 2020.",
       details: [
-        "Same class groups, lesson plans, and curriculum were described in the source copy.",
+        "Same class groups, lesson plans, and curriculum were described in earlier public copy.",
         "Two one-hour lessons weekly.",
         "Pricing and introductory-trial wording appeared in old copy and should be confirmed before publication.",
       ],
