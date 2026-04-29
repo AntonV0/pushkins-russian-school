@@ -1,13 +1,5 @@
 import { schools } from "@/data/schools";
 
-const positions = [
-  "left-[25%] top-[63%]",
-  "left-[45%] top-[38%]",
-  "left-[52%] top-[63%]",
-  "left-[68%] top-[42%]",
-  "left-[74%] top-[68%]",
-];
-
 const statusDot = {
   open: "bg-emerald-500",
   online: "bg-sky-500",
@@ -18,58 +10,76 @@ const statusDot = {
 export function NetworkVisual() {
   const openCount = schools.filter((school) => school.status === "open").length;
   const interestCount = schools.length - openCount;
+  const openSchool = schools.find((school) => school.status === "open");
 
   return (
     <div
-      className="relative min-h-[22rem] overflow-hidden rounded-lg border border-border-soft bg-surface shadow-sm"
+      className="premium-panel relative overflow-hidden rounded-lg border border-border-soft bg-surface"
       aria-label="Pushkin's School network status overview"
     >
+      <div className="fine-grid absolute inset-0" aria-hidden="true" />
+      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-white via-white/70 to-transparent" />
       <div
-        className="absolute inset-0 bg-[linear-gradient(90deg,rgba(20,56,102,0.08)_1px,transparent_1px),linear-gradient(0deg,rgba(20,56,102,0.08)_1px,transparent_1px)] bg-[size:34px_34px]"
+        className="absolute left-[10%] top-[22%] h-[58%] w-[78%] rounded-[48%] border border-brand-blue/15"
         aria-hidden="true"
       />
       <div
-        className="absolute left-[18%] top-[18%] h-[62%] w-[68%] rounded-[48%] border border-brand-blue/15"
+        className="absolute left-[23%] top-[33%] h-[38%] w-[54%] rounded-[48%] border border-brand-gold/35"
         aria-hidden="true"
       />
-      <div
-        className="absolute left-[24%] top-[25%] h-[48%] w-[55%] rounded-[48%] border border-brand-gold/35"
-        aria-hidden="true"
-      />
-      <div className="absolute left-10 top-10 max-w-56">
-        <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
-          Network view
-        </p>
-        <p className="mt-3 text-2xl font-semibold leading-tight text-brand-blue-strong">
-          Five network areas, one learning structure
-        </p>
-        <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold text-muted">
-          <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 shadow-sm">
-            <span className="size-2 rounded-full bg-emerald-500" />
-            {openCount} current hub
-          </span>
-          <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 shadow-sm">
-            <span className="size-2 rounded-full bg-sky-500" />
-            {interestCount} online / interest areas
-          </span>
+      <div className="relative grid gap-6 p-6 sm:p-8 lg:min-h-[24rem] lg:grid-cols-[0.92fr_1.08fr]">
+        <div className="flex flex-col justify-between gap-8">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
+              Network view
+            </p>
+            <p className="mt-3 text-2xl font-semibold leading-tight text-brand-blue-strong sm:text-3xl">
+              A focused hub with wider learning routes
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold text-muted">
+              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-100 bg-white px-3 py-1 shadow-sm">
+                <span className="size-2 rounded-full bg-emerald-500" />
+                {openCount} current hub
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-full border border-sky-100 bg-white px-3 py-1 shadow-sm">
+                <span className="size-2 rounded-full bg-sky-500" />
+                {interestCount} online / interest areas
+              </span>
+            </div>
+          </div>
+          {openSchool ? (
+            <div className="rounded-lg border border-brand-gold/40 bg-white/95 p-4 shadow-lg">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+                Current in-person route
+              </p>
+              <p className="mt-2 text-xl font-semibold text-brand-blue-strong">
+                {openSchool.name}
+              </p>
+              <p className="mt-2 text-sm leading-6 text-slate-600">
+                {openSchool.schedule}
+              </p>
+            </div>
+          ) : null}
+        </div>
+        <div className="grid content-center gap-3 sm:grid-cols-2">
+          {schools.map((school) => (
+            <div
+              key={school.slug}
+              className="rounded-md border border-border-soft bg-white/95 px-4 py-3 shadow-sm"
+            >
+              <span
+                className={`mb-2 block size-2 rounded-full ${statusDot[school.status]}`}
+              />
+              <p className="text-sm font-semibold leading-5 text-brand-blue-strong">
+                {school.name}
+              </p>
+              <p className="mt-1 text-xs leading-5 text-muted">
+                {school.statusLabel}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
-      {schools.map((school, index) => (
-        <div
-          key={school.slug}
-          className={`absolute ${positions[index]} max-w-36 rounded-md border border-border-soft bg-white px-3 py-2 shadow-sm ${
-            index > 1 ? "hidden sm:block" : ""
-          }`}
-        >
-          <span
-            className={`mb-2 block size-2 rounded-full ${statusDot[school.status]}`}
-          />
-          <p className="text-sm font-semibold leading-5 text-brand-blue-strong">
-            {school.name}
-          </p>
-          <p className="mt-1 text-xs text-muted">{school.statusLabel}</p>
-        </div>
-      ))}
     </div>
   );
 }

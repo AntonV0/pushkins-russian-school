@@ -39,16 +39,16 @@ export default function GalleryPage() {
 
   return (
     <main>
-      <section className="border-b border-border-soft bg-surface py-16 sm:py-20">
+      <section className="border-b border-border-soft bg-surface/80 py-16 sm:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_0.86fr] lg:px-8">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
               Gallery
             </p>
-            <h1 className="mt-4 max-w-4xl text-4xl font-semibold text-brand-blue-strong sm:text-5xl">
+            <h1 className="mt-4 max-w-4xl text-balance text-4xl font-semibold leading-tight text-brand-blue-strong sm:text-6xl">
               A careful archive for approved school moments
             </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
               Raw source screenshots are intentionally not used as assets. This
               section is ready for approved, optimised images from the public
               assets workflow.
@@ -86,7 +86,7 @@ export default function GalleryPage() {
           {[...galleryReadinessNotes, ...mediaReadinessNotes].map((note) => (
             <div
               key={note}
-              className="border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
+              className="premium-panel border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
             >
               {note}
             </div>
@@ -109,7 +109,7 @@ export default function GalleryPage() {
             {galleryWorkflowStages.map((stage, index) => (
               <li
                 key={stage.label}
-                className="border border-border-soft bg-background p-5"
+                className="premium-panel border border-border-soft bg-background p-5"
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-red">
                   Step {index + 1}
@@ -143,7 +143,7 @@ export default function GalleryPage() {
                 <Link
                   key={archive.year}
                   href={`/gallery/${archive.year}`}
-                  className="group flex min-h-72 flex-col justify-between rounded-lg border border-border-soft bg-surface p-6 transition hover:-translate-y-0.5 hover:border-brand-red hover:shadow-md"
+                  className="premium-panel group flex min-h-72 flex-col justify-between rounded-lg border border-border-soft bg-surface p-6 transition hover:-translate-y-0.5 hover:border-brand-red"
                 >
                   <div>
                     <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
@@ -178,7 +178,7 @@ export default function GalleryPage() {
               ))}
             </div>
           ) : (
-            <div className="mt-10 border-l-4 border-brand-gold bg-surface px-6 py-5">
+            <div className="premium-panel mt-10 border-l-4 border-brand-gold bg-surface px-6 py-5">
               <h2 className="text-lg font-semibold text-brand-blue-strong">
                 Year archives are waiting for approved photos
               </h2>
@@ -211,7 +211,7 @@ export default function GalleryPage() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="border border-white/15 bg-white/5 p-5 transition hover:border-white/35 hover:bg-white/10"
+                className="rounded-lg border border-white/15 bg-white/5 p-5 transition hover:border-white/35 hover:bg-white/10"
               >
                 <span className="block text-sm font-semibold">
                   {link.label}

@@ -40,16 +40,16 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main>
-      <section className="border-b border-border-soft bg-surface py-16 sm:py-20">
+      <section className="border-b border-border-soft bg-surface/80 py-16 sm:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
               About Pushkin&apos;s School
             </p>
-            <h1 className="mt-4 max-w-4xl text-4xl font-semibold text-brand-blue-strong sm:text-5xl">
+            <h1 className="mt-4 max-w-4xl text-balance text-4xl font-semibold leading-tight text-brand-blue-strong sm:text-6xl">
               A refined home for an established Russian school community
             </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
               Pushkin&apos;s School is presented as a warm, academic weekend
               learning network for children studying Russian language,
               literature, and culture in the UK.
@@ -81,7 +81,7 @@ export default function AboutPage() {
             {educationPrinciples.map((item) => (
               <article
                 key={item.title}
-                className="rounded-lg border border-border-soft bg-surface p-6"
+                className="premium-panel rounded-lg border border-border-soft bg-surface p-6"
               >
                 <h2 className="text-xl font-semibold text-brand-blue-strong">
                   {item.title}
@@ -111,7 +111,7 @@ export default function AboutPage() {
             {placementSteps.map((step) => (
               <article
                 key={step.title}
-                className="rounded-lg border border-border-soft bg-background p-5"
+                className="premium-panel rounded-lg border border-border-soft bg-background p-5"
               >
                 <h2 className="text-lg font-semibold text-brand-blue-strong">
                   {step.title}
@@ -127,7 +127,7 @@ export default function AboutPage() {
               {curriculumMaterials.map((item) => (
                 <li
                   key={item}
-                  className="border-l border-brand-gold bg-background px-4 py-3 text-sm leading-6 text-slate-700"
+                  className="premium-panel border-l border-brand-gold bg-background px-4 py-3 text-sm leading-6 text-slate-700"
                 >
                   {item}
                 </li>

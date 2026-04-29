@@ -22,15 +22,19 @@ export function SectionIntro({
   return (
     <div className={isCenter ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
       {eyebrow ? (
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
           {eyebrow}
         </p>
       ) : null}
-      <h2 className={`mt-3 text-3xl font-semibold sm:text-4xl ${titleColor}`}>
+      <h2
+        className={`mt-3 text-balance text-3xl font-semibold leading-tight sm:text-4xl ${titleColor}`}
+      >
         {title}
       </h2>
       {children ? (
-        <div className={`mt-4 text-base leading-7 ${bodyColor}`}>{children}</div>
+        <div className={`mt-4 text-pretty text-base leading-7 ${bodyColor}`}>
+          {children}
+        </div>
       ) : null}
     </div>
   );

@@ -47,16 +47,16 @@ export default function PoliciesPage() {
 
   return (
     <main>
-      <section className="border-b border-border-soft bg-surface py-16 sm:py-20">
+      <section className="border-b border-border-soft bg-surface/80 py-16 sm:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_0.8fr] lg:px-8">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
               Policies
             </p>
-            <h1 className="mt-4 max-w-4xl text-4xl font-semibold text-brand-blue-strong sm:text-5xl">
+            <h1 className="mt-4 max-w-4xl text-balance text-4xl font-semibold leading-tight text-brand-blue-strong sm:text-6xl">
               A clear index for reviewed school documents
             </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
               Policy summaries and official guidance links are organised for
               families now. Formal school downloads are added only after the
               files are reviewed and updated.
@@ -99,7 +99,7 @@ export default function PoliciesPage() {
           {policyIndexNotes.map((note) => (
             <div
               key={note}
-              className="border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
+              className="premium-panel border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
             >
               {note}
             </div>
@@ -123,7 +123,7 @@ export default function PoliciesPage() {
             {policyPublicationStates.map((state) => (
               <article
                 key={state.label}
-                className="border border-border-soft bg-surface p-5"
+                className="premium-panel border border-border-soft bg-surface p-5"
               >
                 <h2 className="text-base font-semibold text-brand-blue-strong">
                   {state.label}
@@ -134,7 +134,7 @@ export default function PoliciesPage() {
               </article>
             ))}
           </div>
-          <div className="mt-8 border border-border-soft bg-surface p-5">
+          <div className="premium-panel mt-8 border border-border-soft bg-surface p-5">
             <h2 className="text-base font-semibold text-brand-blue-strong">
               Approved document convention
             </h2>
@@ -151,7 +151,7 @@ export default function PoliciesPage() {
             {policyGroups.map((group) => (
               <section
                 key={group.title}
-                className="rounded-lg border border-border-soft bg-surface p-6"
+                className="premium-panel rounded-lg border border-border-soft bg-surface p-6"
                 aria-labelledby={`${group.title
                   .toLowerCase()
                   .replace(/[^a-z0-9]+/g, "-")}-policies`}
@@ -256,7 +256,7 @@ export default function PoliciesPage() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="border border-white/15 bg-white/5 p-5 transition hover:border-white/35 hover:bg-white/10"
+                className="rounded-lg border border-white/15 bg-white/5 p-5 transition hover:border-white/35 hover:bg-white/10"
               >
                 <span className="block text-sm font-semibold">
                   {link.label}

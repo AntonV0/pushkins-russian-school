@@ -104,7 +104,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
   return (
     <main>
       <JsonLd data={schoolJsonLd} />
-      <section className="border-b border-border-soft bg-surface">
+      <section className="border-b border-border-soft bg-surface/80">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 lg:grid-cols-[1.08fr_0.92fr] lg:px-8">
           <div>
             <Breadcrumbs
@@ -114,13 +114,13 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
               ]}
             />
             <StatusBadge status={school.status} label={school.statusLabel} />
-            <p className="mt-6 text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
+            <p className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
               {school.county}
             </p>
-            <h1 className="mt-3 text-4xl font-semibold text-brand-blue-strong sm:text-5xl">
+            <h1 className="mt-3 text-balance text-4xl font-semibold leading-tight text-brand-blue-strong sm:text-6xl">
               {school.name}
             </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
               {school.lead}
             </p>
             <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600">
@@ -134,14 +134,14 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 href={school.mapHref}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-brand-blue/20 px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+                className="inline-flex min-h-11 items-center justify-center rounded-md border border-brand-blue/20 bg-white/70 px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:bg-white hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
               >
                 {hasCurrentVenue ? "View map" : "View area map"}
               </a>
             </div>
           </div>
 
-          <aside className="bg-surface-muted p-6 sm:p-8">
+          <aside className="premium-panel rounded-lg border border-border-soft bg-surface-muted p-6 sm:p-8">
             <h2 className="text-xl font-semibold text-brand-blue-strong">
               {hasCurrentVenue ? "Venue and timetable" : "Network area and route"}
             </h2>
@@ -195,7 +195,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 </p>
               </SectionIntro>
 
-              <ol className="divide-y divide-border-soft border-y border-border-soft bg-surface">
+              <ol className="premium-panel divide-y divide-border-soft overflow-hidden rounded-lg border border-border-soft bg-surface">
                 {school.lessonPlan.map((item) => (
                   <li
                     key={`${item.time}-${item.activity}`}
@@ -242,7 +242,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 ].map((item) => (
                   <article
                     key={item.title}
-                    className="rounded-lg border border-border-soft bg-surface p-5"
+                    className="premium-panel rounded-lg border border-border-soft bg-surface p-5"
                   >
                     <h2 className="text-lg font-semibold text-brand-blue-strong">
                       {item.title}
@@ -275,7 +275,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
             {placementSteps.map((step) => (
               <article
                 key={step.title}
-                className="rounded-lg border border-border-soft bg-background p-5"
+                className="premium-panel rounded-lg border border-border-soft bg-background p-5"
               >
                 <h2 className="text-lg font-semibold text-brand-blue-strong">
                   {step.title}
@@ -315,7 +315,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
             {curriculumProgressionStages.map((stage) => (
               <article
                 key={stage.title}
-                className="rounded-lg border border-border-soft bg-surface p-5"
+                className="premium-panel rounded-lg border border-border-soft bg-surface p-5"
               >
                 <p className="text-sm font-semibold uppercase tracking-[0.14em] text-brand-red">
                   {stage.audience}
@@ -391,7 +391,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
       {school.onlineProgramme ? (
         <section className="bg-background py-14 sm:py-16">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="max-w-4xl border-l-4 border-brand-red bg-surface p-6 sm:p-8">
+            <div className="premium-panel max-w-4xl border-l-4 border-brand-red bg-surface p-6 sm:p-8">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
                 Online learning option
               </p>
@@ -443,11 +443,14 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
         <div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-[1fr_0.8fr] lg:px-8">
           <div>
             <h2 className="text-3xl font-semibold">
-              Before local details are published
+              {hasCurrentVenue
+                ? "Before your first visit"
+                : "Before local details are published"}
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-white/75">
-              These practical notes help families choose the next step without
-              relying on old venue, timetable, or payment information.
+              {hasCurrentVenue
+                ? "These practical notes help families confirm the right class fit and next step before attending."
+                : "These practical notes help families choose the next step without relying on old venue, timetable, or payment information."}
             </p>
           </div>
           <ul className="space-y-3 text-sm leading-6 text-white/80">

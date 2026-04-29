@@ -40,16 +40,16 @@ export default function SchoolsPage() {
 
   return (
     <main>
-      <section className="border-b border-border-soft bg-surface py-16 sm:py-20">
+      <section className="border-b border-border-soft bg-surface/80 py-16 sm:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
               School routes
             </p>
-            <h1 className="mt-4 max-w-4xl text-4xl font-semibold text-brand-blue-strong sm:text-5xl">
+            <h1 className="mt-4 max-w-4xl text-balance text-4xl font-semibold leading-tight text-brand-blue-strong sm:text-6xl">
               Current classes, online routes, and local interest
             </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
               Compare the current weekend hub, online-only network areas, and
               register-interest routes before choosing the most useful enquiry
               path.
@@ -119,7 +119,7 @@ export default function SchoolsPage() {
         </div>
       </section>
 
-      <section className="border-t border-border-soft bg-surface py-14 sm:py-16">
+      <section className="border-t border-border-soft bg-surface/90 py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="Network continuity"
@@ -168,7 +168,7 @@ export default function SchoolsPage() {
           <div className="flex items-center md:justify-end">
             <Link
               href="/contact#enquiry-form"
-              className="inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:bg-surface-muted focus:outline-none focus:ring-2 focus:ring-white/40"
+              className="inline-flex min-h-11 items-center justify-center rounded-md bg-white px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:bg-surface-muted focus:outline-none focus:ring-2 focus:ring-white/40"
             >
               Start an enquiry
             </Link>

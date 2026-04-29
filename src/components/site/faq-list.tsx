@@ -10,7 +10,7 @@ export function FaqList({ groups }: FaqListProps) {
       {groups.map((group) => (
         <section
           key={group.title}
-          className="rounded-lg border border-border-soft bg-surface p-6"
+          className="premium-panel rounded-lg border border-border-soft bg-surface p-6"
         >
           <div className="grid gap-3 md:grid-cols-[0.72fr_1.28fr]">
             <div>
@@ -24,7 +24,7 @@ export function FaqList({ groups }: FaqListProps) {
             <div className="divide-y divide-border-soft">
               {group.items.map((item) => (
                 <details key={item.question} className="group py-4">
-                  <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-left text-base font-semibold text-brand-blue-strong marker:hidden">
+                  <summary className="flex cursor-pointer list-none items-start justify-between gap-4 rounded-md text-left text-base font-semibold text-brand-blue-strong marker:hidden focus:outline-none focus:ring-2 focus:ring-brand-red/30">
                     <span>{item.question}</span>
                     <span
                       aria-hidden="true"

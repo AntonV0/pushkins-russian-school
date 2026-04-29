@@ -47,7 +47,7 @@ export function EnquiryForm({
     <form
       id="enquiry-form"
       action={formAction}
-      className="rounded-lg border border-border-soft bg-surface p-6 shadow-sm sm:p-8"
+      className="premium-panel rounded-lg border border-border-soft bg-surface p-6 sm:p-8"
       aria-describedby={`${statusId} enquiry-privacy-notice`}
       noValidate
     >
@@ -416,7 +416,7 @@ function SubmitButton({
     <button
       type="submit"
       disabled={pending}
-      className="inline-flex items-center justify-center rounded-full bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30 disabled:cursor-not-allowed disabled:bg-slate-400"
+      className="inline-flex min-h-11 items-center justify-center rounded-md bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30 disabled:cursor-not-allowed disabled:bg-slate-400"
     >
       {pending
         ? mode === "live"

@@ -15,7 +15,7 @@ type TrustSignalsProps = {
 
 function TrustSignalCard({ signal }: { signal: TrustSignal }) {
   const content = (
-    <article className="flex h-full flex-col rounded-lg border border-border-soft bg-background p-6">
+    <article className="premium-panel flex h-full flex-col rounded-lg border border-border-soft bg-background p-6 transition group-hover:border-brand-gold/70">
       <p className="font-mono text-sm font-semibold text-brand-red">
         {signal.value}
       </p>
@@ -38,7 +38,7 @@ function TrustSignalCard({ signal }: { signal: TrustSignal }) {
   }
 
   return (
-    <Link href={signal.href} className="block h-full focus:outline-none focus:ring-2 focus:ring-brand-red/30">
+    <Link href={signal.href} className="group block h-full focus:outline-none focus:ring-2 focus:ring-brand-red/30">
       {content}
     </Link>
   );

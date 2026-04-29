@@ -28,8 +28,8 @@ function LearningOptionAction({
 }) {
   const className =
     tone === "dark"
-      ? "inline-flex items-center justify-center rounded-full bg-white px-4 py-2 text-sm font-semibold text-brand-blue-strong transition hover:bg-surface-muted focus:outline-none focus:ring-2 focus:ring-white/40"
-      : "inline-flex items-center justify-center rounded-full bg-brand-blue px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30";
+      ? "inline-flex min-h-10 items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-semibold text-brand-blue-strong transition hover:bg-surface-muted focus:outline-none focus:ring-2 focus:ring-white/40"
+      : "inline-flex min-h-10 items-center justify-center rounded-md bg-brand-blue px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30";
 
   if (cta.external) {
     return (
@@ -79,7 +79,7 @@ export function LearningOptions({
           return (
             <article
               key={option.id}
-              className={`rounded-lg border p-6 ${
+              className={`premium-panel rounded-lg border p-6 ${
                 isHighlighted ? cardAccent[option.id] : ""
               } ${cardBase}`}
             >
@@ -127,7 +127,7 @@ export function LearningOptions({
                       href={option.secondaryCta.href}
                       target="_blank"
                       rel="noreferrer"
-                      className={`inline-flex items-center justify-center rounded-full border px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 ${
+                      className={`inline-flex min-h-10 items-center justify-center rounded-md border px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 ${
                         isDark
                           ? "border-white/25 text-white hover:bg-white/10 focus:ring-white/30"
                           : "border-brand-blue/20 text-brand-blue-strong hover:border-brand-red hover:text-brand-red focus:ring-brand-red/30"
@@ -138,7 +138,7 @@ export function LearningOptions({
                   ) : (
                     <Link
                       href={option.secondaryCta.href}
-                      className={`inline-flex items-center justify-center rounded-full border px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 ${
+                      className={`inline-flex min-h-10 items-center justify-center rounded-md border px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 ${
                         isDark
                           ? "border-white/25 text-white hover:bg-white/10 focus:ring-white/30"
                           : "border-brand-blue/20 text-brand-blue-strong hover:border-brand-red hover:text-brand-red focus:ring-brand-red/30"

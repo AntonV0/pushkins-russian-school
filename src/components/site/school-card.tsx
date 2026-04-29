@@ -30,7 +30,7 @@ function getNextStepLabel(school: School) {
 export function SchoolCard({ school }: SchoolCardProps) {
   return (
     <article
-      className={`flex h-full flex-col justify-between rounded-lg border border-border-soft bg-surface p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:p-6 ${statusAccent[school.status]}`}
+      className={`premium-panel flex h-full flex-col justify-between rounded-lg border border-border-soft bg-surface p-5 transition hover:-translate-y-0.5 hover:border-brand-gold/70 sm:p-6 ${statusAccent[school.status]}`}
     >
       <div>
         <div className="flex flex-wrap items-start justify-between gap-3">
@@ -43,10 +43,10 @@ export function SchoolCard({ school }: SchoolCardProps) {
           <p className="text-sm font-medium uppercase tracking-[0.14em] text-muted">
             {school.area}
           </p>
-          <h3 className="mt-2 text-2xl font-semibold">
+          <h3 className="mt-2 text-2xl font-semibold leading-tight">
             <Link
               href={`/schools/${school.slug}`}
-              className="text-brand-blue-strong hover:text-brand-red"
+              className="text-brand-blue-strong transition hover:text-brand-red"
             >
               {school.name}
             </Link>
@@ -55,14 +55,14 @@ export function SchoolCard({ school }: SchoolCardProps) {
             {school.statusDescription}
           </p>
         </div>
-        <dl className="mt-6 space-y-3 text-sm">
-          <div>
+        <dl className="mt-6 divide-y divide-border-soft/80 border-y border-border-soft/80 text-sm">
+          <div className="py-3">
             <dt className="font-semibold text-brand-blue-strong">
               {school.status === "open" ? "Venue" : "Network area"}
             </dt>
             <dd className="mt-1 text-slate-600">{school.venueName}</dd>
           </div>
-          <div>
+          <div className="py-3">
             <dt className="font-semibold text-brand-blue-strong">Schedule</dt>
             <dd className="mt-1 text-slate-600">{school.schedule}</dd>
             {school.scheduleNote ? (
@@ -71,7 +71,7 @@ export function SchoolCard({ school }: SchoolCardProps) {
               </dd>
             ) : null}
           </div>
-          <div>
+          <div className="py-3">
             <dt className="font-semibold text-brand-blue-strong">
               {school.status === "open" ? "Address" : "Area"}
             </dt>

@@ -36,17 +36,17 @@ export const metadata: Metadata = {
 export default function CurriculumPage() {
   return (
     <main>
-      <section className="border-b border-border-soft bg-surface py-16 sm:py-20">
+      <section className="border-b border-border-soft bg-surface/80 py-16 sm:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
               Curriculum
             </p>
-            <h1 className="mt-4 max-w-4xl text-4xl font-semibold text-brand-blue-strong sm:text-5xl">
+            <h1 className="mt-4 max-w-4xl text-balance text-4xl font-semibold leading-tight text-brand-blue-strong sm:text-6xl">
               Russian language learning with culture, confidence, and clear
               progression
             </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
               A parent-friendly view of the pathway: enough structure to choose
               the right next step, with space for teachers to place each child
               thoughtfully after learning more about their Russian.
@@ -66,7 +66,7 @@ export default function CurriculumPage() {
               {classGroups.map((group) => (
                 <div
                   key={group}
-                  className="border-l-4 border-brand-gold bg-background px-5 py-4"
+                  className="premium-panel border-l-4 border-brand-gold bg-background px-5 py-4"
                 >
                   <p className="text-sm font-semibold text-brand-blue-strong">
                     {group}
@@ -94,7 +94,7 @@ export default function CurriculumPage() {
             {curriculumPillars.map((pillar) => (
               <article
                 key={pillar.title}
-                className="rounded-lg border border-border-soft bg-surface p-6"
+                className="premium-panel rounded-lg border border-border-soft bg-surface p-6"
               >
                 <h2 className="text-xl font-semibold text-brand-blue-strong">
                   {pillar.title}
@@ -124,7 +124,7 @@ export default function CurriculumPage() {
             {curriculumProgressionStages.map((stage) => (
               <article
                 key={stage.title}
-                className="rounded-lg border border-border-soft bg-background p-6"
+                className="premium-panel rounded-lg border border-border-soft bg-background p-6"
               >
                 <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
                   {stage.audience}
@@ -162,7 +162,7 @@ export default function CurriculumPage() {
             {placementSteps.map((step, index) => (
               <article
                 key={step.title}
-                className="rounded-lg border border-border-soft bg-background p-5"
+                className="premium-panel rounded-lg border border-border-soft bg-background p-5"
               >
                 <p className="font-mono text-sm font-semibold text-brand-red">
                   0{index + 1}
@@ -194,7 +194,7 @@ export default function CurriculumPage() {
             {placementSignals.map((signal) => (
               <div
                 key={signal}
-                className="border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
+                className="premium-panel border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
               >
                 {signal}
               </div>
@@ -220,7 +220,7 @@ export default function CurriculumPage() {
             {curriculumRouteRecommendations.map((route) => (
               <article
                 key={route.title}
-                className="rounded-lg border border-white/15 bg-white/10 p-6"
+                className="rounded-lg border border-white/15 bg-white/10 p-6 shadow-[0_12px_28px_rgba(0,0,0,0.08)]"
               >
                 <h2 className="text-xl font-semibold text-white">
                   {route.title}
@@ -275,7 +275,7 @@ export default function CurriculumPage() {
             ].map((item) => (
               <div
                 key={item}
-                className="border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
+                className="premium-panel border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
               >
                 {item}
               </div>

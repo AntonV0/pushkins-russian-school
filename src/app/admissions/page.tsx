@@ -39,16 +39,16 @@ export default function AdmissionsPage() {
 
   return (
     <main>
-      <section className="border-b border-border-soft bg-surface py-16 sm:py-20">
+      <section className="border-b border-border-soft bg-surface/80 py-16 sm:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
               Admissions and fees
             </p>
-            <h1 className="mt-4 max-w-4xl text-4xl font-semibold text-brand-blue-strong sm:text-5xl">
+            <h1 className="mt-4 max-w-4xl text-balance text-4xl font-semibold leading-tight text-brand-blue-strong sm:text-6xl">
               A clear route from enquiry to the right school group
             </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
               Families can enquire for current weekend classes, register
               interest in future local provision, ask about Volna online
               lessons, or flag GCSE self-study goals. The final placement is
@@ -70,7 +70,7 @@ export default function AdmissionsPage() {
             {admissionsVisual ? (
               <VisualStoryPanel slot={admissionsVisual} compact />
             ) : null}
-            <aside className="bg-surface-muted p-6 sm:p-8">
+            <aside className="premium-panel rounded-lg border border-border-soft bg-surface-muted p-6 sm:p-8">
               <h2 className="text-xl font-semibold text-brand-blue-strong">
                 Current network status
               </h2>
@@ -120,7 +120,7 @@ export default function AdmissionsPage() {
             {curriculumRouteRecommendations.map((route) => (
               <article
                 key={route.title}
-                className="rounded-lg border border-border-soft bg-surface p-6"
+                className="premium-panel rounded-lg border border-border-soft bg-surface p-6"
               >
                 <h2 className="text-xl font-semibold text-brand-blue-strong">
                   {route.title}
@@ -157,7 +157,7 @@ export default function AdmissionsPage() {
             {admissionsSteps.map((step, index) => (
               <article
                 key={step.title}
-                className="rounded-lg border border-border-soft bg-surface p-6"
+                className="premium-panel rounded-lg border border-border-soft bg-surface p-6"
               >
                 <p className="font-mono text-sm font-semibold text-brand-red">
                   0{index + 1}
@@ -190,7 +190,7 @@ export default function AdmissionsPage() {
             {paymentDetails.termFees.map((fee) => (
               <div
                 key={fee.label}
-                className="border-l border-brand-gold bg-background px-4 py-3"
+                className="premium-panel border-l border-brand-gold bg-background px-4 py-3"
               >
                 <p className="text-sm text-slate-600">{fee.label}</p>
                 <p className="mt-1 font-semibold text-brand-blue-strong">
@@ -218,7 +218,7 @@ export default function AdmissionsPage() {
               {enquiryChecklist.map((item) => (
                 <li
                   key={item}
-                  className="border-l border-brand-gold bg-surface px-4 py-3 text-sm text-slate-700"
+                  className="premium-panel border-l border-brand-gold bg-surface px-4 py-3 text-sm text-slate-700"
                 >
                   {item}
                 </li>
@@ -239,7 +239,7 @@ export default function AdmissionsPage() {
                 {placementSignals.slice(0, 4).map((signal) => (
                   <li
                     key={signal}
-                    className="border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
+                    className="premium-panel border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
                   >
                     {signal}
                   </li>

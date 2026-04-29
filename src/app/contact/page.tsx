@@ -46,21 +46,21 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
 
   return (
     <main>
-      <section className="border-b border-border-soft bg-surface py-16 sm:py-20">
+      <section className="border-b border-border-soft bg-surface/80 py-16 sm:py-20">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-[1.1fr_0.9fr] lg:px-8">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
               Contact
             </p>
-            <h1 className="mt-4 max-w-4xl text-4xl font-semibold text-brand-blue-strong sm:text-5xl">
+            <h1 className="mt-4 max-w-4xl text-balance text-4xl font-semibold leading-tight text-brand-blue-strong sm:text-6xl">
               Enquire about a school place or future local classes
             </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
               Use the structured form to submit a simple initial enquiry, or
               write to the school directly if you prefer email.
             </p>
           </div>
-          <aside className="bg-surface-muted p-6 sm:p-8">
+          <aside className="premium-panel rounded-lg border border-border-soft bg-surface-muted p-6 sm:p-8">
             <h2 className="text-xl font-semibold text-brand-blue-strong">
               Enquiries
             </h2>
@@ -76,7 +76,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             <div className="mt-6 flex">
               <a
                 href={`mailto:${contactDetails.email}`}
-                className="inline-flex items-center justify-center rounded-full bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
+                className="inline-flex min-h-11 items-center justify-center rounded-md bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
               >
                 Email directly
               </a>
@@ -90,7 +90,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           {contactSupportNotes.map((note) => (
             <div
               key={note}
-              className="border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
+              className="premium-panel border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
             >
               {note}
             </div>
@@ -137,7 +137,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                 <Link
                   key={school.slug}
                   href={`/schools/${school.slug}`}
-                  className="rounded-lg border border-border-soft bg-surface p-5 transition hover:border-brand-red"
+                  className="premium-panel rounded-lg border border-border-soft bg-surface p-5 transition hover:border-brand-red"
                 >
                   <span className="block text-base font-semibold text-brand-blue-strong">
                     {school.name}
@@ -173,7 +173,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             {enquiryChecklist.map((item) => (
               <li
                 key={item}
-                className="border-l border-brand-gold bg-background px-4 py-3 text-sm text-slate-700"
+                className="premium-panel border-l border-brand-gold bg-background px-4 py-3 text-sm text-slate-700"
               >
                 {item}
               </li>
@@ -196,7 +196,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             {paymentDetails.termFees.map((fee) => (
               <div
                 key={fee.label}
-                className="border-l border-brand-gold bg-surface px-4 py-3"
+                className="premium-panel border-l border-brand-gold bg-surface px-4 py-3"
               >
                 <p className="text-sm text-slate-600">{fee.label}</p>
                 <p className="mt-1 font-semibold text-brand-blue-strong">

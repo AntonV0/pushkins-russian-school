@@ -35,7 +35,7 @@ export function RelatedSchools({ currentSlug, schools }: RelatedSchoolsProps) {
             <Link
               key={school.slug}
               href={`/schools/${school.slug}`}
-              className="rounded-lg border border-border-soft bg-surface p-5 transition hover:-translate-y-0.5 hover:border-brand-red hover:shadow-md"
+              className="premium-panel rounded-lg border border-border-soft bg-surface p-5 transition hover:-translate-y-0.5 hover:border-brand-red"
             >
               <StatusBadge status={school.status} label={school.statusLabel} />
               <h3 className="mt-4 text-xl font-semibold text-brand-blue-strong">

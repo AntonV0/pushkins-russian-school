@@ -10,7 +10,7 @@ export function VisualStoryPanel({ slot, compact = false }: VisualStoryPanelProp
 
   return (
     <figure
-      className="overflow-hidden rounded-lg border border-border-soft bg-surface shadow-sm"
+      className="premium-panel overflow-hidden rounded-lg border border-border-soft bg-surface"
       aria-labelledby={headingId}
     >
       <div
@@ -18,16 +18,14 @@ export function VisualStoryPanel({ slot, compact = false }: VisualStoryPanelProp
           compact ? "min-h-64" : "min-h-80"
         }`}
       >
+        <div className="fine-grid absolute inset-0" aria-hidden="true" />
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/55 to-transparent" />
         <div
-          className="absolute inset-0 bg-[linear-gradient(90deg,rgba(20,56,102,0.07)_1px,transparent_1px),linear-gradient(0deg,rgba(20,56,102,0.07)_1px,transparent_1px)] bg-[size:32px_32px]"
+          className="absolute right-8 top-8 h-24 w-36 rotate-3 rounded-md border border-brand-gold/30 bg-white/40"
           aria-hidden="true"
         />
         <div
-          className="absolute right-8 top-8 h-24 w-36 rotate-3 border border-brand-gold/30 bg-white/35"
-          aria-hidden="true"
-        />
-        <div
-          className="absolute bottom-8 left-8 h-20 w-44 -rotate-2 border border-brand-blue/15 bg-white/40"
+          className="absolute bottom-8 left-8 h-20 w-44 -rotate-2 rounded-md border border-brand-blue/15 bg-white/45"
           aria-hidden="true"
         />
         <VisualMotif slot={slot} />

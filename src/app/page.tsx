@@ -38,24 +38,24 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main>
-      <section className="border-b border-border-soft bg-surface">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-[0.98fr_1.02fr] lg:px-8">
+      <section className="border-b border-border-soft bg-surface/80">
+        <div className="mx-auto grid min-h-[calc(100svh-8rem)] max-w-7xl items-center gap-12 px-6 py-14 sm:py-18 lg:grid-cols-[0.98fr_1.02fr] lg:px-8">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
-              Russian language, culture, and exam preparation
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
+              Russian language, culture, and exam-aware learning
             </p>
-            <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-[1.04] text-brand-blue-strong sm:text-6xl">
+            <h1 className="mt-5 max-w-4xl text-balance text-5xl font-semibold leading-[0.98] text-brand-blue-strong sm:text-7xl">
               Pushkin&apos;s School
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-              A warm, academically focused Russian learning network for
-              families raising children with language, literature, culture, and
-              exam goals.
+            <p className="mt-6 max-w-2xl text-pretty text-xl leading-8 text-slate-700">
+              A calm, academically focused Russian learning network for
+              families who want language, literature, culture, and thoughtful
+              progression to stay connected.
             </p>
-            <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-600">
-              Current in-person teaching is centred on the active hub, while wider
-              network areas stay open for online learning and future local
-              interest.
+            <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600">
+              Current in-person enquiries are centred on Bracknell. Wider
+              network areas remain deliberately available for online learning
+              and register-interest routes while local details are confirmed.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/schools">Find your route</ButtonLink>
@@ -74,6 +74,20 @@ export default function Home() {
                   },
                 ]}
               />
+            </div>
+            <div className="mt-6 grid gap-3 text-sm leading-6 text-slate-700 sm:grid-cols-2">
+              <div className="border-l-2 border-emerald-500 bg-white/75 px-4 py-3">
+                <p className="font-semibold text-brand-blue-strong">
+                  Bracknell weekend school
+                </p>
+                <p>Current in-person route for parent enquiries.</p>
+              </div>
+              <div className="border-l-2 border-sky-500 bg-white/75 px-4 py-3">
+                <p className="font-semibold text-brand-blue-strong">
+                  Online and interest routes
+                </p>
+                <p>Useful next steps for families outside the active hub.</p>
+              </div>
             </div>
           </div>
 
@@ -95,19 +109,19 @@ export default function Home() {
           </SectionIntro>
 
           <div className="mt-8 grid gap-3 text-sm leading-6 text-slate-600 md:grid-cols-3">
-            <div className="border-l-4 border-emerald-500 bg-surface px-4 py-3">
+            <div className="premium-panel border-l-4 border-emerald-500 bg-surface px-4 py-3">
               <p className="font-semibold text-brand-blue-strong">
                 Current weekend class
               </p>
               <p>Ask about current places and class fit.</p>
             </div>
-            <div className="border-l-4 border-sky-500 bg-surface px-4 py-3">
+            <div className="premium-panel border-l-4 border-sky-500 bg-surface px-4 py-3">
               <p className="font-semibold text-brand-blue-strong">
                 Online-only network areas
               </p>
               <p>Keep learning while local demand rebuilds.</p>
             </div>
-            <div className="border-l-4 border-zinc-300 bg-surface px-4 py-3">
+            <div className="premium-panel border-l-4 border-zinc-300 bg-surface px-4 py-3">
               <p className="font-semibold text-brand-blue-strong">
                 Future local interest
               </p>
@@ -121,7 +135,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="mt-8 flex flex-col gap-4 border-l-4 border-brand-gold bg-surface px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
+          <div className="premium-panel mt-8 flex flex-col gap-4 border-l-4 border-brand-gold bg-surface px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm leading-6 text-slate-600">
               The full schools page keeps the current hub and wider online-only
               network areas together for a direct comparison.
@@ -171,7 +185,7 @@ export default function Home() {
             {curriculumPillars.map((pathway) => (
               <article
                 key={pathway.title}
-                className="rounded-lg border border-white/15 bg-white/10 p-5"
+                className="rounded-lg border border-white/15 bg-white/10 p-5 shadow-[0_12px_28px_rgba(0,0,0,0.08)]"
               >
                 <h2 className="text-lg font-semibold text-white">
                   {pathway.title}
@@ -201,7 +215,7 @@ export default function Home() {
             {placementSteps.map((step, index) => (
               <article
                 key={step.title}
-                className="rounded-lg border border-border-soft bg-background p-5"
+                className="premium-panel rounded-lg border border-border-soft bg-background p-5"
               >
                 <p className="font-mono text-sm font-semibold text-brand-red">
                   0{index + 1}
@@ -236,7 +250,7 @@ export default function Home() {
             {curriculumProgressionStages.map((stage) => (
               <article
                 key={stage.title}
-                className="rounded-lg border border-border-soft bg-surface p-6"
+                className="premium-panel rounded-lg border border-border-soft bg-surface p-6"
               >
                 <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
                   {stage.audience}
@@ -275,7 +289,7 @@ export default function Home() {
             {admissionsSteps.map((item, index) => (
               <article
                 key={item.title}
-                className="rounded-lg border border-border-soft bg-background p-6"
+                className="premium-panel rounded-lg border border-border-soft bg-background p-6"
               >
                 <p className="font-mono text-sm font-semibold text-brand-red">
                   0{index + 1}

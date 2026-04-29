@@ -49,16 +49,16 @@ export default function FaqPage() {
           },
         }}
       />
-      <section className="border-b border-border-soft bg-surface py-16 sm:py-20">
+      <section className="border-b border-border-soft bg-surface/80 py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Breadcrumbs items={[{ label: "FAQ" }]} />
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
             FAQ
           </p>
-          <h1 className="mt-4 max-w-4xl text-4xl font-semibold text-brand-blue-strong sm:text-5xl">
+          <h1 className="mt-4 max-w-4xl text-balance text-4xl font-semibold leading-tight text-brand-blue-strong sm:text-6xl">
             Clear answers for parents before they enquire
           </h1>
-          <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+          <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
             These answers use the current rebuild data and deliberately keep
             business-sensitive or unverified details out until they are
             confirmed.

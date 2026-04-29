@@ -1,17 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fbfaf7;
-  --foreground: #162033;
+  --background: #faf7f1;
+  --foreground: #172033;
   --surface: #ffffff;
-  --surface-muted: #f3f0e8;
-  --surface-blue: #eef5fb;
-  --brand-blue: #143866;
-  --brand-blue-strong: #0b2547;
-  --brand-red: #b82e3a;
-  --brand-gold: #c59a4a;
-  --border-soft: #ded8cb;
+  --surface-muted: #f0eadd;
+  --surface-blue: #eaf2f7;
+  --brand-blue: #16446f;
+  --brand-blue-strong: #0b2648;
+  --brand-red: #a8323b;
+  --brand-gold: #b98c3f;
+  --border-soft: #ddd2c0;
   --muted: #667085;
+  --ring: #a8323b;
 }
 
 @theme inline {
@@ -34,6 +35,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
@@ -44,6 +46,31 @@ a {
   text-underline-offset: 0.22em;
 }
 
+:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--ring) 42%, transparent);
+  outline-offset: 3px;
+}
+
 summary::-webkit-details-marker {
   display: none;
+}
+
+.warm-page-bg {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.72), transparent 18rem),
+    radial-gradient(circle at 12% 4%, rgba(185, 140, 63, 0.11), transparent 22rem),
+    linear-gradient(180deg, #faf7f1 0%, #f6f1e8 100%);
+}
+
+.premium-panel {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.75) inset,
+    0 18px 42px rgba(11, 38, 72, 0.08);
+}
+
+.fine-grid {
+  background-image:
+    linear-gradient(90deg, rgba(22, 68, 111, 0.055) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(22, 68, 111, 0.055) 1px, transparent 1px);
+  background-size: 36px 36px;
 }

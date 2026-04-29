@@ -15,8 +15,9 @@ type StatusBadgeProps = {
 export function StatusBadge({ status, label }: StatusBadgeProps) {
   return (
     <span
-      className={`inline-flex w-fit items-center rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] ${statusStyles[status]}`}
+      className={`inline-flex w-fit items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] shadow-sm ${statusStyles[status]}`}
     >
+      <span className="size-1.5 rounded-full bg-current" aria-hidden="true" />
       {label}
     </span>
   );

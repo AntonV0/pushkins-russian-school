@@ -17,7 +17,7 @@ export function MetricStrip({ metrics, tone = "light" }: MetricStripProps) {
 
   return (
     <dl
-      className={`grid grid-cols-1 gap-px overflow-hidden rounded-lg border ${gridClassName} ${
+      className={`premium-panel grid grid-cols-1 gap-px overflow-hidden rounded-lg border ${gridClassName} ${
         isDark
           ? "border-white/15 bg-white/15"
           : "border-border-soft bg-border-soft"

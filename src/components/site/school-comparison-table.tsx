@@ -28,7 +28,7 @@ function getNextStepLabel(school: School) {
 
 export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
   return (
-    <div className="overflow-hidden rounded-lg border border-border-soft bg-surface">
+    <div className="premium-panel overflow-hidden rounded-lg border border-border-soft bg-surface">
       <div className="border-b border-border-soft bg-white px-5 py-4">
         <p className="text-sm font-semibold text-brand-blue-strong">
           Branch comparison
@@ -114,7 +114,7 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
                 <td className="px-5 py-5">
                   <Link
                     href={getSchoolEnquiryHref(school)}
-                    className="inline-flex rounded-full border border-brand-blue/20 px-3 py-2 text-xs font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+                    className="inline-flex rounded-md border border-brand-blue/20 bg-white/70 px-3 py-2 text-xs font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
                   >
                     {getNextStepLabel(school)}
                   </Link>

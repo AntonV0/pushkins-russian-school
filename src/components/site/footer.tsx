@@ -6,8 +6,8 @@ import { BrandMark } from "./brand-mark";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border-soft bg-brand-blue-strong text-white">
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-12 md:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
+    <footer className="border-t border-white/10 bg-brand-blue-strong text-white">
+      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
         <div>
           <BrandMark className="[&_*]:text-white" />
           <p className="mt-3 max-w-md text-sm leading-6 text-white/75">
@@ -60,6 +60,12 @@ export function Footer() {
           <p className="mt-5 text-xs leading-5 text-white/55">
             {paymentDetails.bankDetailsStatus}
           </p>
+        </div>
+      </div>
+      <div className="border-t border-white/10">
+        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-5 text-xs leading-5 text-white/55 sm:flex-row sm:items-center sm:justify-between lg:px-8">
+          <p>Public rebuild content is reviewed before sensitive details are published.</p>
+          <p>© {new Date().getFullYear()} Pushkin&apos;s School</p>
         </div>
       </div>
     </footer>
