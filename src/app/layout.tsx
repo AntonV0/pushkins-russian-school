@@ -33,9 +33,6 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   manifest: "/manifest.webmanifest",
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     title: "Pushkin's School | Russian Language School Network",
     description: siteConfig.description,

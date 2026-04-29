@@ -161,11 +161,15 @@ Follow-up QA:
 Working well:
 
 - App Router route structure is coherent.
-- Sitemap includes static routes, schools, policies, and gallery years.
+- Sitemap includes static routes, schools, policies, and only gallery years with
+  approved media.
 - Robots disallows `/api/`; admin and registration prototype metadata noindexes
   those route groups.
 - Manifest and Open Graph image exist.
 - Supabase helpers are present for future work without live writes by default.
+- Prototype registration is restricted to the documented `sample-token` route,
+  and gallery year archives stay out of navigation and the sitemap until
+  approved public media exists.
 
 Follow-up QA:
 

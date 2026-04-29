@@ -35,6 +35,8 @@ export const metadata: Metadata = {
 };
 
 export default function GalleryPage() {
+  const hasApprovedMedia = approvedMediaAssets.length > 0;
+
   return (
     <main>
       <section className="border-b border-border-soft bg-surface py-16 sm:py-20">
@@ -131,50 +133,62 @@ export default function GalleryPage() {
             title="Year pages ready for reviewed public media"
           >
             <p>
-              The old gallery was organised by year. The rebuilt archive keeps
-              those routes while waiting for approved images, captions, and
-              privacy checks.
+              Year archives will open once reviewed images, captions, and
+              privacy checks are ready for public browsing.
             </p>
           </SectionIntro>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {galleryArchives.map((archive) => (
-              <Link
-                key={archive.year}
-                href={`/gallery/${archive.year}`}
-                className="group flex min-h-72 flex-col justify-between rounded-lg border border-border-soft bg-surface p-6 transition hover:-translate-y-0.5 hover:border-brand-red hover:shadow-md"
-              >
-                <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
-                    {archive.theme}
-                  </p>
-                  <h2 className="mt-3 text-4xl font-semibold text-brand-blue-strong">
-                    {archive.year}
-                  </h2>
-                  <p className="mt-4 text-sm leading-6 text-slate-600">
-                    {archive.tone}
-                  </p>
-                  <p className="mt-4 border-l border-brand-gold pl-4 text-sm leading-6 text-slate-700">
-                    {archive.readinessDetail}
-                  </p>
-                </div>
-                <div>
-                  <div className="mt-6 flex flex-wrap gap-2">
-                    {archive.highlights.map((highlight) => (
-                      <span
-                        key={highlight}
-                        className="rounded-full border border-border-soft px-3 py-1 text-xs font-semibold text-brand-blue-strong"
-                      >
-                        {highlight}
-                      </span>
-                    ))}
+          {hasApprovedMedia ? (
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {galleryArchives.map((archive) => (
+                <Link
+                  key={archive.year}
+                  href={`/gallery/${archive.year}`}
+                  className="group flex min-h-72 flex-col justify-between rounded-lg border border-border-soft bg-surface p-6 transition hover:-translate-y-0.5 hover:border-brand-red hover:shadow-md"
+                >
+                  <div>
+                    <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
+                      {archive.theme}
+                    </p>
+                    <h2 className="mt-3 text-4xl font-semibold text-brand-blue-strong">
+                      {archive.year}
+                    </h2>
+                    <p className="mt-4 text-sm leading-6 text-slate-600">
+                      {archive.tone}
+                    </p>
+                    <p className="mt-4 border-l border-brand-gold pl-4 text-sm leading-6 text-slate-700">
+                      {archive.readinessDetail}
+                    </p>
                   </div>
-                  <p className="mt-5 text-sm font-semibold text-muted">
-                    {archive.readinessLabel}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </div>
+                  <div>
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {archive.highlights.map((highlight) => (
+                        <span
+                          key={highlight}
+                          className="rounded-full border border-border-soft px-3 py-1 text-xs font-semibold text-brand-blue-strong"
+                        >
+                          {highlight}
+                        </span>
+                      ))}
+                    </div>
+                    <p className="mt-5 text-sm font-semibold text-muted">
+                      {archive.readinessLabel}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div className="mt-10 border-l-4 border-brand-gold bg-surface px-6 py-5">
+              <h2 className="text-lg font-semibold text-brand-blue-strong">
+                Year archives are waiting for approved photos
+              </h2>
+              <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">
+                The archive structure is ready, but individual year pages are
+                kept out of public navigation until approved images and captions
+                are added.
+              </p>
+            </div>
+          )}
         </div>
       </section>
 

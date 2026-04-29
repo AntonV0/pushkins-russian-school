@@ -10,7 +10,6 @@ import {
   getPolicyMetadata,
   getPolicyStatusTone,
   policies,
-  policyAssetConvention,
   policyPublicationChecklist,
   policySupportLinks,
 } from "@/data/policies";
@@ -151,17 +150,6 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
               </p>
               <p className="mt-2 text-sm leading-6 text-slate-600">
                 {downloadReadiness.description}
-              </p>
-              <p className="mt-4 text-xs leading-5 text-muted">
-                Approved PDFs must be stored in{" "}
-                <code className="rounded bg-background px-1.5 py-0.5 text-[0.7rem] text-brand-blue-strong">
-                  {policyAssetConvention.publicFolder}
-                </code>{" "}
-                and linked as{" "}
-                <code className="rounded bg-background px-1.5 py-0.5 text-[0.7rem] text-brand-blue-strong">
-                  {policyAssetConvention.publicPathPrefix}*.pdf
-                </code>
-                .
               </p>
             </div>
           </aside>

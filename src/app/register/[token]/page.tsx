@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import {
   registrationSafetyGuardrails,
   registrationSections,
@@ -19,10 +20,21 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return [{ token: "sample-token" }];
+}
+
 export default async function RegistrationInvitationPage({
   params,
 }: RegistrationInvitationPageProps) {
-  await params;
+  const { token } = await params;
+
+  if (token !== "sample-token") {
+    notFound();
+  }
+
   const parentSections = registrationSections.filter(
     (section) => section.parentFacing,
   );
