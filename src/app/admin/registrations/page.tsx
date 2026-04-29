@@ -4,6 +4,7 @@ import { RegistrationSummaryCards } from "@/components/admin/registration-summar
 import { RegistrationTable } from "@/components/admin/registration-table";
 import { RegistrationWorkflowPanel } from "@/components/admin/registration-workflow-panel";
 import { registrationSummary } from "@/data/registration";
+import { getAdminAccessDecision } from "@/lib/admin/access";
 
 export const metadata: Metadata = {
   title: "Registrations",
@@ -11,7 +12,9 @@ export const metadata: Metadata = {
     "Static admin registration scaffold for Pushkin's School onboarding. Prototype only; not connected to live data.",
 };
 
-export default function AdminRegistrationsPage() {
+export default async function AdminRegistrationsPage() {
+  const access = await getAdminAccessDecision("admin:registrations");
+
   return (
     <main className="bg-background">
       <section className="border-b border-border-soft bg-surface py-12 sm:py-16">
@@ -38,7 +41,8 @@ export default function AdminRegistrationsPage() {
               <p className="text-sm leading-6 text-slate-600">
                 {registrationSummary.totalRecords} sample records,{" "}
                 {registrationSummary.sectionCount} section definitions, and{" "}
-                {registrationSummary.consentCategoryCount} consent categories.
+                {registrationSummary.consentCategoryCount} consent categories.{" "}
+                {access.statusLabel}.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link

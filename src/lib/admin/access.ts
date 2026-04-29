@@ -2,6 +2,7 @@ export type AdminRole = "owner" | "finance" | "operations" | "viewer";
 
 export type AdminAccessScope =
   | "admin:overview"
+  | "admin:enquiries"
   | "admin:invoices"
   | "admin:payments"
   | "admin:registrations";
@@ -32,6 +33,7 @@ export type AdminAccessDecision =
 
 export const adminAccessRequirements: Record<AdminAccessScope, AdminRole[]> = {
   "admin:overview": ["owner", "finance", "operations", "viewer"],
+  "admin:enquiries": ["owner", "operations"],
   "admin:invoices": ["owner", "finance"],
   "admin:payments": ["owner", "finance"],
   "admin:registrations": ["owner", "operations"],

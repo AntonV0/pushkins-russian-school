@@ -9,6 +9,7 @@ import {
   sampleEnquiries,
   type EnquiryInboxStatus,
 } from "@/data/enquiries";
+import { getAdminAccessDecision } from "@/lib/admin/access";
 
 export const metadata: Metadata = {
   title: "Enquiries",
@@ -34,7 +35,9 @@ const summaryCards = [
   },
 ];
 
-export default function AdminEnquiriesPage() {
+export default async function AdminEnquiriesPage() {
+  const access = await getAdminAccessDecision("admin:enquiries");
+
   return (
     <main className="bg-background">
       <section className="border-b border-border-soft bg-surface py-12 sm:py-16">
@@ -60,7 +63,7 @@ export default function AdminEnquiriesPage() {
               <p className="text-sm leading-6 text-slate-600">
                 {enquiryInboxSummary.totalEnquiries} sample enquiries, no live
                 reads, no staff assignment, no email sending, and no stored
-                sensitive registration data.
+                sensitive registration data. {access.statusLabel}.
               </p>
               <Link
                 href="/admin"

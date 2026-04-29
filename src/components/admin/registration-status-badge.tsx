@@ -32,6 +32,7 @@ export function RegistrationInvitationBadge({
   return (
     <span
       title={meta.description}
+      aria-label={`${meta.label}: ${meta.description}`}
       className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-semibold ${toneClasses[meta.tone]}`}
     >
       {meta.label}
@@ -47,6 +48,7 @@ export function RegistrationReviewBadge({
   return (
     <span
       title={meta.description}
+      aria-label={`${meta.label}: ${meta.description}`}
       className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-semibold ${toneClasses[meta.tone]}`}
     >
       {meta.label}

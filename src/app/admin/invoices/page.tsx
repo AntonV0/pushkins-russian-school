@@ -4,6 +4,7 @@ import { InvoiceSummaryCards } from "@/components/admin/invoice-summary-cards";
 import { InvoiceTable } from "@/components/admin/invoice-table";
 import { InvoiceWorkflowPanel } from "@/components/admin/invoice-workflow-panel";
 import { invoiceSummary } from "@/data/invoices";
+import { getAdminAccessDecision } from "@/lib/admin/access";
 
 export const metadata: Metadata = {
   title: "Invoices",
@@ -11,7 +12,9 @@ export const metadata: Metadata = {
     "Admin invoice foundation for Pushkin's School payments. Shell only; not connected to live data or payment providers.",
 };
 
-export default function AdminInvoicesPage() {
+export default async function AdminInvoicesPage() {
+  const access = await getAdminAccessDecision("admin:invoices");
+
   return (
     <main className="bg-background">
       <section className="border-b border-border-soft bg-surface py-12 sm:py-16">
@@ -37,7 +40,8 @@ export default function AdminInvoicesPage() {
               <p className="text-sm leading-6 text-slate-600">
                 {invoiceSummary.totalInvoices} sample invoices,{" "}
                 {invoiceSummary.activeFollowUpCount} active follow-up states,
-                and no connected auth, storage, or payment execution.
+                and no connected auth, storage, or payment execution.{" "}
+                {access.statusLabel}.
               </p>
               <Link
                 href="/admin"
