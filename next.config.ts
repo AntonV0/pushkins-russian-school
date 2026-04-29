@@ -24,6 +24,51 @@ const nextConfig: NextConfig = {
     ];
   },
   async redirects() {
+    const legacyPolicyRedirects = [
+      ["safeguarding-policy", "safeguarding-policy"],
+      ["health-and-safety", "health-and-safety-policy"],
+      ["health-and-safety-policy", "health-and-safety-policy"],
+      ["gdpr-and-data-protection-policy", "gdpr-and-data-protection-policy"],
+      [
+        "special-educational-needs-sen-polic",
+        "special-educational-needs-sen-policy",
+      ],
+      [
+        "special-educational-needs-sen-policy",
+        "special-educational-needs-sen-policy",
+      ],
+      [
+        "fire-safety-and-emergency-evacuation",
+        "fire-safety-and-emergency-evacuation-policy",
+      ],
+      [
+        "fire-safety-and-emergency-evacuation-policy",
+        "fire-safety-and-emergency-evacuation-policy",
+      ],
+      ["prevent-duty-policy-statement", "prevent-duty-policy-statement"],
+      ["allegations-against-staff", "allegations-against-staff-policy"],
+      ["allegations-against-staff-policy", "allegations-against-staff-policy"],
+      [
+        "safer-recruitment-and-selection",
+        "safer-recruitment-and-selection-policy",
+      ],
+      [
+        "safer-recruitment-and-selection-policy",
+        "safer-recruitment-and-selection-policy",
+      ],
+      ["pupil-and-parent-code-of-conduct", "pupil-and-parent-code-of-conduct"],
+      ["pupil-and-parent-privacy-notice", "pupil-and-parent-privacy-notice"],
+      ["complaints-procedure", "complaints-procedure"],
+      ["staff-code-of-conduct", "staff-code-of-conduct"],
+      ["staff-privacy-notice", "staff-privacy-notice"],
+      ["staff-grievance-procedure", "staff-grievance-procedure"],
+      ["whistleblowing-policy", "whistleblowing-policy"],
+    ].map(([source, destination]) => ({
+      source: `/${source}`,
+      destination: `/policies/${destination}`,
+      permanent: true,
+    }));
+
     return [
       {
         source: "/about-us",
@@ -60,6 +105,7 @@ const nextConfig: NextConfig = {
         destination: "/schools/southend-on-sea",
         permanent: true,
       },
+      ...legacyPolicyRedirects,
       ...["2019", "2018", "2015", "2014", "2013", "2012"].map((year) => ({
         source: `/${year}`,
         destination: `/gallery/${year}`,

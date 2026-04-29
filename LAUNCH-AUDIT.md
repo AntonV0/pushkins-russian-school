@@ -167,6 +167,8 @@ highest-impact items that did not require new business facts:
   exists for the year.
 - Updated README and content verification wording to match the route/network-area
   model.
+- Added legacy policy redirects from old root-level document URLs into the new
+  `/policies/[slug]` routes, including the historical typo in the SEN policy URL.
 
 Remaining no-decision work after this pass is mostly visual QA and future
 approved-content import. Stronger trust proof still depends on business-approved

@@ -76,7 +76,7 @@ public before launch.
 
 | Item | Currently modelled | Business confirmation needed |
 | --- | --- | --- |
-| Accepted payment methods | Bank transfer; childcare vouchers listed as methods to confirm | [ ] Confirm [ ] Replace [ ] Hide until after enquiry |
+| Accepted payment methods | Payment method is confirmed after enquiry; exact methods are withheld from public UI | [ ] Confirm [ ] Replace [ ] Hide until after enquiry |
 | Annual enrolment fee | Category shown; exact amount withheld from public UI | [ ] Confirm amount [ ] Remove from public copy [ ] Branch-specific |
 | Introductory course | Category shown; exact amount and availability withheld from public UI | [ ] Confirm amount and availability [ ] Remove from public copy |
 | Term fees | Category shown; exact term amounts withheld from public UI | [ ] Confirm current academic-year fees [ ] Replace with "ask on enquiry" |
