@@ -39,6 +39,10 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
     ? params?.school
     : undefined;
   const selectedIntent = params?.intent;
+  const enquiryStorageReady =
+    process.env.ENQUIRY_STORAGE_MODE === "supabase" &&
+    Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL) &&
+    Boolean(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
 
   return (
     <main>
@@ -149,6 +153,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           <EnquiryForm
             selectedSchool={selectedSchool}
             selectedIntent={selectedIntent}
+            mode={enquiryStorageReady ? "live" : "preview"}
           />
         </div>
       </section>

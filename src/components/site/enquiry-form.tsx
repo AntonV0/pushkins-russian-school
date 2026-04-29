@@ -22,11 +22,13 @@ import {
 type EnquiryFormProps = {
   selectedSchool?: string;
   selectedIntent?: string;
+  mode?: "live" | "preview";
 };
 
 export function EnquiryForm({
   selectedSchool,
   selectedIntent,
+  mode = "preview",
 }: EnquiryFormProps) {
   const [state, formAction] = useActionState(
     submitEnquiry,
@@ -36,6 +38,10 @@ export function EnquiryForm({
   const initialPreferredRoute = getInitialPreferredRoute(selectedSchool);
   const initialIntent = normalizeEnquiryIntent(selectedIntent);
   const statusId = "enquiry-form-status";
+  const formIntro =
+    mode === "live"
+      ? "Submit a simple initial enquiry. The detailed registration form for health, safeguarding, emergency contacts, and consents comes later if your family joins."
+      : "Use this form to check the details to include, then email the school directly while website enquiry delivery is being connected.";
 
   return (
     <form
@@ -57,9 +63,7 @@ export function EnquiryForm({
           className="mt-3 text-sm leading-6 text-slate-600"
           aria-live="polite"
         >
-          Submit a simple initial enquiry. The detailed registration form for
-          health, safeguarding, emergency contacts, and consents comes later if
-          your family joins.
+          {formIntro}
         </p>
       </div>
 
@@ -325,7 +329,7 @@ export function EnquiryForm({
           </a>
           .
         </p>
-        <SubmitButton />
+        <SubmitButton mode={mode} />
       </div>
     </form>
   );
@@ -401,7 +405,11 @@ function errorDescribedBy(
     .join(" ") || undefined;
 }
 
-function SubmitButton() {
+function SubmitButton({
+  mode,
+}: {
+  mode: NonNullable<EnquiryFormProps["mode"]>;
+}) {
   const { pending } = useFormStatus();
 
   return (
@@ -410,7 +418,13 @@ function SubmitButton() {
       disabled={pending}
       className="inline-flex items-center justify-center rounded-full bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30 disabled:cursor-not-allowed disabled:bg-slate-400"
     >
-      {pending ? "Submitting..." : "Submit initial enquiry"}
+      {pending
+        ? mode === "live"
+          ? "Submitting..."
+          : "Checking..."
+        : mode === "live"
+          ? "Submit initial enquiry"
+          : "Check enquiry details"}
     </button>
   );
 }
