@@ -189,9 +189,9 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 title="A clear school-day rhythm"
               >
                 <p>
-                  The current branch timetable is represented as structured
-                  data so session details can be adjusted without changing the
-                  page template.
+                  The current branch timetable gives parents a practical sense
+                  of the weekend rhythm before they ask about spaces, class
+                  fit, and start dates.
                 </p>
               </SectionIntro>
 

@@ -44,7 +44,7 @@ export async function generateMetadata({
 
   return {
     title: archive.title,
-    description: `${archive.title} shell for approved Pushkin's School public images.`,
+    description: `${archive.title} for selected Pushkin's School public images and captions.`,
     robots:
       approvedAssets.length > 0
         ? undefined
@@ -117,7 +117,7 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
                 {archive.readinessLabel}
               </span>
               <span className="inline-flex items-center rounded-full border border-border-soft bg-background px-4 py-2 text-sm font-semibold text-muted">
-                Curated before publication
+                Selected with care
               </span>
             </div>
           </div>
@@ -126,7 +126,7 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
               {archive.theme}
             </p>
             <h2 className="mt-3 text-2xl font-semibold leading-tight text-brand-blue-strong">
-              A careful public record for approved school moments
+              A careful public record for selected school moments
             </h2>
             <p className="mt-4 border-l border-brand-gold pl-4 text-sm leading-6 text-slate-700">
               {archive.readinessDetail}
@@ -149,14 +149,14 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
           <MediaAssetGrid
             assets={approvedAssets}
-            emptyLabel={`${archive.year} approved image slot`}
-            emptyDescription="Reserved for an approved image with consent, alt text, caption, and an optimised public file."
+            emptyLabel={`${archive.year} image space`}
+            emptyDescription="Reserved for a selected school image with consent, alt text, caption, and an optimised public file."
           />
 
           <div>
             <AssetReadinessPanel
               title="Curation standard"
-              status="The public page is ready for approved images, captions, and alt text. Private source material stays out of the website."
+              status="Selected photos, captions, and alt text will appear here once they are suitable for public school use."
               notes={[...archive.expectedContent, ...mediaReadinessNotes]}
             />
             <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col">
@@ -165,7 +165,7 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
               </ButtonLink>
               <ButtonLink href="/schools">Explore schools</ButtonLink>
               <span className="inline-flex items-center justify-center rounded-md border border-border-soft px-5 py-3 text-sm font-semibold text-muted">
-                Approved photos will be added here
+                Photos will be added here
               </span>
             </div>
           </div>
@@ -176,11 +176,11 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
           <div>
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
-              Before this archive goes live
+              Before this archive becomes visual
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              The archive page can stay visible as a polished public structure,
-              then become visual once approved media records are ready.
+              This archive can guide families now, then become visual once
+              suitable school photos and captions are ready.
             </p>
           </div>
           <ol className="overflow-hidden rounded-lg border border-border-soft bg-background">

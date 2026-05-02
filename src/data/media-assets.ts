@@ -80,10 +80,10 @@ export const visualPlaceholderSlots: VisualPlaceholderSlot[] = [
     title: "Language, culture, and a shared school rhythm",
     eyebrow: "School life",
     summary:
-      "A warm editorial slot for the About page while approved classroom photos are selected.",
+      "A warm, child-safe visual for the everyday materials of Russian language learning.",
     motif: "language-table",
     status: "illustration-ready",
-    statusLabel: "Artwork prepared while school photos are approved",
+    statusLabel: "Illustration used until a suitable school photo is available",
     futureAssetRole: "feature",
     suggestedPrompt:
       "Warm editorial illustration of a Russian language learning table with open books, notebooks, pencils, and subtle Cyrillic letter cards; no people, no faces, no school logos, no private documents, natural daylight, refined educational website style.",
@@ -101,10 +101,10 @@ export const visualPlaceholderSlots: VisualPlaceholderSlot[] = [
     title: "A curriculum built from reading, speech, and culture",
     eyebrow: "Learning materials",
     summary:
-      "A visual pause for curriculum content using books, craft textures, and exam-aware study cues.",
+      "Books, writing, cultural work, and study habits sit at the centre of the learning pathway.",
     motif: "culture-shelf",
     status: "illustration-ready",
-    statusLabel: "Generic study artwork ready for final illustration",
+    statusLabel: "Child-safe study illustration",
     futureAssetRole: "feature",
     suggestedPrompt:
       "Warm editorial illustration of Russian language study materials on shelves and a desk: books, grammar notes, folk-pattern paper details, a pencil, and exam revision cards; no people, no faces, no identifiable school materials, refined modern educational website style.",
@@ -122,10 +122,10 @@ export const visualPlaceholderSlots: VisualPlaceholderSlot[] = [
     title: "From first enquiry to the right learning option",
     eyebrow: "Parent journey",
     summary:
-      "A calm visual for the admissions process, focused on steps and decisions rather than child imagery.",
+      "A calm view of the decisions families make before the first conversation with the school.",
     motif: "learning-journey",
     status: "illustration-ready",
-    statusLabel: "Process artwork ready for final illustration",
+    statusLabel: "Simple, privacy-conscious admissions visual",
     futureAssetRole: "feature",
     suggestedPrompt:
       "Warm editorial illustration of a parent enquiry journey for a Russian language school: simple path markers, calendar card, notebook, pencil, and branch choice cards; no people, no faces, no private forms, no logos, polished educational website style.",
@@ -140,13 +140,13 @@ export const visualPlaceholderSlots: VisualPlaceholderSlot[] = [
   {
     id: "gallery-approved-archive",
     page: "gallery",
-    title: "Approved archive images will appear soon",
+    title: "A careful archive of school life",
     eyebrow: "Gallery readiness",
     summary:
-      "An honest gallery media space that signals future archive depth without using private media.",
+      "Public archive pages are prepared for selected school photos, captions, and year-by-year context.",
     motif: "archive-grid",
     status: "gallery-placeholder",
-    statusLabel: "Photos coming after approval",
+    statusLabel: "Photos will appear after consent and caption checks",
     futureAssetRole: "archive",
     suggestedPrompt:
       "Warm abstract editorial illustration of empty gallery frames, archive labels, and an approval checklist for a school photo archive; no people, no faces, no real photos, no private documents, restrained educational website style.",
@@ -268,9 +268,9 @@ export const mediaIngestionSteps = [
 ];
 
 export const mediaReadinessNotes = [
-  "No approved public photos are registered yet.",
-  "Current gallery media spaces are intentional and should remain until image approval is complete.",
-  "Generated illustrations can support warm editorial pages only when they are generic, non-identifying, and clearly separate from the gallery archive.",
+  "Selected public photos will appear after consent and caption checks.",
+  "Gallery spaces stay simple until real school images are suitable for publication.",
+  "Illustrations support general pages, while gallery archives remain reserved for real school moments.",
 ];
 
 export function getApprovedMediaByYear(year: string) {

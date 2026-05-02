@@ -292,12 +292,12 @@ export default function CurriculumPage() {
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
           <div>
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
-              Details that can be added next
+              More detail as families need it
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              The page is useful for parents now, and it can grow with more
-              detailed teaching schemes, named materials, and branch-specific
-              notes as they are approved for public use.
+              The curriculum is useful for parents at enquiry stage, and the
+              school can share more detailed teaching schemes, named materials,
+              and branch-specific notes where they are relevant.
             </p>
           </div>
           <div className="rounded-lg border border-border-soft bg-surface p-5">

@@ -6,7 +6,6 @@ import { TrustSignals } from "@/components/site/trust-signals";
 import { VisualStoryPanel } from "@/components/site/visual-story-panel";
 import {
   curriculumMaterials,
-  curriculumReviewNotes,
   educationPrinciples,
   placementSteps,
 } from "@/data/curriculum";
@@ -16,10 +15,9 @@ import { networkSummary } from "@/data/schools";
 const aboutVisual = getVisualPlaceholderSlot("about-community-table");
 
 const reviewNotes = [
-  ...curriculumReviewNotes,
-  "Partnerships and external references will be added once current wording is confirmed.",
-  "Trips, certificates, staff details, and media will be added where the school has approved public use.",
-  "Branch statuses and timetables stay practical, with families encouraged to confirm details through enquiry.",
+  "Class groups and placement guidance are shared clearly, with exact fit confirmed through enquiry.",
+  "Branch pages focus on current practical details so families can choose the best next step.",
+  "Photos, staff details, certificates, and partner references are added only when they are suitable for public use.",
 ];
 
 const schoolStory = [
@@ -44,7 +42,7 @@ const parentSignals = [
   "A clear weekend rhythm with assembly, lessons, and supervised breaks",
   "Russian used for communication, reading, writing, creativity, and culture",
   "A practical enquiry process that can discuss local classes, online support, or exam goals",
-  "A public website structure ready for approved photos, staff details, and archive evidence",
+  "A public school record that can grow with suitable photos, staff details, and archive evidence",
 ];
 
 export const metadata: Metadata = {
@@ -72,13 +70,14 @@ export default function AboutPage() {
               About Pushkin&apos;s School
             </p>
             <h1 className="mt-4 max-w-4xl text-balance text-4xl font-semibold leading-tight text-brand-blue-strong sm:text-6xl">
-              An established Russian school community, presented with care
+              An established Russian school community for children and families
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
               Pushkin&apos;s School is a warm, academic weekend supplementary
               school for children studying Russian language, literature, and
-              culture in the UK. The rebuild gives that story a more confident
-              public shape while keeping unapproved claims out of view.
+              culture in the UK. Families can see the learning approach,
+              locations, admissions pathway, and policy structure before they
+              enquire.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/schools">Explore schools</ButtonLink>
@@ -100,22 +99,21 @@ export default function AboutPage() {
             >
               <p>
                 Parents need to see more than a list of subjects. The About page
-                now frames Pushkin&apos;s School as a long-term educational
+                frames Pushkin&apos;s School as a long-term educational
                 setting: a place where Russian is practised, read, written,
                 performed, and kept culturally alive across childhood.
               </p>
             </SectionIntro>
             <div className="mt-8 space-y-5 text-base leading-7 text-slate-700">
               <p>
-                The school&apos;s public message is deliberately mature: it
-                focuses on what can be said responsibly today, while making room
-                for approved archive photographs, staff biographies, partner
-                references, and exam outcomes to be added later.
+                The school&apos;s public message focuses on what matters most to
+                parents: a reliable weekend rhythm, thoughtful placement, clear
+                branch information, and careful safeguarding and policy
+                signposting.
               </p>
               <p>
-                That creates a more credible parent-facing story. Families can
-                understand the school&apos;s standards and rhythm through practical,
-                parent-facing detail rather than generic promises.
+                Families can understand the school&apos;s standards and rhythm
+                through practical detail rather than generic promises.
               </p>
             </div>
           </div>
@@ -157,7 +155,7 @@ export default function AboutPage() {
               <p>
                 The school message centres on bilingual development, practical
                 communication, cultural literacy, and a shared curriculum. The
-                page now reads as a coherent philosophy rather than a set of
+                page reads as a coherent philosophy rather than a set of
                 interchangeable boxes.
               </p>
             </SectionIntro>
@@ -255,8 +253,8 @@ export default function AboutPage() {
           >
             <p>
               The school model keeps a shared learning structure across current
-              and future locations. The rebuild makes that model data-driven so
-              approved branch details can be added without redesigning pages.
+              and future locations, while each branch page gives families the
+              practical details they need before enquiring.
             </p>
           </SectionIntro>
           <MetricStrip
@@ -272,8 +270,7 @@ export default function AboutPage() {
       <section className="bg-background py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <TrustSignals
-            includeReviewQueue
-            intro="The site gives parents clear credibility signals now, with room to add approved history, testimonial, partner, staff, and exam-result proof points later."
+            intro="Parents can check school locations, curriculum structure, policy summaries, and practical next steps before they contact the school."
           />
         </div>
       </section>
@@ -282,14 +279,15 @@ export default function AboutPage() {
         <div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-[1fr_0.9fr] lg:px-8">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
-              School record updates
+              Parent confidence
             </p>
             <h2 className="mt-3 text-3xl font-semibold">
-              What will be added next
+              Clear today, careful as the record grows
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-white/75">
-              The public story can grow with approved biography, partner
-              references, staff details, trips, certificates, and media.
+              The school can add more history, staff detail, trips,
+              certificates, and photographs over time while keeping the current
+              parent journey clear and reliable.
             </p>
           </div>
           <ul className="space-y-3 text-sm leading-6 text-white/80">

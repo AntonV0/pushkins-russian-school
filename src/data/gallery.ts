@@ -17,26 +17,26 @@ export type GalleryWorkflowStage = {
 };
 
 export const galleryReadinessNotes = [
-  "Use only approved public images from the final asset workflow.",
-  "Keep private archive files and audit material out of public assets.",
+  "Use only images selected for public school use.",
+  "Keep private archive files, source documents, and unreviewed images off the website.",
   "Check captions for child privacy, consent, and current publication suitability.",
 ];
 
 export const galleryWorkflowStages: GalleryWorkflowStage[] = [
   {
-    label: "Local preparation",
+    label: "Careful selection",
     description:
-      "Old-site exports, screenshots, and candidate photo batches stay out of public assets until approved.",
+      "Archive photos are selected carefully before they are shown to prospective families.",
   },
   {
-    label: "Approved media registry",
+    label: "Caption and consent check",
     description:
-      "Only optimised images with consent status, alt text, captions, and year metadata are rendered.",
+      "Each public image needs suitable consent, alt text, captioning, and year context.",
   },
   {
     label: "Public archive page",
     description:
-      "Year pages are ready for launch-safe collections without exposing private source material.",
+      "Year pages become visual records of school life once the selected images are ready.",
   },
 ];
 
@@ -60,7 +60,7 @@ export const galleryArchives: GalleryArchive[] = [
     year: "2019",
     title: "2019 archive",
     theme: "Community events",
-    tone: "Performances, celebrations, and school community moments that can show the school community's warmth once approved.",
+    tone: "Performances, celebrations, and school community moments that can show the warmth of school life once suitable images are selected.",
     highlights: ["Assemblies", "Celebrations", "Creative work"],
   },
   {
@@ -81,35 +81,35 @@ export const galleryArchives: GalleryArchive[] = [
     year: "2014",
     title: "2014 archive",
     theme: "Performing arts",
-    tone: "A future home for approved stage, recital, and celebration images with public-safe captions.",
+    tone: "A future home for selected stage, recital, and celebration images with public-safe captions.",
     highlights: ["Recitals", "Drama", "Music"],
   },
   {
     year: "2013",
     title: "2013 archive",
     theme: "Early archive",
-    tone: "Approved legacy images can show the school's established history without exposing raw archives.",
+    tone: "Selected legacy images can show the school's established history without exposing raw archives.",
     highlights: ["Archive", "Community", "History"],
   },
   {
     year: "2012",
     title: "2012 archive",
     theme: "Foundations",
-    tone: "The oldest retained archive year, ready for carefully approved public records and restrained captions.",
+    tone: "The oldest retained archive year, ready for carefully selected public records and restrained captions.",
     highlights: ["Legacy", "Milestones", "School life"],
   },
 ].map((archive) => ({
   ...archive,
   summary:
-    "This archive is reserved for approved public images from the old site and school records. Private source files are not published here.",
-  status: "Images awaiting approved asset selection",
-  readinessLabel: "Approved images coming soon",
+    "This archive is reserved for selected public images from school records. Private source files are not published here.",
+  status: "Images being selected for public use",
+  readinessLabel: "Archive images in preparation",
   readinessDetail:
-    "The page, media slots, metadata expectations, and publication checks are ready for approved public media.",
+    "This year page is prepared for selected public photos, captions, and school-life context.",
   expectedContent: [
     ...galleryReadinessNotes,
-    "Record source filename privately for traceability without exposing raw files.",
     "Optimise file size, alt text, and image dimensions before publishing.",
+    "Balance classroom, creative, performance, and community moments where suitable images are available.",
   ],
 }));
 

@@ -84,9 +84,9 @@ export default function GalleryPage() {
               School life, shared with care
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
-              The gallery is being prepared as a thoughtful public record of
-              lessons, performances, celebrations, and cultural traditions from
-              Pushkin&apos;s School.
+              A thoughtful public record of lessons, performances,
+              celebrations, and cultural traditions from Pushkin&apos;s School will
+              appear here as suitable images are selected.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/schools">Explore schools</ButtonLink>
@@ -104,10 +104,10 @@ export default function GalleryPage() {
                 { label: "Archive years", value: galleryArchives.length },
                 { label: "Themes", value: galleryThemes.length },
                 {
-                  label: "Media curation",
+                  label: "Photo care",
                   value: hasApprovedMedia
                     ? approvedMediaAssets.length
-                    : "Preparing",
+                    : "In progress",
                 },
               ]}
             />
@@ -225,9 +225,9 @@ export default function GalleryPage() {
                   Archive preview
                 </h2>
                 <p className="mt-3 text-sm leading-6 text-slate-600">
-                  Public year pages will open as curated images and captions are
-                  approved. Until then, this preview shows the school-life story
-                  the gallery is being shaped to tell.
+                  Public year pages will open as suitable images and captions
+                  are selected. Until then, this preview shows the school-life
+                  story the gallery is being shaped to tell.
                 </p>
               </div>
               <div className="divide-y divide-border-soft">

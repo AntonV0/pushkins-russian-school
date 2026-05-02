@@ -185,9 +185,9 @@ export default function AdmissionsPage() {
             title="Fee categories to confirm before joining"
           >
             <p>
-              Fee and payment categories are centralized in one editable data
-              object. Current amounts and payment instructions are confirmed
-              directly by the school after enquiry.
+              Fee and payment categories are kept clear at enquiry stage.
+              Current amounts and payment instructions are confirmed directly
+              by the school before a family joins.
             </p>
           </SectionIntro>
           <div className="grid gap-3 sm:grid-cols-2">

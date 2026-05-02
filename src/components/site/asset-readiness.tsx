@@ -15,7 +15,7 @@ type MediaAssetGridProps = {
 };
 
 export function AssetReadinessPanel({
-  title = "Asset readiness",
+  title = "Publication care",
   status,
   notes,
 }: AssetReadinessPanelProps) {
@@ -43,15 +43,15 @@ export function AssetReadinessPanel({
 
 export function MediaAssetGrid({
   assets,
-  emptyLabel = "Approved image slot",
-  emptyDescription = "Reserved for an approved, optimised public image.",
+  emptyLabel = "Image space",
+  emptyDescription = "Reserved for a selected, optimised public image.",
   slotCount = 4,
 }: MediaAssetGridProps) {
   if (assets.length === 0) {
     return (
       <div
         className="grid gap-4 sm:grid-cols-2"
-        aria-label="Approved media spaces"
+        aria-label="Public gallery image spaces"
       >
         {Array.from({ length: slotCount }, (_, index) => (
           <figure
@@ -75,7 +75,7 @@ export function MediaAssetGrid({
                 {emptyLabel} {index + 1}
               </p>
               <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-muted">
-                Caption to add
+                Caption to follow
               </p>
               <p className="mt-2 max-w-xs text-xs leading-5 text-slate-600">
                 {emptyDescription}

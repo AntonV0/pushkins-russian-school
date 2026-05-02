@@ -94,7 +94,7 @@ export const faqGroups: FaqGroup[] = [
       {
         question: "Are bank details published yet?",
         answer:
-          "No. Payment instructions and bank details are provided directly by the school until the final public payment wording is approved.",
+          "No. Payment instructions and bank details are provided directly by the school until the final public payment wording is ready.",
       },
       {
         question: "Can families use childcare vouchers?",
@@ -106,22 +106,22 @@ export const faqGroups: FaqGroup[] = [
   {
     title: "Policies, gallery, and documents",
     summary:
-      "How the rebuild handles public documents and approved media safely.",
+      "How public documents, gallery images, and enquiry details are handled carefully.",
     items: [
       {
         question: "Why are some policy downloads not shown yet?",
         answer:
-          "Policy summaries are available first. Public downloads are linked only when the documents are updated, approved, and checked so families see the right public version.",
+          "Policy summaries are available first. Public downloads are linked only when the documents are updated and checked so families see the right public version.",
       },
       {
         question: "Why are some gallery spaces waiting for photos?",
         answer:
-          "Raw screenshots are intentionally not used as website assets. Gallery year pages are ready for approved, optimized public images once the asset workflow is complete.",
+          "Gallery year pages are reserved for selected, optimised school images with suitable captions and consent checks.",
       },
       {
         question: "Will the website store enquiry form information?",
         answer:
-          "The enquiry form validates only the first details needed for a reply. Live storage should be enabled only after privacy wording, retention, staff access, and Supabase row-level security are approved.",
+          "The enquiry form asks only for the first details needed for a reply. Full registration, consent, emergency contact, and health information are requested later if a family joins.",
       },
     ],
   },

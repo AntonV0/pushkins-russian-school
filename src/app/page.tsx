@@ -41,7 +41,7 @@ export default function Home() {
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-red sm:tracking-[0.2em]">
               Weekend supplementary Russian school for children
             </p>
-            <h1 className="mt-5 max-w-4xl break-words text-4xl font-semibold leading-[0.98] text-brand-blue-strong sm:text-6xl lg:text-7xl">
+            <h1 className="mt-5 max-w-4xl break-words text-4xl font-semibold leading-[1.02] text-brand-blue-strong sm:text-6xl lg:text-6xl">
               Pushkin&apos;s School of Russian Language and Literature
             </h1>
             <p className="mt-6 max-w-2xl text-pretty text-xl leading-8 text-slate-700">
@@ -100,11 +100,10 @@ export default function Home() {
               title="Start with the nearest school location"
             >
               <p>
-                The original school site presented five locations in England:
-                High Wycombe, Hemel Hempstead, Bracknell, Chelmsford, and
-                Southend-on-Sea. Current public pages keep each location visible
-                while exact venue, timetable, and availability details are
-                confirmed through enquiry.
+                Families can compare High Wycombe, Hemel Hempstead, Bracknell,
+                Chelmsford, and Southend-on-Sea in one place, then enquire with
+                the right location, age, Russian level, and goal already in
+                mind.
               </p>
             </SectionIntro>
             <div className="mt-7 hidden lg:block">
@@ -121,10 +120,10 @@ export default function Home() {
                   <div className="fine-grid absolute inset-0 opacity-25" aria-hidden="true" />
                   <div className="absolute inset-x-8 top-8 rounded-md border border-white/20 bg-white/10 p-5">
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/65">
-                      Approved media space
+                      School life
                     </p>
                     <p className="mt-3 text-2xl font-semibold leading-tight">
-                      Approved class, craft, or performance photo
+                      Language, culture, performance, and community
                     </p>
                   </div>
                   <div className="absolute bottom-8 left-8 right-10 grid gap-3 sm:grid-cols-3">
@@ -140,15 +139,15 @@ export default function Home() {
                 </div>
                 <div className="p-6 sm:p-8">
                   <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
-                    Parent decision point
+                    What parents compare
                   </p>
                   <h2 className="mt-4 text-3xl font-semibold leading-tight text-brand-blue-strong">
                     A local Saturday or Sunday rhythm, not a casual activity
                   </h2>
                   <p className="mt-4 text-sm leading-6 text-slate-600">
-                    Parents need to understand where classes happen, whether a
-                    place is available, how the child will be placed, and what
-                    the school offers beyond language drills.
+                    Parents can quickly understand where classes happen,
+                    whether a place is available, how children are placed, and
+                    what the school offers beyond language drills.
                   </p>
                   <dl className="mt-6 grid gap-4 text-sm sm:grid-cols-3">
                     <div>
@@ -230,7 +229,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <TrustSignals
             align="center"
-            intro="Families can check the school locations, curriculum, and policy structure before they enquire, with further school proof points added as approved records become available."
+            intro="Families can check the school locations, curriculum, and policy structure before they enquire, with further school proof points added as suitable public records become available."
           />
         </div>
       </section>
@@ -295,9 +294,9 @@ export default function Home() {
             title="A thoughtful start in the right group"
           >
             <p>
-              The rebuilt site now separates parent enquiry, teacher placement,
-              and first-weeks check-in so the process feels clear before a
-              family commits to the right learning option.
+              The school separates the first parent enquiry, teacher placement,
+              and first-weeks check-in so families know what happens before
+              they commit to the right learning option.
             </p>
           </SectionIntro>
           <div className="relative">
@@ -447,10 +446,11 @@ function HeroSchoolVisual() {
           <div className="absolute inset-6 rounded-md border border-dashed border-brand-blue/20 bg-white/55" />
           <div className="absolute bottom-8 left-8 right-8">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
-              Approved photo space
+              Classroom rhythm
             </p>
             <p className="mt-3 max-w-sm text-2xl font-semibold leading-tight text-brand-blue-strong">
-              A warm approved photo of pupils learning, reading, or performing
+              Reading, speaking, writing, and cultural work in a weekend school
+              setting
             </p>
           </div>
         </div>

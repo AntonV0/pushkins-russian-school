@@ -154,9 +154,9 @@ const pendingSchoolPolicyMetadata: Pick<
   "publicationStatus" | "status" | "statusDescription" | "reviewCadence" | "version"
 > = {
   publicationStatus: "pending-review",
-  status: "Formal PDF coming soon",
+  status: "Summary available now",
   statusDescription:
-    "The public summary is available now. The formal policy PDF will be linked when the approved public version is ready.",
+    "The public summary is available now. A formal policy PDF will be linked when the approved public version is ready.",
   reviewCadence:
     "The school will add owner, version, update date, and next update date with the downloadable document.",
   version: "Public summary",
@@ -238,7 +238,7 @@ function createPolicies(
     ...(documentType === "External guidance"
       ? externalGuidanceOverrides[title] ?? {
           publicationStatus: "external-review-needed" as const,
-          status: "External guidance link coming soon",
+          status: "Guidance source to confirm",
           statusDescription:
             "The guidance source will be checked before a public link is shown.",
           reviewCadence: "Check source guidance before showing a public link.",
@@ -500,8 +500,8 @@ export function getPolicyAvailabilitySummary(policy: Policy) {
   }
 
   return policy.documentType === "External guidance"
-    ? "External link coming soon"
-    : "Formal PDF coming soon";
+    ? "Guidance source to confirm"
+    : "Summary available now";
 }
 
 export function getPolicyDownloadReadiness(policy: Policy) {
@@ -541,7 +541,7 @@ export function getPolicyDownloadReadiness(policy: Policy) {
   }
 
   return {
-    label: "Download coming soon",
+    label: "Summary available",
     description:
       "The summary is available now, and the download will appear when the approved document is ready.",
   };
