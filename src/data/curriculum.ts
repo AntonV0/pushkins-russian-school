@@ -39,7 +39,7 @@ export const curriculumPillars: CurriculumPillar[] = [
   },
   {
     title: "Exam-aware progression",
-    body: "Older pupils can discuss GCSE or A Level goals early, so the school can confirm whether a local class, online lessons, or focused self-study is the best route.",
+    body: "Older pupils can discuss GCSE or A Level goals early, so the school can confirm whether a local class, online lessons, or focused self-study is the best option.",
   },
 ];
 
@@ -65,7 +65,7 @@ export const placementSteps: PlacementStep[] = [
   },
   {
     title: "Discuss the best starting point",
-    body: "Teachers use the enquiry details, branch availability, and the child's current confidence to suggest the most sensible starting group or learning route.",
+    body: "Teachers use the enquiry details, branch availability, and the child's current confidence to suggest the most sensible starting group or learning option.",
   },
   {
     title: "Review after the first weeks",
@@ -108,7 +108,7 @@ export const curriculumProgressionStages: CurriculumProgressionStage[] = [
     title: "Exam-focused preparation",
     audience: "GCSE and A Level learners",
     parentValue:
-      "A focused discussion route for families planning qualifications, including whether local classes, online lessons, or self-study support will fit best.",
+      "A focused discussion for families planning qualifications, including whether local classes, online lessons, or self-study support will fit best.",
     focusAreas: [
       "Exam goals and timescale",
       "Speaking, writing, reading, and listening skills",
@@ -138,37 +138,37 @@ export const curriculumRouteRecommendations: CurriculumRouteRecommendation[] = [
     bestWhen:
       "A local branch is online-only, too far away, or the child needs live online group or private lessons.",
     recommendation:
-      "Use the online-learning enquiry route or visit Volna's own site once the family is ready to compare online support.",
+      "Use the online-learning enquiry option or visit Volna's own site once the family is ready to compare online support.",
     href: "/contact?intent=online-learning#enquiry-form",
     ctaLabel: "Ask about online learning",
   },
   {
     title: "Ask about GCSERussian.com",
     bestWhen:
-      "The main goal is GCSE Russian and the family wants a focused self-study route alongside or instead of lessons.",
+      "The main goal is GCSE Russian and the family wants focused self-study support alongside or instead of lessons.",
     recommendation:
-      "Use the exam-preparation enquiry route to discuss whether focused GCSE self-study is the right fit.",
+      "Use the exam-preparation enquiry option to discuss whether focused GCSE self-study is the right fit.",
     href: "/contact?intent=exam-preparation#enquiry-form",
     ctaLabel: "Ask about GCSE self-study",
   },
 ];
 
 export const curriculumReviewNotes = [
-  "Named textbooks, detailed yearly schemes, and assessment documents should be confirmed before publication.",
-  "External partnerships and historic institutional references should remain unpublished until reviewed.",
+  "Named textbooks, detailed yearly schemes, and assessment documents can be added once approved for public use.",
+  "External partnerships and historic institutional references can be added when current wording is confirmed.",
 ];
 
 export const curriculumDetailsPendingReview: CurriculumReviewItem[] = [
   {
     title: "Class-by-class schemes",
-    body: "Detailed curriculum by Junior, Middle, Senior, Grade Zero, Grades 1-4, GCSE, and A Level groups should be approved by the headteacher before publication.",
+    body: "Detailed curriculum by Junior, Middle, Senior, Grade Zero, Grades 1-4, GCSE, and A Level groups can be added after headteacher approval.",
   },
   {
     title: "Assessment and outcomes",
-    body: "Public wording should stay high-level until assessment language, expected progress, and exam preparation claims are reviewed.",
+    body: "Public wording can expand once assessment language, expected progress, and exam preparation claims are approved.",
   },
   {
     title: "Branch-specific teaching notes",
-    body: "Individual network areas may need their own notes later, especially where current status, staffing, or timetable details still need approval.",
+    body: "Individual school locations may need their own notes later, especially where current status, staffing, or timetable details still need approval.",
   },
 ];

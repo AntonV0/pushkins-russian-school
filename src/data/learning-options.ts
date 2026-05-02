@@ -32,15 +32,15 @@ export const learningOptions: LearningOption[] = [
     label: "Local weekend classes",
     delivery: "In-person branches where available",
     summary:
-      "Weekend Russian school routes for children learning language, literacy, culture, and exam preparation in a structured school setting.",
+      "Weekend Russian school classes for children learning language, literacy, literature, culture, and exam preparation in a structured school setting.",
     bestFor: [
       "Families near a current or future local branch",
       "Children who benefit from classroom rhythm and community",
-      "Parents looking for a school network with branch-specific pages",
+      "Parents looking for a serious supplementary school",
     ],
     audience: "Children and young people, including GCSE and A Level learners.",
     relationship:
-      "This is the core school network. Online-only network areas keep full pages so families can register interest locally.",
+      "This is the main school offer. Location pages stay visible so families can see where classes have operated and register interest locally.",
     primaryCta: {
       label: "Compare school branches",
       href: "/schools",
@@ -56,7 +56,7 @@ export const learningOptions: LearningOption[] = [
     label: "Fully online lessons",
     delivery: "Online group and private lessons",
     summary:
-      "A related online Russian learning route for students of all ages, including children, GCSE students, A Level students, and learners who cannot attend a local branch.",
+      "A related online Russian learning option for students of all ages, including children, GCSE students, A Level students, and learners who cannot attend a local branch.",
     bestFor: [
       "Families without a suitable open local branch",
       "Students who need online group or private Russian lessons",
@@ -64,7 +64,7 @@ export const learningOptions: LearningOption[] = [
     ],
     audience: "Students of all ages, with group and private lesson options.",
     relationship:
-      "A separate online school option connected to the wider Russian-learning network, useful when local classes are unavailable or distance is a barrier.",
+      "A separate online school option, useful when local classes are unavailable or distance is a barrier.",
     primaryCta: {
       label: "Visit Volna online",
       href: "https://volnaschool.com",
@@ -75,7 +75,7 @@ export const learningOptions: LearningOption[] = [
       href: "/contact?intent=online-learning#enquiry-form",
     },
     verificationNote:
-      "Ask for current lesson format, timetable, and pricing before choosing this route.",
+      "Ask for current lesson format, timetable, and pricing before choosing this option.",
   },
   {
     id: "gcse-russian",
@@ -83,15 +83,15 @@ export const learningOptions: LearningOption[] = [
     label: "GCSE self-study project",
     delivery: "Self-study GCSE Russian support",
     summary:
-      "A separate GCSE Russian project for families who want a focused self-study route alongside, or instead of, school or online lessons.",
+      "A separate GCSE Russian project for families who want focused self-study support alongside, or instead of, school or online lessons.",
     bestFor: [
       "GCSE Russian students who need structured independent study",
       "Families comparing tutoring, classes, and self-study options",
-      "Learners outside the current branch network",
+      "Learners outside a current local branch",
     ],
     audience: "GCSE Russian learners and families planning exam preparation.",
     relationship:
-      "A distinct project from Pushkin's School and Volna, included so parents can see the wider set of Russian-learning pathways.",
+      "A distinct project from Pushkin's School and Volna, included so parents can compare Russian-learning pathways.",
     primaryCta: {
       label: "Ask about GCSE self-study",
       href: "/contact?intent=exam-preparation#enquiry-form",
@@ -102,7 +102,7 @@ export const learningOptions: LearningOption[] = [
 ];
 
 export const learningOptionSummary =
-  "Pushkin's School, Volna Online Russian School, and GCSERussian.com are presented as connected Russian-learning options while remaining distinct projects.";
+  "Pushkin's School is the local weekend school offer, with Volna Online Russian School and GCSERussian.com presented as separate options for distance learning or exam preparation.";
 
 export function getLearningOptionById(id: LearningOptionId) {
   return learningOptions.find((option) => option.id === id);
