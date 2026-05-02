@@ -41,7 +41,7 @@ export function EnquiryForm({
   const formIntro =
     mode === "live"
       ? "Submit a simple initial enquiry. The detailed registration form for health, safeguarding, emergency contacts, and consents comes later if your family joins."
-      : "Use this form to check the details to include, then email the school directly while website enquiry delivery is being connected.";
+      : "Use this form to prepare a clear first enquiry, then email the school directly with the details.";
 
   return (
     <form

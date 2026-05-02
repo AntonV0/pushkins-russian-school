@@ -101,8 +101,8 @@ export async function submitEnquiry(
 
   const message =
     runtimeConfig.configErrors.length > 0
-      ? "This enquiry form is not fully configured in this environment yet. Your details were validated, but they were not sent or stored. Please email the school directly for now."
-      : "This preview validates enquiries only; it does not send or store them yet. Please email the school directly for now.";
+      ? "Your details were checked, but online delivery is not available in this environment. Please email the school directly."
+      : "Your details are ready to email. Please send them directly to the school.";
 
   return {
     status: "not-configured",

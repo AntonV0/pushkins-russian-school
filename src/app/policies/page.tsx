@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 
 const policyAssuranceNotes = [
   "Key safeguarding, welfare, data, conduct, and complaints information is grouped clearly for families.",
-  "Downloadable school documents appear when the approved public version is ready.",
+  "Policy summaries are available while formal school documents are prepared for public download.",
   "Official statutory guidance opens from source pages so parents can check the current reference.",
 ];
 
@@ -40,7 +40,7 @@ const publicationPrinciples = [
       "Each policy has a plain summary and a practical note about when families are most likely to need it.",
   },
   {
-    label: "Controlled documents",
+    label: "Checked documents",
     description:
       "Formal PDFs appear after owner, version, update date, and next update date have been confirmed.",
   },
@@ -81,9 +81,6 @@ function getParentPolicyStatusLabel(policy: Policy) {
 }
 
 export default function PoliciesPage() {
-  const reviewedPublicPdfs = policies.filter((policy) =>
-    hasReviewedPublicPolicyPdf(policy),
-  );
   const currentExternalGuidanceLinks = policies.filter(
     (policy) => getPolicyAction(policy)?.kind === "external",
   );
@@ -105,7 +102,7 @@ export default function PoliciesPage() {
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
               Families can find safeguarding, welfare, conduct, privacy, and
               complaints information in one calm place, with formal documents
-              added as controlled public versions are approved.
+              added for download when the school has checked the public version.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/contact#enquiry-form">
@@ -125,14 +122,7 @@ export default function PoliciesPage() {
                 value: familyPolicyCount,
               },
               {
-                label: "Downloads",
-                value:
-                  reviewedPublicPdfs.length > 0
-                    ? reviewedPublicPdfs.length
-                    : "Controlled",
-              },
-              {
-                label: "Guidance links",
+                label: "Guidance",
                 value: currentExternalGuidanceLinks.length,
               },
             ]}
@@ -221,7 +211,7 @@ export default function PoliciesPage() {
                 <p className="mt-3 border-l border-brand-gold pl-4 text-sm leading-6 text-slate-700">
                   {group.title === "Useful Guidance"
                     ? "Official guidance opens from source publication pages."
-                    : "Formal school downloads are added once the approved public version is ready."}
+                    : "Formal school downloads are added once the checked public version is ready."}
                 </p>
                 <ul className="mt-5 divide-y divide-border-soft text-sm">
                   {group.policies.map((policy) => {

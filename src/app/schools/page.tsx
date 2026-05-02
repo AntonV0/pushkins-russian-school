@@ -78,9 +78,9 @@ export default function SchoolsPage() {
             title="A clearer way to choose a branch"
           >
             <p>
-              The map, status notes, schedules, and enquiry actions now sit
-              together so parents can separate current weekend availability from
-              future local interest in one scan.
+              The map, status notes, schedules, and enquiry actions sit
+              together so parents can separate current weekend availability
+              from future local interest in one scan.
             </p>
           </SectionIntro>
           <div className="mt-8">

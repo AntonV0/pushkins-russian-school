@@ -156,7 +156,7 @@ const pendingSchoolPolicyMetadata: Pick<
   publicationStatus: "pending-review",
   status: "Summary available now",
   statusDescription:
-    "The public summary is available now. A formal policy PDF will be linked when the approved public version is ready.",
+    "The public summary is available now. A formal policy PDF will be linked when the checked public version is ready.",
   reviewCadence:
     "The school will add owner, version, update date, and next update date with the downloadable document.",
   version: "Public summary",
@@ -258,7 +258,7 @@ export const policyGroups: PolicyGroup[] = [
       "Safeguarding, health, emergency planning, and child welfare documents that parents usually look for first.",
     audience: "Families, staff, and safeguarding leads",
     reassurance:
-      "Formal school PDFs appear when the approved public document is ready.",
+      "Formal school PDFs appear when the checked public document is ready.",
     policies: createPolicies("Child Safety and Well-Being", "Families and staff", [
       "Safeguarding Policy",
       "Health and Safety Policy",
@@ -322,14 +322,14 @@ export const policies = policyGroups.flatMap((group) => group.policies);
 export const policyPublicationChecklist = [
   "A clear parent-facing summary of the policy purpose.",
   "Owner, audience, and document type shown in one place.",
-  "Download button shown only when the approved public PDF is ready.",
+  "Download button shown only when the checked public PDF is ready.",
   "Official source links used where the policy depends on statutory guidance.",
   "A contact route for families who need current practical guidance.",
 ];
 
 export const policyIndexNotes = [
   "Policy summaries are available while formal school PDFs are finalised.",
-  "Downloads appear only when the approved public document is ready.",
+  "Downloads appear only when the checked public document is ready.",
   "External guidance links point to official GOV.UK publication pages.",
 ];
 
@@ -356,7 +356,7 @@ export const policyAssetConvention = {
   publicPathPrefix: policyPdfPublicPathPrefix,
   allowedExtension: policyPdfExtension,
   summary:
-    "Only approved public PDFs should be placed in public/policies and linked from policy data.",
+    "Only checked public PDFs should be placed in public/policies and linked from policy data.",
 };
 
 export const policySupportLinks: PolicySupportLink[] = [
@@ -543,7 +543,7 @@ export function getPolicyDownloadReadiness(policy: Policy) {
   return {
     label: "Summary available",
     description:
-      "The summary is available now, and the download will appear when the approved document is ready.",
+      "The summary is available now, and the download will appear when the checked document is ready.",
   };
 }
 

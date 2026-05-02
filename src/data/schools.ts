@@ -78,7 +78,7 @@ const sharedHighlights = [
 ];
 
 const onlineOnlyStatusDescription =
-  "This location is online-only for now while local demand, staffing, and venue options are being confirmed. Families can register interest for future in-person classes.";
+  "This location is currently online-only while local demand, staffing, and venue options are being confirmed. Families can register interest for future in-person classes.";
 
 const onlineOnlyHighlights = [
   "Online learning option available while local classes are paused",
@@ -99,7 +99,7 @@ export const schools: School[] = [
     venueName: "High Wycombe area",
     address: ["Buckinghamshire"],
     postcode: "",
-    schedule: "Online only for now; register interest for future local classes",
+    schedule: "Currently online-only; register interest for future local classes",
     scheduleNote:
       "Local venue and timetable will be confirmed only if in-person classes reopen.",
     lessonPlan: saturdayMorningPlan,
@@ -125,7 +125,7 @@ export const schools: School[] = [
     venueName: "Hemel Hempstead area",
     address: ["Hertfordshire"],
     postcode: "",
-    schedule: "Online only for now; register interest for future local classes",
+    schedule: "Currently online-only; register interest for future local classes",
     lessonPlan: saturdayAfternoonPlan,
     classGroups,
     highlights: onlineOnlyHighlights,
@@ -174,7 +174,7 @@ export const schools: School[] = [
     venueName: "Chelmsford area",
     address: ["Essex"],
     postcode: "",
-    schedule: "Online only for now; register interest for future local classes",
+    schedule: "Currently online-only; register interest for future local classes",
     scheduleNote:
       "Local venue and timetable will be confirmed only if in-person classes reopen.",
     lessonPlan: sundayPlan,
@@ -217,7 +217,7 @@ export const schools: School[] = [
     venueName: "Southend-on-Sea area",
     address: ["Essex"],
     postcode: "",
-    schedule: "Online only for now; register interest for future local classes",
+    schedule: "Currently online-only; register interest for future local classes",
     lessonPlan: sundayPlan,
     classGroups,
     highlights: onlineOnlyHighlights,

@@ -55,7 +55,7 @@ function getAvailabilityCopy(school: School) {
 
   return {
     label: "Register-interest option",
-    body: "This area remains visible for families who want future local provision while using online or exam-focused options now.",
+    body: "This area remains visible for families who want future local provision while using online or exam-focused options in the meantime.",
     action: "Register interest",
   };
 }
