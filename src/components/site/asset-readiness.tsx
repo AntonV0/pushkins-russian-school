@@ -51,7 +51,7 @@ export function MediaAssetGrid({
     return (
       <div
         className="grid gap-4 sm:grid-cols-2"
-        aria-label="Approved media placeholders"
+        aria-label="Approved media spaces"
       >
         {Array.from({ length: slotCount }, (_, index) => (
           <figure
@@ -75,7 +75,7 @@ export function MediaAssetGrid({
                 {emptyLabel} {index + 1}
               </p>
               <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-muted">
-                Caption pending
+                Caption to add
               </p>
               <p className="mt-2 max-w-xs text-xs leading-5 text-slate-600">
                 {emptyDescription}
@@ -108,7 +108,7 @@ export function MediaAssetGrid({
               {asset.caption}
             </p>
             <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-muted">
-              {asset.year ?? "Year pending"} - {asset.category}
+              {asset.year ?? "Year to confirm"} - {asset.category}
             </p>
           </figcaption>
         </figure>

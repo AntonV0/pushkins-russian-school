@@ -6,15 +6,11 @@ import { SectionIntro } from "@/components/site/section-intro";
 import { VisualStoryPanel } from "@/components/site/visual-story-panel";
 import {
   galleryArchives,
-  galleryReadinessNotes,
-  gallerySupportLinks,
   galleryThemes,
-  galleryWorkflowStages,
 } from "@/data/gallery";
 import {
   approvedMediaAssets,
   getVisualPlaceholderSlot,
-  mediaReadinessNotes,
 } from "@/data/media-assets";
 
 const galleryVisual = getVisualPlaceholderSlot("gallery-approved-archive");
@@ -22,17 +18,56 @@ const galleryVisual = getVisualPlaceholderSlot("gallery-approved-archive");
 export const metadata: Metadata = {
   title: "Gallery",
   description:
-    "Gallery shell for approved Pushkin's School public images and future year archives.",
+    "A curated view of Pushkin's School life, events, traditions, and future public photo archives.",
   alternates: {
     canonical: "/gallery",
   },
   openGraph: {
     title: "Pushkin's School Gallery",
     description:
-      "Approved public gallery archive shells for Pushkin's School images and future year collections.",
+      "A curated view of Pushkin's School life, events, traditions, and future public photo archives.",
     url: "/gallery",
   },
 };
+
+const galleryAssuranceNotes = [
+  "Archive years are organised around learning, culture, performance, and community life.",
+  "Public images are selected carefully so captions, consent, and child privacy stay appropriate.",
+  "The gallery is designed to grow into a credible record of a school community built over many years.",
+];
+
+const galleryCurationStandards = [
+  {
+    label: "Curated selection",
+    description:
+      "Images are chosen for warmth, clarity, and relevance to real school life before they appear publicly.",
+  },
+  {
+    label: "Respectful captions",
+    description:
+      "Captions give context for families without exposing private details or relying on children being named.",
+  },
+  {
+    label: "Archive quality",
+    description:
+      "Year pages are prepared for optimised images, useful alt text, and a balanced mix of school moments.",
+  },
+];
+
+const galleryContactLinks = [
+  {
+    label: "Explore schools",
+    href: "/schools",
+    description:
+      "See current branch pages and locations for families considering lessons.",
+  },
+  {
+    label: "Start an enquiry",
+    href: "/contact#enquiry-form",
+    description:
+      "Ask about classes, availability, or the best option for your child.",
+  },
+];
 
 export default function GalleryPage() {
   const hasApprovedMedia = approvedMediaAssets.length > 0;
@@ -46,12 +81,12 @@ export default function GalleryPage() {
               Gallery
             </p>
             <h1 className="mt-4 max-w-4xl text-balance text-4xl font-semibold leading-tight text-brand-blue-strong sm:text-6xl">
-              A careful archive for approved school moments
+              School life, shared with care
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
-              Raw source screenshots are intentionally not used as assets. This
-              section is ready for approved, optimised images from the public
-              assets workflow.
+              The gallery is being prepared as a thoughtful public record of
+              lessons, performances, celebrations, and cultural traditions from
+              Pushkin&apos;s School.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/schools">Explore schools</ButtonLink>
@@ -66,9 +101,14 @@ export default function GalleryPage() {
             ) : null}
             <MetricStrip
               metrics={[
-                { label: "Year routes", value: galleryArchives.length },
+                { label: "Archive years", value: galleryArchives.length },
                 { label: "Themes", value: galleryThemes.length },
-                { label: "Approved", value: approvedMediaAssets.length },
+                {
+                  label: "Media curation",
+                  value: hasApprovedMedia
+                    ? approvedMediaAssets.length
+                    : "Preparing",
+                },
               ]}
             />
           </div>
@@ -83,7 +123,7 @@ export default function GalleryPage() {
           <h2 id="gallery-readiness-notes" className="sr-only">
             Gallery readiness notes
           </h2>
-          {[...galleryReadinessNotes, ...mediaReadinessNotes].map((note) => (
+          {galleryAssuranceNotes.map((note) => (
             <div
               key={note}
               className="premium-panel border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
@@ -97,22 +137,22 @@ export default function GalleryPage() {
       <section className="border-b border-border-soft bg-surface py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
-            eyebrow="Approved media workflow"
-            title="A gallery path that keeps source material private"
+            eyebrow="Curated with care"
+            title="A public gallery needs the same care as a classroom"
           >
             <p>
-              The public site can show archive depth only after images pass
-              review, optimisation, consent checks, and caption checks.
+              A parent-facing school gallery should feel warm and specific while
+              still being careful about children&apos;s privacy and public context.
             </p>
           </SectionIntro>
-          <ol className="mt-8 grid gap-4 md:grid-cols-3">
-            {galleryWorkflowStages.map((stage, index) => (
+          <ol className="premium-panel mt-8 grid gap-0 overflow-hidden rounded-lg border border-border-soft bg-background md:grid-cols-3">
+            {galleryCurationStandards.map((stage, index) => (
               <li
                 key={stage.label}
-                className="premium-panel border border-border-soft bg-background p-5"
+                className="border-b border-border-soft p-5 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0"
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-red">
-                  Step {index + 1}
+                  Standard {index + 1}
                 </p>
                 <h2 className="mt-2 text-base font-semibold text-brand-blue-strong">
                   {stage.label}
@@ -129,12 +169,13 @@ export default function GalleryPage() {
       <section className="bg-background py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
-            eyebrow="Archive shells"
-            title="Year pages ready for reviewed public media"
+            eyebrow="School archive"
+            title="A decade-plus story organised by year"
           >
             <p>
-              Year archives will open once reviewed images, captions, and
-              privacy checks are ready for public browsing.
+              The archive structure reflects real school history: classroom
+              work, celebrations, performances, language learning, and community
+              milestones.
             </p>
           </SectionIntro>
           {hasApprovedMedia ? (
@@ -153,7 +194,7 @@ export default function GalleryPage() {
                       {archive.year}
                     </h2>
                     <p className="mt-4 text-sm leading-6 text-slate-600">
-                      {archive.tone}
+            {archive.tone}
                     </p>
                     <p className="mt-4 border-l border-brand-gold pl-4 text-sm leading-6 text-slate-700">
                       {archive.readinessDetail}
@@ -178,15 +219,49 @@ export default function GalleryPage() {
               ))}
             </div>
           ) : (
-            <div className="premium-panel mt-10 border-l-4 border-brand-gold bg-surface px-6 py-5">
-              <h2 className="text-lg font-semibold text-brand-blue-strong">
-                Year archives are waiting for approved photos
-              </h2>
-              <p className="mt-3 max-w-3xl text-sm leading-6 text-slate-600">
-                The archive structure is ready, but individual year pages are
-                kept out of public navigation until approved images and captions
-                are added.
-              </p>
+            <div className="premium-panel mt-10 grid gap-0 overflow-hidden rounded-lg border border-border-soft bg-surface lg:grid-cols-[0.72fr_1.28fr]">
+              <div className="border-b border-border-soft bg-surface-muted p-6 lg:border-b-0 lg:border-r">
+                <h2 className="text-lg font-semibold text-brand-blue-strong">
+                  Archive preview
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  Public year pages will open as curated images and captions are
+                  approved. Until then, this preview shows the school-life story
+                  the gallery is being shaped to tell.
+                </p>
+              </div>
+              <div className="divide-y divide-border-soft">
+                {galleryArchives.map((archive) => (
+                  <article
+                    key={archive.year}
+                    className="grid gap-4 p-5 sm:grid-cols-[5rem_1fr] sm:items-start"
+                  >
+                    <div>
+                      <p className="text-2xl font-semibold text-brand-blue-strong">
+                        {archive.year}
+                      </p>
+                      <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-red">
+                        {archive.theme}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm leading-6 text-slate-600">
+                        {archive.tone}
+                      </p>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {archive.highlights.map((highlight) => (
+                          <span
+                            key={highlight}
+                            className="rounded-full border border-border-soft px-3 py-1 text-xs font-semibold text-brand-blue-strong"
+                          >
+                            {highlight}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
             </div>
           )}
         </div>
@@ -196,18 +271,18 @@ export default function GalleryPage() {
         <div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-[1fr_1fr] lg:px-8">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
-              While photos are pending
+              Current information
             </p>
             <h2 className="mt-3 text-3xl font-semibold">
-              Keep the journey focused on current school information
+              See the current school locations
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-white/75">
-              The gallery can wait for approved media without blocking families
-              from comparing branches or sending an initial enquiry.
+              Families can explore branches, timetables, and enquiries while
+              the public archive is curated.
             </p>
           </div>
           <div className="grid gap-3">
-            {gallerySupportLinks.map((link) => (
+            {galleryContactLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}

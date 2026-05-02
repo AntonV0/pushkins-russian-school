@@ -110,24 +110,24 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
               {archive.title}
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-              {archive.summary}
+              {archive.tone}
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               <span className="inline-flex items-center rounded-full border border-brand-gold/40 bg-brand-gold/10 px-4 py-2 text-sm font-semibold text-brand-blue-strong">
                 {archive.readinessLabel}
               </span>
               <span className="inline-flex items-center rounded-full border border-border-soft bg-background px-4 py-2 text-sm font-semibold text-muted">
-                Raw screenshots excluded
+                Curated before publication
               </span>
             </div>
           </div>
-          <aside className="bg-surface-muted p-6 sm:p-8">
+          <aside className="premium-panel rounded-lg border border-border-soft bg-background p-6 sm:p-8">
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
               {archive.theme}
             </p>
-            <p className="mt-4 text-sm leading-6 text-slate-600">
-              {archive.tone}
-            </p>
+            <h2 className="mt-3 text-2xl font-semibold leading-tight text-brand-blue-strong">
+              A careful public record for approved school moments
+            </h2>
             <p className="mt-4 border-l border-brand-gold pl-4 text-sm leading-6 text-slate-700">
               {archive.readinessDetail}
             </p>
@@ -150,13 +150,13 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
           <MediaAssetGrid
             assets={approvedAssets}
             emptyLabel={`${archive.year} approved image slot`}
-            emptyDescription="Reserved for a reviewed image with consent, alt text, caption, and optimised public file."
+            emptyDescription="Reserved for an approved image with consent, alt text, caption, and an optimised public file."
           />
 
           <div>
             <AssetReadinessPanel
-              title="Publication gate"
-              status={`${archive.status}. This page intentionally avoids source screenshots and waits for reviewed, optimised public images.`}
+              title="Curation standard"
+              status="The public page is ready for approved images, captions, and alt text. Private source material stays out of the website."
               notes={[...archive.expectedContent, ...mediaReadinessNotes]}
             />
             <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col">
@@ -164,8 +164,8 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
                 Back to gallery
               </ButtonLink>
               <ButtonLink href="/schools">Explore schools</ButtonLink>
-              <span className="inline-flex items-center justify-center rounded-full border border-border-soft px-5 py-3 text-sm font-semibold text-muted">
-                Uploads pending review
+              <span className="inline-flex items-center justify-center rounded-md border border-border-soft px-5 py-3 text-sm font-semibold text-muted">
+                Approved photos will be added here
               </span>
             </div>
           </div>
@@ -179,25 +179,27 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
               Before this archive goes live
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              The year route can be published as a credible shell now, then
-              populated only when approved media records are ready.
+              The archive page can stay visible as a polished public structure,
+              then become visual once approved media records are ready.
             </p>
           </div>
-          <ol className="grid gap-3 sm:grid-cols-3">
+          <ol className="overflow-hidden rounded-lg border border-border-soft bg-background">
             {galleryWorkflowStages.map((stage, index) => (
               <li
                 key={stage.label}
-                className="border-l border-brand-gold bg-background px-4 py-3"
+                className="grid gap-4 border-b border-border-soft px-5 py-5 last:border-b-0 sm:grid-cols-[3rem_1fr]"
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.12em] text-muted">
-                  Step {index + 1}
-                </p>
-                <h3 className="mt-2 text-sm font-semibold text-brand-blue-strong">
-                  {stage.label}
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">
-                  {stage.description}
-                </p>
+                <span className="flex h-10 w-10 items-center justify-center justify-self-start rounded-full border border-brand-gold/50 bg-surface text-sm font-semibold text-brand-blue-strong">
+                  {index + 1}
+                </span>
+                <span>
+                  <span className="block text-sm font-semibold text-brand-blue-strong">
+                    {stage.label}
+                  </span>
+                  <span className="mt-2 block text-sm leading-6 text-slate-600">
+                    {stage.description}
+                  </span>
+                </span>
               </li>
             ))}
           </ol>
@@ -205,7 +207,17 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
       </section>
 
       <section className="border-t border-border-soft bg-surface py-12">
-        <div className="mx-auto grid max-w-7xl gap-4 px-6 md:grid-cols-3 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-4 px-6 lg:grid-cols-[0.7fr_1.3fr] lg:px-8">
+          <div>
+            <h2 className="text-2xl font-semibold text-brand-blue-strong">
+              Publication care
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-slate-600">
+              The gallery can feel warm while protecting private archive
+              material and child image permissions.
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-3">
           {galleryReadinessNotes.map((note) => (
             <div
               key={note}
@@ -214,6 +226,7 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
               {note}
             </div>
           ))}
+          </div>
         </div>
       </section>
 

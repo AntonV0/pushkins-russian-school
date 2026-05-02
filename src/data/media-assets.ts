@@ -80,10 +80,10 @@ export const visualPlaceholderSlots: VisualPlaceholderSlot[] = [
     title: "Language, culture, and a shared school rhythm",
     eyebrow: "School life",
     summary:
-      "A warm editorial slot for the About page while approved classroom photos are pending.",
+      "A warm editorial slot for the About page while approved classroom photos are selected.",
     motif: "language-table",
     status: "illustration-ready",
-    statusLabel: "Artwork prepared while school photos are reviewed",
+    statusLabel: "Artwork prepared while school photos are approved",
     futureAssetRole: "feature",
     suggestedPrompt:
       "Warm editorial illustration of a Russian language learning table with open books, notebooks, pencils, and subtle Cyrillic letter cards; no people, no faces, no school logos, no private documents, natural daylight, refined educational website style.",
@@ -91,7 +91,7 @@ export const visualPlaceholderSlots: VisualPlaceholderSlot[] = [
       "Illustration of Russian language books, notebooks, pencils, and Cyrillic letter cards on a learning table.",
     usageNotes: [
       "Use as an illustration or approved non-identifying detail photo.",
-      "Avoid children, portraits, visible names, school documents, or raw screenshots.",
+      "Avoid children, portraits, visible names, school documents, or private archive files.",
       "Keep the visual warm and academic rather than stock-like or promotional.",
     ],
   },
@@ -119,7 +119,7 @@ export const visualPlaceholderSlots: VisualPlaceholderSlot[] = [
   {
     id: "admissions-learning-journey",
     page: "admissions",
-    title: "From first enquiry to the right learning route",
+    title: "From first enquiry to the right learning option",
     eyebrow: "Parent journey",
     summary:
       "A calm visual for the admissions process, focused on steps and decisions rather than child imagery.",
@@ -130,7 +130,7 @@ export const visualPlaceholderSlots: VisualPlaceholderSlot[] = [
     suggestedPrompt:
       "Warm editorial illustration of a parent enquiry journey for a Russian language school: simple path markers, calendar card, notebook, pencil, and branch choice cards; no people, no faces, no private forms, no logos, polished educational website style.",
     altTextWhenGenerated:
-      "Illustration of an enquiry journey with a calendar card, notebook, pencil, and route markers.",
+      "Illustration of an enquiry journey with a calendar card, notebook, pencil, and pathway markers.",
     usageNotes: [
       "Use for admissions and enquiry guidance without implying a confirmed place.",
       "Avoid private forms, bank details, child names, or real parent information.",
@@ -140,20 +140,20 @@ export const visualPlaceholderSlots: VisualPlaceholderSlot[] = [
   {
     id: "gallery-approved-archive",
     page: "gallery",
-    title: "Approved archive images will appear after review",
+    title: "Approved archive images will appear soon",
     eyebrow: "Gallery readiness",
     summary:
-      "An honest gallery placeholder that signals future archive depth without using unreviewed media.",
+      "An honest gallery media space that signals future archive depth without using private media.",
     motif: "archive-grid",
     status: "gallery-placeholder",
-    statusLabel: "Photos pending approval",
+    statusLabel: "Photos coming after approval",
     futureAssetRole: "archive",
     suggestedPrompt:
-      "Warm abstract editorial illustration of empty gallery frames, archive labels, and a review checklist for a school photo archive; no people, no faces, no real photos, no private documents, restrained educational website style.",
+      "Warm abstract editorial illustration of empty gallery frames, archive labels, and an approval checklist for a school photo archive; no people, no faces, no real photos, no private documents, restrained educational website style.",
     altTextWhenGenerated:
-      "Illustration of empty gallery frames, archive labels, and a review checklist.",
+      "Illustration of empty gallery frames, archive labels, and an approval checklist.",
     usageNotes: [
-      "Keep gallery pages visibly pending until approved media records exist.",
+      "Keep gallery pages clearly awaiting images until approved media records exist.",
       "Do not use generated images to imitate real school archive photos.",
       "Use only to explain readiness, not as an archive substitute.",
     ],
@@ -212,7 +212,7 @@ export const mediaIntakeFields: MediaIntakeField[] = [
   {
     label: "Approved public path",
     description:
-      "Optimised file path under /public/images/optimised after review, cropping, and compression.",
+      "Optimised file path under /public/images/optimised after approval, cropping, and compression.",
     required: true,
   },
   {
@@ -259,7 +259,7 @@ export const mediaIntakeFields: MediaIntakeField[] = [
 ];
 
 export const mediaIngestionSteps = [
-  "Place unreviewed photo batches outside Git or in ignored local review folders only.",
+  "Place unapproved photo batches outside Git or in ignored local review folders only.",
   "Select candidate images for public use and exclude raw screenshots, private documents, duplicates, and low-quality files.",
   "Confirm consent status, remove names or private context from captions, and avoid prominent use of sensitive images.",
   "Optimise approved images into /public/images/optimised with descriptive, non-private file names.",
@@ -269,7 +269,7 @@ export const mediaIngestionSteps = [
 
 export const mediaReadinessNotes = [
   "No approved public photos are registered yet.",
-  "Current gallery placeholders are intentional and should remain until image review is complete.",
+  "Current gallery media spaces are intentional and should remain until image approval is complete.",
   "Generated illustrations can support warm editorial pages only when they are generic, non-identifying, and clearly separate from the gallery archive.",
 ];
 

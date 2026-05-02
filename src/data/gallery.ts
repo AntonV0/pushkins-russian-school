@@ -18,15 +18,15 @@ export type GalleryWorkflowStage = {
 
 export const galleryReadinessNotes = [
   "Use only approved public images from the final asset workflow.",
-  "Do not publish raw source screenshots or private audit material.",
+  "Keep private archive files and audit material out of public assets.",
   "Check captions for child privacy, consent, and current publication suitability.",
 ];
 
 export const galleryWorkflowStages: GalleryWorkflowStage[] = [
   {
-    label: "Local review only",
+    label: "Local preparation",
     description:
-      "Old-site exports, screenshots, and candidate photo batches stay out of public assets until reviewed.",
+      "Old-site exports, screenshots, and candidate photo batches stay out of public assets until approved.",
   },
   {
     label: "Approved media registry",
@@ -34,7 +34,7 @@ export const galleryWorkflowStages: GalleryWorkflowStage[] = [
       "Only optimised images with consent status, alt text, captions, and year metadata are rendered.",
   },
   {
-    label: "Public archive route",
+    label: "Public archive page",
     description:
       "Year pages are ready for launch-safe collections without exposing private source material.",
   },
@@ -60,14 +60,14 @@ export const galleryArchives: GalleryArchive[] = [
     year: "2019",
     title: "2019 archive",
     theme: "Community events",
-    tone: "Performances, celebrations, and school community moments that can show the school network's warmth once approved.",
+    tone: "Performances, celebrations, and school community moments that can show the school community's warmth once approved.",
     highlights: ["Assemblies", "Celebrations", "Creative work"],
   },
   {
     year: "2018",
     title: "2018 archive",
     theme: "Learning in action",
-    tone: "Classroom work, projects, and language learning activities prepared for a careful privacy review.",
+    tone: "Classroom work, projects, and language learning activities prepared for careful privacy checks.",
     highlights: ["Class projects", "Reading", "Group activities"],
   },
   {
@@ -88,24 +88,24 @@ export const galleryArchives: GalleryArchive[] = [
     year: "2013",
     title: "2013 archive",
     theme: "Early archive",
-    tone: "Reviewed legacy images can show the school network's established history without exposing raw archives.",
+    tone: "Approved legacy images can show the school's established history without exposing raw archives.",
     highlights: ["Archive", "Community", "History"],
   },
   {
     year: "2012",
     title: "2012 archive",
     theme: "Foundations",
-    tone: "The oldest retained route, ready for carefully reviewed public records and restrained captions.",
+    tone: "The oldest retained archive year, ready for carefully approved public records and restrained captions.",
     highlights: ["Legacy", "Milestones", "School life"],
   },
 ].map((archive) => ({
   ...archive,
   summary:
-    "This archive is reserved for reviewed, approved public images from the old site and school records. Raw screenshots and unreviewed source files are not published here.",
-  status: "Images pending approved asset selection",
-  readinessLabel: "Approved images pending",
+    "This archive is reserved for approved public images from the old site and school records. Private source files are not published here.",
+  status: "Images awaiting approved asset selection",
+  readinessLabel: "Approved images coming soon",
   readinessDetail:
-    "The route, placeholders, metadata expectations, and publication checks are ready for reviewed public media.",
+    "The page, media slots, metadata expectations, and publication checks are ready for approved public media.",
   expectedContent: [
     ...galleryReadinessNotes,
     "Record source filename privately for traceability without exposing raw files.",

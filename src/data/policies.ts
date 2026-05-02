@@ -85,7 +85,7 @@ const policySummaries: Record<string, string> = {
   "Pupil and Parent Privacy Notice":
     "Explains what personal information may be collected and how it may be used.",
   "Complaints Procedure":
-    "Gives parents and carers a clear route for raising and resolving concerns.",
+    "Gives parents and carers a clear process for raising and resolving concerns.",
   "Staff Code of Conduct":
     "Defines professional expectations for staff and volunteers.",
   "Staff Privacy Notice":
@@ -93,7 +93,7 @@ const policySummaries: Record<string, string> = {
   "Staff Grievance Procedure":
     "Sets out how staff concerns can be raised and addressed.",
   "Whistleblowing Policy":
-    "Provides a route for reporting serious concerns in the public interest.",
+    "Provides a process for reporting serious concerns in the public interest.",
   "Keeping Children Safe in Education":
     "External statutory guidance used by schools and safeguarding leads.",
   "EYFS Statutory Framework":
@@ -104,7 +104,7 @@ const policySummaries: Record<string, string> = {
 
 const parentGuidanceByTitle: Record<string, string> = {
   "Safeguarding Policy":
-    "Start here for the school's safeguarding responsibilities, reporting route, and child protection approach.",
+    "Start here for the school's safeguarding responsibilities, reporting process, and child protection approach.",
   "Health and Safety Policy":
     "Useful when checking how weekend lessons, premises, supervision, and activities are managed safely.",
   "GDPR and Data Protection Policy":
@@ -122,15 +122,15 @@ const parentGuidanceByTitle: Record<string, string> = {
   "Pupil and Parent Code of Conduct":
     "Useful before joining, renewing, or raising questions about respectful behaviour in the school community.",
   "Pupil and Parent Privacy Notice":
-    "Useful when families want a plain route to the future formal privacy notice before sharing detailed information.",
+    "Useful when families want plain guidance before sharing detailed information.",
   "Complaints Procedure":
-    "Useful when parents or carers need a clear, calm route for raising and resolving concerns.",
+    "Useful when parents or carers need a clear, calm process for raising and resolving concerns.",
   "Staff Code of Conduct":
     "Useful for setting professional expectations for adults working with pupils.",
   "Staff Privacy Notice":
-    "Useful for explaining staff data handling once the formal notice is reviewed for publication.",
+    "Useful for explaining staff data handling once the formal public notice is ready.",
   "Staff Grievance Procedure":
-    "Useful for staff-facing governance and internal concern routes once approved for public publication.",
+    "Useful for staff-facing governance and internal concern processes when a public version is available.",
   "Whistleblowing Policy":
     "Useful for understanding how serious public-interest concerns can be raised.",
   "Keeping Children Safe in Education":
@@ -154,11 +154,12 @@ const pendingSchoolPolicyMetadata: Pick<
   "publicationStatus" | "status" | "statusDescription" | "reviewCadence" | "version"
 > = {
   publicationStatus: "pending-review",
-  status: "Reviewed PDF pending",
+  status: "Formal PDF coming soon",
   statusDescription:
-    "The public summary is ready, but the formal policy PDF will only be linked after the document is reviewed and approved for publication.",
-  reviewCadence: "Confirm document owner, version, and review date before launch.",
-  version: "Publication shell",
+    "The public summary is available now. The formal policy PDF will be linked when the approved public version is ready.",
+  reviewCadence:
+    "The school will add owner, version, update date, and next update date with the downloadable document.",
+  version: "Public summary",
 };
 
 const externalGuidanceOverrides: Record<
@@ -237,11 +238,11 @@ function createPolicies(
     ...(documentType === "External guidance"
       ? externalGuidanceOverrides[title] ?? {
           publicationStatus: "external-review-needed" as const,
-          status: "External guidance link pending review",
+          status: "External guidance link coming soon",
           statusDescription:
-            "The guidance source still needs to be checked before a public link is shown.",
-          reviewCadence: "Check source guidance before publication.",
-          version: "External source pending review",
+            "The guidance source will be checked before a public link is shown.",
+          reviewCadence: "Check source guidance before showing a public link.",
+          version: "External source to confirm",
         }
       : pendingSchoolPolicyMetadata),
     reviewDate: undefined,
@@ -257,7 +258,7 @@ export const policyGroups: PolicyGroup[] = [
       "Safeguarding, health, emergency planning, and child welfare documents that parents usually look for first.",
     audience: "Families, staff, and safeguarding leads",
     reassurance:
-      "Formal school PDFs stay unpublished until reviewed, approved, and connected through the public asset workflow.",
+      "Formal school PDFs appear when the approved public document is ready.",
     policies: createPolicies("Child Safety and Well-Being", "Families and staff", [
       "Safeguarding Policy",
       "Health and Safety Policy",
@@ -272,10 +273,10 @@ export const policyGroups: PolicyGroup[] = [
   {
     title: "Parent and Carer",
     description:
-      "Family-facing expectations, privacy, and complaints routes in one practical parent section.",
+      "Family-facing expectations, privacy, and complaints guidance in one practical parent section.",
     audience: "Parents and carers",
     reassurance:
-      "These summaries are safe for launch planning; downloadable documents remain gated until final review.",
+      "These summaries help families understand the structure while downloadable documents are finalised.",
     policies: createPolicies("Parent and Carer", "Parents and carers", [
       "Pupil and Parent Code of Conduct",
       "Pupil and Parent Privacy Notice",
@@ -285,10 +286,10 @@ export const policyGroups: PolicyGroup[] = [
   {
     title: "Staff",
     description:
-      "Staff and volunteer governance shells kept visible as structure without publishing unreviewed internal detail.",
+      "Staff and volunteer governance summaries that show structure while internal procedures stay private.",
     audience: "Staff, volunteers, and leadership",
     reassurance:
-      "Internal procedures are represented by public-safe summaries only until a publication decision is made.",
+      "Internal procedures are represented by high-level summaries unless the school chooses to publish more detail.",
     policies: createPolicies("Staff", "Staff and volunteers", [
       "Staff Code of Conduct",
       "Staff Privacy Notice",
@@ -319,29 +320,29 @@ export const policyGroups: PolicyGroup[] = [
 export const policies = policyGroups.flatMap((group) => group.policies);
 
 export const policyPublicationChecklist = [
-  "Reviewed PDF added under public/policies and linked with a /policies/*.pdf path.",
-  "Owner, version, and review date confirmed before launch.",
-  "Next review date agreed before the download is made public.",
-  "Personal, staff, or unpublished operational details removed.",
-  "Download link, summary copy, and last-reviewed label connected from this shell.",
+  "A clear parent-facing summary of the policy purpose.",
+  "Owner, audience, and document type shown in one place.",
+  "Download button shown only when the approved public PDF is ready.",
+  "Official source links used where the policy depends on statutory guidance.",
+  "A contact route for families who need current practical guidance.",
 ];
 
 export const policyIndexNotes = [
-  "Policy summaries are public-ready, but formal school PDFs remain pending until reviewed.",
-  "Unreviewed policy documents are intentionally not linked from the public site.",
-  "External guidance links point to official GOV.UK publication pages that should be checked before launch.",
+  "Policy summaries are available while formal school PDFs are finalised.",
+  "Downloads appear only when the approved public document is ready.",
+  "External guidance links point to official GOV.UK publication pages.",
 ];
 
 export const policyPublicationStates = [
   {
-    label: "Reviewed public document",
+    label: "Approved public document",
     description:
-      "A PDF can be linked only after approval, privacy review, metadata checks, and placement under /policies.",
+      "A PDF is linked only after approval, privacy checks, metadata checks, and placement under /policies.",
   },
   {
     label: "Publication shell only",
     description:
-      "The route and metadata are prepared, but no unreviewed school PDF is published.",
+      "The page and metadata are prepared while the school PDF is finalised.",
   },
   {
     label: "Official external guidance",
@@ -355,7 +356,7 @@ export const policyAssetConvention = {
   publicPathPrefix: policyPdfPublicPathPrefix,
   allowedExtension: policyPdfExtension,
   summary:
-    "Only reviewed, approved, public-safe PDFs should be placed in public/policies and linked from policy data.",
+    "Only approved public PDFs should be placed in public/policies and linked from policy data.",
 };
 
 export const policySupportLinks: PolicySupportLink[] = [
@@ -366,10 +367,10 @@ export const policySupportLinks: PolicySupportLink[] = [
       "Use the enquiry form for parent questions while downloadable documents are being finalised.",
   },
   {
-    label: "Compare school routes",
+    label: "Compare school locations",
     href: "/schools",
     description:
-      "Check branch, timetable, and status information before choosing the most relevant enquiry route.",
+      "Check branch, timetable, and status information before choosing the most relevant enquiry option.",
   },
 ];
 
@@ -491,7 +492,7 @@ export function getPolicyAvailabilitySummary(policy: Policy) {
   }
 
   if (policy.publicationStatus === "reviewed-public") {
-    return "PDF metadata needs review";
+    return "PDF metadata to confirm";
   }
 
   if (policy.publicationStatus === "external-current") {
@@ -499,8 +500,8 @@ export function getPolicyAvailabilitySummary(policy: Policy) {
   }
 
   return policy.documentType === "External guidance"
-    ? "External link pending"
-    : "PDF pending review";
+    ? "External link coming soon"
+    : "Formal PDF coming soon";
 }
 
 export function getPolicyDownloadReadiness(policy: Policy) {
@@ -517,7 +518,7 @@ export function getPolicyDownloadReadiness(policy: Policy) {
 
     if (missingMetadata.length > 0) {
       return {
-        label: "Publication metadata needs review",
+        label: "Publication metadata to confirm",
         description: `This policy is marked reviewed, but ${missingMetadata.join(
           ", ",
         )} must be confirmed before a download button appears.`,
@@ -525,7 +526,7 @@ export function getPolicyDownloadReadiness(policy: Policy) {
     }
 
     return {
-      label: "PDF metadata needs review",
+      label: "PDF metadata to confirm",
       description:
         "This policy is marked reviewed, but a valid /policies/*.pdf path is still required before a download button appears.",
     };
@@ -540,9 +541,9 @@ export function getPolicyDownloadReadiness(policy: Policy) {
   }
 
   return {
-    label: "Download pending review",
+    label: "Download coming soon",
     description:
-      "The public route is ready, but the file remains unpublished until the approved document workflow is complete.",
+      "The summary is available now, and the download will appear when the approved document is ready.",
   };
 }
 

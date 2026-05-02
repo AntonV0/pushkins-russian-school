@@ -19,6 +19,12 @@ type PolicyPageProps = {
   params: Promise<{ slug: string }>;
 };
 
+const parentPolicyAssurance = [
+  "Read the parent summary first.",
+  "Use official guidance links where the school document is not public yet.",
+  "Ask the school a practical question if your family needs clarification.",
+];
+
 export function generateStaticParams() {
   return policies.map((policy) => ({ slug: policy.slug }));
 }
@@ -84,52 +90,79 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
     <main>
       <JsonLd data={policyJsonLd} />
       <section className="border-b border-border-soft bg-surface py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <Breadcrumbs
-            items={[
-              { label: "Policies", href: "/policies" },
-              { label: policy.title },
-            ]}
-          />
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
-            {policy.group}
-          </p>
-          <h1 className="mt-4 max-w-4xl text-4xl font-semibold text-brand-blue-strong sm:text-5xl">
-            {policy.title}
-          </h1>
-          <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-            {policy.summary}
-          </p>
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            <span
-              className={`inline-flex items-center rounded-full border px-4 py-2 text-sm font-semibold ${getPolicyStatusTone(policy)}`}
-            >
-              {policy.status}
-            </span>
-            {action ? (
-              <a
-                href={action.href}
-                target={action.isExternal ? "_blank" : undefined}
-                rel={action.isExternal ? "noopener noreferrer" : undefined}
-                download={action.isExternal ? undefined : true}
-                className="inline-flex items-center justify-center rounded-full bg-brand-blue px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_0.78fr] lg:px-8">
+          <div>
+            <Breadcrumbs
+              items={[
+                { label: "Policies", href: "/policies" },
+                { label: policy.title },
+              ]}
+            />
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
+              {policy.group}
+            </p>
+            <h1 className="mt-4 max-w-4xl text-4xl font-semibold text-brand-blue-strong sm:text-5xl">
+              {policy.title}
+            </h1>
+            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+              {policy.summary}
+            </p>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <span
+                className={`inline-flex items-center rounded-full border px-4 py-2 text-sm font-semibold ${getPolicyStatusTone(policy)}`}
               >
-                {action.label}
-              </a>
-            ) : (
-              <span className="inline-flex items-center justify-center rounded-full border border-border-soft bg-background px-5 py-2.5 text-sm font-semibold text-muted">
-                {downloadReadiness.label}
+                {policy.status}
               </span>
-            )}
+              {action ? (
+                <a
+                  href={action.href}
+                  target={action.isExternal ? "_blank" : undefined}
+                  rel={action.isExternal ? "noopener noreferrer" : undefined}
+                  download={action.isExternal ? undefined : true}
+                  className="inline-flex items-center justify-center rounded-md bg-brand-blue px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
+                >
+                  {action.label}
+                </a>
+              ) : (
+                <span className="inline-flex items-center justify-center rounded-md border border-border-soft bg-background px-5 py-2.5 text-sm font-semibold text-muted">
+                  {downloadReadiness.label}
+                </span>
+              )}
+            </div>
           </div>
+          <aside className="premium-panel overflow-hidden rounded-lg border border-border-soft bg-background">
+            <div className="border-b border-border-soft bg-brand-blue-strong p-6 text-white">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-gold">
+                Parent reassurance
+              </p>
+              <h2 className="mt-3 text-2xl font-semibold">
+                Clear guidance while formal documents are prepared
+              </h2>
+            </div>
+            <ol className="divide-y divide-border-soft">
+              {parentPolicyAssurance.map((item, index) => (
+                <li
+                  key={item}
+                  className="grid gap-4 px-6 py-5 sm:grid-cols-[3rem_1fr]"
+                >
+                  <span className="flex h-10 w-10 items-center justify-center justify-self-start rounded-full border border-brand-gold/50 bg-surface-muted text-sm font-semibold text-brand-blue-strong">
+                    {index + 1}
+                  </span>
+                  <span className="text-sm leading-6 text-slate-700">
+                    {item}
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </aside>
         </div>
       </section>
 
       <section className="bg-background py-14 sm:py-16">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
-          <aside className="bg-surface-muted p-6 sm:p-8">
+          <aside className="premium-panel rounded-lg border border-border-soft bg-surface-muted p-6 sm:p-8">
             <h2 className="text-xl font-semibold text-brand-blue-strong">
-              Document metadata
+              Document record
             </h2>
             <dl className="mt-6 space-y-5 text-sm">
               {metadata.map((item) => (
@@ -154,7 +187,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
             </div>
           </aside>
 
-          <div className="rounded-lg border border-border-soft bg-surface p-6 sm:p-8">
+          <div className="premium-panel rounded-lg border border-border-soft bg-surface p-6 sm:p-8">
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
               Parent summary
             </h2>
@@ -162,7 +195,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
               {policy.parentGuidance}
             </p>
             <h3 className="mt-8 text-sm font-semibold uppercase tracking-[0.14em] text-brand-red">
-              Publication status
+              Document availability
             </h3>
             <p className="mt-4 text-sm leading-6 text-slate-600">
               {policy.statusDescription}
@@ -171,11 +204,14 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
               {policy.reviewCadence}
             </p>
             <h3 className="mt-8 text-sm font-semibold uppercase tracking-[0.14em] text-brand-red">
-              Publication checklist
+              What this page gives you
             </h3>
             <ul className="mt-4 space-y-4 text-sm leading-6 text-slate-700">
               {policyPublicationChecklist.map((item) => (
-                <li key={item} className="border-l border-brand-gold pl-4">
+                <li
+                  key={item}
+                  className="border-l border-brand-gold bg-background px-4 py-3"
+                >
                   {item}
                 </li>
               ))}
@@ -190,12 +226,12 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
                   target={action.isExternal ? "_blank" : undefined}
                   rel={action.isExternal ? "noopener noreferrer" : undefined}
                   download={action.isExternal ? undefined : true}
-                  className="inline-flex items-center justify-center rounded-full bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
+                  className="inline-flex items-center justify-center rounded-md bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
                 >
                   {action.label}
                 </a>
               ) : (
-                <span className="inline-flex items-center justify-center rounded-full border border-border-soft px-5 py-3 text-sm font-semibold text-muted">
+                <span className="inline-flex items-center justify-center rounded-md border border-border-soft px-5 py-3 text-sm font-semibold text-muted">
                   {downloadReadiness.label}
                 </span>
               )}
@@ -211,21 +247,35 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
               Practical next steps
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              This page is public-safe while the formal document workflow is
-              completed. Families can still use the enquiry and school routes
-              for current practical information.
+              This page gives families the useful summary first. Formal
+              downloads appear when the approved document is ready, and families
+              can still use the enquiry form for current practical information.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             {policySupportLinks.map((link) => (
-              <ButtonLink
+              <a
                 key={link.href}
                 href={link.href}
-                variant={link.href === "/contact#enquiry-form" ? "primary" : "secondary"}
-                className="h-full items-start text-left"
+                className={`rounded-lg border p-5 transition focus:outline-none focus:ring-2 focus:ring-brand-red/30 ${
+                  link.href === "/contact#enquiry-form"
+                    ? "border-brand-blue bg-brand-blue text-white hover:bg-brand-blue-strong"
+                    : "border-border-soft bg-background text-brand-blue-strong hover:border-brand-red hover:text-brand-red"
+                }`}
               >
-                {link.label}
-              </ButtonLink>
+                <span className="block text-sm font-semibold">
+                  {link.label}
+                </span>
+                <span
+                  className={`mt-2 block text-sm leading-6 ${
+                    link.href === "/contact#enquiry-form"
+                      ? "text-white/75"
+                      : "text-slate-600"
+                  }`}
+                >
+                  {link.description}
+                </span>
+              </a>
             ))}
           </div>
         </div>
