@@ -7,6 +7,19 @@ export type LessonPlanItem = {
   activity: string;
 };
 
+export type SchoolDecisionStep = {
+  title: string;
+  body: string;
+  ctaLabel: string;
+  href: string;
+};
+
+export type SchoolNearbyAlternativeCta = {
+  label: string;
+  body: string;
+  href: string;
+};
+
 export type School = {
   slug: string;
   name: string;
@@ -15,6 +28,7 @@ export type School = {
   status: SchoolStatus;
   statusLabel: string;
   statusDescription: string;
+  availabilitySummary: string;
   lead: string;
   venueName: string;
   address: string[];
@@ -24,6 +38,8 @@ export type School = {
   lessonPlan: LessonPlanItem[];
   classGroups: string[];
   highlights: string[];
+  bestNextSteps: SchoolDecisionStep[];
+  nearbyAlternativeCta: SchoolNearbyAlternativeCta;
   enquiryCta: string;
   mapHref: string;
   sourceNotes: string[];
@@ -86,6 +102,47 @@ const onlineOnlyHighlights = [
   "Future local classes can reopen when enough families and operational capacity align",
 ];
 
+function getFutureInterestHref(slug: string) {
+  return `/contact?school=${slug}&intent=future-interest#enquiry-form`;
+}
+
+function getCurrentClassHref(slug: string) {
+  return `/contact?school=${slug}&intent=current-classes#enquiry-form`;
+}
+
+function getOnlineLearningHref(slug: string) {
+  return `/contact?school=${slug}&intent=online-learning#enquiry-form`;
+}
+
+function createOnlineBranchDecisionSteps(areaName: string, slug: string) {
+  return [
+    {
+      title: "Register local interest",
+      body: `Tell the school if your family would use future in-person Russian classes in the ${areaName} area.`,
+      ctaLabel: "Register local interest",
+      href: getFutureInterestHref(slug),
+    },
+    {
+      title: "Ask about online lessons",
+      body: "Discuss online Russian lessons if your child would benefit from starting before a local class is available.",
+      ctaLabel: "Ask about online lessons",
+      href: getOnlineLearningHref(slug),
+    },
+    {
+      title: "Compare current branches",
+      body: "Check Bracknell and the wider school network if you are open to travelling for current in-person classes.",
+      ctaLabel: "Compare branches",
+      href: "/schools#compare-branches",
+    },
+  ];
+}
+
+const bracknellAlternativeCta = {
+  label: "Compare with Bracknell",
+  body: "Bracknell is the current listed in-person weekend branch.",
+  href: "/schools/bracknell",
+};
+
 export const schools: School[] = [
   {
     slug: "high-wycombe",
@@ -95,6 +152,8 @@ export const schools: School[] = [
     status: "online",
     statusLabel: "Online only / register interest",
     statusDescription: onlineOnlyStatusDescription,
+    availabilitySummary:
+      "High Wycombe families can register interest in future local classes, ask about online Russian lessons, or compare Bracknell as the current in-person branch.",
     lead: "A long-standing school location for families around High Wycombe, currently kept open for online learning and future local interest.",
     venueName: "High Wycombe area",
     address: ["Buckinghamshire"],
@@ -105,6 +164,8 @@ export const schools: School[] = [
     lessonPlan: saturdayMorningPlan,
     classGroups,
     highlights: onlineOnlyHighlights,
+    bestNextSteps: createOnlineBranchDecisionSteps("High Wycombe", "high-wycombe"),
+    nearbyAlternativeCta: bracknellAlternativeCta,
     enquiryCta: "Register interest in High Wycombe classes",
     mapHref:
       "https://www.google.com/maps/search/?api=1&query=High%20Wycombe%20Buckinghamshire",
@@ -121,6 +182,8 @@ export const schools: School[] = [
     status: "online",
     statusLabel: "Online only / register interest",
     statusDescription: onlineOnlyStatusDescription,
+    availabilitySummary:
+      "Hemel Hempstead families can register interest in future local classes, ask about online Russian lessons, or compare Bracknell as the current in-person branch.",
     lead: "A Hertfordshire location for Russian-learning families, currently online-only with a register-interest option for future local classes.",
     venueName: "Hemel Hempstead area",
     address: ["Hertfordshire"],
@@ -129,6 +192,8 @@ export const schools: School[] = [
     lessonPlan: saturdayAfternoonPlan,
     classGroups,
     highlights: onlineOnlyHighlights,
+    bestNextSteps: createOnlineBranchDecisionSteps("Hemel Hempstead", "hemel-hempstead"),
+    nearbyAlternativeCta: bracknellAlternativeCta,
     enquiryCta: "Register interest in Hemel Hempstead classes",
     mapHref:
       "https://www.google.com/maps/search/?api=1&query=Hemel%20Hempstead%20Hertfordshire",
@@ -146,6 +211,8 @@ export const schools: School[] = [
     statusLabel: "Weekend school",
     statusDescription:
       "Sunday morning classes are presented for local families, with final details confirmed through enquiry.",
+    availabilitySummary:
+      "Bracknell is the current listed in-person weekend branch. Families can ask about spaces, class fit, start dates, and exam preparation.",
     lead: "A Sunday branch for children learning Russian language, culture, reading, writing, and exam skills.",
     venueName: "Saint Joseph's Primary School",
     address: ["Gipsy Lane"],
@@ -154,6 +221,31 @@ export const schools: School[] = [
     lessonPlan: sundayPlan,
     classGroups,
     highlights: sharedHighlights,
+    bestNextSteps: [
+      {
+        title: "Ask about current spaces",
+        body: "Check whether the current Sunday branch has a suitable place for your child.",
+        ctaLabel: "Ask about current places",
+        href: getCurrentClassHref("bracknell"),
+      },
+      {
+        title: "Discuss class fit",
+        body: "Share age, Russian confidence, reading and writing level, and any GCSE or A Level goals.",
+        ctaLabel: "Ask about placement",
+        href: getCurrentClassHref("bracknell"),
+      },
+      {
+        title: "Confirm start date",
+        body: "Use the enquiry to confirm timing, fees, payment instructions, and the next practical step.",
+        ctaLabel: "Start an enquiry",
+        href: getCurrentClassHref("bracknell"),
+      },
+    ],
+    nearbyAlternativeCta: {
+      label: "Compare all branches",
+      body: "See current and register-interest locations across the school network.",
+      href: "/schools#compare-branches",
+    },
     enquiryCta: "Enquire about Bracknell places",
     mapHref:
       "https://www.google.com/maps/search/?api=1&query=Saint%20Joseph%27s%20Primary%20School%20Gipsy%20Lane%20RG12%209AP",
@@ -170,6 +262,8 @@ export const schools: School[] = [
     status: "online",
     statusLabel: "Online only / register interest",
     statusDescription: onlineOnlyStatusDescription,
+    availabilitySummary:
+      "Chelmsford families can register interest in future local classes, ask about online Russian lessons, or compare Bracknell as the current in-person branch.",
     lead: "An Essex location for families around Chelmsford, currently online-only with interest gathered for future local provision.",
     venueName: "Chelmsford area",
     address: ["Essex"],
@@ -180,6 +274,8 @@ export const schools: School[] = [
     lessonPlan: sundayPlan,
     classGroups,
     highlights: onlineOnlyHighlights,
+    bestNextSteps: createOnlineBranchDecisionSteps("Chelmsford", "chelmsford"),
+    nearbyAlternativeCta: bracknellAlternativeCta,
     enquiryCta: "Register interest in Chelmsford classes",
     mapHref:
       "https://www.google.com/maps/search/?api=1&query=Chelmsford%20Essex",
@@ -213,6 +309,8 @@ export const schools: School[] = [
     status: "online",
     statusLabel: "Online only / register interest",
     statusDescription: onlineOnlyStatusDescription,
+    availabilitySummary:
+      "Southend-on-Sea families can register interest in future local classes, ask about online Russian lessons, or compare Bracknell as the current in-person branch.",
     lead: "A Southend-on-Sea location retained for online learning and future local class interest.",
     venueName: "Southend-on-Sea area",
     address: ["Essex"],
@@ -221,6 +319,8 @@ export const schools: School[] = [
     lessonPlan: sundayPlan,
     classGroups,
     highlights: onlineOnlyHighlights,
+    bestNextSteps: createOnlineBranchDecisionSteps("Southend-on-Sea", "southend-on-sea"),
+    nearbyAlternativeCta: bracknellAlternativeCta,
     enquiryCta: "Register interest in Southend-on-Sea classes",
     mapHref:
       "https://www.google.com/maps/search/?api=1&query=Southend-on-Sea%20Essex",

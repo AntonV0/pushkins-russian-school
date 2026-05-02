@@ -124,12 +124,17 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
               {school.lead}
             </p>
             <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600">
-              {school.statusDescription}
+              {school.availabilitySummary}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href={getSchoolEnquiryHref(school)}>
                 {school.enquiryCta}
               </ButtonLink>
+              {!hasCurrentVenue && school.bestNextSteps[1] ? (
+                <ButtonLink href={school.bestNextSteps[1].href} variant="secondary">
+                  {school.bestNextSteps[1].ctaLabel}
+                </ButtonLink>
+              ) : null}
               <a
                 href={school.mapHref}
                 target="_blank"
@@ -141,42 +146,83 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
             </div>
           </div>
 
-          <aside className="premium-panel rounded-lg border border-border-soft bg-surface-muted p-6 sm:p-8">
-            <h2 className="text-xl font-semibold text-brand-blue-strong">
-              {hasCurrentVenue ? "Venue and timetable" : "Area and learning options"}
-            </h2>
-            <dl className="mt-6 space-y-5 text-sm">
-              <div>
-                <dt className="font-semibold text-brand-blue-strong">
-                  {hasCurrentVenue ? "Venue" : "Area"}
-                </dt>
-                <dd className="mt-1 text-slate-600">{school.venueName}</dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-brand-blue-strong">
-                  {hasCurrentVenue ? "Address" : "Area"}
-                </dt>
-                <dd className="mt-1 text-slate-600">
-                  {school.address.join(", ")}
-                  {school.postcode ? (
-                    <>
-                      <br />
-                      {school.postcode}
-                    </>
-                  ) : null}
-                </dd>
-              </div>
-              <div>
-                <dt className="font-semibold text-brand-blue-strong">Schedule</dt>
-                <dd className="mt-1 text-slate-600">{school.schedule}</dd>
-              </div>
-            </dl>
-            {school.scheduleNote ? (
-              <p className="mt-5 border-l-2 border-brand-gold pl-4 text-sm leading-6 text-slate-600">
-                {school.scheduleNote}
+          {hasCurrentVenue ? (
+            <aside className="premium-panel rounded-lg border border-border-soft bg-surface-muted p-6 sm:p-8">
+              <h2 className="text-xl font-semibold text-brand-blue-strong">
+                Venue and timetable
+              </h2>
+              <dl className="mt-6 space-y-5 text-sm">
+                <div>
+                  <dt className="font-semibold text-brand-blue-strong">Venue</dt>
+                  <dd className="mt-1 text-slate-600">{school.venueName}</dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-brand-blue-strong">Address</dt>
+                  <dd className="mt-1 text-slate-600">
+                    {school.address.join(", ")}
+                    {school.postcode ? (
+                      <>
+                        <br />
+                        {school.postcode}
+                      </>
+                    ) : null}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-brand-blue-strong">
+                    Schedule
+                  </dt>
+                  <dd className="mt-1 text-slate-600">{school.schedule}</dd>
+                </div>
+              </dl>
+              {school.scheduleNote ? (
+                <p className="mt-5 border-l-2 border-brand-gold pl-4 text-sm leading-6 text-slate-600">
+                  {school.scheduleNote}
+                </p>
+              ) : null}
+            </aside>
+          ) : (
+            <aside className="premium-panel rounded-lg border border-border-soft bg-surface-muted p-6 sm:p-8">
+              <h2 className="text-xl font-semibold text-brand-blue-strong">
+                What families can do next
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-slate-600">
+                Choose the enquiry route that best matches your family&apos;s
+                situation. The school can then respond with the most practical
+                option.
               </p>
-            ) : null}
-          </aside>
+              <div className="mt-6 grid gap-4">
+                {school.bestNextSteps.map((step, index) => (
+                  <div key={step.title} className="border-l border-brand-gold pl-4">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-red">
+                      Option {index + 1}
+                    </p>
+                    <h3 className="mt-1 text-base font-semibold text-brand-blue-strong">
+                      {step.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">
+                      {step.body}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 rounded-md border border-border-soft bg-white/70 p-4">
+                <p className="text-sm font-semibold text-brand-blue-strong">
+                  {school.nearbyAlternativeCta.label}
+                </p>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  {school.nearbyAlternativeCta.body}
+                </p>
+                <ButtonLink
+                  href={school.nearbyAlternativeCta.href}
+                  variant="secondary"
+                  className="mt-4"
+                >
+                  View option
+                </ButtonLink>
+              </div>
+            </aside>
+          )}
         </div>
       </section>
 
@@ -214,42 +260,39 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
           ) : (
             <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
               <SectionIntro
-                eyebrow="Current status"
-                title={`What ${school.name} families can ask about now`}
+                eyebrow="Decision guide"
+                title={`Choose the right next step for ${school.name}`}
               >
                 <p>
-                  This page keeps the local school location visible without
-                  showing old venue or lesson-time details as current provision.
-                  Families can still send useful context and choose the next
-                  learning step.
+                  The local page stays visible for future demand, while parents
+                  can still choose a practical next step for learning now.
                 </p>
               </SectionIntro>
 
               <div className="premium-panel overflow-hidden rounded-lg border border-border-soft bg-surface">
-                {[
-                  {
-                    title: "Register local interest",
-                    body: school.statusDescription,
-                  },
-                  {
-                    title: "Ask about online options",
-                    body: "Families can discuss online Russian learning while local venue, staffing, and timetable details are unconfirmed.",
-                  },
-                  {
-                    title: "Share class context",
-                    body: "Age, current Russian confidence, reading and writing level, and exam goals help the school recommend the next step.",
-                  },
-                ].map((item) => (
+                {school.bestNextSteps.map((item, index) => (
                   <article
                     key={item.title}
-                    className="border-b border-border-soft p-5 last:border-b-0"
+                    className="grid gap-5 border-b border-border-soft p-5 last:border-b-0 sm:grid-cols-[3rem_1fr_auto] sm:items-start"
                   >
-                    <h2 className="text-lg font-semibold text-brand-blue-strong">
-                      {item.title}
-                    </h2>
-                    <p className="mt-3 text-sm leading-6 text-slate-600">
-                      {item.body}
-                    </p>
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center justify-self-start rounded-full border border-brand-gold/50 bg-surface-muted text-sm font-semibold text-brand-blue-strong">
+                      {index + 1}
+                    </span>
+                    <div>
+                      <h2 className="text-lg font-semibold text-brand-blue-strong">
+                        {item.title}
+                      </h2>
+                      <p className="mt-3 text-sm leading-6 text-slate-600">
+                        {item.body}
+                      </p>
+                    </div>
+                    <ButtonLink
+                      href={item.href}
+                      variant={index === 0 ? "primary" : "secondary"}
+                      className="justify-self-start sm:justify-self-end"
+                    >
+                      {item.ctaLabel}
+                    </ButtonLink>
                   </article>
                 ))}
               </div>
@@ -453,7 +496,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
             <p className="mt-4 max-w-2xl text-sm leading-6 text-white/75">
               {hasCurrentVenue
                 ? "These practical notes help families confirm the right class fit and next step before attending."
-                : "These practical notes help families choose the next step without relying on old venue, timetable, or payment information."}
+                : "These practical notes help families choose the next step without relying on unconfirmed venue, timetable, or payment information."}
             </p>
           </div>
           <ul className="space-y-3 text-sm leading-6 text-white/80">
@@ -478,10 +521,14 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
           <div className="border-l-4 border-brand-gold pl-6">
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
-              Before you enquire
+              What to include in your enquiry
             </h2>
+            <p className="mt-3 text-sm leading-6 text-slate-600">
+              A focused first message helps the school recommend local interest,
+              online learning, a current branch, or exam preparation.
+            </p>
             <ul className="mt-5 space-y-3 text-sm leading-6 text-slate-700">
-              {enquiryChecklist.slice(0, 4).map((item) => (
+              {enquiryChecklist.slice(1, 8).map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>

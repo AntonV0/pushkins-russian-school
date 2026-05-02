@@ -15,15 +15,19 @@ const rowTone = {
 };
 
 function getNextStepLabel(school: School) {
+  return school.bestNextSteps[0]?.ctaLabel ?? "Start an enquiry";
+}
+
+function getNextStepHref(school: School) {
+  return school.bestNextSteps[0]?.href ?? getSchoolEnquiryHref(school);
+}
+
+function getLocationContext(school: School) {
   if (school.status === "open") {
-    return "Ask about places";
+    return "Current in-person branch";
   }
 
-  if (school.status === "online") {
-    return "Register interest";
-  }
-
-  return "Register interest";
+  return "Local interest area";
 }
 
 export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
@@ -34,8 +38,9 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
           Branch comparison
         </p>
         <p className="mt-1 text-sm leading-6 text-slate-600">
-          Status and schedule notes are shown together so families can separate
-          current classes from online-only and register-interest options.
+          Status and next-step guidance are shown together so families can
+          separate current in-person classes from future local interest and
+          online learning options.
         </p>
       </div>
       <div
@@ -87,10 +92,18 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
                     status={school.status}
                     label={school.statusLabel}
                   />
+                  {school.status === "open" ? (
+                    <p className="mt-2 text-xs font-semibold text-brand-blue-strong">
+                      Current weekend places can be discussed by enquiry.
+                    </p>
+                  ) : null}
                 </td>
                 <td className="px-5 py-5 text-slate-600">
                   <p className="font-semibold text-brand-blue-strong">
                     {school.venueName}
+                  </p>
+                  <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-brand-red">
+                    {getLocationContext(school)}
                   </p>
                   <p className="mt-1">
                     {school.address.join(", ")}
@@ -106,18 +119,28 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
                   ) : null}
                 </td>
                 <td className="px-5 py-5 text-slate-600">
-                  <p>{school.classGroups[0]}</p>
+                  <p className="font-medium text-brand-blue-strong">
+                    {school.classGroups[0]}
+                  </p>
                   <p className="mt-1 text-xs leading-5 text-muted">
-                    Through to exam preparation where suitable
+                    {school.availabilitySummary}
                   </p>
                 </td>
                 <td className="px-5 py-5">
                   <Link
-                    href={getSchoolEnquiryHref(school)}
+                    href={getNextStepHref(school)}
                     className="inline-flex rounded-md border border-brand-blue/20 bg-white/70 px-3 py-2 text-xs font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
                   >
                     {getNextStepLabel(school)}
                   </Link>
+                  {school.status !== "open" ? (
+                    <Link
+                      href={school.nearbyAlternativeCta.href}
+                      className="mt-3 block text-xs font-semibold text-muted underline decoration-brand-red/30 hover:text-brand-red"
+                    >
+                      {school.nearbyAlternativeCta.label}
+                    </Link>
+                  ) : null}
                 </td>
               </tr>
             ))}

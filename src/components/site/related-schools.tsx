@@ -32,20 +32,30 @@ export function RelatedSchools({ currentSlug, schools }: RelatedSchoolsProps) {
 
         <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {relatedSchools.map((school) => (
-            <Link
+            <article
               key={school.slug}
-              href={`/schools/${school.slug}`}
-              className="premium-panel rounded-lg border border-border-soft bg-surface p-5 transition hover:-translate-y-0.5 hover:border-brand-red"
+              className="premium-panel rounded-lg border border-border-soft bg-surface p-5"
             >
               <StatusBadge status={school.status} label={school.statusLabel} />
-              <h3 className="mt-4 text-xl font-semibold text-brand-blue-strong">
-                {school.name}
+              <h3 className="mt-4 text-xl font-semibold">
+                <Link
+                  href={`/schools/${school.slug}`}
+                  className="text-brand-blue-strong hover:text-brand-red"
+                >
+                  {school.name}
+                </Link>
               </h3>
               <p className="mt-2 text-sm text-muted">{school.county}</p>
               <p className="mt-4 text-sm leading-6 text-slate-600">
-                {school.schedule}
+                {school.availabilitySummary}
               </p>
-            </Link>
+              <Link
+                href={school.bestNextSteps[0]?.href ?? `/schools/${school.slug}`}
+                className="mt-5 inline-flex text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/35 hover:text-brand-red"
+              >
+                {school.bestNextSteps[0]?.ctaLabel ?? "View branch"}
+              </Link>
+            </article>
           ))}
         </div>
       </div>
