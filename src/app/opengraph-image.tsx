@@ -83,7 +83,7 @@ export default function OpenGraphImage() {
               padding: "18px 26px",
             }}
           >
-            Learning routes
+            Learning pathways
           </div>
         </div>
 
@@ -109,7 +109,7 @@ export default function OpenGraphImage() {
               maxWidth: 900,
             }}
           >
-            A refined Russian school network for families
+            A refined Russian school for families
           </div>
           <div
             style={{
@@ -135,7 +135,7 @@ export default function OpenGraphImage() {
             paddingTop: 26,
           }}
         >
-          <span>Current classes and register-interest routes</span>
+          <span>Current classes and register-interest locations</span>
           <span>pushkinsrussianschool.co.uk</span>
         </div>
       </div>

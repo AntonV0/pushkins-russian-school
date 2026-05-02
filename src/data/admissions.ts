@@ -17,7 +17,7 @@ export const enquiryChecklist = [
   "Parent or carer name and contact email",
   "Child first name or children's first names",
   "Child age or ages",
-  "Preferred school location or online learning route",
+  "Preferred school location or online learning option",
   "How much Russian the child hears or uses at home",
   "Current Russian language level",
   "Interest in GCSE or A Level preparation, if relevant",

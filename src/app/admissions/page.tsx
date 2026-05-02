@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Admissions and Fees | Pushkin's School",
     description:
-      "Understand the enquiry route, placement information, fee summary, and payment notes for Pushkin's School.",
+      "Understand the enquiry process, placement information, fee summary, and payment notes for Pushkin's School.",
     url: "/admissions",
   },
 };
@@ -46,7 +46,7 @@ export default function AdmissionsPage() {
               Admissions and fees
             </p>
             <h1 className="mt-4 max-w-4xl text-balance text-4xl font-semibold leading-tight text-brand-blue-strong sm:text-6xl">
-              A clear route from enquiry to the right school group
+              A clear path from enquiry to the right school group
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
               Families can enquire for current weekend classes, register
@@ -72,12 +72,12 @@ export default function AdmissionsPage() {
             ) : null}
             <aside className="premium-panel rounded-lg border border-border-soft bg-surface-muted p-6 sm:p-8">
               <h2 className="text-xl font-semibold text-brand-blue-strong">
-                Current network status
+                Current school status
               </h2>
               <dl className="mt-6 grid gap-4 text-sm">
                 <div className="border-l border-brand-gold pl-4">
                   <dt className="font-semibold text-brand-blue-strong">
-                    Current weekend hub
+                    Current weekend school
                   </dt>
                   <dd className="mt-1 text-slate-600">{openSchools.length}</dd>
                 </div>
@@ -106,32 +106,34 @@ export default function AdmissionsPage() {
       <section className="border-b border-border-soft bg-background py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
-            eyebrow="Choosing the best route"
+            eyebrow="Choosing the best option"
             title="One enquiry can point families to the right option"
           >
             <p>
-              Pushkin&apos;s School remains the local weekend route where a
+              Pushkin&apos;s School remains the local weekend option where a
               branch fits. If distance, branch status, or exam goals suggest a
               different path, the enquiry can also point families towards Volna
               Online Russian School or GCSERussian.com.
             </p>
           </SectionIntro>
-          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+          <div className="premium-panel mt-10 overflow-hidden rounded-lg border border-border-soft bg-surface">
             {curriculumRouteRecommendations.map((route) => (
               <article
                 key={route.title}
-                className="premium-panel rounded-lg border border-border-soft bg-surface p-6"
+                className="grid gap-5 border-b border-border-soft p-6 last:border-b-0 lg:grid-cols-[0.56fr_1fr_auto] lg:items-center"
               >
-                <h2 className="text-xl font-semibold text-brand-blue-strong">
-                  {route.title}
-                </h2>
-                <p className="mt-3 text-sm leading-6 text-slate-600">
-                  {route.bestWhen}
-                </p>
-                <p className="mt-4 text-sm leading-6 text-slate-600">
+                <div>
+                  <h2 className="text-xl font-semibold text-brand-blue-strong">
+                    {route.title}
+                  </h2>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    {route.bestWhen}
+                  </p>
+                </div>
+                <p className="text-sm leading-6 text-slate-600">
                   {route.recommendation}
                 </p>
-                <div className="mt-6">
+                <div className="lg:justify-self-end">
                   <ButtonLink href={route.href} variant="secondary">
                     {route.ctaLabel}
                   </ButtonLink>
@@ -153,24 +155,26 @@ export default function AdmissionsPage() {
               careful about what still needs school confirmation.
             </p>
           </SectionIntro>
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
+          <ol className="mt-10 overflow-hidden rounded-lg border border-border-soft bg-surface">
             {admissionsSteps.map((step, index) => (
-              <article
+              <li
                 key={step.title}
-                className="premium-panel rounded-lg border border-border-soft bg-surface p-6"
+                className="grid gap-4 border-b border-border-soft p-6 last:border-b-0 md:grid-cols-[4rem_1fr]"
               >
-                <p className="font-mono text-sm font-semibold text-brand-red">
+                <span className="flex size-11 items-center justify-center rounded-full border border-brand-gold/50 bg-background font-mono text-sm font-semibold text-brand-red">
                   0{index + 1}
-                </p>
-                <h2 className="mt-4 text-xl font-semibold text-brand-blue-strong">
-                  {step.title}
-                </h2>
-                <p className="mt-3 text-sm leading-6 text-slate-600">
-                  {step.body}
-                </p>
-              </article>
+                </span>
+                <span>
+                  <span className="block text-xl font-semibold text-brand-blue-strong">
+                    {step.title}
+                  </span>
+                  <span className="mt-3 block text-sm leading-6 text-slate-600">
+                    {step.body}
+                  </span>
+                </span>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 

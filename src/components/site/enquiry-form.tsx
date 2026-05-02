@@ -143,7 +143,7 @@ export function EnquiryForm({
             htmlFor="preferred-route"
             className="text-sm font-semibold text-brand-blue-strong"
           >
-            Preferred school or learning route
+            Preferred school or learning option
           </label>
           <select
             id="preferred-route"
@@ -154,7 +154,7 @@ export function EnquiryForm({
             defaultValue={state.values?.preferredRoute ?? initialPreferredRoute}
             className={fieldClassName(Boolean(fieldErrors.preferredRoute))}
           >
-            <option value="">Select a route</option>
+            <option value="">Select an option</option>
             {enquiryRouteOptions.map((group) => (
               <optgroup key={group.groupLabel} label={group.groupLabel}>
                 {group.options.map((option) => (

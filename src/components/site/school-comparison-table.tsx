@@ -35,7 +35,7 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
         </p>
         <p className="mt-1 text-sm leading-6 text-slate-600">
           Status and schedule notes are shown together so families can separate
-          current classes from online-only and register-interest routes.
+          current classes from online-only and register-interest options.
         </p>
       </div>
       <div
@@ -63,7 +63,7 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
                 Schedule
               </th>
               <th scope="col" className="px-5 py-4">
-                Class route
+                Class pathway
               </th>
               <th scope="col" className="px-5 py-4">
                 Next step

@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { EnquiryForm } from "@/components/site/enquiry-form";
-import { LearningOptions } from "@/components/site/learning-options";
-import { SectionIntro } from "@/components/site/section-intro";
 import { enquiryChecklist } from "@/data/admissions";
 import {
   contactDetails,
@@ -14,7 +12,7 @@ import { schools } from "@/data/schools";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Pushkin's School to enquire about current classes, online routes, future local classes, and registration interest.",
+    "Contact Pushkin's School to enquire about current classes, online lessons, future local classes, and registration interest.",
   alternates: {
     canonical: "/contact",
   },
@@ -43,110 +41,94 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
     process.env.ENQUIRY_STORAGE_MODE === "supabase" &&
     Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL) &&
     Boolean(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+  const openSchools = schools.filter((school) => school.status === "open");
+  const registerInterestSchools = schools.filter(
+    (school) => school.status !== "open",
+  );
 
   return (
     <main>
-      <section className="border-b border-border-soft bg-surface/80 py-16 sm:py-20">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-[1.1fr_0.9fr] lg:px-8">
-          <div>
+      <section className="border-b border-border-soft bg-surface/80 py-12 sm:py-16">
+        <div className="mx-auto grid max-w-7xl items-start gap-10 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+          <div className="lg:sticky lg:top-8">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
               Contact
             </p>
-            <h1 className="mt-4 max-w-4xl text-balance text-4xl font-semibold leading-tight text-brand-blue-strong sm:text-6xl">
-              Enquire about a school place or future local classes
+            <h1 className="mt-4 max-w-4xl text-balance text-4xl font-semibold leading-tight text-brand-blue-strong sm:text-5xl">
+              Enquire about weekend Russian classes for your child
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
-              Use the structured form to submit a simple initial enquiry, or
-              write to the school directly if you prefer email.
+              Tell us your preferred location, your child&apos;s age and current
+              Russian level, and whether you are asking about current weekend
+              classes, future local provision, online lessons, or exam support.
             </p>
-          </div>
-          <aside className="premium-panel rounded-lg border border-border-soft bg-surface-muted p-6 sm:p-8">
-            <h2 className="text-xl font-semibold text-brand-blue-strong">
-              Enquiries
-            </h2>
-            <a
-              href={`mailto:${contactDetails.email}`}
-              className="mt-4 block break-all text-lg font-semibold text-brand-blue-strong underline decoration-brand-red/40 hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
-            >
-              {contactDetails.email}
-            </a>
-            <p className="mt-4 text-sm leading-6 text-slate-600">
-              {contactDetails.enquiryFormNote}
-            </p>
-            <div className="mt-6 flex">
-              <a
-                href={`mailto:${contactDetails.email}`}
+
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="#enquiry-form"
                 className="inline-flex min-h-11 items-center justify-center rounded-md bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
               >
-                Email directly
+                Start the enquiry form
+              </Link>
+              <a
+                href={`mailto:${contactDetails.email}`}
+                className="inline-flex min-h-11 items-center justify-center rounded-md border border-brand-blue/20 bg-background px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+              >
+                Email the school
               </a>
             </div>
-          </aside>
-        </div>
-      </section>
 
-      <section className="border-b border-border-soft bg-background py-12">
-        <div className="mx-auto grid max-w-7xl gap-4 px-6 md:grid-cols-3 lg:px-8">
-          {contactSupportNotes.map((note) => (
-            <div
-              key={note}
-              className="premium-panel border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
-            >
-              {note}
+            <div className="mt-8 border-y border-border-soft py-6">
+              <dl className="grid gap-5 text-sm sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+                <div>
+                  <dt className="font-semibold text-brand-blue-strong">
+                    Current weekend branch
+                  </dt>
+                  <dd className="mt-1 leading-6 text-slate-600">
+                    {openSchools.map((school) => school.name).join(", ")}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-brand-blue-strong">
+                    Register interest
+                  </dt>
+                  <dd className="mt-1 leading-6 text-slate-600">
+                    {registerInterestSchools.length} local areas plus online
+                    lessons
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-brand-blue-strong">
+                    Direct enquiries
+                  </dt>
+                  <dd className="mt-1 leading-6 text-slate-600">
+                    <a
+                      href={`mailto:${contactDetails.email}`}
+                      className="break-all font-semibold underline decoration-brand-red/40 hover:text-brand-red"
+                    >
+                      {contactDetails.email}
+                    </a>
+                  </dd>
+                </div>
+              </dl>
             </div>
-          ))}
-        </div>
-      </section>
 
-      <section className="border-b border-border-soft bg-surface py-14 sm:py-16">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <LearningOptions
-            eyebrow="Choose a route"
-            title="Local school, online lessons, or GCSE self-study"
-            intro="If a branch is not nearby or is not currently open, families can still ask about the wider set of Russian-learning options before deciding the next step."
-            compact
-          />
-        </div>
-      </section>
-
-      <section className="bg-background py-14 sm:py-16">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.72fr_1.28fr] lg:px-8">
-          <div>
-            <SectionIntro
-              eyebrow="Enquiry route"
-              title="Before submitting"
-            >
-              <p>
-                The form collects only the first details needed to respond:
-                parent contact details, preferred route, child first names and
-                ages, Russian level, and the reason for enquiring. Full
-                registration, health, safeguarding, emergency contact, and
-                consent information belongs in the later onboarding workflow.
+            <div className="mt-7">
+              <h2 className="text-lg font-semibold text-brand-blue-strong">
+                Include these details
+              </h2>
+              <ul className="mt-4 grid gap-x-6 gap-y-2 text-sm leading-6 text-slate-700 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                {enquiryChecklist.slice(0, 6).map((item) => (
+                  <li key={item} className="border-l border-brand-gold pl-3">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-4 text-xs leading-5 text-slate-500">
+                Please keep the first enquiry focused on learning context. Full
+                registration, consent, emergency contact, and health details are
+                requested later only if your family joins.
               </p>
-            </SectionIntro>
-            <div className="mt-6">
-              <Link
-                href="/faq"
-                className="text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/40 hover:text-brand-red"
-              >
-                Read common questions before enquiring
-              </Link>
-            </div>
-            <div className="mt-6 grid gap-3">
-              {schools.map((school) => (
-                <Link
-                  key={school.slug}
-                  href={`/schools/${school.slug}`}
-                  className="premium-panel rounded-lg border border-border-soft bg-surface p-5 transition hover:border-brand-red"
-                >
-                  <span className="block text-base font-semibold text-brand-blue-strong">
-                    {school.name}
-                  </span>
-                  <span className="mt-2 block text-sm text-slate-600">
-                    {school.statusLabel}
-                  </span>
-                </Link>
-              ))}
             </div>
           </div>
 
@@ -158,53 +140,109 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         </div>
       </section>
 
-      <section className="border-t border-border-soft bg-surface py-14 sm:py-16">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
-          <div>
-            <h2 className="text-2xl font-semibold text-brand-blue-strong">
-              What to include
-            </h2>
-            <p className="mt-3 text-sm leading-6 text-slate-600">
-              A short, structured enquiry helps the school respond with the
-              right branch, group, and next step.
-            </p>
+      <section className="border-b border-border-soft bg-background py-12">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
+                Locations
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold text-brand-blue-strong">
+                Choose a branch, or tell us the area you need
+              </h2>
+              <p className="mt-4 text-sm leading-6 text-slate-600">
+                Select the closest school or learning option in the form. If
+                your preferred area is online-only or not currently open, your
+                enquiry still helps the school understand local demand.
+              </p>
+              <div className="mt-6">
+                <Link
+                  href="/schools"
+                  className="text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/40 hover:text-brand-red"
+                >
+                  Compare all school locations
+                </Link>
+              </div>
+            </div>
+
+            <div className="divide-y divide-border-soft border-y border-border-soft">
+              {schools.map((school) => (
+                <div
+                  key={school.slug}
+                  className="grid gap-3 py-5 sm:grid-cols-[0.9fr_1fr_auto] sm:items-center"
+                >
+                  <div>
+                    <h3 className="text-lg font-semibold text-brand-blue-strong">
+                      {school.name}
+                    </h3>
+                    <p className="mt-1 text-sm text-slate-600">
+                      {school.county}
+                    </p>
+                  </div>
+                  <p className="text-sm leading-6 text-slate-700">
+                    {school.statusLabel}
+                  </p>
+                  <Link
+                    href={`/schools/${school.slug}`}
+                    className="inline-flex min-h-10 items-center justify-center rounded-md border border-brand-blue/20 px-4 py-2 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+                  >
+                    View details
+                  </Link>
+                </div>
+              ))}
+            </div>
           </div>
-          <ul className="grid gap-3 sm:grid-cols-2">
-            {enquiryChecklist.map((item) => (
-              <li
-                key={item}
-                className="premium-panel border-l border-brand-gold bg-background px-4 py-3 text-sm text-slate-700"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
-      <section className="border-t border-border-soft bg-background py-14 sm:py-16">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
+      <section className="border-b border-border-soft bg-surface py-12 sm:py-14">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.7fr_1.3fr] lg:px-8">
           <div>
-            <h2 className="text-2xl font-semibold text-brand-blue-strong">
-              Payment information
-            </h2>
-            <p className="mt-3 text-sm leading-6 text-slate-600">
-              {paymentDetails.bankDetailsStatus}
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
+              Response process
             </p>
+            <h2 className="mt-3 text-3xl font-semibold text-brand-blue-strong">
+              What happens after you enquire
+            </h2>
           </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {paymentDetails.termFees.map((fee) => (
-              <div
-                key={fee.label}
-                className="premium-panel border-l border-brand-gold bg-surface px-4 py-3"
-              >
-                <p className="text-sm text-slate-600">{fee.label}</p>
-                <p className="mt-1 font-semibold text-brand-blue-strong">
-                  {fee.value}
+          <div className="grid gap-5 md:grid-cols-3">
+            {contactSupportNotes.map((note, index) => (
+              <div key={note} className="border-l border-brand-gold pl-5">
+                <p className="font-mono text-sm font-semibold text-brand-red">
+                  0{index + 1}
                 </p>
+                <p className="mt-3 text-sm leading-6 text-slate-700">{note}</p>
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="bg-background py-12 sm:py-14">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.7fr_1.3fr] lg:px-8">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
+              Fees
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold text-brand-blue-strong">
+              Payment details are confirmed before joining
+            </h2>
+            <p className="mt-4 text-sm leading-6 text-slate-600">
+              {paymentDetails.bankDetailsStatus}
+            </p>
+          </div>
+          <dl className="grid gap-x-8 gap-y-5 border-y border-border-soft py-6 sm:grid-cols-2">
+            {paymentDetails.termFees.map((fee) => (
+              <div key={fee.label}>
+                <dt className="text-sm font-semibold text-brand-blue-strong">
+                  {fee.label}
+                </dt>
+                <dd className="mt-1 text-sm leading-6 text-slate-600">
+                  {fee.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
     </main>

@@ -1,5 +1,5 @@
 export const contactDetails = {
-  schoolName: "Pushkin's School",
+  schoolName: "Pushkin's School of Russian Language and Literature",
   email: "info@pushkinsrussianschool.co.uk",
   phoneLabel: "Enquiries by email",
   enquiryFormNote:
@@ -8,8 +8,8 @@ export const contactDetails = {
 };
 
 export const contactSupportNotes = [
-  "Use the form to share branch, age, level, goals, and basic contact details.",
-  "For online-only network areas, enquiries are treated as register-interest messages for future local classes.",
+  "Use the form to share preferred school location, child age, Russian level, goals, and basic contact details.",
+  "If a local class is not currently available, enquiries can still register interest for future weekend provision.",
   "Do not include medical, safeguarding, emergency contact, or full registration details in the initial enquiry.",
 ];
 
@@ -26,5 +26,5 @@ export const paymentDetails = {
     { label: "Payment method", value: "Confirmed after enquiry" },
   ],
   bankDetailsStatus:
-    "Current fees, discounts, payment instructions, and bank details are confirmed directly by the school until final public payment wording is approved.",
+    "Current fees, discounts, payment instructions, and bank details are confirmed directly by the school after enquiry.",
 };

@@ -12,11 +12,11 @@ export function BrandMark({ className = "", compact = false }: BrandMarkProps) {
       </span>
       {!compact ? (
         <span className="min-w-0 leading-tight">
-          <span className="block truncate text-base font-semibold text-brand-blue-strong">
-            Pushkin&apos;s School
+          <span className="block max-w-[15rem] text-sm font-semibold text-brand-blue-strong sm:max-w-[22rem] sm:text-base">
+            Pushkin&apos;s School of Russian Language and Literature
           </span>
-          <span className="hidden text-xs font-medium uppercase tracking-[0.16em] text-muted sm:block">
-            Russian language network
+          <span className="hidden text-xs font-medium uppercase tracking-[0.16em] text-muted lg:block">
+            Weekend supplementary school
           </span>
         </span>
       ) : null}

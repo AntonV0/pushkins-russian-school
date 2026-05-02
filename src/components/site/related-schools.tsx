@@ -16,7 +16,7 @@ export function RelatedSchools({ currentSlug, schools }: RelatedSchoolsProps) {
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
-              Explore the network
+              Explore more locations
             </p>
             <h2 className="mt-3 text-3xl font-semibold text-brand-blue-strong">
               Other Pushkin&apos;s School branches

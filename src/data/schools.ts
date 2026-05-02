@@ -78,11 +78,11 @@ const sharedHighlights = [
 ];
 
 const onlineOnlyStatusDescription =
-  "This network area is online-only for now while local demand, staffing, and venue options are being confirmed. Families can register interest for future in-person classes.";
+  "This location is online-only for now while local demand, staffing, and venue options are being confirmed. Families can register interest for future in-person classes.";
 
 const onlineOnlyHighlights = [
-  "Online learning route available while local classes are paused",
-  "Register-interest route helps the school understand local demand",
+  "Online learning option available while local classes are paused",
+  "Register interest helps the school understand local demand",
   "Future local classes can reopen when enough families and operational capacity align",
 ];
 
@@ -95,7 +95,7 @@ export const schools: School[] = [
     status: "online",
     statusLabel: "Online only / register interest",
     statusDescription: onlineOnlyStatusDescription,
-    lead: "A long-standing network area for families around High Wycombe, currently kept open for online learning and future local interest.",
+    lead: "A long-standing school location for families around High Wycombe, currently kept open for online learning and future local interest.",
     venueName: "High Wycombe area",
     address: ["Buckinghamshire"],
     postcode: "",
@@ -121,7 +121,7 @@ export const schools: School[] = [
     status: "online",
     statusLabel: "Online only / register interest",
     statusDescription: onlineOnlyStatusDescription,
-    lead: "A Hertfordshire network area for Russian-learning families, currently online-only with a register-interest route for future local classes.",
+    lead: "A Hertfordshire location for Russian-learning families, currently online-only with a register-interest option for future local classes.",
     venueName: "Hemel Hempstead area",
     address: ["Hertfordshire"],
     postcode: "",
@@ -170,7 +170,7 @@ export const schools: School[] = [
     status: "online",
     statusLabel: "Online only / register interest",
     statusDescription: onlineOnlyStatusDescription,
-    lead: "An Essex network area for families around Chelmsford, currently online-only with interest gathered for future local provision.",
+    lead: "An Essex location for families around Chelmsford, currently online-only with interest gathered for future local provision.",
     venueName: "Chelmsford area",
     address: ["Essex"],
     postcode: "",
@@ -213,7 +213,7 @@ export const schools: School[] = [
     status: "online",
     statusLabel: "Online only / register interest",
     statusDescription: onlineOnlyStatusDescription,
-    lead: "A Southend-on-Sea network area retained for online learning and future local class interest.",
+    lead: "A Southend-on-Sea location retained for online learning and future local class interest.",
     venueName: "Southend-on-Sea area",
     address: ["Essex"],
     postcode: "",

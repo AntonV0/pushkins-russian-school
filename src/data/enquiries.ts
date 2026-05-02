@@ -132,7 +132,7 @@ export const enquiryRouteOptions = [
     })),
   },
   {
-    groupLabel: "Related Russian-learning routes",
+    groupLabel: "Related Russian-learning options",
     options: learningOptions
       .filter((option) => option.id !== "pushkins-school")
       .map((option) => ({
@@ -145,7 +145,7 @@ export const enquiryRouteOptions = [
     options: [
       {
         value: "not-sure",
-        label: "Please advise on the best route",
+        label: "Please advise on the best option",
       },
     ],
   },
@@ -211,7 +211,7 @@ export function validateEnquiryForm(formData: FormData): EnquiryValidationResult
   }
 
   if (!values.preferredRoute || !isKnownPreferredRoute(values.preferredRoute)) {
-    errors.preferredRoute = "Choose a branch or learning route.";
+    errors.preferredRoute = "Choose a branch or learning option.";
   }
 
   if (values.childNames.length < 2) {

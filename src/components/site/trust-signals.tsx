@@ -15,7 +15,7 @@ type TrustSignalsProps = {
 
 function TrustSignalCard({ signal }: { signal: TrustSignal }) {
   const content = (
-    <article className="premium-panel flex h-full flex-col rounded-lg border border-border-soft bg-background p-6 transition group-hover:border-brand-gold/70">
+    <article className="flex h-full flex-col border-l border-brand-gold bg-background px-5 py-4 transition group-hover:border-brand-red">
       <p className="font-mono text-sm font-semibold text-brand-red">
         {signal.value}
       </p>
@@ -45,7 +45,7 @@ function TrustSignalCard({ signal }: { signal: TrustSignal }) {
 }
 
 export function TrustSignals({
-  intro = "These proof points are intentionally cautious: they make the school feel established and transparent without publishing claims that still need business review.",
+  intro = "Parents can check the school locations, curriculum structure, and policy library before they enquire.",
   align = "left",
   includeReviewQueue = false,
 }: TrustSignalsProps) {
@@ -59,17 +59,40 @@ export function TrustSignals({
         <p>{intro}</p>
       </SectionIntro>
 
-      <div className="mt-10 grid gap-5 md:grid-cols-3">
-        {publishableTrustSignals.map((signal) => (
-          <TrustSignalCard key={signal.id} signal={signal} />
-        ))}
+      <div className="premium-panel mt-10 overflow-hidden rounded-lg border border-border-soft bg-background">
+        <div className="grid lg:grid-cols-[1.05fr_1.2fr]">
+          {publishableTrustSignals[0] ? (
+            <Link
+              href={publishableTrustSignals[0].href ?? "/schools"}
+              className="group block bg-brand-blue-strong p-8 text-white focus:outline-none focus:ring-2 focus:ring-brand-red/30 sm:p-10"
+            >
+              <p className="break-words font-mono text-3xl font-semibold text-brand-gold sm:text-5xl">
+                {publishableTrustSignals[0].value}
+              </p>
+              <h3 className="mt-6 max-w-md text-3xl font-semibold leading-tight">
+                {publishableTrustSignals[0].title}
+              </h3>
+              <p className="mt-4 max-w-xl text-sm leading-6 text-white/75">
+                {publishableTrustSignals[0].summary}
+              </p>
+              <span className="mt-8 inline-flex text-sm font-semibold underline decoration-white/30">
+                Explore school locations
+              </span>
+            </Link>
+          ) : null}
+          <div className="grid divide-y divide-border-soft">
+            {publishableTrustSignals.slice(1).map((signal) => (
+              <TrustSignalCard key={signal.id} signal={signal} />
+            ))}
+          </div>
+        </div>
       </div>
 
       {includeReviewQueue ? (
         <div className="mt-10 grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
           <div className="border-l-4 border-brand-gold bg-surface px-6 py-5">
             <h3 className="text-lg font-semibold text-brand-blue-strong">
-              History scaffolding
+              What families can expect
             </h3>
             <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-600">
               {trustHistoryNotes.map((note) => (
@@ -86,7 +109,7 @@ export function TrustSignals({
               >
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="rounded-full border border-brand-gold/40 bg-brand-gold/10 px-3 py-1 text-xs font-semibold text-brand-blue-strong">
-                    Pending review
+                    Being prepared
                   </span>
                   <span className="font-mono text-xs font-semibold text-slate-500">
                     {signal.value}

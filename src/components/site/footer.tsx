@@ -11,9 +11,9 @@ export function Footer() {
         <div>
           <BrandMark className="[&_*]:text-white" />
           <p className="mt-3 max-w-md text-sm leading-6 text-white/75">
-            A parent-facing Russian language school network with weekend
-            classes, exam preparation, culture, and community across local
-            branches.
+            Weekend supplementary Russian language and literature classes for
+            children, with culture, exam preparation, and local school
+            communities across England.
           </p>
           <a
             href={`mailto:${contactDetails.email}`}
@@ -64,8 +64,8 @@ export function Footer() {
       </div>
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-5 text-xs leading-5 text-white/55 sm:flex-row sm:items-center sm:justify-between lg:px-8">
-          <p>Public rebuild content is reviewed before sensitive details are published.</p>
-          <p>© {new Date().getFullYear()} Pushkin&apos;s School</p>
+          <p>Weekend Russian language, literature, and culture classes for children.</p>
+          <p>(c) {new Date().getFullYear()} Pushkin&apos;s School</p>
         </div>
       </div>
     </footer>

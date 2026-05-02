@@ -3,7 +3,7 @@ import { policies, policyGroups } from "./policies";
 import { networkSummary } from "./schools";
 
 export type TrustSignalKind =
-  | "network-scale"
+  | "location-scale"
   | "policy-transparency"
   | "curriculum-structure"
   | "years-established"
@@ -29,11 +29,11 @@ export type TrustSignal = {
 export const trustSignals: TrustSignal[] = [
   {
     id: "known-school-network",
-    kind: "network-scale",
-    title: "Known network areas",
-    value: `${networkSummary.locations} area pages`,
+    kind: "location-scale",
+    title: "Known school locations",
+    value: `${networkSummary.locations} location pages`,
     summary:
-      "Every known area has a full page with clear status wording and a practical enquiry route, whether families are asking about a current class or future local interest.",
+      "Every known location has a full page with clear status wording and a practical enquiry path, whether families are asking about a current class or future local interest.",
     status: "publishable",
     href: "/schools",
     evidenceNote:
@@ -45,11 +45,11 @@ export const trustSignals: TrustSignal[] = [
     title: "Policy transparency",
     value: `${policyGroups.length} policy groups`,
     summary:
-      "Safeguarding, parent, staff, and useful guidance policies are organised so families can see the document structure while formal PDFs are reviewed.",
+      "Safeguarding, parent, staff, and useful guidance policies are organised so families can see the document structure while formal PDFs are prepared.",
     status: "publishable",
     href: "/policies",
     evidenceNote:
-      `Generated from ${policies.length} policy records. Formal school PDFs are linked only after review and approval.`,
+      `Generated from ${policies.length} policy records. Formal school PDFs are linked only after approval.`,
   },
   {
     id: "curriculum-pathways",
@@ -61,7 +61,7 @@ export const trustSignals: TrustSignal[] = [
     status: "publishable",
     href: "/curriculum",
     evidenceNote:
-      "Built from reviewed high-level curriculum scaffolding; detailed schemes and named materials still need headteacher confirmation.",
+      "Built from high-level curriculum structure; detailed schemes and named materials can be added after headteacher confirmation.",
   },
   {
     id: "founding-year",
@@ -72,7 +72,7 @@ export const trustSignals: TrustSignal[] = [
       "The site is ready to show a strong longevity claim once the founding or first-opening year is verified from business records.",
     status: "pending-review",
     evidenceNote:
-      "Local ignored audit notes do not confirm a founding year. They identify old gallery archive routes as early as 2012, but that should not be treated as a founding claim.",
+      "Local ignored audit notes do not confirm a founding year. They identify old gallery archive pages as early as 2012, but that should not be treated as a founding claim.",
     reviewNote:
       "Confirm the official founding/opening year before publishing 'since' or 'years established' wording.",
   },
@@ -140,6 +140,6 @@ export const pendingTrustSignals = trustSignals.filter(
 
 export const trustHistoryNotes = [
   "A 'since' or 'years established' proof point can be added once the official opening year is confirmed.",
-  "Historic gallery material should be published only after image, consent, caption, and quality review.",
+  "Historic gallery material should be published only after image, consent, caption, and quality checks.",
   "Partnership, certificate, trip, staff, and exam-result claims should be added only when the school approves the exact public wording.",
 ];

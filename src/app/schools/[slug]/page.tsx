@@ -42,14 +42,14 @@ export async function generateMetadata({
   const pageTitle =
     school.status === "open"
       ? `${school.name} School`
-      : `${school.name} Russian Learning Route`;
+      : `${school.name} School Location`;
 
   return {
     title: pageTitle,
     description:
       school.status === "open"
         ? `${school.name} Pushkin's School branch: venue, timetable, class groups, fee categories, and enquiry information.`
-        : `${school.name} Pushkin's School network area: online-only learning route, register-interest option, class groups, and enquiry information.`,
+        : `${school.name} Pushkin's School location: online-only learning, register-interest option, class groups, and enquiry information.`,
     alternates: {
       canonical: `/schools/${school.slug}`,
     },
@@ -143,12 +143,12 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
 
           <aside className="premium-panel rounded-lg border border-border-soft bg-surface-muted p-6 sm:p-8">
             <h2 className="text-xl font-semibold text-brand-blue-strong">
-              {hasCurrentVenue ? "Venue and timetable" : "Network area and route"}
+              {hasCurrentVenue ? "Venue and timetable" : "Area and learning options"}
             </h2>
             <dl className="mt-6 space-y-5 text-sm">
               <div>
                 <dt className="font-semibold text-brand-blue-strong">
-                  {hasCurrentVenue ? "Venue" : "Network area"}
+                  {hasCurrentVenue ? "Venue" : "Area"}
                 </dt>
                 <dd className="mt-1 text-slate-600">{school.venueName}</dd>
               </div>
@@ -214,18 +214,18 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
           ) : (
             <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
               <SectionIntro
-                eyebrow="Current route"
+                eyebrow="Current status"
                 title={`What ${school.name} families can ask about now`}
               >
                 <p>
-                  This page keeps the local network area visible without showing
-                  old venue or lesson-time details as current provision.
+                  This page keeps the local school location visible without
+                  showing old venue or lesson-time details as current provision.
                   Families can still send useful context and choose the next
-                  learning route.
+                  learning step.
                 </p>
               </SectionIntro>
 
-              <div className="grid gap-4 md:grid-cols-3">
+              <div className="premium-panel overflow-hidden rounded-lg border border-border-soft bg-surface">
                 {[
                   {
                     title: "Register local interest",
@@ -242,7 +242,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 ].map((item) => (
                   <article
                     key={item.title}
-                    className="premium-panel rounded-lg border border-border-soft bg-surface p-5"
+                    className="border-b border-border-soft p-5 last:border-b-0"
                   >
                     <h2 className="text-lg font-semibold text-brand-blue-strong">
                       {item.title}
@@ -268,15 +268,18 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
               Families can share the child&apos;s current Russian experience in
               the enquiry. Teachers then use that context, branch availability,
               and the first weeks of learning to guide the most suitable group
-              or alternative route.
+              or alternative option.
             </p>
           </SectionIntro>
-          <div className="grid gap-4 md:grid-cols-3">
-            {placementSteps.map((step) => (
-              <article
-                key={step.title}
-                className="premium-panel rounded-lg border border-border-soft bg-background p-5"
-              >
+          <div className="relative border-l border-brand-gold pl-6">
+            {placementSteps.map((step, index) => (
+              <article key={step.title} className="relative pb-8 last:pb-0">
+                <span className="absolute -left-[2.05rem] top-1 flex size-5 items-center justify-center rounded-full border border-brand-gold bg-surface">
+                  <span className="size-2 rounded-full bg-brand-red" />
+                </span>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
+                  Placement {index + 1}
+                </p>
                 <h2 className="text-lg font-semibold text-brand-blue-strong">
                   {step.title}
                 </h2>
@@ -298,7 +301,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
             <p className="mt-3 text-sm leading-6 text-slate-600">
               Parents can use these stages to understand the broad learning
               journey and decide what to mention in the enquiry. Detailed class
-              guidance can be expanded after school review.
+              guidance can then be discussed with the school.
             </p>
             <ul className="mt-5 grid gap-2">
               {placementSignals.slice(0, 3).map((signal) => (
@@ -429,9 +432,9 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <LearningOptions
               options={learningOptions}
-              eyebrow="Alternative routes"
+              eyebrow="Alternative options"
               title={`More ways to learn Russian while local classes in ${school.name} are not available`}
-              intro="This network area keeps its full page for local interest, while families can also consider online Russian lessons or GCSE-focused self-study support without leaving the wider learning network."
+              intro="This location keeps its full page for local interest, while families can also consider online Russian lessons or GCSE-focused self-study support."
               highlightId={highlightedLearningOption}
               compact
             />
@@ -490,7 +493,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 Interested in {school.name}?
               </h2>
               <p className="mt-2 text-sm leading-6 text-slate-600">
-                Use the enquiry route or email {contactDetails.email} directly
+                Use the enquiry form or email {contactDetails.email} directly
                 to ask about the most suitable next step.
               </p>
             </div>
