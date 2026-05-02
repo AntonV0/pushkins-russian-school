@@ -56,6 +56,11 @@ export type PolicyAction =
       isExternal: true;
     };
 
+export type PolicyNextStep = {
+  title: string;
+  description: string;
+};
+
 const policyPdfPublicPathPrefix = "/policies/";
 const policyPdfExtension = ".pdf";
 const unconfirmedMetadataValues = new Set([
@@ -320,7 +325,7 @@ export const policies = policyGroups.flatMap((group) => group.policies);
 
 export const policyPublicationChecklist = [
   "A clear parent-facing summary of the policy purpose.",
-  "Owner, audience, and document type shown in one place.",
+  "Audience, document type, and availability shown in one place.",
   "Download button shown only when the PDF is ready for families.",
   "Official source links used where the policy depends on statutory guidance.",
   "A contact route for families who need current practical guidance.",
@@ -455,12 +460,18 @@ export function getPolicyAction(policy: Policy): PolicyAction | null {
 export function getPolicyMetadata(policy: Policy) {
   return [
     { label: "Audience", value: policy.audience },
-    { label: "Owner or category", value: policy.owner },
+    { label: "Category", value: policy.owner },
     { label: "Document type", value: policy.documentType },
-    { label: "Publication status", value: policy.status },
-    { label: "Version", value: policy.version ?? "To be confirmed" },
-    { label: "Review date", value: policy.reviewDate ?? "To be confirmed" },
-    { label: "Next review", value: policy.nextReviewDate ?? "To be confirmed" },
+    { label: "Availability", value: getPolicyAvailabilitySummary(policy) },
+    ...(isConfirmedPolicyMetadataValue(policy.version)
+      ? [{ label: "Version", value: policy.version }]
+      : []),
+    ...(isConfirmedPolicyMetadataValue(policy.reviewDate)
+      ? [{ label: "Review date", value: policy.reviewDate }]
+      : []),
+    ...(isConfirmedPolicyMetadataValue(policy.nextReviewDate)
+      ? [{ label: "Next review", value: policy.nextReviewDate }]
+      : []),
     ...(policy.externalGuidanceLastChecked
       ? [
           {
@@ -469,6 +480,46 @@ export function getPolicyMetadata(policy: Policy) {
           },
         ]
       : []),
+  ];
+}
+
+export function getPolicyNextSteps(policy: Policy): PolicyNextStep[] {
+  if (policy.publicationStatus === "external-current") {
+    return [
+      {
+        title: "Open the official reference",
+        description:
+          "Use the GOV.UK publication page when you need the current statutory wording.",
+      },
+      {
+        title: "Read the school summary",
+        description:
+          "Use the summary here to understand why the guidance matters for Pushkin's School families.",
+      },
+      {
+        title: "Ask how it applies",
+        description:
+          "Use the enquiry form for practical school questions, without adding sensitive child or family details.",
+      },
+    ];
+  }
+
+  return [
+    {
+      title: "Start with the parent summary",
+      description:
+        "It explains the policy purpose in plain language before any formal download is available.",
+    },
+    {
+      title: "Check availability",
+      description:
+        "If a family-ready PDF is available, the download button appears on this page.",
+    },
+    {
+      title: "Ask a practical question",
+      description:
+        "Use the enquiry form for general clarification, and avoid sharing medical, safeguarding, address, or document details.",
+    },
   ];
 }
 
@@ -517,9 +568,8 @@ export function getPolicyDownloadReadiness(policy: Policy) {
     if (missingMetadata.length > 0) {
       return {
         label: "Document details to confirm",
-        description: `This policy needs ${missingMetadata.join(
-          ", ",
-        )} before a download button appears.`,
+        description:
+          "The download will appear after the final document details are confirmed.",
       };
     }
 

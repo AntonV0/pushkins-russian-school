@@ -8,6 +8,7 @@ import {
   getPolicyBySlug,
   getPolicyDownloadReadiness,
   getPolicyMetadata,
+  getPolicyNextSteps,
   getPolicyStatusTone,
   policies,
   policyPublicationChecklist,
@@ -85,6 +86,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
   const action = getPolicyAction(policy);
   const metadata = getPolicyMetadata(policy);
   const downloadReadiness = getPolicyDownloadReadiness(policy);
+  const nextSteps = getPolicyNextSteps(policy);
 
   return (
     <main>
@@ -162,7 +164,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
           <aside className="premium-panel rounded-lg border border-border-soft bg-surface-muted p-6 sm:p-8">
             <h2 className="text-xl font-semibold text-brand-blue-strong">
-              Document record
+              Page record
             </h2>
             <dl className="mt-6 space-y-5 text-sm">
               {metadata.map((item) => (
@@ -195,14 +197,32 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
               {policy.parentGuidance}
             </p>
             <h3 className="mt-8 text-sm font-semibold uppercase tracking-[0.14em] text-brand-red">
-              Document availability
+              Availability
             </h3>
             <p className="mt-4 text-sm leading-6 text-slate-600">
               {policy.statusDescription}
             </p>
             <p className="mt-4 text-sm leading-6 text-slate-600">
-              {policy.reviewCadence}
+              {downloadReadiness.description}
             </p>
+            <h3 className="mt-8 text-sm font-semibold uppercase tracking-[0.14em] text-brand-red">
+              How to use this page
+            </h3>
+            <div className="mt-4 grid gap-3 md:grid-cols-3">
+              {nextSteps.map((step) => (
+                <div
+                  key={step.title}
+                  className="rounded-md border border-border-soft bg-background p-4"
+                >
+                  <h4 className="text-sm font-semibold text-brand-blue-strong">
+                    {step.title}
+                  </h4>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    {step.description}
+                  </p>
+                </div>
+              ))}
+            </div>
             <h3 className="mt-8 text-sm font-semibold uppercase tracking-[0.14em] text-brand-red">
               What this page gives you
             </h3>
@@ -248,8 +268,9 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">
               This page gives families the useful summary first. Formal
-              downloads appear when the formal document is ready, and families
-              can still use the enquiry form for current practical information.
+              downloads appear only when they are ready for families, and the
+              enquiry form stays focused on practical questions rather than
+              sensitive policy details.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
