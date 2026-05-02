@@ -46,6 +46,14 @@ a {
   text-underline-offset: 0.22em;
 }
 
+main :where(h1, h2, h3, p, a, span, dd, dt, li) {
+  overflow-wrap: break-word;
+}
+
+main .grid > * {
+  min-width: 0;
+}
+
 :focus-visible {
   outline: 2px solid color-mix(in srgb, var(--ring) 42%, transparent);
   outline-offset: 3px;

@@ -28,13 +28,13 @@ export const metadata: Metadata = {
   category: "education",
   keywords: seoKeywords,
   title: {
-    default: "Pushkin's School | Russian Language School Network",
+    default: "Pushkin's School of Russian Language and Literature",
     template: "%s | Pushkin's School",
   },
   description: siteConfig.description,
   manifest: "/manifest.webmanifest",
   openGraph: {
-    title: "Pushkin's School | Russian Language School Network",
+    title: "Pushkin's School of Russian Language and Literature",
     description: siteConfig.description,
     url: "/",
     siteName: siteConfig.name,
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Pushkin's School | Russian Language School Network",
+    title: "Pushkin's School of Russian Language and Literature",
     description: siteConfig.description,
   },
   robots: {
@@ -53,6 +53,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
   themeColor: "#fbfaf7",
   colorScheme: "light",
 };
