@@ -136,7 +136,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
                 Parent reassurance
               </p>
               <h2 className="mt-3 text-2xl font-semibold">
-                Clear guidance while formal documents are prepared
+                Clear guidance before downloads are available
               </h2>
             </div>
             <ol className="divide-y divide-border-soft">
@@ -248,7 +248,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">
               This page gives families the useful summary first. Formal
-              downloads appear when the approved document is ready, and families
+              downloads appear when the formal document is ready, and families
               can still use the enquiry form for current practical information.
             </p>
           </div>

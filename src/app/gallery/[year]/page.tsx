@@ -150,7 +150,7 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
           <MediaAssetGrid
             assets={approvedAssets}
             emptyLabel={`${archive.year} image space`}
-            emptyDescription="Reserved for a selected school image with consent, alt text, caption, and an optimised public file."
+            emptyDescription="Reserved for a selected school image with consent, alt text, caption, and accessible presentation."
           />
 
           <div>
@@ -165,7 +165,7 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
               </ButtonLink>
               <ButtonLink href="/schools">Explore schools</ButtonLink>
               <span className="inline-flex items-center justify-center rounded-md border border-border-soft px-5 py-3 text-sm font-semibold text-muted">
-                Photos will be added here
+                Photos selected with care
               </span>
             </div>
           </div>
@@ -176,7 +176,7 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
           <div>
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
-              Before this archive becomes visual
+              How this archive becomes visual
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">
               This archive can guide families now, then become visual once
@@ -213,8 +213,8 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
               Publication care
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              The gallery can feel warm while protecting private archive
-              material and child image permissions.
+              The gallery can feel warm while still protecting child image
+              permissions and family privacy.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3">

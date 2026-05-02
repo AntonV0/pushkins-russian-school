@@ -17,7 +17,7 @@ const aboutVisual = getVisualPlaceholderSlot("about-community-table");
 const reviewNotes = [
   "Class groups and placement guidance are shared clearly, with exact fit confirmed through enquiry.",
   "Branch pages focus on current practical details so families can choose the best next step.",
-  "Photos, staff details, certificates, and partner references are added only when they are suitable for public use.",
+  "Photos, staff details, certificates, and partner references can be added when they are suitable for families to view.",
 ];
 
 const schoolStory = [
@@ -42,7 +42,7 @@ const parentSignals = [
   "A clear weekend rhythm with assembly, lessons, and supervised breaks",
   "Russian used for communication, reading, writing, creativity, and culture",
   "A practical enquiry process that can discuss local classes, online support, or exam goals",
-  "A public school record that can grow with suitable photos, staff details, and archive evidence",
+  "A public school record that can grow with suitable photos, staff details, and archive context",
 ];
 
 export const metadata: Metadata = {

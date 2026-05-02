@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 
 const policyAssuranceNotes = [
   "Key safeguarding, welfare, data, conduct, and complaints information is grouped clearly for families.",
-  "Policy summaries are available while formal school documents are readied for families.",
+  "Policy summaries are available now, with formal school documents added when ready.",
   "Official statutory guidance opens from source pages so parents can check the current reference.",
 ];
 

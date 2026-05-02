@@ -136,7 +136,7 @@ export const curriculumRouteRecommendations: CurriculumRouteRecommendation[] = [
   {
     title: "Ask about Volna Online Russian School",
     bestWhen:
-      "A local branch is online-only, too far away, or the child needs live online group or private lessons.",
+      "A local branch is online-only, too far away, or the child needs live online group or one-to-one lessons.",
     recommendation:
       "Use the online-learning enquiry option or visit Volna's own site once the family is ready to compare online support.",
     href: "/contact?intent=online-learning#enquiry-form",
@@ -154,21 +154,21 @@ export const curriculumRouteRecommendations: CurriculumRouteRecommendation[] = [
 ];
 
 export const curriculumReviewNotes = [
-  "Named textbooks, detailed yearly schemes, and assessment documents can be added once approved for public use.",
-  "External partnerships and historic institutional references can be added when current wording is confirmed.",
+  "Families can ask about named materials and class expectations during the enquiry conversation.",
+  "Branch teams can give more specific guidance where a child's age, level, and goals make it useful.",
 ];
 
 export const curriculumDetailsPendingReview: CurriculumReviewItem[] = [
   {
-    title: "Class-by-class schemes",
-    body: "Detailed curriculum by Junior, Middle, Senior, Grade Zero, Grades 1-4, GCSE, and A Level groups can be added after headteacher approval.",
+    title: "Class-by-class guidance",
+    body: "Junior, Middle, Senior, Grade Zero, Grades 1-4, GCSE, and A Level groups each have a different emphasis that can be discussed after enquiry.",
   },
   {
     title: "Assessment and outcomes",
-    body: "Public wording can expand once assessment language, expected progress, and exam preparation claims are approved.",
+    body: "Teachers can explain expected progress in practical terms once they understand the child's current Russian and learning goals.",
   },
   {
     title: "Branch-specific teaching notes",
-    body: "Individual school locations may need their own notes later, especially where current status, staffing, or timetable details still need approval.",
+    body: "Each branch can confirm the most relevant class, timetable, or learning option for the family at the point of enquiry.",
   },
 ];

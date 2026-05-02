@@ -45,12 +45,12 @@ const galleryCurationStandards = [
   {
     label: "Respectful captions",
     description:
-      "Captions give context for families without exposing private details or relying on children being named.",
+      "Captions give context for families without exposing personal details or relying on children being named.",
   },
   {
     label: "Archive quality",
     description:
-      "Year pages are prepared for optimised images, useful alt text, and a balanced mix of school moments.",
+      "Year pages are reserved for accessible images, useful alt text, and a balanced mix of school moments.",
   },
 ];
 
@@ -226,7 +226,7 @@ export default function GalleryPage() {
                 </h2>
                 <p className="mt-3 text-sm leading-6 text-slate-600">
                   Public year pages will open as suitable images and captions
-                  are selected. Until then, this preview shows the school-life
+                  are selected. Until then, this overview shows the school-life
                   story the gallery is being shaped to tell.
                 </p>
               </div>

@@ -7,10 +7,10 @@ export type PolicyGroup = {
 };
 
 export type PolicyPublicationStatus =
-  | "pending-review"
+  | "summary-only"
   | "reviewed-public"
   | "external-current"
-  | "external-review-needed";
+  | "external-source-to-confirm";
 
 export type Policy = {
   title: string;
@@ -59,7 +59,6 @@ export type PolicyAction =
 const policyPdfPublicPathPrefix = "/policies/";
 const policyPdfExtension = ".pdf";
 const unconfirmedMetadataValues = new Set([
-  "publication shell",
   "to be confirmed",
 ]);
 
@@ -149,14 +148,14 @@ function slugifyPolicy(title: string) {
     .replace(/^-|-$/g, "");
 }
 
-const pendingSchoolPolicyMetadata: Pick<
+const summaryOnlySchoolPolicyMetadata: Pick<
   Policy,
   "publicationStatus" | "status" | "statusDescription" | "reviewCadence" | "version"
 > = {
-  publicationStatus: "pending-review",
+  publicationStatus: "summary-only",
   status: "Summary available now",
   statusDescription:
-    "The public summary is available now. A formal policy PDF will be linked when the checked public version is ready.",
+    "The public summary is available now. A formal policy PDF will be linked when the document is ready for families.",
   reviewCadence:
     "The school will add owner, version, update date, and next update date with the downloadable document.",
   version: "Public summary",
@@ -186,7 +185,7 @@ const externalGuidanceOverrides: Record<
     statusDescription:
       "This page links to the current Department for Education publication page rather than hosting a local copy.",
     reviewCadence:
-      "Check the GOV.UK publication page before each safeguarding review cycle and before launch.",
+      "The GOV.UK publication page should be checked as part of each safeguarding review cycle.",
     version: "GOV.UK publication page",
   },
   "EYFS Statutory Framework": {
@@ -212,7 +211,7 @@ const externalGuidanceOverrides: Record<
     statusDescription:
       "This page links to the Department for Education Teachers' Standards publication page.",
     reviewCadence:
-      "Check the GOV.UK publication page before staff policy or recruitment content is finalized.",
+      "The GOV.UK publication page should be checked before staff policy or recruitment wording is updated.",
     version: "GOV.UK publication page",
   },
 };
@@ -237,14 +236,14 @@ function createPolicies(
     parentGuidance: parentGuidanceByTitle[title],
     ...(documentType === "External guidance"
       ? externalGuidanceOverrides[title] ?? {
-          publicationStatus: "external-review-needed" as const,
+          publicationStatus: "external-source-to-confirm" as const,
           status: "Guidance source to confirm",
           statusDescription:
             "The guidance source will be checked before a public link is shown.",
           reviewCadence: "Check source guidance before showing a public link.",
           version: "External source to confirm",
         }
-      : pendingSchoolPolicyMetadata),
+      : summaryOnlySchoolPolicyMetadata),
     reviewDate: undefined,
     nextReviewDate: undefined,
     pdfPath: undefined,
@@ -258,7 +257,7 @@ export const policyGroups: PolicyGroup[] = [
       "Safeguarding, health, emergency planning, and child welfare documents that parents usually look for first.",
     audience: "Families, staff, and safeguarding leads",
     reassurance:
-      "Formal school PDFs appear when the checked public document is ready.",
+      "Formal school PDFs appear when the document is ready for families.",
     policies: createPolicies("Child Safety and Well-Being", "Families and staff", [
       "Safeguarding Policy",
       "Health and Safety Policy",
@@ -276,7 +275,7 @@ export const policyGroups: PolicyGroup[] = [
       "Family-facing expectations, privacy, and complaints guidance in one practical parent section.",
     audience: "Parents and carers",
     reassurance:
-      "These summaries help families understand the structure while downloadable documents are finalised.",
+      "These summaries help families understand the structure, with downloads added when documents are ready.",
     policies: createPolicies("Parent and Carer", "Parents and carers", [
       "Pupil and Parent Code of Conduct",
       "Pupil and Parent Privacy Notice",
@@ -286,10 +285,10 @@ export const policyGroups: PolicyGroup[] = [
   {
     title: "Staff",
     description:
-      "Staff and volunteer governance summaries that show structure while internal procedures stay private.",
+      "Staff and volunteer governance summaries that show structure while detailed procedures stay with the school.",
     audience: "Staff, volunteers, and leadership",
     reassurance:
-      "Internal procedures are represented by high-level summaries unless the school chooses to publish more detail.",
+      "Staff procedures are represented by high-level summaries unless the school chooses to publish more detail.",
     policies: createPolicies("Staff", "Staff and volunteers", [
       "Staff Code of Conduct",
       "Staff Privacy Notice",
@@ -322,32 +321,32 @@ export const policies = policyGroups.flatMap((group) => group.policies);
 export const policyPublicationChecklist = [
   "A clear parent-facing summary of the policy purpose.",
   "Owner, audience, and document type shown in one place.",
-  "Download button shown only when the checked public PDF is ready.",
+  "Download button shown only when the PDF is ready for families.",
   "Official source links used where the policy depends on statutory guidance.",
   "A contact route for families who need current practical guidance.",
 ];
 
 export const policyIndexNotes = [
-  "Policy summaries are available while formal school PDFs are finalised.",
-  "Downloads appear only when the checked public document is ready.",
+  "Policy summaries are available now, with formal school PDFs added when ready.",
+  "Downloads appear only when the document is ready for families.",
   "External guidance links point to official GOV.UK publication pages.",
 ];
 
 export const policyPublicationStates = [
   {
-    label: "Approved public document",
+    label: "Download-ready document",
     description:
-      "A PDF is linked only after approval, privacy checks, metadata checks, and placement under /policies.",
+      "A PDF is linked only when it is suitable for families to download.",
   },
   {
-    label: "Publication shell only",
+    label: "Summary available",
     description:
-      "The page and metadata are prepared while the school PDF is finalised.",
+      "The page gives parent guidance while the school PDF is not yet available.",
   },
   {
     label: "Official external guidance",
     description:
-      "Reference pages link to authoritative GOV.UK publication pages and should be checked before launch.",
+      "Reference pages link to authoritative GOV.UK publication pages.",
   },
 ];
 
@@ -356,7 +355,7 @@ export const policyAssetConvention = {
   publicPathPrefix: policyPdfPublicPathPrefix,
   allowedExtension: policyPdfExtension,
   summary:
-    "Only checked public PDFs should be placed in public/policies and linked from policy data.",
+    "Only family-ready PDFs should be placed in public/policies and linked from policy data.",
 };
 
 export const policySupportLinks: PolicySupportLink[] = [
@@ -364,7 +363,7 @@ export const policySupportLinks: PolicySupportLink[] = [
     label: "Ask a policy question",
     href: "/contact#enquiry-form",
     description:
-      "Use the enquiry form for parent questions while downloadable documents are being finalised.",
+      "Use the enquiry form for parent questions while downloadable documents are not yet available.",
   },
   {
     label: "Compare school locations",
@@ -398,8 +397,7 @@ function isConfirmedPolicyMetadataValue(value?: string) {
 
   return Boolean(
     normalizedValue &&
-      !unconfirmedMetadataValues.has(normalizedValue) &&
-      !normalizedValue.includes("pending"),
+      !unconfirmedMetadataValues.has(normalizedValue),
   );
 }
 
@@ -492,7 +490,7 @@ export function getPolicyAvailabilitySummary(policy: Policy) {
   }
 
   if (policy.publicationStatus === "reviewed-public") {
-    return "PDF metadata to confirm";
+    return "Document details to confirm";
   }
 
   if (policy.publicationStatus === "external-current") {
@@ -518,17 +516,17 @@ export function getPolicyDownloadReadiness(policy: Policy) {
 
     if (missingMetadata.length > 0) {
       return {
-        label: "Publication metadata to confirm",
-        description: `This policy is marked reviewed, but ${missingMetadata.join(
+        label: "Document details to confirm",
+        description: `This policy needs ${missingMetadata.join(
           ", ",
-        )} must be confirmed before a download button appears.`,
+        )} before a download button appears.`,
       };
     }
 
     return {
-      label: "PDF metadata to confirm",
+      label: "Document link to confirm",
       description:
-        "This policy is marked reviewed, but a valid /policies/*.pdf path is still required before a download button appears.",
+        "This policy needs a valid /policies/*.pdf path before a download button appears.",
     };
   }
 
@@ -543,7 +541,7 @@ export function getPolicyDownloadReadiness(policy: Policy) {
   return {
     label: "Summary available",
     description:
-      "The summary is available now, and the download will appear when the checked document is ready.",
+      "The summary is available now, and the download will appear when the document is ready for families.",
   };
 }
 

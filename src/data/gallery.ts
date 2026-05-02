@@ -18,7 +18,7 @@ export type GalleryWorkflowStage = {
 
 export const galleryReadinessNotes = [
   "Use only images selected for public school use.",
-  "Keep private archive files, source documents, and unreviewed images off the website.",
+  "Show only school images that are suitable for families to view publicly.",
   "Check captions for child privacy, consent, and current publication suitability.",
 ];
 
@@ -36,7 +36,7 @@ export const galleryWorkflowStages: GalleryWorkflowStage[] = [
   {
     label: "Public archive page",
     description:
-      "Year pages become visual records of school life once the selected images are ready.",
+      "Year pages become visual records of school life when selected images are ready.",
   },
 ];
 
@@ -51,7 +51,7 @@ export const gallerySupportLinks = [
     label: "Start an enquiry",
     href: "/contact#enquiry-form",
     description:
-      "Ask about classes or future places without relying on unpublished archive material.",
+      "Ask about classes or future places while archive images are being selected.",
   },
 ];
 
@@ -67,7 +67,7 @@ export const galleryArchives: GalleryArchive[] = [
     year: "2018",
     title: "2018 archive",
     theme: "Learning in action",
-    tone: "Classroom work, projects, and language learning activities prepared for careful privacy checks.",
+    tone: "Classroom work, projects, and language learning activities that can show school life once suitable images are selected.",
     highlights: ["Class projects", "Reading", "Group activities"],
   },
   {
@@ -88,7 +88,7 @@ export const galleryArchives: GalleryArchive[] = [
     year: "2013",
     title: "2013 archive",
     theme: "Early archive",
-    tone: "Selected legacy images can show the school's established history without exposing raw archives.",
+    tone: "Selected legacy images can show the school's established history in a careful public format.",
     highlights: ["Archive", "Community", "History"],
   },
   {
@@ -101,14 +101,14 @@ export const galleryArchives: GalleryArchive[] = [
 ].map((archive) => ({
   ...archive,
   summary:
-    "This archive is reserved for selected public images from school records. Private source files are not published here.",
+    "This archive is reserved for selected public images from school records.",
   status: "Images being selected for public use",
   readinessLabel: "Archive images in preparation",
   readinessDetail:
-    "This year page is prepared for selected public photos, captions, and school-life context.",
+    "This year page is reserved for selected public photos, captions, and school-life context.",
   expectedContent: [
     ...galleryReadinessNotes,
-    "Optimise file size, alt text, and image dimensions before publishing.",
+    "Images should be accessible, well-captioned, and suitable for the archive year.",
     "Balance classroom, creative, performance, and community moments where suitable images are available.",
   ],
 }));
