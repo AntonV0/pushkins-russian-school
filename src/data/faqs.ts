@@ -18,12 +18,12 @@ export const faqGroups: FaqGroup[] = [
       {
         question: "Can I enquire about an online-only location?",
         answer:
-          "Yes. Online-only locations stay visible for families, and the site uses register-interest wording where in-person classes are not currently available.",
+          "Yes. Online-only locations stay visible so families can register local interest, ask about online lessons, or compare the current in-person branch.",
       },
       {
         question: "Are all listed timetables final?",
         answer:
-          "Some branch timetables are shown cautiously where older records conflict or current details still need confirmation. The school confirms current times after enquiry.",
+          "No. Branch pages distinguish current in-person provision from future local interest. The school confirms times, availability, and practical joining details after enquiry.",
       },
       {
         question: "What should I send if I am not sure which branch fits?",
@@ -111,12 +111,12 @@ export const faqGroups: FaqGroup[] = [
       {
         question: "Why are some policy downloads not shown yet?",
         answer:
-          "Policy summaries are available first. Public downloads are linked only when the documents are updated and checked so families see the right public version.",
+          "Policy summaries are available first. Public downloads are linked only when documents are ready for families to use.",
       },
       {
         question: "Why are some gallery spaces waiting for photos?",
         answer:
-          "Gallery year pages are reserved for selected, optimised school images with suitable captions and consent checks.",
+          "Gallery year pages are reserved for selected school images with suitable captions and privacy checks.",
       },
       {
         question: "Will the website store enquiry form information?",

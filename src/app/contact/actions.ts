@@ -101,8 +101,8 @@ export async function submitEnquiry(
 
   const message =
     runtimeConfig.configErrors.length > 0
-      ? "Your details were checked, but online delivery is not available in this environment. Please email the school directly."
-      : "Your details are ready to email. Please send them directly to the school.";
+      ? "Your details were checked. Please email the school directly so the team can reply."
+      : "Your details are ready. Please email the school directly so the team can reply.";
 
   return {
     status: "not-configured",

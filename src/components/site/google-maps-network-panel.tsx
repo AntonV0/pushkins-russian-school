@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { getSchoolEnquiryHref } from "@/data/admissions";
 import type { School, SchoolStatus } from "@/data/schools";
 import { StatusBadge } from "./status-badge";
 
@@ -48,15 +47,13 @@ function getAvailabilityCopy(school: School) {
   if (school.status === "open") {
     return {
       label: "Current parent option",
-      body: "Families can enquire about the Sunday Bracknell classes and confirm the right starting group before visiting.",
-      action: "Ask about places",
+      body: school.availabilitySummary,
     };
   }
 
   return {
     label: "Register-interest option",
-    body: "This area remains visible for families who want future local provision while using online or exam-focused options in the meantime.",
-    action: "Register interest",
+    body: school.availabilitySummary,
   };
 }
 
@@ -226,7 +223,7 @@ export function GoogleMapsNetworkPanel({
                     </span>
                   </span>
                   <span className="block text-sm leading-6 text-slate-600">
-                    {school.schedule}
+                    {school.availabilitySummary}
                   </span>
                 </button>
               );
@@ -272,11 +269,19 @@ export function GoogleMapsNetworkPanel({
 
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link
-                href={getSchoolEnquiryHref(selectedSchool)}
+                href={selectedSchool.bestNextSteps[0]?.href ?? "/contact#enquiry-form"}
                 className="inline-flex min-h-11 items-center justify-center rounded-md bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
               >
-                {availability?.action}
+                {selectedSchool.bestNextSteps[0]?.ctaLabel ?? "Start an enquiry"}
               </Link>
+              {selectedSchool.status !== "open" && selectedSchool.bestNextSteps[1] ? (
+                <Link
+                  href={selectedSchool.bestNextSteps[1].href}
+                  className="inline-flex min-h-11 items-center justify-center rounded-md border border-brand-blue/20 bg-white px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+                >
+                  {selectedSchool.bestNextSteps[1].ctaLabel}
+                </Link>
+              ) : null}
               <Link
                 href={`/schools/${selectedSchool.slug}`}
                 className="inline-flex min-h-11 items-center justify-center rounded-md border border-brand-blue/20 bg-white px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"

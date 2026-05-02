@@ -179,6 +179,49 @@ export default function AdmissionsPage() {
       </section>
 
       <section className="border-y border-border-soft bg-surface py-14 sm:py-16">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.74fr_1.26fr] lg:px-8">
+          <SectionIntro
+            eyebrow="Parent decision points"
+            title="What the school can help you decide"
+          >
+            <p>
+              Parents do not need to solve branch choice, class level, and exam
+              route alone. A good first enquiry gives enough context for the
+              school to recommend the next practical step.
+            </p>
+          </SectionIntro>
+          <div className="grid gap-4 md:grid-cols-3">
+            {[
+              {
+                title: "Current class fit",
+                body: "Whether Bracknell, online lessons, or another route is the right starting point.",
+              },
+              {
+                title: "Future local interest",
+                body: "Whether your preferred area should be recorded for future weekend provision.",
+              },
+              {
+                title: "Exam preparation",
+                body: "Whether GCSE or A Level goals need a class, online support, or self-study route.",
+              },
+            ].map((item) => (
+              <article
+                key={item.title}
+                className="premium-panel rounded-lg border border-border-soft bg-background p-5"
+              >
+                <h2 className="text-lg font-semibold text-brand-blue-strong">
+                  {item.title}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  {item.body}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border-soft bg-surface py-14 sm:py-16">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.78fr_1.22fr] lg:px-8">
           <SectionIntro
             eyebrow="Fees"

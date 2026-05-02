@@ -78,7 +78,7 @@ export default function SchoolsPage() {
             title="A clearer way to choose a branch"
           >
             <p>
-              The map, status notes, schedules, and enquiry actions sit
+              The map, status notes, branch summaries, and enquiry actions sit
               together so parents can separate current weekend availability
               from future local interest in one scan.
             </p>
@@ -164,8 +164,9 @@ export default function SchoolsPage() {
           >
             <p>
               Current, online-only, and register-interest locations stay
-              together so families can compare status, schedule, area, and the
-              right next step without browsing separate branch pages first.
+              together so families can compare status, area, learning route,
+              and the right next step without browsing separate branch pages
+              first.
             </p>
           </SectionIntro>
           <div className="mt-8">
@@ -191,10 +192,10 @@ export default function SchoolsPage() {
               {otherSchools.map((school) => (
                 <Link
                   key={school.slug}
-                  href={`/schools/${school.slug}`}
+                  href={school.bestNextSteps[0]?.href ?? `/schools/${school.slug}`}
                   className="rounded-full border border-border-soft bg-background px-3 py-1.5 text-xs font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
                 >
-                  {school.name}
+                  {school.name}: {school.bestNextSteps[0]?.ctaLabel ?? "View details"}
                 </Link>
               ))}
             </div>

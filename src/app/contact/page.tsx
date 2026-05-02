@@ -153,7 +153,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               <p className="mt-4 text-sm leading-6 text-slate-600">
                 Select the closest school or learning option in the form. If
                 your preferred area is online-only or not currently open, your
-                enquiry still helps the school understand local demand.
+                enquiry still helps the school understand local demand and
+                suggest online or current-branch alternatives.
               </p>
               <div className="mt-6">
                 <Link
@@ -180,13 +181,13 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                     </p>
                   </div>
                   <p className="text-sm leading-6 text-slate-700">
-                    {school.statusLabel}
+                    {school.availabilitySummary}
                   </p>
                   <Link
-                    href={`/schools/${school.slug}`}
+                    href={school.bestNextSteps[0]?.href ?? `/schools/${school.slug}`}
                     className="inline-flex min-h-10 items-center justify-center rounded-md border border-brand-blue/20 px-4 py-2 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
                   >
-                    View details
+                    {school.bestNextSteps[0]?.ctaLabel ?? "View details"}
                   </Link>
                 </div>
               ))}

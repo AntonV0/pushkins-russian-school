@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 
 const policyAssuranceNotes = [
   "Key safeguarding, welfare, data, conduct, and complaints information is grouped clearly for families.",
-  "Policy summaries are available while formal school documents are prepared for public download.",
+  "Policy summaries are available while formal school documents are readied for families.",
   "Official statutory guidance opens from source pages so parents can check the current reference.",
 ];
 
@@ -102,7 +102,8 @@ export default function PoliciesPage() {
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
               Families can find safeguarding, welfare, conduct, privacy, and
               complaints information in one calm place, with formal documents
-              added for download when the school has checked the public version.
+              added for download when the school has confirmed they are ready
+              for families to use.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/contact#enquiry-form">
@@ -211,7 +212,7 @@ export default function PoliciesPage() {
                 <p className="mt-3 border-l border-brand-gold pl-4 text-sm leading-6 text-slate-700">
                   {group.title === "Useful Guidance"
                     ? "Official guidance opens from source publication pages."
-                    : "Formal school downloads are added once the checked public version is ready."}
+                    : "Formal school downloads are added once they are ready for families to use."}
                 </p>
                 <ul className="mt-5 divide-y divide-border-soft text-sm">
                   {group.policies.map((policy) => {

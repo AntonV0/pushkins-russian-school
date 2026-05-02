@@ -189,11 +189,11 @@ export default function Home() {
                         {school.name}
                       </span>
                       <span className="mt-1 block text-sm text-slate-600">
-                        {school.county} - {school.schedule}
+                        {school.availabilitySummary}
                       </span>
                     </span>
                     <span className="text-sm font-semibold text-brand-blue-strong">
-                      Details
+                      Decision guide
                     </span>
                   </Link>
                 ))}

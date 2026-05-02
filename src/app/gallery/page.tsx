@@ -107,7 +107,7 @@ export default function GalleryPage() {
                   label: "Photo care",
                   value: hasApprovedMedia
                     ? approvedMediaAssets.length
-                    : "In progress",
+                    : "Curated",
                 },
               ]}
             />
