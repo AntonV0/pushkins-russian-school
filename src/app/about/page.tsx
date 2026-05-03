@@ -98,10 +98,10 @@ export default function AboutPage() {
               title="A school built around continuity, not one-off activities"
             >
               <p>
-                Parents need to see more than a list of subjects. The About page
-                frames Pushkin&apos;s School as a long-term educational
-                setting: a place where Russian is practised, read, written,
-                performed, and kept culturally alive across childhood.
+                Parents need to see more than a list of subjects. Pushkin&apos;s
+                School is a long-term educational setting: a place where
+                Russian is practised, read, written, performed, and kept
+                culturally alive across childhood.
               </p>
             </SectionIntro>
             <div className="mt-8 space-y-5 text-base leading-7 text-slate-700">
@@ -154,9 +154,9 @@ export default function AboutPage() {
             >
               <p>
                 The school message centres on bilingual development, practical
-                communication, cultural literacy, and a shared curriculum. The
-                page reads as a coherent philosophy rather than a set of
-                interchangeable boxes.
+                communication, cultural literacy, and a shared curriculum.
+                Together, these principles form a coherent philosophy rather
+                than a set of interchangeable boxes.
               </p>
             </SectionIntro>
             <ul className="mt-8 space-y-3 text-sm leading-6 text-slate-700">

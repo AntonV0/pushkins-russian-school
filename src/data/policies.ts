@@ -61,6 +61,17 @@ export type PolicyNextStep = {
   description: string;
 };
 
+export type SafeguardingConcernGuidance = {
+  title: string;
+  intro: string;
+  items: {
+    label: string;
+    body: string;
+    href?: string;
+    linkLabel?: string;
+  }[];
+};
+
 const policyPdfPublicPathPrefix = "/policies/";
 const policyPdfExtension = ".pdf";
 const unconfirmedMetadataValues = new Set([
@@ -377,6 +388,32 @@ export const policySupportLinks: PolicySupportLink[] = [
       "Check branch, timetable, and status information before choosing the most relevant enquiry option.",
   },
 ];
+
+export const safeguardingConcernGuidance: SafeguardingConcernGuidance = {
+  title: "If you are worried about a child",
+  intro:
+    "Do not use the general enquiry form for safeguarding disclosures or urgent concerns. Use the right route for the level of risk.",
+  items: [
+    {
+      label: "Immediate danger",
+      body: "Call 999 if a child is at immediate risk or someone is in danger.",
+      href: "https://www.gov.uk/report-child-abuse",
+      linkLabel: "Read GOV.UK reporting guidance",
+    },
+    {
+      label: "Concern about abuse or neglect",
+      body: "Contact the children's social care team at the child's local council. You do not need to be certain before reporting a concern.",
+      href: "https://www.gov.uk/report-child-abuse",
+      linkLabel: "Find reporting advice on GOV.UK",
+    },
+    {
+      label: "Advice before reporting",
+      body: "Adults can contact the NSPCC helpline on 0808 800 5000 for advice about child safeguarding concerns.",
+      href: "https://www.nspcc.org.uk/keeping-children-safe/reporting-abuse/nspcc-helpline/",
+      linkLabel: "Open NSPCC helpline",
+    },
+  ],
+};
 
 export function isValidPolicyPdfPath(path?: string) {
   if (!path) {

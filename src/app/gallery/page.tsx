@@ -18,14 +18,14 @@ const galleryVisual = getVisualPlaceholderSlot("gallery-approved-archive");
 export const metadata: Metadata = {
   title: "Gallery",
   description:
-    "A curated view of Pushkin's School life, events, traditions, and future public photo archives.",
+    "A curated view of Pushkin's School life, events, traditions, and selected school archive moments.",
   alternates: {
     canonical: "/gallery",
   },
   openGraph: {
     title: "Pushkin's School Gallery",
     description:
-      "A curated view of Pushkin's School life, events, traditions, and future public photo archives.",
+      "A curated view of Pushkin's School life, events, traditions, and selected school archive moments.",
     url: "/gallery",
   },
 };
@@ -170,12 +170,12 @@ export default function GalleryPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="School archive"
-            title="A decade-plus story organised by year"
+            title="School-life moments organised by year"
           >
             <p>
-              The archive structure reflects real school history: classroom
-              work, celebrations, performances, language learning, and community
-              milestones.
+              The archive structure brings school history into a clear shape:
+              classroom work, celebrations, performances, language learning,
+              and community milestones.
             </p>
           </SectionIntro>
           {hasApprovedMedia ? (
@@ -222,12 +222,11 @@ export default function GalleryPage() {
             <div className="premium-panel mt-10 grid gap-0 overflow-hidden rounded-lg border border-border-soft bg-surface lg:grid-cols-[0.72fr_1.28fr]">
               <div className="border-b border-border-soft bg-surface-muted p-6 lg:border-b-0 lg:border-r">
                 <h2 className="text-lg font-semibold text-brand-blue-strong">
-                  Archive preview
+                  School-life archive
                 </h2>
                 <p className="mt-3 text-sm leading-6 text-slate-600">
-                  Public year pages will open as suitable images and captions
-                  are selected. Until then, this overview shows the school-life
-                  story the gallery is being shaped to tell.
+                  Public year pages are organised around the school-life story
+                  they will tell as suitable images and captions are selected.
                 </p>
               </div>
               <div className="divide-y divide-border-soft">

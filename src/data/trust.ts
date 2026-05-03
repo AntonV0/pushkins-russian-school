@@ -12,7 +12,7 @@ export type TrustSignalKind =
   | "staff-details"
   | "exam-outcomes";
 
-export type TrustSignalStatus = "publishable" | "pending-review";
+export type TrustSignalStatus = "publishable" | "needs-review";
 
 export type TrustSignal = {
   id: string;
@@ -61,7 +61,7 @@ export const trustSignals: TrustSignal[] = [
     status: "publishable",
     href: "/curriculum",
     evidenceNote:
-      "Built from high-level curriculum structure; detailed schemes and named materials can be added after headteacher confirmation.",
+      "Built from high-level curriculum structure; detailed schemes and named materials can be added when they are suitable for families to view.",
   },
   {
     id: "founding-year",
@@ -70,9 +70,9 @@ export const trustSignals: TrustSignal[] = [
     value: "Opening year to confirm",
     summary:
       "The site is ready to show a strong longevity claim once the founding or first-opening year is verified from business records.",
-    status: "pending-review",
+    status: "needs-review",
     evidenceNote:
-      "Local ignored audit notes do not confirm a founding year. They identify old gallery archive pages as early as 2012, but that should not be treated as a founding claim.",
+      "Historic archive years suggest a long-running school community, but they should not be treated as a founding-year claim.",
     reviewNote:
       "Confirm the official founding/opening year before publishing 'since' or 'years established' wording.",
   },
@@ -83,7 +83,7 @@ export const trustSignals: TrustSignal[] = [
     value: "Awaiting approval",
     summary:
       "Testimonials can add warmth and conversion confidence once the exact wording, names, consent, and attribution style are approved.",
-    status: "pending-review",
+    status: "needs-review",
     evidenceNote:
       "No reviewed testimonial copy is currently available in the public data model.",
     reviewNote:
@@ -96,9 +96,9 @@ export const trustSignals: TrustSignal[] = [
     value: "Needs current confirmation",
     summary:
       "Historic partner references should only become public trust signals after relationship, permission, and wording checks.",
-    status: "pending-review",
+    status: "needs-review",
     evidenceNote:
-      "Ignored audit notes mention historic institutional references, but current relationships and publication permission are not confirmed.",
+      "Historic institutional references need current relationship and publication-permission checks before they become public proof points.",
     reviewNote:
       "Verify each institution, logo permission, and whether the relationship is current before adding partner badges or copy.",
   },
@@ -109,9 +109,9 @@ export const trustSignals: TrustSignal[] = [
     value: "Review before publishing",
     summary:
       "Leadership and teacher details can build trust, but named staff information should wait for approval and a consistent privacy approach.",
-    status: "pending-review",
+    status: "needs-review",
     evidenceNote:
-      "Current public data avoids unpublished staff details in line with AGENTS.md.",
+      "Current public data avoids naming staff until roles, bios, photos, and permissions are confirmed.",
     reviewNote:
       "Decide which roles, bios, photos, qualifications, and safeguarding responsibilities can be public.",
   },
@@ -122,7 +122,7 @@ export const trustSignals: TrustSignal[] = [
     value: "Evidence needed",
     summary:
       "GCSE and A Level success stories would be powerful, but results and outcomes should be supported by verified, anonymised evidence.",
-    status: "pending-review",
+    status: "needs-review",
     evidenceNote:
       "The site can describe exam preparation, but no verified outcome statistics are currently approved for publication.",
     reviewNote:
@@ -135,7 +135,7 @@ export const publishableTrustSignals = trustSignals.filter(
 );
 
 export const pendingTrustSignals = trustSignals.filter(
-  (signal) => signal.status === "pending-review",
+  (signal) => signal.status === "needs-review",
 );
 
 export const trustHistoryNotes = [

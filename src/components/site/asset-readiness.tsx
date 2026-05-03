@@ -43,15 +43,15 @@ export function AssetReadinessPanel({
 
 export function MediaAssetGrid({
   assets,
-  emptyLabel = "Image space",
-  emptyDescription = "Reserved for a selected, optimised public image.",
+  emptyLabel = "Selected school moment",
+  emptyDescription = "A selected school image can appear here after consent, caption, and accessibility checks.",
   slotCount = 4,
 }: MediaAssetGridProps) {
   if (assets.length === 0) {
     return (
       <div
         className="grid gap-4 sm:grid-cols-2"
-        aria-label="Public gallery image spaces"
+        aria-label="Public gallery selections"
       >
         {Array.from({ length: slotCount }, (_, index) => (
           <figure
@@ -75,7 +75,7 @@ export function MediaAssetGrid({
                 {emptyLabel} {index + 1}
               </p>
               <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-muted">
-                Caption to follow
+                Selected with care
               </p>
               <p className="mt-2 max-w-xs text-xs leading-5 text-slate-600">
                 {emptyDescription}

@@ -496,7 +496,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
             <p className="mt-4 max-w-2xl text-sm leading-6 text-white/75">
               {hasCurrentVenue
                 ? "These practical notes help families confirm the right class fit and next step before attending."
-                : "These practical notes help families choose the next step without relying on unconfirmed venue, timetable, or payment information."}
+                : "These practical notes help families choose the next step while local venue, timetable, and payment details are still being gathered."}
             </p>
           </div>
           <ul className="space-y-3 text-sm leading-6 text-white/80">

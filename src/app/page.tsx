@@ -45,9 +45,9 @@ export default function Home() {
               Pushkin&apos;s School of Russian Language and Literature
             </h1>
             <p className="mt-6 max-w-2xl text-pretty text-xl leading-8 text-slate-700">
-              For more than a decade, the school has helped children aged 3-18
-              keep Russian language, literature, culture, and confidence alive
-              in a warm weekend classroom setting.
+              The school helps children aged 3-18 keep Russian language,
+              literature, culture, and confidence alive in a warm weekend
+              classroom setting.
             </p>
             <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600">
               Classes are designed for children with different levels of
@@ -164,9 +164,9 @@ export default function Home() {
                     </div>
                     <div>
                       <dt className="font-mono text-2xl font-semibold text-brand-blue-strong">
-                        10+
+                        {networkSummary.classGroupCount}
                       </dt>
-                      <dd className="mt-1 text-slate-600">years running</dd>
+                      <dd className="mt-1 text-slate-600">class pathways</dd>
                     </div>
                   </dl>
                 </div>
@@ -475,7 +475,7 @@ function HeroSchoolVisual() {
         </div>
       </div>
       <div className="absolute right-6 top-14 hidden rounded-lg border border-brand-gold/40 bg-white px-5 py-4 text-sm font-semibold text-brand-blue-strong shadow-lg sm:block">
-        10+ years running
+        Ages 3-18
       </div>
     </div>
   );

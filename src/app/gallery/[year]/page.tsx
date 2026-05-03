@@ -149,8 +149,8 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
           <MediaAssetGrid
             assets={approvedAssets}
-            emptyLabel={`${archive.year} image space`}
-            emptyDescription="Reserved for a selected school image with consent, alt text, caption, and accessible presentation."
+            emptyLabel={`${archive.year} archive moment`}
+            emptyDescription="A selected school image can appear here after consent, alt text, caption, and accessibility checks."
           />
 
           <div>
@@ -176,11 +176,11 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
           <div>
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
-              How this archive becomes visual
+              How this archive is curated
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              This archive can guide families now, then become visual once
-              suitable school photos and captions are ready.
+              This archive keeps the year organised while suitable school
+              photos, captions, and accessibility details are selected.
             </p>
           </div>
           <ol className="overflow-hidden rounded-lg border border-border-soft bg-background">

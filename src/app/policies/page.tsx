@@ -157,9 +157,9 @@ export default function PoliciesPage() {
             title="Grouped for families, staff, and statutory reference"
           >
             <p>
-              Pushkin&apos;s School has operated for over a decade, so this page
-              treats policies as part of everyday trust: visible, organised, and
-              careful about what becomes a downloadable public document.
+              This page treats policies as part of everyday trust: visible,
+              organised, and careful about what becomes a downloadable public
+              document.
             </p>
           </SectionIntro>
           <div className="premium-panel mt-8 grid gap-6 border border-border-soft bg-surface p-6 lg:grid-cols-[0.9fr_1.1fr] lg:p-7">

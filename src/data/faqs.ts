@@ -35,7 +35,7 @@ export const faqGroups: FaqGroup[] = [
   {
     title: "Class placement",
     summary:
-      "How the site explains a careful start in the right learning group.",
+      "How children can start in the right learning group.",
     items: [
       {
         question: "Do I need to know the exact class group before enquiring?",

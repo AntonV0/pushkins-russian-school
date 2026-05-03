@@ -251,7 +251,7 @@ export const schools: School[] = [
       "https://www.google.com/maps/search/?api=1&query=Saint%20Joseph%27s%20Primary%20School%20Gipsy%20Lane%20RG12%209AP",
     sourceNotes: [
       "Old source included calendar, pricing, and payment content for this branch.",
-      "Current operating status needs final business confirmation.",
+      "Keep venue, timetable, fees, and payment wording checked before future publication updates.",
     ],
   },
   {
