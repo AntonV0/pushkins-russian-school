@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ButtonLink } from "@/components/site/button-link";
 import { LearningOptions } from "@/components/site/learning-options";
@@ -13,11 +14,22 @@ import {
   placementSteps,
 } from "@/data/curriculum";
 import { learningOptionSummary } from "@/data/learning-options";
+import {
+  getGalleryCategoryCoverAsset,
+  getHeroReadyMedia,
+  type MediaAsset,
+} from "@/data/media-assets";
 import { networkSummary, schools } from "@/data/schools";
 import { siteConfig } from "@/data/site";
 
 const openSchools = schools.filter((school) => school.status === "open");
 const interestSchools = schools.filter((school) => school.status !== "open");
+const heroLeadAsset =
+  getHeroReadyMedia()[0] ?? getGalleryCategoryCoverAsset("classroom-learning");
+const heroSupportingAssets = [
+  getGalleryCategoryCoverAsset("creative-work"),
+  getGalleryCategoryCoverAsset("performances"),
+].filter((asset): asset is MediaAsset => Boolean(asset));
 
 export const metadata: Metadata = {
   title: "Pushkin's School of Russian Language and Literature",
@@ -60,19 +72,22 @@ export default function Home() {
                 {contactDetails.registrationCta}
               </ButtonLink>
             </div>
-            <div className="mt-10">
-              <MetricStrip
-                metrics={[
-                  { label: "School locations", value: networkSummary.locations },
-                  { label: "Current in-person", value: openSchools.length },
-                  {
-                    label: "Future interest",
-                    value: interestSchools.length,
-                  },
-                ]}
-              />
-            </div>
-            <div className="mt-6 grid gap-3 text-sm leading-6 text-slate-700 sm:grid-cols-2">
+          </div>
+
+          <HeroSchoolVisual />
+
+          <div className="grid gap-6 lg:col-span-2 lg:grid-cols-[0.92fr_1.08fr]">
+            <MetricStrip
+              metrics={[
+                { label: "School locations", value: networkSummary.locations },
+                { label: "Current in-person", value: openSchools.length },
+                {
+                  label: "Future interest",
+                  value: interestSchools.length,
+                },
+              ]}
+            />
+            <div className="grid gap-3 text-sm leading-6 text-slate-700 sm:grid-cols-2">
               <div className="border-l-2 border-emerald-500 bg-white/75 px-4 py-3">
                 <p className="font-semibold text-brand-blue-strong">
                   Bracknell weekend school
@@ -87,8 +102,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
-          <HeroSchoolVisual />
         </div>
       </section>
 
@@ -434,13 +447,76 @@ export default function Home() {
 }
 
 function HeroSchoolVisual() {
+  if (!heroLeadAsset) {
+    return <HeroSchoolVisualFallback />;
+  }
+
   return (
     <div
-      className="relative min-h-[40rem] sm:min-h-[34rem]"
+      className="grid gap-4"
       aria-label="School life visual spaces"
     >
-      <div className="absolute -right-12 top-8 h-72 w-72 rounded-full border border-brand-gold/25" />
-      <div className="premium-panel absolute left-0 top-0 w-full overflow-hidden rounded-lg border border-border-soft bg-surface sm:w-[78%]">
+      <figure className="premium-panel overflow-hidden rounded-lg border border-border-soft bg-surface">
+        <div className="relative min-h-80 bg-surface-muted sm:min-h-[25rem]">
+          <Image
+            src={heroLeadAsset.approvedPublicPath}
+            alt={heroLeadAsset.altText}
+            fill
+            sizes="(min-width: 1024px) 48vw, 100vw"
+            className="object-cover"
+            priority
+          />
+          <div
+            className="absolute inset-0 bg-gradient-to-t from-brand-blue-strong/60 via-transparent to-transparent"
+            aria-hidden="true"
+          />
+        </div>
+        <figcaption className="p-5 sm:p-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
+            Classroom rhythm
+          </p>
+          <p className="mt-3 max-w-md text-xl font-semibold leading-tight text-brand-blue-strong">
+            {heroLeadAsset.caption}
+          </p>
+        </figcaption>
+      </figure>
+      <div className="premium-panel overflow-hidden rounded-lg border border-border-soft bg-white">
+        <div className="grid sm:grid-cols-[0.72fr_1.28fr]">
+          <div className="bg-brand-red px-5 py-8 text-white">
+            <p className="font-mono text-4xl font-semibold">3-18</p>
+            <p className="mt-3 text-sm font-semibold leading-5">
+              Children and young people
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-1 bg-surface-muted p-1">
+            {heroSupportingAssets.map((asset) => (
+              <div
+                key={asset.id}
+                className="relative min-h-36 overflow-hidden rounded-md bg-surface-muted"
+              >
+                <Image
+                  src={asset.approvedPublicPath}
+                  alt={asset.altText}
+                  fill
+                  sizes="(min-width: 1024px) 18vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function HeroSchoolVisualFallback() {
+  return (
+    <div
+      className="grid gap-4"
+      aria-label="School life visual spaces"
+    >
+      <div className="premium-panel overflow-hidden rounded-lg border border-border-soft bg-surface">
         <div className="relative min-h-80 bg-surface-muted">
           <div className="fine-grid absolute inset-0" aria-hidden="true" />
           <div className="absolute inset-6 rounded-md border border-dashed border-brand-blue/20 bg-white/55" />
@@ -455,7 +531,7 @@ function HeroSchoolVisual() {
           </div>
         </div>
       </div>
-      <div className="premium-panel absolute bottom-0 left-6 right-0 overflow-hidden rounded-lg border border-border-soft bg-white sm:left-auto sm:w-[58%]">
+      <div className="premium-panel overflow-hidden rounded-lg border border-border-soft bg-white">
         <div className="grid sm:grid-cols-[0.75fr_1.25fr]">
           <div className="bg-brand-red px-5 py-8 text-white">
             <p className="font-mono text-4xl font-semibold">3-18</p>
@@ -473,9 +549,6 @@ function HeroSchoolVisual() {
             </p>
           </div>
         </div>
-      </div>
-      <div className="absolute right-6 top-14 hidden rounded-lg border border-brand-gold/40 bg-white px-5 py-4 text-sm font-semibold text-brand-blue-strong shadow-lg sm:block">
-        Ages 3-18
       </div>
     </div>
   );

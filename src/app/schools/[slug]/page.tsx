@@ -4,6 +4,7 @@ import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { ButtonLink } from "@/components/site/button-link";
 import { JsonLd } from "@/components/site/json-ld";
 import { LearningOptions } from "@/components/site/learning-options";
+import { LocationMediaShowcase } from "@/components/site/location-media-showcase";
 import { RelatedSchools } from "@/components/site/related-schools";
 import { SectionIntro } from "@/components/site/section-intro";
 import { StatusBadge } from "@/components/site/status-badge";
@@ -16,6 +17,7 @@ import {
   placementSteps,
 } from "@/data/curriculum";
 import { getLearningOptionsForBranchStatus } from "@/data/learning-options";
+import { getLocationPageMediaByBranch } from "@/data/media-assets";
 import { getSchoolBySlug, schools } from "@/data/schools";
 import { absoluteUrl, siteConfig } from "@/data/site";
 
@@ -75,6 +77,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
   const learningOptions = getLearningOptionsForBranchStatus(school.status);
   const highlightedLearningOption =
     school.status === "online" ? "volna-online" : undefined;
+  const branchMedia = getLocationPageMediaByBranch(school.slug).slice(0, 4);
 
   const schoolJsonLd = {
     "@context": "https://schema.org",
@@ -225,6 +228,12 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
           )}
         </div>
       </section>
+
+      <LocationMediaShowcase
+        assets={branchMedia}
+        title={`Selected images from ${school.name}`}
+        intro="These approved public images give families a visual sense of the school setting and learning materials while the current availability notes above stay authoritative."
+      />
 
       <section className="bg-background py-14 sm:py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">

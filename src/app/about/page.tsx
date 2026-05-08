@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ButtonLink } from "@/components/site/button-link";
 import { MetricStrip } from "@/components/site/metric-strip";
 import { SectionIntro } from "@/components/site/section-intro";
@@ -9,10 +10,19 @@ import {
   educationPrinciples,
   placementSteps,
 } from "@/data/curriculum";
-import { getVisualPlaceholderSlot } from "@/data/media-assets";
+import {
+  getGalleryCategoryCoverAsset,
+  getVisualPlaceholderSlot,
+  type MediaAsset,
+} from "@/data/media-assets";
 import { networkSummary } from "@/data/schools";
 
 const aboutVisual = getVisualPlaceholderSlot("about-community-table");
+const aboutLeadAsset = getGalleryCategoryCoverAsset("creative-work");
+const aboutSupportingAssets = [
+  getGalleryCategoryCoverAsset("locations"),
+  getGalleryCategoryCoverAsset("classroom-learning"),
+].filter((asset): asset is MediaAsset => Boolean(asset));
 
 const reviewNotes = [
   "Class groups and placement guidance are shared clearly, with exact fit confirmed through enquiry.",
@@ -86,7 +96,14 @@ export default function AboutPage() {
               </ButtonLink>
             </div>
           </div>
-          {aboutVisual ? <VisualStoryPanel slot={aboutVisual} /> : null}
+          {aboutLeadAsset ? (
+            <AboutSchoolPhotoPanel
+              leadAsset={aboutLeadAsset}
+              supportingAssets={aboutSupportingAssets}
+            />
+          ) : aboutVisual ? (
+            <VisualStoryPanel slot={aboutVisual} />
+          ) : null}
         </div>
       </section>
 
@@ -300,5 +317,62 @@ export default function AboutPage() {
         </div>
       </section>
     </main>
+  );
+}
+
+function AboutSchoolPhotoPanel({
+  leadAsset,
+  supportingAssets,
+}: {
+  leadAsset: MediaAsset;
+  supportingAssets: MediaAsset[];
+}) {
+  return (
+    <figure
+      className="premium-panel overflow-hidden rounded-lg border border-border-soft bg-surface"
+      aria-labelledby="about-school-photo-heading"
+    >
+      <div className="relative min-h-80 bg-surface-muted sm:min-h-[25rem]">
+        <Image
+          src={leadAsset.approvedPublicPath}
+          alt={leadAsset.altText}
+          fill
+          sizes="(min-width: 1024px) 48vw, 100vw"
+          className="object-cover"
+        />
+      </div>
+      <figcaption className="p-5 sm:p-6">
+        <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
+          School life
+        </p>
+        <h2
+          id="about-school-photo-heading"
+          className="mt-2 text-xl font-semibold leading-tight text-brand-blue-strong"
+        >
+          Language, culture, and a shared school rhythm
+        </h2>
+        <p className="mt-3 text-sm leading-6 text-slate-600">
+          {leadAsset.caption}
+        </p>
+        {supportingAssets.length > 0 ? (
+          <div className="mt-5 grid grid-cols-2 gap-2">
+            {supportingAssets.slice(0, 2).map((asset) => (
+              <div
+                key={asset.id}
+                className="relative min-h-32 overflow-hidden rounded-md bg-surface-muted"
+              >
+                <Image
+                  src={asset.approvedPublicPath}
+                  alt={asset.altText}
+                  fill
+                  sizes="(min-width: 1024px) 18vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        ) : null}
+      </figcaption>
+    </figure>
   );
 }
