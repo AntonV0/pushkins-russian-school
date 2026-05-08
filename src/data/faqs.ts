@@ -116,7 +116,7 @@ export const faqGroups: FaqGroup[] = [
       {
         question: "Why are some gallery spaces waiting for photos?",
         answer:
-          "Gallery year pages are reserved for selected school images with suitable captions and privacy checks.",
+          "Gallery collections are reserved for selected school images with suitable captions and privacy checks.",
       },
       {
         question: "Will the website store enquiry form information?",

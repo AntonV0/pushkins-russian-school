@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { galleryArchives } from "@/data/gallery";
+import { galleryCollections } from "@/data/gallery";
 import { approvedMediaAssets } from "@/data/media-assets";
 import { primaryNavigation } from "@/data/navigation";
 import { policies } from "@/data/policies";
@@ -13,13 +13,13 @@ const staticRoutes = Array.from(new Set([
   "/admissions",
   "/faq",
 ]));
-const approvedGalleryYears = new Set(
+const approvedGalleryCategories = new Set(
   approvedMediaAssets
-    .map((asset) => asset.year)
-    .filter((year): year is string => Boolean(year)),
+    .map((asset) => asset.galleryCategorySlug)
+    .filter((slug): slug is string => Boolean(slug)),
 );
-const publicGalleryArchives = galleryArchives.filter((archive) =>
-  approvedGalleryYears.has(archive.year),
+const publicGalleryCollections = galleryCollections.filter((collection) =>
+  approvedGalleryCategories.has(collection.slug),
 );
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -39,8 +39,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly" as const,
       priority: 0.45,
     })),
-    ...publicGalleryArchives.map((archive) => ({
-      url: absoluteUrl(`/gallery/${archive.year}`),
+    ...publicGalleryCollections.map((collection) => ({
+      url: absoluteUrl(`/gallery/${collection.slug}`),
       changeFrequency: "yearly" as const,
       priority: 0.4,
     })),

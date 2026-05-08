@@ -1,16 +1,24 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ButtonLink } from "@/components/site/button-link";
 import { MetricStrip } from "@/components/site/metric-strip";
 import { SectionIntro } from "@/components/site/section-intro";
 import { VisualStoryPanel } from "@/components/site/visual-story-panel";
 import {
-  galleryArchives,
+  getExtendedGalleryAssetCount,
+  getExtendedGalleryCategoryAssetCount,
+} from "@/data/extended-gallery-assets";
+import {
+  galleryCollections,
   galleryThemes,
 } from "@/data/gallery";
 import {
   approvedMediaAssets,
+  getGalleryCategoryAssetCount,
+  getGalleryCategoryCoverAsset,
   getVisualPlaceholderSlot,
+  type MediaAsset,
 } from "@/data/media-assets";
 
 const galleryVisual = getVisualPlaceholderSlot("gallery-approved-archive");
@@ -31,9 +39,9 @@ export const metadata: Metadata = {
 };
 
 const galleryAssuranceNotes = [
-  "Archive years are organised around learning, culture, performance, and community life.",
+  "Gallery collections are organised around learning, culture, performance, locations, and community life.",
   "Public images are selected carefully so captions, consent, and child privacy stay appropriate.",
-  "The gallery is designed to grow into a credible record of a school community built over many years.",
+  "Legacy archive images can be used at modest sizes when they add useful school-history context.",
 ];
 
 const galleryCurationStandards = [
@@ -50,7 +58,7 @@ const galleryCurationStandards = [
   {
     label: "Archive quality",
     description:
-      "Year pages are reserved for accessible images, useful alt text, and a balanced mix of school moments.",
+      "Gallery collections are reserved for accessible images, useful alt text, and a balanced mix of school moments.",
   },
 ];
 
@@ -69,8 +77,22 @@ const galleryContactLinks = [
   },
 ];
 
+function getGalleryHeroCoverAssets() {
+  return galleryCollections.reduce<MediaAsset[]>((assets, collection) => {
+    const coverAsset = getGalleryCategoryCoverAsset(collection.slug);
+
+    if (!coverAsset) {
+      return assets;
+    }
+
+    return [...assets, coverAsset];
+  }, []);
+}
+
 export default function GalleryPage() {
   const hasApprovedMedia = approvedMediaAssets.length > 0;
+  const galleryHeroCoverAssets = getGalleryHeroCoverAssets();
+  const extendedGalleryAssetCount = getExtendedGalleryAssetCount();
 
   return (
     <main>
@@ -85,8 +107,8 @@ export default function GalleryPage() {
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
               A thoughtful public record of lessons, performances,
-              celebrations, and cultural traditions from Pushkin&apos;s School will
-              appear here as suitable images are selected.
+              celebrations, and cultural traditions from Pushkin&apos;s School,
+              curated from selected location and archive images.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href="/schools">Explore schools</ButtonLink>
@@ -96,17 +118,23 @@ export default function GalleryPage() {
             </div>
           </div>
           <div className="grid content-start gap-4">
-            {galleryVisual ? (
+            {hasApprovedMedia && galleryHeroCoverAssets.length > 0 ? (
+              <GalleryHeroMosaic
+                assets={galleryHeroCoverAssets}
+                totalAssets={approvedMediaAssets.length}
+                extendedAssets={extendedGalleryAssetCount}
+              />
+            ) : galleryVisual ? (
               <VisualStoryPanel slot={galleryVisual} compact />
             ) : null}
             <MetricStrip
               metrics={[
-                { label: "Archive years", value: galleryArchives.length },
+                { label: "Collections", value: galleryCollections.length },
                 { label: "Themes", value: galleryThemes.length },
                 {
                   label: "Photo care",
                   value: hasApprovedMedia
-                    ? approvedMediaAssets.length
+                    ? `${approvedMediaAssets.length} + ${extendedGalleryAssetCount}`
                     : "Curated",
                 },
               ]}
@@ -170,7 +198,7 @@ export default function GalleryPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="School archive"
-            title="School-life moments organised by year"
+            title="School-life moments organised by category"
           >
             <p>
               The archive structure brings school history into a clear shape:
@@ -180,43 +208,82 @@ export default function GalleryPage() {
           </SectionIntro>
           {hasApprovedMedia ? (
             <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {galleryArchives.map((archive) => (
-                <Link
-                  key={archive.year}
-                  href={`/gallery/${archive.year}`}
-                  className="premium-panel group flex min-h-72 flex-col justify-between rounded-lg border border-border-soft bg-surface p-6 transition hover:-translate-y-0.5 hover:border-brand-red"
-                >
-                  <div>
-                    <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
-                      {archive.theme}
-                    </p>
-                    <h2 className="mt-3 text-4xl font-semibold text-brand-blue-strong">
-                      {archive.year}
-                    </h2>
-                    <p className="mt-4 text-sm leading-6 text-slate-600">
-            {archive.tone}
-                    </p>
-                    <p className="mt-4 border-l border-brand-gold pl-4 text-sm leading-6 text-slate-700">
-                      {archive.readinessDetail}
-                    </p>
-                  </div>
-                  <div>
-                    <div className="mt-6 flex flex-wrap gap-2">
-                      {archive.highlights.map((highlight) => (
-                        <span
-                          key={highlight}
-                          className="rounded-full border border-border-soft px-3 py-1 text-xs font-semibold text-brand-blue-strong"
-                        >
-                          {highlight}
-                        </span>
-                      ))}
+              {galleryCollections.map((archive) => {
+                const coverAsset = getGalleryCategoryCoverAsset(archive.slug);
+                const assetCount = getGalleryCategoryAssetCount(archive.slug);
+                const extendedAssetCount =
+                  getExtendedGalleryCategoryAssetCount(archive.slug);
+                const hasCategoryMedia = assetCount > 0;
+
+                return (
+                  <Link
+                    key={archive.slug}
+                    href={`/gallery/${archive.slug}`}
+                    className="premium-panel group flex min-h-[31rem] flex-col overflow-hidden rounded-lg border border-border-soft bg-surface transition hover:-translate-y-0.5 hover:border-brand-red"
+                  >
+                    <div className="relative aspect-[4/3] bg-surface-muted">
+                      {coverAsset ? (
+                        <Image
+                          src={coverAsset.approvedPublicPath}
+                          alt={coverAsset.altText}
+                          fill
+                          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                          className="object-cover transition duration-300 group-hover:scale-[1.02]"
+                        />
+                      ) : (
+                        <div className="relative flex h-full items-end overflow-hidden p-5">
+                          <div
+                            className="absolute inset-0 bg-[linear-gradient(90deg,rgba(20,56,102,0.07)_1px,transparent_1px),linear-gradient(0deg,rgba(20,56,102,0.07)_1px,transparent_1px)] bg-[size:30px_30px]"
+                            aria-hidden="true"
+                          />
+                          <p className="relative text-sm font-semibold text-muted">
+                            Images in preparation
+                          </p>
+                        </div>
+                      )}
                     </div>
-                    <p className="mt-5 text-sm font-semibold text-muted">
-                      {archive.readinessLabel}
-                    </p>
-                  </div>
-                </Link>
-              ))}
+                    <div className="flex flex-1 flex-col justify-between p-6">
+                      <div>
+                        <div className="flex items-start justify-between gap-4">
+                          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
+                            {archive.theme}
+                          </p>
+                          <span className="shrink-0 rounded-full border border-border-soft bg-background px-3 py-1 text-xs font-semibold text-muted">
+                            {hasCategoryMedia
+                              ? `${assetCount} featured`
+                              : "Preparing"}
+                          </span>
+                        </div>
+                        <h2 className="mt-3 text-2xl font-semibold text-brand-blue-strong">
+                          {archive.title}
+                        </h2>
+                        <p className="mt-4 text-sm leading-6 text-slate-600">
+                          {archive.tone}
+                        </p>
+                      </div>
+                      <div>
+                        <div className="mt-6 flex flex-wrap gap-2">
+                          {archive.highlights.map((highlight) => (
+                            <span
+                              key={highlight}
+                              className="rounded-full border border-border-soft px-3 py-1 text-xs font-semibold text-brand-blue-strong"
+                            >
+                              {highlight}
+                            </span>
+                          ))}
+                        </div>
+                        <p className="mt-5 text-sm font-semibold text-muted">
+                          {hasCategoryMedia
+                            ? extendedAssetCount > 0
+                              ? `View selected images and ${extendedAssetCount} archive tiles`
+                              : "View selected images"
+                            : archive.readinessLabel}
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           ) : (
             <div className="premium-panel mt-10 grid gap-0 overflow-hidden rounded-lg border border-border-soft bg-surface lg:grid-cols-[0.72fr_1.28fr]">
@@ -225,19 +292,20 @@ export default function GalleryPage() {
                   School-life archive
                 </h2>
                 <p className="mt-3 text-sm leading-6 text-slate-600">
-                  Public year pages are organised around the school-life story
-                  they will tell as suitable images and captions are selected.
+                  Public gallery collections are organised around the
+                  school-life story they will tell as suitable images and
+                  captions are selected.
                 </p>
               </div>
               <div className="divide-y divide-border-soft">
-                {galleryArchives.map((archive) => (
+                {galleryCollections.map((archive) => (
                   <article
-                    key={archive.year}
-                    className="grid gap-4 p-5 sm:grid-cols-[5rem_1fr] sm:items-start"
+                    key={archive.slug}
+                    className="grid gap-4 p-5 sm:grid-cols-[12rem_1fr] sm:items-start"
                   >
                     <div>
-                      <p className="text-2xl font-semibold text-brand-blue-strong">
-                        {archive.year}
+                      <p className="text-lg font-semibold text-brand-blue-strong">
+                        {archive.title}
                       </p>
                       <p className="mt-1 text-xs font-semibold uppercase tracking-[0.14em] text-brand-red">
                         {archive.theme}
@@ -299,5 +367,72 @@ export default function GalleryPage() {
         </div>
       </section>
     </main>
+  );
+}
+
+function GalleryHeroMosaic({
+  assets,
+  totalAssets,
+  extendedAssets,
+}: {
+  assets: MediaAsset[];
+  totalAssets: number;
+  extendedAssets: number;
+}) {
+  const visibleAssets = assets.slice(0, 6);
+
+  return (
+    <figure
+      className="premium-panel overflow-hidden rounded-lg border border-border-soft bg-surface"
+      aria-labelledby="gallery-hero-mosaic-heading"
+    >
+      <div className="grid min-h-72 grid-cols-3 grid-rows-2 gap-1 bg-surface-muted p-1 sm:min-h-80">
+        {visibleAssets.map((asset, index) => (
+          <div
+            key={asset.id}
+            className="relative overflow-hidden rounded-md bg-surface-muted"
+            style={
+              index === 0
+                ? { gridColumn: "span 2", gridRow: "span 2" }
+                : undefined
+            }
+          >
+            <Image
+              src={asset.approvedPublicPath}
+              alt={asset.altText}
+              fill
+              sizes={
+                index === 0
+                  ? "(min-width: 1024px) 40vw, 66vw"
+                  : "(min-width: 1024px) 14vw, 33vw"
+              }
+              className="object-cover"
+              priority={index === 0}
+            />
+            <div
+              className="absolute inset-0 bg-gradient-to-t from-brand-blue-strong/35 via-transparent to-transparent"
+              aria-hidden="true"
+            />
+          </div>
+        ))}
+      </div>
+      <figcaption className="p-5 sm:p-6">
+        <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
+          Selected archive
+        </p>
+        <h2
+          id="gallery-hero-mosaic-heading"
+          className="mt-2 text-xl font-semibold leading-tight text-brand-blue-strong"
+        >
+          {totalAssets} featured images across {galleryCollections.length}{" "}
+          gallery collections
+        </h2>
+        <p className="mt-3 text-sm leading-6 text-slate-600">
+          The featured set stays carefully curated, with {extendedAssets} more
+          small archive tiles adding depth where lower-resolution images still
+          help tell the school story.
+        </p>
+      </figcaption>
+    </figure>
   );
 }

@@ -18,7 +18,7 @@ files so the site can be reviewed and extended safely.
 - `/admissions` - admissions, enquiry, fees, and payment-status guidance
 - `/faq` - parent FAQ hub
 - `/policies` and `/policies/[slug]` - polished policy index and document shells
-- `/gallery` and `/gallery/[year]` - approved-media archive shells
+- `/gallery` and `/gallery/[category]` - approved-media gallery collection shells
 - `/contact` - server-validated initial enquiry flow with safe disabled defaults
 
 ## Stack

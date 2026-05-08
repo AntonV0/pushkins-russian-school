@@ -163,8 +163,8 @@ highest-impact items that did not require new business facts:
   parent next steps rather than source/audit notes.
 - Added `X-Robots-Tag: noindex, nofollow` headers for `/admin/*` and
   `/register/*` prototype routes.
-- Added noindex metadata to gallery year routes until an approved-media record
-  exists for the year.
+- Added noindex metadata to gallery category routes until an approved-media
+  record exists for the category.
 - Updated README and content verification wording to match the route/network-area
   model.
 - Added legacy policy redirects from old root-level document URLs into the new
@@ -295,14 +295,14 @@ Follow-up QA:
 Working well:
 
 - App Router route structure is coherent.
-- Sitemap includes static routes, schools, policies, and only gallery years with
-  approved media.
+- Sitemap includes static routes, schools, policies, and only gallery
+  categories with approved media.
 - Robots disallows `/api/`; admin and registration prototype metadata noindexes
   those route groups.
 - Manifest and Open Graph image exist.
 - Supabase helpers are present for future work without live writes by default.
 - Prototype registration is restricted to the documented `sample-token` route,
-  and gallery year archives stay out of navigation and the sitemap until
+  and gallery category archives stay out of navigation and the sitemap until
   approved public media exists.
 
 Follow-up QA:

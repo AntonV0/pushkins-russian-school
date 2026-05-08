@@ -8,43 +8,55 @@ import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { ButtonLink } from "@/components/site/button-link";
 import { JsonLd } from "@/components/site/json-ld";
 import {
-  galleryArchives,
+  galleryCollections,
   galleryReadinessNotes,
   gallerySupportLinks,
   galleryWorkflowStages,
-  getGalleryArchive,
+  getGalleryCollection,
 } from "@/data/gallery";
 import {
-  getApprovedMediaByYear,
+  getExtendedGalleryMediaByCategory,
+} from "@/data/extended-gallery-assets";
+import {
+  getApprovedMediaByGalleryCategory,
   mediaReadinessNotes,
 } from "@/data/media-assets";
 import { absoluteUrl, siteConfig } from "@/data/site";
 
-type GalleryYearPageProps = {
-  params: Promise<{ year: string }>;
+type GalleryCategoryPageProps = {
+  params: Promise<{ category: string }>;
 };
 
 export function generateStaticParams() {
-  return galleryArchives.map((archive) => ({ year: archive.year }));
+  return galleryCollections.map((collection) => ({
+    category: collection.slug,
+  }));
 }
 
 export async function generateMetadata({
   params,
-}: GalleryYearPageProps): Promise<Metadata> {
-  const { year } = await params;
-  const archive = getGalleryArchive(year);
+}: GalleryCategoryPageProps): Promise<Metadata> {
+  const { category } = await params;
+  const archive = getGalleryCollection(category);
 
   if (!archive) {
     return {
-      title: "Gallery archive not found",
+      title: "Gallery collection not found",
     };
   }
 
-  const approvedAssets = getApprovedMediaByYear(archive.year);
+  const approvedAssets = getApprovedMediaByGalleryCategory(archive.slug);
+  const assetCount = approvedAssets.length;
+  const description =
+    assetCount > 0
+      ? `${archive.title} with ${assetCount} approved public Pushkin's School image${
+          assetCount === 1 ? "" : "s"
+        } and captions.`
+      : `${archive.title} for selected Pushkin's School public images and captions.`;
 
   return {
     title: archive.title,
-    description: `${archive.title} for selected Pushkin's School public images and captions.`,
+    description,
     robots:
       approvedAssets.length > 0
         ? undefined
@@ -53,32 +65,45 @@ export async function generateMetadata({
             follow: true,
           },
     alternates: {
-      canonical: `/gallery/${archive.year}`,
+      canonical: `/gallery/${archive.slug}`,
     },
     openGraph: {
       title: `${archive.title} | Pushkin's School Gallery`,
-      description: archive.summary,
-      url: `/gallery/${archive.year}`,
+      description,
+      url: `/gallery/${archive.slug}`,
       type: "article",
     },
   };
 }
 
-export default async function GalleryYearPage({ params }: GalleryYearPageProps) {
-  const { year } = await params;
-  const archive = getGalleryArchive(year);
+export default async function GalleryCategoryPage({
+  params,
+}: GalleryCategoryPageProps) {
+  const { category } = await params;
+  const archive = getGalleryCollection(category);
 
   if (!archive) {
     notFound();
   }
 
-  const approvedAssets = getApprovedMediaByYear(archive.year);
+  const approvedAssets = getApprovedMediaByGalleryCategory(archive.slug);
+  const extendedAssets = getExtendedGalleryMediaByCategory(archive.slug);
+  const assetCount = approvedAssets.length;
+  const extendedAssetCount = extendedAssets.length;
+  const hasApprovedAssets = assetCount > 0;
+  const hasExtendedAssets = extendedAssetCount > 0;
+  const assetCountLabel = `${assetCount} ${
+    assetCount === 1 ? "approved image" : "approved images"
+  }`;
+  const extendedAssetCountLabel = `${extendedAssetCount} ${
+    extendedAssetCount === 1 ? "extended archive image" : "extended archive images"
+  }`;
 
   const galleryJsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: archive.title,
-    url: absoluteUrl(`/gallery/${archive.year}`),
+    url: absoluteUrl(`/gallery/${archive.slug}`),
     description: archive.summary,
     isPartOf: {
       "@type": "WebSite",
@@ -89,6 +114,11 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
       "@type": "Thing",
       name: highlight,
     })),
+    ...(hasApprovedAssets
+      ? {
+          image: approvedAssets.map((asset) => absoluteUrl(asset.approvedPublicPath)),
+        }
+      : {}),
   };
 
   return (
@@ -100,7 +130,7 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
             <Breadcrumbs
               items={[
                 { label: "Gallery", href: "/gallery" },
-                { label: archive.year },
+                { label: archive.title },
               ]}
             />
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
@@ -114,11 +144,16 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
               <span className="inline-flex items-center rounded-full border border-brand-gold/40 bg-brand-gold/10 px-4 py-2 text-sm font-semibold text-brand-blue-strong">
-                {archive.readinessLabel}
+                {hasApprovedAssets ? "Approved collection" : archive.readinessLabel}
               </span>
               <span className="inline-flex items-center rounded-full border border-border-soft bg-background px-4 py-2 text-sm font-semibold text-muted">
-                Selected with care
+                {hasApprovedAssets ? assetCountLabel : "Selected with care"}
               </span>
+              {hasExtendedAssets ? (
+                <span className="inline-flex items-center rounded-full border border-border-soft bg-background px-4 py-2 text-sm font-semibold text-muted">
+                  {extendedAssetCountLabel}
+                </span>
+              ) : null}
             </div>
           </div>
           <aside className="premium-panel rounded-lg border border-border-soft bg-background p-6 sm:p-8">
@@ -126,10 +161,14 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
               {archive.theme}
             </p>
             <h2 className="mt-3 text-2xl font-semibold leading-tight text-brand-blue-strong">
-              A careful public record for selected school moments
+              {hasApprovedAssets
+                ? "Approved images for public family browsing"
+                : "A careful public record for selected school moments"}
             </h2>
             <p className="mt-4 border-l border-brand-gold pl-4 text-sm leading-6 text-slate-700">
-              {archive.readinessDetail}
+              {hasApprovedAssets
+                ? "This collection is live with public images that have been selected, optimised, captioned, and checked for suitable presentation."
+                : archive.readinessDetail}
             </p>
             <div className="mt-5 flex flex-wrap gap-2">
               {archive.highlights.map((highlight) => (
@@ -147,17 +186,65 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
 
       <section className="bg-background py-14 sm:py-16">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
-          <MediaAssetGrid
-            assets={approvedAssets}
-            emptyLabel={`${archive.year} archive moment`}
-            emptyDescription="A selected school image can appear here after consent, alt text, caption, and accessibility checks."
-          />
+          <div className="grid gap-10">
+            <MediaAssetGrid
+              assets={approvedAssets}
+              emptyLabel={`${archive.title} image`}
+              emptyDescription="A selected school image can appear here after consent, alt text, caption, and accessibility checks."
+              reviewLabel="Featured"
+            />
+
+            {hasExtendedAssets ? (
+              <section aria-labelledby={`${archive.slug}-extended-archive`}>
+                <div className="border-l border-brand-gold pl-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">
+                    Extended archive
+                  </p>
+                  <h2
+                    id={`${archive.slug}-extended-archive`}
+                    className="mt-2 text-2xl font-semibold text-brand-blue-strong"
+                  >
+                    More school-life moments
+                  </h2>
+                  <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600">
+                    These extra archive images are kept intentionally smaller:
+                    useful for depth and history, but separate from the main
+                    featured set.
+                  </p>
+                </div>
+                <div className="mt-5">
+                  <MediaAssetGrid
+                    assets={extendedAssets}
+                    variant="compact"
+                    reviewLabel="Archive"
+                  />
+                </div>
+              </section>
+            ) : null}
+          </div>
 
           <div>
             <AssetReadinessPanel
               title="Curation standard"
-              status="Selected photos, captions, and alt text will appear here once they are suitable for public school use."
-              notes={[...archive.expectedContent, ...mediaReadinessNotes]}
+              status={
+                hasApprovedAssets
+                  ? `${assetCountLabel} are currently featured in this collection. ${
+                      hasExtendedAssets
+                        ? `${extendedAssetCountLabel} are shown separately as smaller archive tiles.`
+                        : "Future additions should follow the same consent, caption, crop, and accessibility checks."
+                    }`
+                  : "Selected photos, captions, and alt text will appear here once they are suitable for public school use."
+              }
+              notes={
+                hasApprovedAssets
+                  ? [
+                      ...galleryReadinessNotes,
+                      "Keep adding images only after public suitability and crop checks.",
+                      "Avoid near-duplicates so each image adds a distinct school-life detail.",
+                      "Use the extended archive tier for useful lower-resolution images that should not become prominent page imagery.",
+                    ]
+                  : [...archive.expectedContent, ...mediaReadinessNotes]
+              }
             />
             <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col">
               <ButtonLink href="/gallery" variant="secondary">
@@ -179,8 +266,9 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
               How this archive is curated
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              This archive keeps the year organised while suitable school
-              photos, captions, and accessibility details are selected.
+              {hasApprovedAssets
+                ? "This collection keeps approved school photos organised while future images can be added through the same review path."
+                : "This collection keeps the archive organised while suitable school photos, captions, and accessibility details are selected."}
             </p>
           </div>
           <ol className="overflow-hidden rounded-lg border border-border-soft bg-background">
@@ -218,14 +306,14 @@ export default async function GalleryYearPage({ params }: GalleryYearPageProps) 
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
-          {galleryReadinessNotes.map((note) => (
-            <div
-              key={note}
-              className="border-l border-brand-gold bg-background px-4 py-3 text-sm leading-6 text-slate-700"
-            >
-              {note}
-            </div>
-          ))}
+            {galleryReadinessNotes.map((note) => (
+              <div
+                key={note}
+                className="border-l border-brand-gold bg-background px-4 py-3 text-sm leading-6 text-slate-700"
+              >
+                {note}
+              </div>
+            ))}
           </div>
         </div>
       </section>
