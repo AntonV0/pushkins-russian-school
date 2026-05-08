@@ -46,7 +46,8 @@ docs/source-copy/*
 docs/assets/private/*
 docs/assets/source/*
 
-# raw originals should be reviewed before becoming public website assets
+# raw originals should be reviewed before becoming public website assets.
+# Approved, optimised assets in public/images may be committed for deployment.
 public/images/original/*
 !public/images/original/.gitkeep
 
