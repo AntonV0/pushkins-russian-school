@@ -2,15 +2,23 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useRef } from "react";
 import { primaryNavigation } from "@/data/navigation";
 import { BrandMark } from "./brand-mark";
 import { ButtonLink } from "./button-link";
 
 export function Header() {
   const pathname = usePathname();
+  const mobileMenuRef = useRef<HTMLDetailsElement>(null);
 
   const isActive = (href: string) =>
     href === "/" ? pathname === href : pathname === href || pathname.startsWith(`${href}/`);
+
+  useEffect(() => {
+    if (mobileMenuRef.current) {
+      mobileMenuRef.current.open = false;
+    }
+  }, [pathname]);
 
   return (
     <header className="sticky top-0 z-20 border-b border-border-soft bg-background/92 shadow-[0_1px_0_rgba(255,255,255,0.75)_inset] backdrop-blur-xl">
@@ -51,7 +59,7 @@ export function Header() {
           </ButtonLink>
         </nav>
 
-        <details className="group relative shrink-0 lg:hidden">
+        <details ref={mobileMenuRef} className="group relative shrink-0 lg:hidden">
           <summary className="flex cursor-pointer list-none items-center justify-center gap-2 rounded-md border border-brand-blue/20 bg-white/75 px-3 py-2 text-sm font-semibold text-brand-blue-strong shadow-[0_1px_0_rgba(255,255,255,0.75)_inset] transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30">
             <span aria-hidden="true" className="grid h-4 w-4 content-center gap-1">
               <span className="h-0.5 rounded-full bg-current transition group-open:translate-y-1.5 group-open:rotate-45" />
