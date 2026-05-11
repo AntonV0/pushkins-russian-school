@@ -124,8 +124,8 @@ export default async function GalleryCategoryPage({
   return (
     <main>
       <JsonLd data={galleryJsonLd} />
-      <section className="border-b border-border-soft bg-surface/72 site-section-compact">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_0.78fr] lg:px-8">
+      <section className="border-b border-border-soft bg-surface/72 py-7 sm:py-[var(--section-y-compact)]">
+        <div className="mx-auto grid max-w-7xl gap-5 px-6 sm:gap-8 lg:grid-cols-[1fr_0.78fr] lg:gap-10 lg:px-8">
           <div>
             <Breadcrumbs
               items={[
@@ -136,41 +136,41 @@ export default async function GalleryCategoryPage({
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
               Gallery archive
             </p>
-            <h1 className="mt-4 max-w-4xl text-balance break-words text-4xl font-semibold leading-[1.06] text-brand-blue-strong sm:text-5xl">
+            <h1 className="mt-2 max-w-4xl text-balance break-words text-3xl font-semibold leading-[1.08] text-brand-blue-strong sm:mt-4 sm:text-5xl sm:leading-[1.06]">
               {archive.title}
             </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
+            <p className="mt-3 max-w-3xl text-base leading-7 text-slate-600 sm:mt-5 sm:text-lg sm:leading-8">
               {archive.tone}
             </p>
-            <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
-              <span className="inline-flex max-w-full items-center rounded-full border border-brand-gold/40 bg-brand-gold/10 px-4 py-2 text-sm font-semibold leading-5 text-brand-blue-strong">
+            <div className="mt-4 flex flex-col gap-1.5 sm:mt-6 sm:flex-row sm:flex-wrap sm:gap-2">
+              <span className="inline-flex max-w-full items-center border-l border-brand-gold bg-background px-3 py-1.5 text-sm font-semibold leading-5 text-brand-blue-strong sm:py-2">
                 {hasApprovedAssets ? "Approved collection" : archive.readinessLabel}
               </span>
-              <span className="inline-flex max-w-full items-center rounded-full border border-border-soft bg-background px-4 py-2 text-sm font-semibold leading-5 text-muted">
+              <span className="inline-flex max-w-full items-center border-l border-border-soft bg-background px-3 py-1.5 text-sm font-semibold leading-5 text-muted sm:py-2">
                 {hasApprovedAssets ? assetCountLabel : "Selected with care"}
               </span>
               {hasExtendedAssets ? (
-                <span className="inline-flex max-w-full items-center rounded-full border border-border-soft bg-background px-4 py-2 text-sm font-semibold leading-5 text-muted">
+                <span className="hidden max-w-full items-center border-l border-border-soft bg-background px-3 py-2 text-sm font-semibold leading-5 text-muted sm:inline-flex">
                   {extendedAssetCountLabel}
                 </span>
               ) : null}
             </div>
           </div>
-          <aside className="border-y border-border-soft bg-background py-6 sm:py-8 lg:border-l lg:border-y-0 lg:px-8">
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
+          <aside className="border-y border-border-soft bg-background py-4 sm:py-8 lg:border-l lg:border-y-0 lg:px-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red sm:text-sm">
               {archive.theme}
             </p>
-            <h2 className="mt-3 text-2xl font-semibold leading-tight text-brand-blue-strong">
+            <h2 className="mt-2 text-lg font-semibold leading-snug text-brand-blue-strong sm:mt-3 sm:text-2xl sm:leading-tight">
               {hasApprovedAssets
                 ? "Approved images for public family browsing"
                 : "A careful public record for selected school moments"}
             </h2>
-            <p className="mt-4 border-l border-brand-gold pl-4 text-sm leading-6 text-slate-700">
+            <p className="mt-3 border-l border-brand-gold pl-3 text-sm leading-6 text-slate-700 sm:mt-4 sm:pl-4">
               {hasApprovedAssets
                 ? "This collection is live with public images that have been selected, optimised, captioned, and checked for suitable presentation."
                 : archive.readinessDetail}
             </p>
-            <div className="mt-5 flex flex-wrap gap-2">
+            <div className="mt-4 hidden flex-wrap gap-2 sm:flex sm:mt-5">
               {archive.highlights.map((highlight) => (
                 <span
                   key={highlight}
@@ -184,18 +184,41 @@ export default async function GalleryCategoryPage({
         </div>
       </section>
 
-      <section className="bg-background site-section-compact">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
-          <div className="grid gap-10">
+      <section className="bg-background py-6 sm:py-[var(--section-y-compact)]">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <section aria-labelledby={`${archive.slug}-approved-gallery`}>
+            <div className="mb-4 flex flex-col gap-2 border-b border-border-soft pb-4 sm:mb-6 sm:gap-3 sm:pb-5 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">
+                  Approved public selection
+                </p>
+                <h2
+                  id={`${archive.slug}-approved-gallery`}
+                  className="mt-2 text-2xl font-semibold text-brand-blue-strong"
+                >
+                  Featured images
+                </h2>
+              </div>
+              <p className="hidden max-w-2xl text-sm leading-6 text-slate-600 sm:block">
+                These are the prominent gallery images for this collection,
+                kept separate from the smaller extended archive below.
+              </p>
+            </div>
             <MediaAssetGrid
               assets={approvedAssets}
               emptyLabel={`${archive.title} image`}
               emptyDescription="A selected school image can appear here after consent, alt text, caption, and accessibility checks."
               reviewLabel="Featured"
+              featureFirst={hasApprovedAssets}
             />
+          </section>
 
-            {hasExtendedAssets ? (
-              <section aria-labelledby={`${archive.slug}-extended-archive`}>
+          {hasExtendedAssets ? (
+            <section
+              className="mt-12 border-t border-border-soft pt-8"
+              aria-labelledby={`${archive.slug}-extended-archive`}
+            >
+              <div className="mb-5 grid gap-3 lg:grid-cols-[0.45fr_0.55fr] lg:items-end">
                 <div className="border-l border-brand-gold pl-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">
                     Extended archive
@@ -204,26 +227,24 @@ export default async function GalleryCategoryPage({
                     id={`${archive.slug}-extended-archive`}
                     className="mt-2 text-2xl font-semibold text-brand-blue-strong"
                   >
-                    More school-life moments
+                    Smaller archive tiles
                   </h2>
-                  <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600">
-                    These extra archive images are kept intentionally smaller:
-                    useful for depth and history, but separate from the main
-                    featured set.
-                  </p>
                 </div>
-                <div className="mt-5">
-                  <MediaAssetGrid
-                    assets={extendedAssets}
-                    variant="compact"
-                    reviewLabel="Archive"
-                  />
-                </div>
-              </section>
-            ) : null}
-          </div>
+                <p className="max-w-3xl text-sm leading-6 text-slate-600">
+                  These extra archive images are kept intentionally smaller:
+                  useful for depth and history, but separate from the main
+                  featured set.
+                </p>
+              </div>
+              <MediaAssetGrid
+                assets={extendedAssets}
+                variant="compact"
+                reviewLabel="Archive"
+              />
+            </section>
+          ) : null}
 
-          <div>
+          <div className="mt-12 grid gap-6 lg:grid-cols-[0.72fr_0.28fr] lg:items-start">
             <AssetReadinessPanel
               title="Curation standard"
               status={
@@ -246,7 +267,7 @@ export default async function GalleryCategoryPage({
                   : [...archive.expectedContent, ...mediaReadinessNotes]
               }
             />
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row lg:flex-col">
+            <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
               <ButtonLink href="/gallery" variant="secondary">
                 Back to gallery
               </ButtonLink>

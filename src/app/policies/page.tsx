@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ButtonLink } from "@/components/site/button-link";
-import { PageCta } from "@/components/site/page-cta";
-import { PageHero } from "@/components/site/page-hero";
-import { SectionIntro } from "@/components/site/section-intro";
 import {
   getPolicyAction,
   getPolicyStatusTone,
@@ -67,6 +64,9 @@ const policyContactLinks = [
   },
 ];
 
+const quietHeroLink =
+  "min-h-0 w-auto justify-start px-0 py-1 text-left sm:min-h-11 sm:justify-center sm:px-5 sm:py-3";
+
 function getParentPolicyStatusLabel(policy: Policy) {
   if (hasReviewedPublicPolicyPdf(policy)) {
     return "Download available";
@@ -91,51 +91,68 @@ export default function PoliciesPage() {
 
   return (
     <main>
-      <PageHero
-        eyebrow="Policies"
-        title="Policies for a safe, well-run school community"
-        actions={
-          <>
-            <ButtonLink href="/contact#enquiry-form">
-              Ask a policy question
-            </ButtonLink>
-            <ButtonLink href="/schools" variant="secondary">
-              View school locations
-            </ButtonLink>
-          </>
-        }
-        aside={
-          <aside className="border-y border-border-soft bg-background/70 py-6 lg:border-l lg:border-y-0 lg:py-2 lg:pl-8">
+      <section className="border-b border-border-soft bg-surface/72 py-7 sm:py-12">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-end lg:px-8">
+          <div>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
-              Policy library
+              Policies
             </p>
-            <dl className="mt-5 grid gap-4 text-sm sm:grid-cols-2">
+            <h1 className="mt-4 max-w-3xl text-balance text-4xl font-semibold leading-[1.05] text-brand-blue-strong sm:text-5xl">
+              Policies for a safe, well-run school community
+            </h1>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg">
+              Families can find safeguarding, welfare, conduct, privacy, and
+              complaints information in one calm place. Formal documents are
+              added for download when the school has confirmed they are ready.
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <ButtonLink href="#policy-library">Browse policies</ButtonLink>
+              <ButtonLink
+                href="/contact#enquiry-form"
+                variant="quiet"
+                className={quietHeroLink}
+              >
+                Ask a policy question
+              </ButtonLink>
+            </div>
+          </div>
+          <aside className="border-y border-border-soft py-5 lg:border-l lg:border-y-0 lg:pl-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
+              Document index
+            </p>
+            <p className="mt-3 max-w-xl text-sm leading-6 text-slate-600">
+              Start with the relevant policy group, then open the plain summary
+              or official guidance link where one is available.
+            </p>
+            <dl className="mt-5 divide-y divide-border-soft border-y border-border-soft text-sm">
               {[
                 { label: "Groups", value: policyGroups.length },
-                { label: "Policies", value: policies.length },
-                { label: "Family policies", value: familyPolicyCount },
-                { label: "Guidance links", value: currentExternalGuidanceLinks.length },
+                { label: "Policy summaries", value: policies.length },
+                {
+                  label: "Family-facing policies",
+                  value: familyPolicyCount,
+                },
+                {
+                  label: "Official guidance links",
+                  value: currentExternalGuidanceLinks.length,
+                },
               ].map((item) => (
-                <div key={item.label} className="border-l border-brand-gold pl-4">
-                  <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+                <div
+                  key={item.label}
+                  className="grid grid-cols-[1fr_auto] gap-4 py-3 first:pt-0 last:pb-0"
+                >
+                  <dt className="text-sm leading-6 text-slate-600">
                     {item.label}
                   </dt>
-                  <dd className="mt-1 text-2xl font-semibold text-brand-blue-strong">
+                  <dd className="text-sm font-semibold leading-6 text-brand-blue-strong">
                     {item.value}
                   </dd>
                 </div>
               ))}
             </dl>
           </aside>
-        }
-      >
-        <p>
-          Families can find safeguarding, welfare, conduct, privacy, and
-          complaints information in one calm place, with formal documents added
-          for download when the school has confirmed they are ready for families
-          to use.
-        </p>
-      </PageHero>
+        </div>
+      </section>
 
       <section
         className="border-b border-border-soft bg-background site-section-compact"
@@ -156,19 +173,22 @@ export default function PoliciesPage() {
         </div>
       </section>
 
-      <section className="bg-background site-section-compact">
+      <section id="policy-library" className="bg-background py-10 sm:py-12">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <SectionIntro
-            eyebrow="Policy care"
-            title="Grouped for families, staff, and statutory reference"
-          >
-            <p>
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
+              Policy care
+            </p>
+            <h2 className="mt-3 text-3xl font-semibold text-brand-blue-strong">
+              Grouped for families, staff, and statutory reference
+            </h2>
+            <p className="mt-4 text-sm leading-6 text-slate-600">
               This page treats policies as part of everyday trust: visible,
               organised, and careful about what becomes a downloadable public
               document.
             </p>
-          </SectionIntro>
-          <div className="mt-8 grid gap-6 border-y border-border-soft py-6 lg:grid-cols-[0.9fr_1.1fr]">
+          </div>
+          <div className="mt-7 grid gap-6 border-y border-border-soft py-6 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
               <h2 className="text-xl font-semibold text-brand-blue-strong">
                 What parents can expect
@@ -282,24 +302,29 @@ export default function PoliciesPage() {
         </div>
       </section>
 
-      <PageCta
-        eyebrow="Need help now?"
-        title="Questions about a policy?"
-        actions={
-          <>
+      <section className="border-t border-border-soft bg-surface py-10 sm:py-12">
+        <div className="mx-auto grid max-w-7xl gap-5 px-6 md:grid-cols-[1fr_auto] md:items-center lg:px-8">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
+              Need help now?
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold text-brand-blue-strong">
+              Questions about a policy?
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600">
+              Families can ask practical questions, check branch details, or
+              use the enquiry form to reach the school team directly.
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap md:justify-end">
             {policyContactLinks.map((link) => (
-              <ButtonLink key={link.href} href={link.href} variant="light">
+              <ButtonLink key={link.href} href={link.href} variant="secondary">
                 {link.label}
               </ButtonLink>
             ))}
-          </>
-        }
-      >
-        <p>
-          Families can ask practical questions, check branch details, or use
-          the enquiry form to reach the school team directly.
-        </p>
-      </PageCta>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

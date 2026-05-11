@@ -14,6 +14,7 @@ type MediaAssetGridProps = {
   slotCount?: number;
   variant?: "feature" | "compact";
   reviewLabel?: string;
+  featureFirst?: boolean;
 };
 
 function formatCategoryLabel(category: MediaAsset["category"]) {
@@ -25,6 +26,10 @@ function formatCategoryLabel(category: MediaAsset["category"]) {
 
 function formatReviewNumber(index: number) {
   return `${index + 1}`.padStart(2, "0");
+}
+
+function formatReviewBadge(label: string, index: number) {
+  return `${label.charAt(0).toUpperCase()}${formatReviewNumber(index)}`;
 }
 
 export function AssetReadinessPanel({
@@ -61,6 +66,7 @@ export function MediaAssetGrid({
   slotCount = 4,
   variant = "feature",
   reviewLabel,
+  featureFirst = false,
 }: MediaAssetGridProps) {
   if (assets.length === 0) {
     return (
@@ -108,23 +114,35 @@ export function MediaAssetGrid({
     <div
       className={
         isCompact
-          ? "grid gap-3 sm:grid-cols-2 xl:grid-cols-3"
-          : "grid gap-4 sm:grid-cols-2"
+          ? "grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
+          : "grid grid-cols-2 gap-2 sm:grid-cols-2 lg:gap-4"
       }
     >
       {assets.map((asset, index) => {
         const reviewNumber = reviewLabel
           ? `${reviewLabel} ${formatReviewNumber(index)}`
           : undefined;
+        const reviewBadge = reviewLabel
+          ? formatReviewBadge(reviewLabel, index)
+          : undefined;
+        const isFeature = featureFirst && !isCompact && index === 0;
 
         return (
           <figure
             key={asset.id}
-            className="overflow-hidden rounded-lg border border-border-soft bg-surface"
+            className={`overflow-hidden border border-border-soft bg-surface ${
+              isFeature
+                ? "col-span-2 sm:col-span-2 lg:grid lg:grid-cols-[1.35fr_0.65fr]"
+                : ""
+            }`}
           >
             <div
               className={`relative bg-surface-muted ${
-                isCompact ? "aspect-square min-h-44" : "aspect-[4/3] min-h-56"
+                isCompact
+                  ? "aspect-[4/3] min-h-28 sm:aspect-square sm:min-h-36"
+                  : isFeature
+                    ? "aspect-[4/3] min-h-56 sm:min-h-64 lg:aspect-auto lg:min-h-[28rem]"
+                    : "aspect-[4/3] min-h-36 sm:min-h-52"
               }`}
             >
               <Image
@@ -139,32 +157,56 @@ export function MediaAssetGrid({
                 className="object-cover"
                 loading={index === 0 ? "eager" : "lazy"}
               />
-              {reviewNumber ? (
+              {reviewBadge ? (
                 <span
-                  className={`absolute left-3 top-3 z-20 rounded-md border border-border-soft bg-white/95 px-2.5 py-1 font-semibold uppercase tracking-[0.08em] text-brand-blue-strong shadow-sm ${
-                    isCompact ? "text-[0.625rem]" : "text-xs"
+                  className={`absolute left-2 top-2 z-20 border border-white/60 bg-white/85 px-1.5 py-0.5 font-semibold uppercase tracking-[0.06em] text-brand-blue-strong shadow-sm sm:left-3 sm:top-3 sm:px-2 sm:py-1 ${
+                    isCompact ? "text-[0.55rem]" : "text-[0.6rem]"
                   }`}
                 >
-                  {reviewNumber}
+                  {reviewBadge}
                 </span>
               ) : null}
             </div>
-            <figcaption className={isCompact ? "p-3" : "p-4"}>
-              <div className="flex items-start justify-between gap-3">
+            <figcaption
+              className={
+                isCompact
+                  ? "p-2.5 sm:p-3"
+                  : isFeature
+                    ? "flex flex-col justify-end p-5 sm:p-6"
+                    : "p-3 sm:p-4"
+              }
+            >
+              <div
+                className={
+                  isCompact
+                    ? "grid gap-1"
+                    : "flex items-start justify-between gap-3"
+                }
+              >
                 <p
                   className={`font-semibold text-brand-blue-strong ${
-                    isCompact ? "text-xs leading-5" : "text-sm"
+                    isCompact
+                      ? "line-clamp-2 min-h-8 text-[0.72rem] leading-4"
+                      : isFeature
+                        ? "text-lg leading-7"
+                        : "text-xs leading-5 sm:text-sm sm:leading-6"
                   }`}
                 >
                   {asset.caption}
                 </p>
-                {reviewNumber ? (
-                  <span className="shrink-0 text-xs font-semibold uppercase tracking-[0.1em] text-brand-red">
+                {reviewNumber && !isCompact ? (
+                  <span className="hidden shrink-0 text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-muted sm:inline">
                     #{formatReviewNumber(index)}
                   </span>
                 ) : null}
               </div>
-              <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-muted">
+              <p
+                className={`font-semibold uppercase tracking-[0.1em] text-muted ${
+                  isCompact
+                    ? "mt-1 hidden text-[0.58rem] leading-3 sm:block"
+                    : "mt-1 text-[0.58rem] leading-3 sm:mt-2 sm:text-[0.68rem]"
+                }`}
+              >
                 {formatCategoryLabel(asset.category)}
               </p>
             </figcaption>

@@ -20,12 +20,12 @@ export function FaqList({ groups }: FaqListProps) {
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
           Answer index
         </p>
-        <div className="mt-4 flex gap-2 overflow-x-auto pb-2 lg:grid lg:overflow-visible lg:pb-0">
+        <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
           {groups.map((group) => (
             <a
               key={group.title}
               href={`#${getGroupId(group.title)}`}
-              className="shrink-0 rounded-full border border-border-soft bg-background px-3 py-2 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30 lg:rounded-md lg:border-transparent lg:bg-transparent"
+              className="rounded-md border border-border-soft bg-background px-3 py-2.5 text-left text-sm font-semibold leading-5 text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30 lg:border-transparent lg:bg-transparent lg:py-2"
             >
               {group.title}
             </a>
@@ -41,7 +41,7 @@ export function FaqList({ groups }: FaqListProps) {
         </div>
       </aside>
 
-      <div className="grid gap-6">
+      <div className="grid gap-5">
         {groups.map((group, groupIndex) => {
           const featured = groupIndex === 0;
 
@@ -51,32 +51,20 @@ export function FaqList({ groups }: FaqListProps) {
               key={group.title}
               className={`scroll-mt-28 overflow-hidden border-y ${
                 featured
-                  ? "border-brand-blue bg-brand-blue-strong lg:rounded-lg lg:border"
+                  ? "border-brand-blue/40 bg-surface lg:rounded-lg lg:border-l-4"
                   : "border-border-soft bg-surface lg:rounded-lg lg:border"
               }`}
             >
               <div className="grid gap-4 p-6 md:grid-cols-[0.72fr_1.28fr]">
                 <div>
-                  <p
-                    className={`text-xs font-semibold uppercase tracking-[0.16em] ${
-                      featured ? "text-brand-gold" : "text-brand-red"
-                    }`}
-                  >
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">
                     Question group {groupIndex + 1}
                   </p>
-                  <h2
-                    className={`mt-3 text-2xl font-semibold ${
-                      featured ? "text-white" : "text-brand-blue-strong"
-                    }`}
-                  >
+                  <h2 className="mt-3 text-2xl font-semibold text-brand-blue-strong">
                     {group.title}
                   </h2>
                 </div>
-                <p
-                  className={`text-sm leading-6 ${
-                    featured ? "text-white/75" : "text-slate-600"
-                  }`}
-                >
+                <p className="text-sm leading-6 text-slate-600">
                   {group.summary}
                 </p>
               </div>

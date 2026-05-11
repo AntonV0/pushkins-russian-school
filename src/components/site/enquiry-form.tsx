@@ -68,10 +68,10 @@ export function EnquiryForm({
         {mode === "preview" ? (
           <div className="mt-4 border-l border-brand-gold bg-background/80 px-4 py-3 text-xs leading-5 text-slate-600">
             <span className="font-semibold text-brand-blue-strong">
-              Local preview:
+              Email fallback:
             </span>{" "}
-            online storage is not configured here. The form can still check the
-            enquiry details, then asks you to email the school directly.
+            if online submission is unavailable, the form will help check the
+            enquiry details before asking you to email the school directly.
           </div>
         ) : null}
       </div>

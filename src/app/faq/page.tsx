@@ -3,11 +3,11 @@ import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { ButtonLink } from "@/components/site/button-link";
 import { FaqList } from "@/components/site/faq-list";
 import { JsonLd } from "@/components/site/json-ld";
-import { LearningOptions } from "@/components/site/learning-options";
-import { PageCta } from "@/components/site/page-cta";
-import { PageHero } from "@/components/site/page-hero";
 import { faqGroups, faqs } from "@/data/faqs";
 import { absoluteUrl, siteConfig } from "@/data/site";
+
+const quietHeroLink =
+  "min-h-0 w-auto justify-start px-0 py-1 text-left sm:min-h-11 sm:justify-center sm:px-5 sm:py-3";
 
 export const metadata: Metadata = {
   title: "Frequently Asked Questions",
@@ -24,21 +24,6 @@ export const metadata: Metadata = {
   },
 };
 
-const parentAnswerMap = [
-  {
-    label: "Choosing a school",
-    detail: "Compare current classes, online options, and register-interest areas.",
-  },
-  {
-    label: "Starting point",
-    detail: "Understand class placement, Russian level, age, and first enquiry details.",
-  },
-  {
-    label: "Practical trust",
-    detail: "Check fees, documents, gallery care, privacy, and next steps.",
-  },
-];
-
 const faqJsonLd = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -54,6 +39,7 @@ const faqJsonLd = {
 
 export default function FaqPage() {
   const totalQuestions = faqs.length;
+  const highlightedGroups = faqGroups.slice(0, 3);
 
   return (
     <main>
@@ -68,91 +54,92 @@ export default function FaqPage() {
           },
         }}
       />
-      <PageHero
-        eyebrow="FAQ"
-        title="Clear answers for parents before they enquire"
-        prelude={<Breadcrumbs items={[{ label: "FAQ" }]} />}
-        actions={
-          <>
-            <ButtonLink href="/contact#enquiry-form">Start an enquiry</ButtonLink>
-            <ButtonLink href="/schools" variant="secondary">
-              Compare schools
-            </ButtonLink>
-          </>
-        }
-        aside={
-          <div className="premium-panel overflow-hidden rounded-lg border border-border-soft bg-background">
-            <div className="border-b border-border-soft bg-brand-blue-strong p-6 text-white">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-gold">
-                Parent answer map
+      <section className="border-b border-border-soft bg-surface/72 py-7 sm:py-12">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Breadcrumbs items={[{ label: "FAQ" }]} />
+          <div className="mt-7 grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
+                FAQ
               </p>
-              <div className="mt-4 grid grid-cols-2 gap-4">
-                <div>
-                  <p className="text-4xl font-semibold">{totalQuestions}</p>
-                  <p className="mt-1 text-sm text-white/70">answers</p>
-                </div>
-                <div>
-                  <p className="text-4xl font-semibold">{faqGroups.length}</p>
-                  <p className="mt-1 text-sm text-white/70">groups</p>
-                </div>
+              <h1 className="mt-4 max-w-3xl text-balance text-4xl font-semibold leading-[1.05] text-brand-blue-strong sm:text-5xl">
+                Clear answers before you enquire
+              </h1>
+              <p className="mt-5 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg">
+                Find practical guidance on school locations, placement, fees,
+                policies, gallery media, and what to include in a first
+                message.
+              </p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <ButtonLink href="#faq-choosing-a-branch">
+                  Browse answers
+                </ButtonLink>
+                <ButtonLink
+                  href="/contact#enquiry-form"
+                  variant="quiet"
+                  className={quietHeroLink}
+                >
+                  Ask the school
+                </ButtonLink>
               </div>
             </div>
-            <div className="divide-y divide-border-soft">
-              {parentAnswerMap.map((item, index) => (
-                <div
-                  key={item.label}
-                  className="grid gap-4 px-6 py-5 sm:grid-cols-[3rem_1fr]"
-                >
-                  <span className="flex h-10 w-10 items-center justify-center justify-self-start rounded-full border border-brand-gold/50 bg-surface-muted text-sm font-semibold text-brand-blue-strong">
-                    {index + 1}
-                  </span>
-                  <span>
-                    <span className="block text-base font-semibold text-brand-blue-strong">
-                      {item.label}
-                    </span>
-                    <span className="mt-2 block text-sm leading-6 text-slate-600">
-                      {item.detail}
-                    </span>
-                  </span>
+            <div className="border-y border-border-soft py-5 lg:border-l lg:border-y-0 lg:pl-8">
+              <dl className="grid grid-cols-2 gap-5 text-sm sm:grid-cols-4 lg:grid-cols-2">
+                <div>
+                  <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+                    Answers
+                  </dt>
+                  <dd className="mt-1 text-3xl font-semibold text-brand-blue-strong">
+                    {totalQuestions}
+                  </dd>
                 </div>
-              ))}
+                <div>
+                  <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+                    Groups
+                  </dt>
+                  <dd className="mt-1 text-3xl font-semibold text-brand-blue-strong">
+                    {faqGroups.length}
+                  </dd>
+                </div>
+              </dl>
+              <div className="mt-5 grid gap-2 sm:flex sm:flex-wrap">
+                {highlightedGroups.map((group) => (
+                  <a
+                    key={group.title}
+                    href={`#faq-${group.title
+                      .toLowerCase()
+                      .replace(/[^a-z0-9]+/g, "-")
+                      .replace(/^-|-$/g, "")}`}
+                    className="rounded-md border border-border-soft bg-background px-3 py-2.5 text-left text-sm font-semibold leading-5 text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30 sm:rounded-full sm:py-2"
+                  >
+                    {group.title}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
-        }
-      >
-        <p>
-          A parent-facing guide to choosing a school location, asking about
-          placement, understanding fees, and knowing what information is safe to
-          share at the first enquiry stage.
-        </p>
-      </PageHero>
-
-      <section className="border-b border-border-soft bg-background site-section-compact">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <LearningOptions
-            eyebrow="Learning options"
-            title="Which Russian-learning option should I ask about?"
-            intro="The FAQ answers branch questions first, but the wider school offer gives families sensible alternatives when a local place is unavailable or the goal is exam-specific."
-            compact
-          />
         </div>
       </section>
 
-      <section className="bg-background site-section-compact">
+      <section className="bg-background py-10 sm:py-12">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <FaqList groups={faqGroups} />
         </div>
       </section>
 
-      <PageCta
-        eyebrow="Still deciding?"
-        title="Send a focused enquiry and the school can point you to the right route"
-        actions={
-          <ButtonLink href="/contact#enquiry-form" variant="light">
-            Ask the school
-          </ButtonLink>
-        }
-      />
+      <section className="border-t border-border-soft bg-surface py-10 sm:py-12">
+        <div className="mx-auto grid max-w-7xl gap-5 px-6 sm:grid-cols-[1fr_auto] sm:items-center lg:px-8">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
+              Still deciding?
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold text-brand-blue-strong">
+              Send a focused enquiry and the school can point you to the right route
+            </h2>
+          </div>
+          <ButtonLink href="/contact#enquiry-form">Ask the school</ButtonLink>
+        </div>
+      </section>
     </main>
   );
 }
