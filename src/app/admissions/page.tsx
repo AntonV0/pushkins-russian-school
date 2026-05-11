@@ -29,7 +29,7 @@ const admissionsEvidenceAssets = getApprovedMediaByIds([
 
 const admissionsEvidenceNotes = [
   "The first enquiry is about context and fit, not registration paperwork.",
-  "Venue, classroom, and learning-material details help families picture the route before placement is confirmed.",
+  "Venue, classroom, and learning-material details help families picture the school before placement is confirmed.",
 ];
 
 function getApprovedMediaByIds(ids: string[]) {
@@ -68,7 +68,7 @@ export default function AdmissionsPage() {
             <SchoolEvidencePanel
               eyebrow="Before placement"
               title="A first enquiry connects a child to the right route"
-              summary="Approved public examples sit beside the practical details families share before the school recommends a route."
+              summary="Real classroom, venue, and learning-material examples sit beside the practical details families share before the school recommends a route."
               assets={admissionsEvidenceAssets}
               notes={admissionsEvidenceNotes}
             />

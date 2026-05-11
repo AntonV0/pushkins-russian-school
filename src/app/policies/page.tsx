@@ -154,25 +154,6 @@ export default function PoliciesPage() {
         </div>
       </section>
 
-      <section
-        className="border-b border-border-soft bg-background site-section-compact"
-        aria-labelledby="policy-readiness-notes"
-      >
-        <div className="mx-auto grid max-w-7xl gap-0 divide-y divide-border-soft px-6 md:grid-cols-3 md:divide-x md:divide-y-0 lg:px-8">
-          <h2 id="policy-readiness-notes" className="sr-only">
-            Policy publication notes
-          </h2>
-          {policyAssuranceNotes.map((note) => (
-            <div
-              key={note}
-              className="py-4 text-sm leading-6 text-slate-700 md:px-5 md:first:pl-0 md:last:pr-0"
-            >
-              {note}
-            </div>
-          ))}
-        </div>
-      </section>
-
       <section id="policy-library" className="bg-background py-10 sm:py-12">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="max-w-3xl">
@@ -188,31 +169,7 @@ export default function PoliciesPage() {
               document.
             </p>
           </div>
-          <div className="mt-7 grid gap-6 border-y border-border-soft py-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <div>
-              <h2 className="text-xl font-semibold text-brand-blue-strong">
-                What parents can expect
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-slate-600">
-                Summaries stay easy to scan, next steps stay clear, and document
-                downloads are kept controlled so families are not sent outdated
-                or informal files.
-              </p>
-            </div>
-            <dl className="grid gap-4 sm:grid-cols-3">
-              {publicationPrinciples.map((principle) => (
-                <div key={principle.label}>
-                  <dt className="text-sm font-semibold text-brand-blue-strong">
-                    {principle.label}
-                  </dt>
-                  <dd className="mt-2 text-sm leading-6 text-slate-600">
-                    {principle.description}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-          <div className="mt-10 divide-y divide-border-soft border-y border-border-soft">
+          <div className="mt-7 divide-y divide-border-soft border-y border-border-soft">
             {policyGroups.map((group) => (
               <section
                 key={group.title}
@@ -299,6 +256,49 @@ export default function PoliciesPage() {
               </section>
             ))}
           </div>
+          <div className="mt-10 grid gap-6 border-y border-border-soft py-6 lg:grid-cols-[0.9fr_1.1fr]">
+            <div>
+              <h2 className="text-xl font-semibold text-brand-blue-strong">
+                What parents can expect
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-slate-600">
+                Summaries stay easy to scan, next steps stay clear, and document
+                downloads are kept controlled so families are not sent outdated
+                or informal files.
+              </p>
+            </div>
+            <dl className="grid gap-4 sm:grid-cols-3">
+              {publicationPrinciples.map((principle) => (
+                <div key={principle.label}>
+                  <dt className="text-sm font-semibold text-brand-blue-strong">
+                    {principle.label}
+                  </dt>
+                  <dd className="mt-2 text-sm leading-6 text-slate-600">
+                    {principle.description}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section
+        className="border-t border-border-soft bg-background site-section-compact"
+        aria-labelledby="policy-readiness-notes"
+      >
+        <div className="mx-auto grid max-w-7xl gap-0 divide-y divide-border-soft px-6 md:grid-cols-3 md:divide-x md:divide-y-0 lg:px-8">
+          <h2 id="policy-readiness-notes" className="sr-only">
+            Policy publication notes
+          </h2>
+          {policyAssuranceNotes.map((note) => (
+            <div
+              key={note}
+              className="py-4 text-sm leading-6 text-slate-700 md:px-5 md:first:pl-0 md:last:pr-0"
+            >
+              {note}
+            </div>
+          ))}
         </div>
       </section>
 

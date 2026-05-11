@@ -16,7 +16,7 @@ export function FaqList({ groups }: FaqListProps) {
 
   return (
     <div className="grid gap-8 lg:grid-cols-[17rem_1fr] lg:items-start">
-      <aside className="border-y border-border-soft py-5 lg:sticky lg:top-32">
+      <aside className="hidden border-y border-border-soft py-5 lg:sticky lg:top-32 lg:block">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
           Answer index
         </p>

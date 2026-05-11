@@ -28,8 +28,8 @@ const curriculumEvidenceAssets = getApprovedMediaByIds([
 ]);
 
 const curriculumEvidenceNotes = [
-  "Classroom materials, writing, and cultural work are shown without relying on private pupil records.",
-  "Families can understand the learning texture before asking about the right class group.",
+  "Classroom materials, writing, and cultural work show the kind of work children actually meet.",
+  "Families can picture the lesson rhythm before asking about the right class group.",
 ];
 
 const learningJourneyNotes = [
@@ -80,7 +80,7 @@ export default function CurriculumPage() {
             <SchoolEvidencePanel
               eyebrow="Learning evidence"
               title="Materials, writing, and culture shape the pathway"
-              summary="Approved archive examples show the kind of practical work that sits behind the syllabus pathway."
+              summary="Exercise books, cultural materials, and classroom moments make the syllabus feel less abstract for parents comparing routes."
               assets={curriculumEvidenceAssets}
               notes={curriculumEvidenceNotes}
             />

@@ -47,15 +47,15 @@ export function EnquiryForm({
     <form
       id="enquiry-form"
       action={formAction}
-      className="premium-panel rounded-lg border border-border-soft bg-surface p-6 sm:p-8"
+      className="premium-panel rounded-lg border border-border-soft bg-surface p-5 sm:p-8"
       aria-describedby={`${statusId} enquiry-privacy-notice`}
       noValidate
     >
       <div>
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red sm:text-sm">
           Enquiry form
         </p>
-        <h2 className="mt-3 text-3xl font-semibold text-brand-blue-strong">
+        <h2 className="mt-3 text-2xl font-semibold leading-tight text-brand-blue-strong sm:text-3xl">
           Tell us what you are looking for
         </h2>
         <p
@@ -83,7 +83,7 @@ export function EnquiryForm({
         <input id="website" name="website" type="text" tabIndex={-1} />
       </div>
 
-      <div className="mt-8 grid gap-5 md:grid-cols-2">
+      <div className="mt-7 grid gap-5 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
         <FieldError field="parentName" errors={fieldErrors}>
           <label
             htmlFor="parent-name"
