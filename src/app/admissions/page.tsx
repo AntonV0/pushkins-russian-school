@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { ButtonLink } from "@/components/site/button-link";
+import { DecisionPanel } from "@/components/site/decision-panel";
+import { PageCta } from "@/components/site/page-cta";
+import { PageHero } from "@/components/site/page-hero";
 import { SectionIntro } from "@/components/site/section-intro";
 import { VisualStoryPanel } from "@/components/site/visual-story-panel";
 import {
@@ -39,38 +42,16 @@ export default function AdmissionsPage() {
 
   return (
     <main>
-      <section className="border-b border-border-soft bg-surface/80 py-16 sm:py-20">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
-              Admissions and fees
-            </p>
-            <h1 className="mt-4 max-w-4xl text-balance text-4xl font-semibold leading-tight text-brand-blue-strong sm:text-6xl">
-              A clear path from enquiry to the right school group
-            </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
-              Families can enquire for current weekend classes, register
-              interest in future local provision, ask about Volna online
-              lessons, or flag GCSE self-study goals. The final placement is
-              confirmed after the school reviews the child&apos;s learning context.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/contact#enquiry-form">
-                Start an enquiry
-              </ButtonLink>
-              <ButtonLink href="/schools" variant="secondary">
-                Compare branches
-              </ButtonLink>
-              <ButtonLink href="/faq" variant="secondary">
-                Read FAQ
-              </ButtonLink>
-            </div>
-          </div>
+      <PageHero
+        eyebrow="Admissions and fees"
+        title="A clear path from enquiry to the right school group"
+        asideAlign="start"
+        aside={
           <div className="grid content-start gap-4">
             {admissionsVisual ? (
               <VisualStoryPanel slot={admissionsVisual} compact />
             ) : null}
-            <aside className="premium-panel rounded-lg border border-border-soft bg-surface-muted p-6 sm:p-8">
+            <aside className="border-y border-border-soft bg-background/70 py-6">
               <h2 className="text-xl font-semibold text-brand-blue-strong">
                 Current school status
               </h2>
@@ -100,10 +81,28 @@ export default function AdmissionsPage() {
               </dl>
             </aside>
           </div>
-        </div>
-      </section>
+        }
+        actions={
+          <>
+            <ButtonLink href="/contact#enquiry-form">Start an enquiry</ButtonLink>
+            <ButtonLink href="/schools" variant="secondary">
+              Compare branches
+            </ButtonLink>
+            <ButtonLink href="/faq" variant="secondary">
+              Read FAQ
+            </ButtonLink>
+          </>
+        }
+      >
+        <p>
+          Families can enquire for current weekend classes, register interest in
+          future local provision, ask about Volna online lessons, or flag GCSE
+          self-study goals. The final placement is confirmed after the school
+          reviews the child&apos;s learning context.
+        </p>
+      </PageHero>
 
-      <section className="border-b border-border-soft bg-background py-14 sm:py-16">
+      <section className="border-b border-border-soft bg-background site-section-compact">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="Choosing the best option"
@@ -116,11 +115,11 @@ export default function AdmissionsPage() {
               Online Russian School or GCSERussian.com.
             </p>
           </SectionIntro>
-          <div className="premium-panel mt-10 overflow-hidden rounded-lg border border-border-soft bg-surface">
+          <div className="mt-10 divide-y divide-border-soft border-y border-border-soft">
             {curriculumRouteRecommendations.map((route) => (
               <article
                 key={route.title}
-                className="grid gap-5 border-b border-border-soft p-6 last:border-b-0 lg:grid-cols-[0.56fr_1fr_auto] lg:items-center"
+                className="grid gap-5 py-6 lg:grid-cols-[0.56fr_1fr_auto] lg:items-center"
               >
                 <div>
                   <h2 className="text-xl font-semibold text-brand-blue-strong">
@@ -144,7 +143,7 @@ export default function AdmissionsPage() {
         </div>
       </section>
 
-      <section className="bg-background py-14 sm:py-16">
+      <section className="bg-background site-section-compact">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="How admissions works"
@@ -178,7 +177,7 @@ export default function AdmissionsPage() {
         </div>
       </section>
 
-      <section className="border-y border-border-soft bg-surface py-14 sm:py-16">
+      <section className="border-y border-border-soft bg-surface site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.74fr_1.26fr] lg:px-8">
           <SectionIntro
             eyebrow="Parent decision points"
@@ -205,23 +204,18 @@ export default function AdmissionsPage() {
                 body: "Whether GCSE or A Level goals need a class, online support, or self-study route.",
               },
             ].map((item) => (
-              <article
+              <DecisionPanel
                 key={item.title}
-                className="premium-panel rounded-lg border border-border-soft bg-background p-5"
+                title={item.title}
               >
-                <h2 className="text-lg font-semibold text-brand-blue-strong">
-                  {item.title}
-                </h2>
-                <p className="mt-3 text-sm leading-6 text-slate-600">
-                  {item.body}
-                </p>
-              </article>
+                <p>{item.body}</p>
+              </DecisionPanel>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-b border-border-soft bg-surface py-14 sm:py-16">
+      <section className="border-b border-border-soft bg-surface site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.78fr_1.22fr] lg:px-8">
           <SectionIntro
             eyebrow="Fees"
@@ -235,10 +229,7 @@ export default function AdmissionsPage() {
           </SectionIntro>
           <div className="grid gap-3 sm:grid-cols-2">
             {paymentDetails.termFees.map((fee) => (
-              <div
-                key={fee.label}
-                className="premium-panel border-l border-brand-gold bg-background px-4 py-3"
-              >
+              <div key={fee.label} className="border-l border-brand-gold bg-background/70 px-4 py-3">
                 <p className="text-sm text-slate-600">{fee.label}</p>
                 <p className="mt-1 font-semibold text-brand-blue-strong">
                   {fee.value}
@@ -255,7 +246,7 @@ export default function AdmissionsPage() {
         </div>
       </section>
 
-      <section className="bg-background py-14 sm:py-16">
+      <section className="bg-background site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-2 lg:px-8">
           <div>
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
@@ -265,7 +256,7 @@ export default function AdmissionsPage() {
               {enquiryChecklist.map((item) => (
                 <li
                   key={item}
-                  className="premium-panel border-l border-brand-gold bg-surface px-4 py-3 text-sm text-slate-700"
+                  className="border-l border-brand-gold bg-surface/70 px-4 py-3 text-sm text-slate-700"
                 >
                   {item}
                 </li>
@@ -286,7 +277,7 @@ export default function AdmissionsPage() {
                 {placementSignals.slice(0, 4).map((signal) => (
                   <li
                     key={signal}
-                    className="premium-panel border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
+                    className="border-l border-brand-gold bg-surface/70 px-4 py-3 text-sm leading-6 text-slate-700"
                   >
                     {signal}
                   </li>
@@ -334,6 +325,26 @@ export default function AdmissionsPage() {
           </div>
         </div>
       </section>
+
+      <PageCta
+        eyebrow="Admissions next step"
+        title="Send the school enough context to recommend the right route"
+        actions={
+          <>
+            <ButtonLink href="/contact#enquiry-form" variant="light">
+              Start an enquiry
+            </ButtonLink>
+            <ButtonLink href="/schools" variant="light">
+              Compare schools
+            </ButtonLink>
+          </>
+        }
+      >
+        <p>
+          Include location, age, Russian level, and any exam goals. The school
+          can confirm availability, fit, and practical joining details.
+        </p>
+      </PageCta>
     </main>
   );
 }

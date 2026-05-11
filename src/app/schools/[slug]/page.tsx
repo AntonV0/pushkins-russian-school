@@ -107,8 +107,8 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
   return (
     <main>
       <JsonLd data={schoolJsonLd} />
-      <section className="border-b border-border-soft bg-surface/80">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 lg:grid-cols-[1.08fr_0.92fr] lg:px-8">
+      <section className="border-b border-border-soft bg-surface/72">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 site-section-compact lg:grid-cols-[1.08fr_0.92fr] lg:px-8">
           <div>
             <Breadcrumbs
               items={[
@@ -120,7 +120,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
             <p className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
               {school.county}
             </p>
-            <h1 className="mt-3 text-balance text-4xl font-semibold leading-tight text-brand-blue-strong sm:text-6xl">
+            <h1 className="mt-3 text-balance text-4xl font-semibold leading-[1.06] text-brand-blue-strong sm:text-5xl">
               {school.name}
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
@@ -129,7 +129,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
             <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600">
               {school.availabilitySummary}
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <ButtonLink href={getSchoolEnquiryHref(school)}>
                 {school.enquiryCta}
               </ButtonLink>
@@ -142,7 +142,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 href={school.mapHref}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex min-h-11 items-center justify-center rounded-md border border-brand-blue/20 bg-white/70 px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:bg-white hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+                className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-brand-blue/20 bg-white/70 px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:bg-white hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30 sm:w-auto"
               >
                 {hasCurrentVenue ? "View map" : "View area map"}
               </a>
@@ -235,7 +235,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
         intro="These approved public images give families a visual sense of the school setting and learning materials while the current availability notes above stay authoritative."
       />
 
-      <section className="bg-background py-14 sm:py-16">
+      <section className="bg-background site-section-compact">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           {hasCurrentVenue ? (
             <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
@@ -310,7 +310,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
         </div>
       </section>
 
-      <section className="border-y border-border-soft bg-surface py-14 sm:py-16">
+      <section className="border-y border-border-soft bg-surface site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.82fr_1.18fr] lg:px-8">
           <SectionIntro
             eyebrow="Class placement"
@@ -344,7 +344,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
         </div>
       </section>
 
-      <section className="bg-background py-14 sm:py-16">
+      <section className="bg-background site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.82fr_1.18fr] lg:px-8">
           <div>
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
@@ -387,7 +387,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
         </div>
       </section>
 
-      <section className="border-b border-border-soft bg-surface py-14 sm:py-16">
+      <section className="border-b border-border-soft bg-surface site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-3 lg:px-8">
           <div>
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
@@ -444,7 +444,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
       </section>
 
       {school.onlineProgramme ? (
-        <section className="bg-background py-14 sm:py-16">
+        <section className="bg-background site-section-compact">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="premium-panel max-w-4xl border-l-4 border-brand-red bg-surface p-6 sm:p-8">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
@@ -480,7 +480,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
       ) : null}
 
       {isLocalProvisionUnconfirmed ? (
-        <section className="border-y border-border-soft bg-surface py-14 sm:py-16">
+        <section className="border-y border-border-soft bg-surface site-section-compact">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <LearningOptions
               options={learningOptions}
@@ -494,7 +494,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
         </section>
       ) : null}
 
-      <section className="bg-brand-blue-strong py-14 text-white sm:py-16">
+      <section className="bg-brand-blue-strong site-section-compact text-white">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-[1fr_0.8fr] lg:px-8">
           <div>
             <h2 className="text-3xl font-semibold">
@@ -526,7 +526,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
         </div>
       </section>
 
-      <section className="bg-surface py-14 sm:py-16">
+      <section className="bg-surface site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
           <div className="border-l-4 border-brand-gold pl-6">
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
@@ -553,7 +553,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 to ask about the most suitable next step.
               </p>
             </div>
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <ButtonLink href={getSchoolEnquiryHref(school)}>
                 {school.enquiryCta}
               </ButtonLink>

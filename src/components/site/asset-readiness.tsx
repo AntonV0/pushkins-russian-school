@@ -108,7 +108,7 @@ export function MediaAssetGrid({
     <div
       className={
         isCompact
-          ? "grid grid-cols-2 gap-3 xl:grid-cols-3"
+          ? "grid gap-3 sm:grid-cols-2 xl:grid-cols-3"
           : "grid gap-4 sm:grid-cols-2"
       }
     >
@@ -123,8 +123,9 @@ export function MediaAssetGrid({
             className="overflow-hidden rounded-lg border border-border-soft bg-surface"
           >
             <div
-              className="relative bg-surface-muted"
-              style={{ aspectRatio: isCompact ? "1 / 1" : "4 / 3" }}
+              className={`relative bg-surface-muted ${
+                isCompact ? "aspect-square min-h-44" : "aspect-[4/3] min-h-56"
+              }`}
             >
               <Image
                 src={asset.approvedPublicPath}
@@ -136,6 +137,7 @@ export function MediaAssetGrid({
                     : "(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
                 }
                 className="object-cover"
+                loading={index === 0 ? "eager" : "lazy"}
               />
               {reviewNumber ? (
                 <span

@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ButtonLink } from "@/components/site/button-link";
-import { MetricStrip } from "@/components/site/metric-strip";
+import { PageCta } from "@/components/site/page-cta";
+import { PageHero } from "@/components/site/page-hero";
 import { SectionIntro } from "@/components/site/section-intro";
 import { VisualStoryPanel } from "@/components/site/visual-story-panel";
 import {
@@ -96,27 +97,18 @@ export default function GalleryPage() {
 
   return (
     <main>
-      <section className="border-b border-border-soft bg-surface/80 py-16 sm:py-20">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_0.86fr] lg:px-8">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
-              Gallery
-            </p>
-            <h1 className="mt-4 max-w-4xl text-balance text-4xl font-semibold leading-tight text-brand-blue-strong sm:text-6xl">
-              School life, shared with care
-            </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
-              A thoughtful public record of lessons, performances,
-              celebrations, and cultural traditions from Pushkin&apos;s School,
-              curated from selected location and archive images.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/schools">Explore schools</ButtonLink>
-              <ButtonLink href="/contact#enquiry-form" variant="secondary">
-                Start an enquiry
-              </ButtonLink>
-            </div>
-          </div>
+      <PageHero
+        eyebrow="Gallery"
+        title="School life, shared with care"
+        actions={
+          <>
+            <ButtonLink href="/schools">Explore schools</ButtonLink>
+            <ButtonLink href="/contact#enquiry-form" variant="secondary">
+              Start an enquiry
+            </ButtonLink>
+          </>
+        }
+        aside={
           <div className="grid content-start gap-4">
             {hasApprovedMedia && galleryHeroCoverAssets.length > 0 ? (
               <GalleryHeroMosaic
@@ -127,8 +119,8 @@ export default function GalleryPage() {
             ) : galleryVisual ? (
               <VisualStoryPanel slot={galleryVisual} compact />
             ) : null}
-            <MetricStrip
-              metrics={[
+            <dl className="grid gap-3 border-y border-border-soft py-4 text-sm sm:grid-cols-3">
+              {[
                 { label: "Collections", value: galleryCollections.length },
                 { label: "Themes", value: galleryThemes.length },
                 {
@@ -137,24 +129,39 @@ export default function GalleryPage() {
                     ? `${approvedMediaAssets.length} + ${extendedGalleryAssetCount}`
                     : "Curated",
                 },
-              ]}
-            />
+              ].map((item) => (
+                <div key={item.label}>
+                  <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+                    {item.label}
+                  </dt>
+                  <dd className="mt-1 text-xl font-semibold text-brand-blue-strong">
+                    {item.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
           </div>
-        </div>
-      </section>
+        }
+      >
+        <p>
+          A thoughtful public record of lessons, performances, celebrations,
+          and cultural traditions from Pushkin&apos;s School, curated from selected
+          location and archive images.
+        </p>
+      </PageHero>
 
       <section
-        className="border-b border-border-soft bg-background py-12"
+        className="border-b border-border-soft bg-background site-section-compact"
         aria-labelledby="gallery-readiness-notes"
       >
-        <div className="mx-auto grid max-w-7xl gap-4 px-6 md:grid-cols-3 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-0 divide-y divide-border-soft px-6 md:grid-cols-3 md:divide-x md:divide-y-0 lg:px-8">
           <h2 id="gallery-readiness-notes" className="sr-only">
             Gallery readiness notes
           </h2>
           {galleryAssuranceNotes.map((note) => (
             <div
               key={note}
-              className="premium-panel border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
+              className="py-4 text-sm leading-6 text-slate-700 md:px-5 md:first:pl-0 md:last:pr-0"
             >
               {note}
             </div>
@@ -162,7 +169,7 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      <section className="border-b border-border-soft bg-surface py-14 sm:py-16">
+      <section className="border-b border-border-soft bg-surface site-section-compact">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="Curated with care"
@@ -173,11 +180,11 @@ export default function GalleryPage() {
               still being careful about children&apos;s privacy and public context.
             </p>
           </SectionIntro>
-          <ol className="premium-panel mt-8 grid gap-0 overflow-hidden rounded-lg border border-border-soft bg-background md:grid-cols-3">
+          <ol className="mt-8 grid gap-0 divide-y divide-border-soft border-y border-border-soft md:grid-cols-3 md:divide-x md:divide-y-0">
             {galleryCurationStandards.map((stage, index) => (
               <li
                 key={stage.label}
-                className="border-b border-border-soft p-5 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0"
+                className="py-5 md:px-5 md:first:pl-0 md:last:pr-0"
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-red">
                   Standard {index + 1}
@@ -194,7 +201,7 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      <section className="bg-background py-14 sm:py-16">
+      <section className="bg-background site-section-compact">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="School archive"
@@ -219,9 +226,9 @@ export default function GalleryPage() {
                   <Link
                     key={archive.slug}
                     href={`/gallery/${archive.slug}`}
-                    className="premium-panel group flex min-h-[31rem] flex-col overflow-hidden rounded-lg border border-border-soft bg-surface transition hover:-translate-y-0.5 hover:border-brand-red"
+                    className="group flex min-h-[26rem] flex-col overflow-hidden rounded-lg border border-border-soft bg-surface transition hover:-translate-y-0.5 hover:border-brand-red hover:shadow-[0_14px_34px_rgba(11,38,72,0.06)] lg:min-h-[30rem]"
                   >
-                    <div className="relative aspect-[4/3] bg-surface-muted">
+                    <div className="relative aspect-[5/4] min-h-48 bg-surface-muted sm:aspect-[4/3]">
                       {coverAsset ? (
                         <Image
                           src={coverAsset.approvedPublicPath}
@@ -229,6 +236,11 @@ export default function GalleryPage() {
                           fill
                           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                           className="object-cover transition duration-300 group-hover:scale-[1.02]"
+                          loading={
+                            archive.slug === galleryCollections[0]?.slug
+                              ? "eager"
+                              : "lazy"
+                          }
                         />
                       ) : (
                         <div className="relative flex h-full items-end overflow-hidden p-5">
@@ -242,7 +254,7 @@ export default function GalleryPage() {
                         </div>
                       )}
                     </div>
-                    <div className="flex flex-1 flex-col justify-between p-6">
+                    <div className="flex flex-1 flex-col justify-between p-5 sm:p-6">
                       <div>
                         <div className="flex items-start justify-between gap-4">
                           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
@@ -334,38 +346,28 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      <section className="border-t border-border-soft bg-brand-blue-strong py-14 text-white sm:py-16">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-[1fr_1fr] lg:px-8">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
-              Current information
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold">
-              See the current school locations
-            </h2>
-            <p className="mt-4 max-w-2xl text-sm leading-6 text-white/75">
-              Families can explore branches, timetables, and enquiries while
-              the public archive is curated.
-            </p>
-          </div>
-          <div className="grid gap-3">
+      <PageCta
+        eyebrow="Current information"
+        title="See the current school locations"
+        actions={
+          <>
             {galleryContactLinks.map((link) => (
-              <Link
+              <ButtonLink
                 key={link.href}
                 href={link.href}
-                className="rounded-lg border border-white/15 bg-white/5 p-5 transition hover:border-white/35 hover:bg-white/10"
+                variant="light"
               >
-                <span className="block text-sm font-semibold">
-                  {link.label}
-                </span>
-                <span className="mt-2 block text-sm leading-6 text-white/75">
-                  {link.description}
-                </span>
-              </Link>
+                {link.label}
+              </ButtonLink>
             ))}
-          </div>
-        </div>
-      </section>
+          </>
+        }
+      >
+        <p>
+          Families can explore branches, timetables, and enquiries while the
+          public archive is curated.
+        </p>
+      </PageCta>
     </main>
   );
 }
@@ -390,7 +392,7 @@ function GalleryHeroMosaic({
         {visibleAssets.map((asset, index) => (
           <div
             key={asset.id}
-            className="relative overflow-hidden rounded-md bg-surface-muted"
+            className="relative min-h-36 overflow-hidden rounded-md bg-surface-muted"
             style={
               index === 0
                 ? { gridColumn: "span 2", gridRow: "span 2" }
@@ -407,7 +409,7 @@ function GalleryHeroMosaic({
                   : "(min-width: 1024px) 14vw, 33vw"
               }
               className="object-cover"
-              priority={index === 0}
+              loading={index === 0 ? "eager" : "lazy"}
             />
             <div
               className="absolute inset-0 bg-gradient-to-t from-brand-blue-strong/35 via-transparent to-transparent"

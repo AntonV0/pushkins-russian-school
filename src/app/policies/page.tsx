@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ButtonLink } from "@/components/site/button-link";
-import { MetricStrip } from "@/components/site/metric-strip";
+import { PageCta } from "@/components/site/page-cta";
+import { PageHero } from "@/components/site/page-hero";
 import { SectionIntro } from "@/components/site/section-intro";
 import {
   getPolicyAction,
@@ -90,59 +91,64 @@ export default function PoliciesPage() {
 
   return (
     <main>
-      <section className="border-b border-border-soft bg-surface/80 py-16 sm:py-20">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_0.8fr] lg:px-8">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
-              Policies
+      <PageHero
+        eyebrow="Policies"
+        title="Policies for a safe, well-run school community"
+        actions={
+          <>
+            <ButtonLink href="/contact#enquiry-form">
+              Ask a policy question
+            </ButtonLink>
+            <ButtonLink href="/schools" variant="secondary">
+              View school locations
+            </ButtonLink>
+          </>
+        }
+        aside={
+          <aside className="border-y border-border-soft bg-background/70 py-6 lg:border-l lg:border-y-0 lg:py-2 lg:pl-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
+              Policy library
             </p>
-            <h1 className="mt-4 max-w-4xl text-balance text-4xl font-semibold leading-tight text-brand-blue-strong sm:text-6xl">
-              Policies for a safe, well-run school community
-            </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
-              Families can find safeguarding, welfare, conduct, privacy, and
-              complaints information in one calm place, with formal documents
-              added for download when the school has confirmed they are ready
-              for families to use.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/contact#enquiry-form">
-                Ask a policy question
-              </ButtonLink>
-              <ButtonLink href="/schools" variant="secondary">
-                View school locations
-              </ButtonLink>
-            </div>
-          </div>
-          <MetricStrip
-            metrics={[
-              { label: "Groups", value: policyGroups.length },
-              { label: "Policies", value: policies.length },
-              {
-                label: "Family policies",
-                value: familyPolicyCount,
-              },
-              {
-                label: "Guidance",
-                value: currentExternalGuidanceLinks.length,
-              },
-            ]}
-          />
-        </div>
-      </section>
+            <dl className="mt-5 grid gap-4 text-sm sm:grid-cols-2">
+              {[
+                { label: "Groups", value: policyGroups.length },
+                { label: "Policies", value: policies.length },
+                { label: "Family policies", value: familyPolicyCount },
+                { label: "Guidance links", value: currentExternalGuidanceLinks.length },
+              ].map((item) => (
+                <div key={item.label} className="border-l border-brand-gold pl-4">
+                  <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+                    {item.label}
+                  </dt>
+                  <dd className="mt-1 text-2xl font-semibold text-brand-blue-strong">
+                    {item.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </aside>
+        }
+      >
+        <p>
+          Families can find safeguarding, welfare, conduct, privacy, and
+          complaints information in one calm place, with formal documents added
+          for download when the school has confirmed they are ready for families
+          to use.
+        </p>
+      </PageHero>
 
       <section
-        className="border-b border-border-soft bg-background py-12"
+        className="border-b border-border-soft bg-background site-section-compact"
         aria-labelledby="policy-readiness-notes"
       >
-        <div className="mx-auto grid max-w-7xl gap-4 px-6 md:grid-cols-3 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-0 divide-y divide-border-soft px-6 md:grid-cols-3 md:divide-x md:divide-y-0 lg:px-8">
           <h2 id="policy-readiness-notes" className="sr-only">
             Policy publication notes
           </h2>
           {policyAssuranceNotes.map((note) => (
             <div
               key={note}
-              className="premium-panel border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
+              className="py-4 text-sm leading-6 text-slate-700 md:px-5 md:first:pl-0 md:last:pr-0"
             >
               {note}
             </div>
@@ -150,7 +156,7 @@ export default function PoliciesPage() {
         </div>
       </section>
 
-      <section className="bg-background py-14 sm:py-16">
+      <section className="bg-background site-section-compact">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="Policy care"
@@ -162,7 +168,7 @@ export default function PoliciesPage() {
               document.
             </p>
           </SectionIntro>
-          <div className="premium-panel mt-8 grid gap-6 border border-border-soft bg-surface p-6 lg:grid-cols-[0.9fr_1.1fr] lg:p-7">
+          <div className="mt-8 grid gap-6 border-y border-border-soft py-6 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
               <h2 className="text-xl font-semibold text-brand-blue-strong">
                 What parents can expect
@@ -186,45 +192,47 @@ export default function PoliciesPage() {
               ))}
             </dl>
           </div>
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
+          <div className="mt-10 divide-y divide-border-soft border-y border-border-soft">
             {policyGroups.map((group) => (
               <section
                 key={group.title}
-                className="premium-panel rounded-lg border border-border-soft bg-surface p-6"
+                className="grid gap-6 py-8 lg:grid-cols-[0.42fr_1fr]"
                 aria-labelledby={`${group.title
                   .toLowerCase()
                   .replace(/[^a-z0-9]+/g, "-")}-policies`}
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
-                  {group.audience}
-                </p>
-                <h2
-                  id={`${group.title
-                    .toLowerCase()
-                    .replace(/[^a-z0-9]+/g, "-")}-policies`}
-                  className="mt-2 text-2xl font-semibold text-brand-blue-strong"
-                >
-                  {group.title}
-                </h2>
-                <p className="mt-3 text-sm leading-6 text-slate-600">
-                  {group.description}
-                </p>
-                <p className="mt-3 border-l border-brand-gold pl-4 text-sm leading-6 text-slate-700">
-                  {group.title === "Useful Guidance"
-                    ? "Official guidance opens from source publication pages."
-                    : "Formal school downloads are added once they are ready for families to use."}
-                </p>
-                <ul className="mt-5 divide-y divide-border-soft text-sm">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+                    {group.audience}
+                  </p>
+                  <h2
+                    id={`${group.title
+                      .toLowerCase()
+                      .replace(/[^a-z0-9]+/g, "-")}-policies`}
+                    className="mt-2 text-2xl font-semibold text-brand-blue-strong"
+                  >
+                    {group.title}
+                  </h2>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                    {group.description}
+                  </p>
+                  <p className="mt-4 border-l border-brand-gold pl-4 text-sm leading-6 text-slate-700">
+                    {group.title === "Useful Guidance"
+                      ? "Official guidance opens from source publication pages."
+                      : "Formal school downloads are added once they are ready for families to use."}
+                  </p>
+                </div>
+                <ul className="divide-y divide-border-soft text-sm">
                   {group.policies.map((policy) => {
                     const action = getPolicyAction(policy);
 
                     return (
-                      <li key={policy.slug} className="py-4">
+                      <li key={policy.slug} className="py-4 first:pt-0 last:pb-0">
                         <div className="grid gap-3 sm:grid-cols-[1fr_auto] sm:items-start">
                           <div>
                             <Link
                               href={`/policies/${policy.slug}`}
-                              className="font-medium text-slate-700 hover:text-brand-red"
+                              className="font-medium text-brand-blue-strong hover:text-brand-red"
                             >
                               {policy.title}
                             </Link>
@@ -233,7 +241,7 @@ export default function PoliciesPage() {
                             </p>
                           </div>
                           <span
-                            className={`inline-flex w-fit items-center rounded-full border px-3 py-1 text-xs font-semibold ${getPolicyStatusTone(policy)}`}
+                            className={`inline-flex max-w-full items-center rounded-full border px-3 py-1 text-xs font-semibold leading-5 ${getPolicyStatusTone(policy)}`}
                           >
                             {getParentPolicyStatusLabel(policy)}
                           </span>
@@ -274,38 +282,24 @@ export default function PoliciesPage() {
         </div>
       </section>
 
-      <section className="border-t border-border-soft bg-brand-blue-strong py-14 text-white sm:py-16">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-[1fr_1fr] lg:px-8">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
-              Need help now?
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold">
-              Questions about a policy?
-            </h2>
-            <p className="mt-4 max-w-2xl text-sm leading-6 text-white/75">
-              Families can ask practical questions, check branch details, or
-              use the enquiry form to reach the school team directly.
-            </p>
-          </div>
-          <div className="grid gap-3">
+      <PageCta
+        eyebrow="Need help now?"
+        title="Questions about a policy?"
+        actions={
+          <>
             {policyContactLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="rounded-lg border border-white/15 bg-white/5 p-5 transition hover:border-white/35 hover:bg-white/10"
-              >
-                <span className="block text-sm font-semibold">
-                  {link.label}
-                </span>
-                <span className="mt-2 block text-sm leading-6 text-white/75">
-                  {link.description}
-                </span>
-              </Link>
+              <ButtonLink key={link.href} href={link.href} variant="light">
+                {link.label}
+              </ButtonLink>
             ))}
-          </div>
-        </div>
-      </section>
+          </>
+        }
+      >
+        <p>
+          Families can ask practical questions, check branch details, or use
+          the enquiry form to reach the school team directly.
+        </p>
+      </PageCta>
     </main>
   );
 }

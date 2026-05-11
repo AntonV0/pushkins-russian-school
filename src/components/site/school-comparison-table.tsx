@@ -43,8 +43,62 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
           online learning options.
         </p>
       </div>
+      <div className="grid gap-3 p-4 md:hidden">
+        {schools.map((school) => (
+          <article
+            key={school.slug}
+            className={`rounded-lg border border-border-soft p-4 ${rowTone[school.status]}`}
+          >
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <Link
+                  href={`/schools/${school.slug}`}
+                  className="text-lg font-semibold text-brand-blue-strong hover:text-brand-red"
+                >
+                  {school.name}
+                </Link>
+                <p className="mt-1 text-xs text-muted">{school.county}</p>
+              </div>
+              <StatusBadge status={school.status} label={school.statusLabel} />
+            </div>
+            <dl className="mt-4 grid gap-3 text-sm">
+              <div>
+                <dt className="font-semibold text-brand-blue-strong">
+                  Location
+                </dt>
+                <dd className="mt-1 leading-6 text-slate-600">
+                  {school.venueName}
+                  {school.postcode ? `, ${school.postcode}` : ""}
+                </dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-brand-blue-strong">
+                  Schedule
+                </dt>
+                <dd className="mt-1 leading-6 text-slate-600">
+                  {school.schedule}
+                </dd>
+              </div>
+            </dl>
+            <div className="mt-4 flex flex-col gap-2">
+              <Link
+                href={getNextStepHref(school)}
+                className="inline-flex min-h-10 items-center justify-center rounded-md bg-brand-blue px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
+              >
+                {getNextStepLabel(school)}
+              </Link>
+              <Link
+                href={`/schools/${school.slug}`}
+                className="inline-flex min-h-10 items-center justify-center rounded-md border border-brand-blue/20 bg-white/70 px-4 py-2 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+              >
+                Branch details
+              </Link>
+            </div>
+          </article>
+        ))}
+      </div>
       <div
-        className="overflow-x-auto focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+        className="hidden overflow-x-auto focus:outline-none focus:ring-2 focus:ring-brand-red/30 md:block"
         tabIndex={0}
         aria-label="Scrollable branch comparison table"
       >

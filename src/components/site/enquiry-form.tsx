@@ -65,6 +65,15 @@ export function EnquiryForm({
         >
           {formIntro}
         </p>
+        {mode === "preview" ? (
+          <div className="mt-4 border-l border-brand-gold bg-background/80 px-4 py-3 text-xs leading-5 text-slate-600">
+            <span className="font-semibold text-brand-blue-strong">
+              Local preview:
+            </span>{" "}
+            online storage is not configured here. The form can still check the
+            enquiry details, then asks you to email the school directly.
+          </div>
+        ) : null}
       </div>
 
       <SubmissionNotice state={state} />
@@ -416,7 +425,7 @@ function SubmitButton({
     <button
       type="submit"
       disabled={pending}
-      className="inline-flex min-h-11 items-center justify-center rounded-md bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30 disabled:cursor-not-allowed disabled:bg-slate-400"
+      className="inline-flex min-h-11 w-full items-center justify-center rounded-md bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30 disabled:cursor-not-allowed disabled:bg-slate-400 sm:w-auto"
     >
       {pending
         ? mode === "live"

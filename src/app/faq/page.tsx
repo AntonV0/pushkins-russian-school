@@ -4,6 +4,8 @@ import { ButtonLink } from "@/components/site/button-link";
 import { FaqList } from "@/components/site/faq-list";
 import { JsonLd } from "@/components/site/json-ld";
 import { LearningOptions } from "@/components/site/learning-options";
+import { PageCta } from "@/components/site/page-cta";
+import { PageHero } from "@/components/site/page-hero";
 import { faqGroups, faqs } from "@/data/faqs";
 import { absoluteUrl, siteConfig } from "@/data/site";
 
@@ -66,31 +68,19 @@ export default function FaqPage() {
           },
         }}
       />
-      <section className="border-b border-border-soft bg-surface/80 py-16 sm:py-20">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
-          <div>
-            <Breadcrumbs items={[{ label: "FAQ" }]} />
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
-              FAQ
-            </p>
-            <h1 className="mt-4 max-w-4xl text-balance text-4xl font-semibold leading-tight text-brand-blue-strong sm:text-6xl">
-              Clear answers for parents before they enquire
-            </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
-              A parent-facing guide to choosing a school location, asking about
-              placement, understanding fees, and knowing what information is
-              safe to share at the first enquiry stage.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/contact#enquiry-form">
-                Start an enquiry
-              </ButtonLink>
-              <ButtonLink href="/schools" variant="secondary">
-                Compare schools
-              </ButtonLink>
-            </div>
-          </div>
-
+      <PageHero
+        eyebrow="FAQ"
+        title="Clear answers for parents before they enquire"
+        prelude={<Breadcrumbs items={[{ label: "FAQ" }]} />}
+        actions={
+          <>
+            <ButtonLink href="/contact#enquiry-form">Start an enquiry</ButtonLink>
+            <ButtonLink href="/schools" variant="secondary">
+              Compare schools
+            </ButtonLink>
+          </>
+        }
+        aside={
           <div className="premium-panel overflow-hidden rounded-lg border border-border-soft bg-background">
             <div className="border-b border-border-soft bg-brand-blue-strong p-6 text-white">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-gold">
@@ -128,10 +118,16 @@ export default function FaqPage() {
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        }
+      >
+        <p>
+          A parent-facing guide to choosing a school location, asking about
+          placement, understanding fees, and knowing what information is safe to
+          share at the first enquiry stage.
+        </p>
+      </PageHero>
 
-      <section className="border-b border-border-soft bg-background py-14 sm:py-16">
+      <section className="border-b border-border-soft bg-background site-section-compact">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <LearningOptions
             eyebrow="Learning options"
@@ -142,11 +138,21 @@ export default function FaqPage() {
         </div>
       </section>
 
-      <section className="bg-background py-14 sm:py-16">
+      <section className="bg-background site-section-compact">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <FaqList groups={faqGroups} />
         </div>
       </section>
+
+      <PageCta
+        eyebrow="Still deciding?"
+        title="Send a focused enquiry and the school can point you to the right route"
+        actions={
+          <ButtonLink href="/contact#enquiry-form" variant="light">
+            Ask the school
+          </ButtonLink>
+        }
+      />
     </main>
   );
 }

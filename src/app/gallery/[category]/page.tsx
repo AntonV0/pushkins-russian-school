@@ -124,7 +124,7 @@ export default async function GalleryCategoryPage({
   return (
     <main>
       <JsonLd data={galleryJsonLd} />
-      <section className="border-b border-border-soft bg-surface py-16 sm:py-20">
+      <section className="border-b border-border-soft bg-surface/72 site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_0.78fr] lg:px-8">
           <div>
             <Breadcrumbs
@@ -136,27 +136,27 @@ export default async function GalleryCategoryPage({
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
               Gallery archive
             </p>
-            <h1 className="mt-4 max-w-4xl text-4xl font-semibold text-brand-blue-strong sm:text-5xl">
+            <h1 className="mt-4 max-w-4xl text-balance break-words text-4xl font-semibold leading-[1.06] text-brand-blue-strong sm:text-5xl">
               {archive.title}
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
               {archive.tone}
             </p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              <span className="inline-flex items-center rounded-full border border-brand-gold/40 bg-brand-gold/10 px-4 py-2 text-sm font-semibold text-brand-blue-strong">
+            <div className="mt-6 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+              <span className="inline-flex max-w-full items-center rounded-full border border-brand-gold/40 bg-brand-gold/10 px-4 py-2 text-sm font-semibold leading-5 text-brand-blue-strong">
                 {hasApprovedAssets ? "Approved collection" : archive.readinessLabel}
               </span>
-              <span className="inline-flex items-center rounded-full border border-border-soft bg-background px-4 py-2 text-sm font-semibold text-muted">
+              <span className="inline-flex max-w-full items-center rounded-full border border-border-soft bg-background px-4 py-2 text-sm font-semibold leading-5 text-muted">
                 {hasApprovedAssets ? assetCountLabel : "Selected with care"}
               </span>
               {hasExtendedAssets ? (
-                <span className="inline-flex items-center rounded-full border border-border-soft bg-background px-4 py-2 text-sm font-semibold text-muted">
+                <span className="inline-flex max-w-full items-center rounded-full border border-border-soft bg-background px-4 py-2 text-sm font-semibold leading-5 text-muted">
                   {extendedAssetCountLabel}
                 </span>
               ) : null}
             </div>
           </div>
-          <aside className="premium-panel rounded-lg border border-border-soft bg-background p-6 sm:p-8">
+          <aside className="border-y border-border-soft bg-background py-6 sm:py-8 lg:border-l lg:border-y-0 lg:px-8">
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
               {archive.theme}
             </p>
@@ -184,7 +184,7 @@ export default async function GalleryCategoryPage({
         </div>
       </section>
 
-      <section className="bg-background py-14 sm:py-16">
+      <section className="bg-background site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8">
           <div className="grid gap-10">
             <MediaAssetGrid
@@ -251,7 +251,7 @@ export default async function GalleryCategoryPage({
                 Back to gallery
               </ButtonLink>
               <ButtonLink href="/schools">Explore schools</ButtonLink>
-              <span className="inline-flex items-center justify-center rounded-md border border-border-soft px-5 py-3 text-sm font-semibold text-muted">
+              <span className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-border-soft px-5 py-3 text-center text-sm font-semibold text-muted sm:w-auto">
                 Photos selected with care
               </span>
             </div>
@@ -259,7 +259,7 @@ export default async function GalleryCategoryPage({
         </div>
       </section>
 
-      <section className="border-t border-border-soft bg-surface py-14 sm:py-16">
+      <section className="border-t border-border-soft bg-surface site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
           <div>
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
@@ -271,11 +271,11 @@ export default async function GalleryCategoryPage({
                 : "This collection keeps the archive organised while suitable school photos, captions, and accessibility details are selected."}
             </p>
           </div>
-          <ol className="overflow-hidden rounded-lg border border-border-soft bg-background">
+          <ol className="divide-y divide-border-soft border-y border-border-soft bg-background">
             {galleryWorkflowStages.map((stage, index) => (
               <li
                 key={stage.label}
-                className="grid gap-4 border-b border-border-soft px-5 py-5 last:border-b-0 sm:grid-cols-[3rem_1fr]"
+                className="grid gap-4 px-5 py-5 sm:grid-cols-[3rem_1fr]"
               >
                 <span className="flex h-10 w-10 items-center justify-center justify-self-start rounded-full border border-brand-gold/50 bg-surface text-sm font-semibold text-brand-blue-strong">
                   {index + 1}
@@ -294,7 +294,7 @@ export default async function GalleryCategoryPage({
         </div>
       </section>
 
-      <section className="border-t border-border-soft bg-surface py-12">
+      <section className="border-t border-border-soft bg-surface site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-4 px-6 lg:grid-cols-[0.7fr_1.3fr] lg:px-8">
           <div>
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
@@ -318,7 +318,7 @@ export default async function GalleryCategoryPage({
         </div>
       </section>
 
-      <section className="border-t border-border-soft bg-brand-blue-strong py-12 text-white">
+      <section className="border-t border-border-soft bg-brand-blue-strong site-section-compact text-white">
         <div className="mx-auto grid max-w-7xl gap-4 px-6 sm:grid-cols-2 lg:px-8">
           {gallerySupportLinks.map((link) => (
             <ButtonLink

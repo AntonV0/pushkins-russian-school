@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { ButtonLink } from "@/components/site/button-link";
+import { DecisionPanel } from "@/components/site/decision-panel";
+import { PageCta } from "@/components/site/page-cta";
+import { PageHero } from "@/components/site/page-hero";
 import { SectionIntro } from "@/components/site/section-intro";
 import { VisualStoryPanel } from "@/components/site/visual-story-panel";
 import {
@@ -41,28 +44,11 @@ export const metadata: Metadata = {
 export default function CurriculumPage() {
   return (
     <main>
-      <section className="border-b border-border-soft bg-surface/80 py-16 sm:py-20">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
-              Curriculum
-            </p>
-            <h1 className="mt-4 max-w-4xl text-balance text-4xl font-semibold leading-tight text-brand-blue-strong sm:text-6xl">
-              Russian language learning with culture, confidence, and clear
-              progression
-            </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
-              A parent-friendly view of the pathway: enough structure to choose
-              the right next step, with space for teachers to place each child
-              thoughtfully after learning more about their Russian.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/schools">Choose a branch</ButtonLink>
-              <ButtonLink href="/contact#enquiry-form" variant="secondary">
-                Ask about placement
-              </ButtonLink>
-            </div>
-          </div>
+      <PageHero
+        eyebrow="Curriculum"
+        title="Russian language learning with culture, confidence, and clear progression"
+        asideAlign="start"
+        aside={
           <div className="grid content-start gap-4">
             {curriculumVisual ? (
               <VisualStoryPanel slot={curriculumVisual} compact />
@@ -83,10 +69,24 @@ export default function CurriculumPage() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        }
+        actions={
+          <>
+            <ButtonLink href="/schools">Choose a branch</ButtonLink>
+            <ButtonLink href="/contact#enquiry-form" variant="secondary">
+              Ask about placement
+            </ButtonLink>
+          </>
+        }
+      >
+        <p>
+          A parent-friendly view of the pathway: enough structure to choose the
+          right next step, with space for teachers to place each child
+          thoughtfully after learning more about their Russian.
+        </p>
+      </PageHero>
 
-      <section className="bg-background py-14 sm:py-16">
+      <section className="bg-background site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.86fr_1.14fr] lg:px-8">
           <div>
             <SectionIntro
@@ -136,7 +136,7 @@ export default function CurriculumPage() {
         </div>
       </section>
 
-      <section className="border-y border-border-soft bg-surface py-14 sm:py-16">
+      <section className="border-y border-border-soft bg-surface site-section-compact">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="Progression"
@@ -186,7 +186,7 @@ export default function CurriculumPage() {
         </div>
       </section>
 
-      <section className="border-y border-border-soft bg-surface py-14 sm:py-16">
+      <section className="border-y border-border-soft bg-surface site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
           <SectionIntro
             eyebrow="Placement"
@@ -219,7 +219,7 @@ export default function CurriculumPage() {
         </div>
       </section>
 
-      <section className="bg-background py-14 sm:py-16">
+      <section className="bg-background site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
           <div>
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
@@ -230,7 +230,10 @@ export default function CurriculumPage() {
               prompts simply make the first conversation more useful.
             </p>
           </div>
-          <div className="rounded-lg border border-border-soft bg-surface p-5">
+          <DecisionPanel
+            eyebrow="Placement prompts"
+            title="You do not need perfect answers before enquiring"
+          >
             <ul className="divide-y divide-border-soft">
               {placementSignals.map((signal) => (
                 <li
@@ -241,11 +244,11 @@ export default function CurriculumPage() {
                 </li>
               ))}
             </ul>
-          </div>
+          </DecisionPanel>
         </div>
       </section>
 
-      <section className="border-y border-border-soft bg-brand-blue-strong py-14 text-white sm:py-16">
+      <section className="border-y border-border-soft bg-brand-blue-strong site-section-compact text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="Choosing the pathway"
@@ -288,7 +291,7 @@ export default function CurriculumPage() {
         </div>
       </section>
 
-      <section className="bg-background py-14 sm:py-16">
+      <section className="bg-background site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
           <div>
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
@@ -320,6 +323,20 @@ export default function CurriculumPage() {
           </div>
         </div>
       </section>
+
+      <PageCta
+        eyebrow="Curriculum next step"
+        title="Ask which pathway fits your child's Russian now"
+        tone="light"
+        actions={
+          <>
+            <ButtonLink href="/contact#enquiry-form">Ask about placement</ButtonLink>
+            <ButtonLink href="/admissions" variant="secondary">
+              Admissions and fees
+            </ButtonLink>
+          </>
+        }
+      />
     </main>
   );
 }

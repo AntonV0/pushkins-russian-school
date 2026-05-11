@@ -26,7 +26,7 @@ export function LocationMediaShowcase({
   const [leadAsset, ...supportingAssets] = assets;
 
   return (
-    <section className="border-b border-border-soft bg-background py-14 sm:py-16">
+    <section className="border-b border-border-soft bg-background site-section-compact">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
           <div>
@@ -47,14 +47,14 @@ export function LocationMediaShowcase({
 
           <div className="grid gap-4 lg:grid-cols-[1.25fr_0.75fr]">
             <figure className="overflow-hidden rounded-lg border border-border-soft bg-surface">
-              <div className="relative aspect-[4/3] bg-surface-muted">
+              <div className="relative aspect-[4/3] min-h-64 bg-surface-muted">
                 <Image
                   src={leadAsset.approvedPublicPath}
                   alt={leadAsset.altText}
                   fill
                   sizes="(min-width: 1024px) 560px, 100vw"
                   className="object-cover"
-                  priority={false}
+                  loading="eager"
                 />
               </div>
               <figcaption className="p-4">
@@ -74,7 +74,7 @@ export function LocationMediaShowcase({
                     key={asset.id}
                     className="overflow-hidden rounded-lg border border-border-soft bg-surface"
                   >
-                    <div className="relative aspect-[4/3] bg-surface-muted">
+                    <div className="relative aspect-[4/3] min-h-40 bg-surface-muted">
                       <Image
                         src={asset.approvedPublicPath}
                         alt={asset.altText}

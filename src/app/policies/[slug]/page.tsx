@@ -93,7 +93,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
   return (
     <main>
       <JsonLd data={policyJsonLd} />
-      <section className="border-b border-border-soft bg-surface py-16 sm:py-20">
+      <section className="border-b border-border-soft bg-surface/72 site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_0.78fr] lg:px-8">
           <div>
             <Breadcrumbs
@@ -105,15 +105,15 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
               {policy.group}
             </p>
-            <h1 className="mt-4 max-w-4xl text-4xl font-semibold text-brand-blue-strong sm:text-5xl">
+            <h1 className="mt-4 max-w-4xl text-balance break-words text-4xl font-semibold leading-[1.06] text-brand-blue-strong sm:text-5xl">
               {policy.title}
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-600">
               {policy.summary}
             </p>
-            <div className="mt-6 flex flex-wrap items-center gap-3">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <span
-                className={`inline-flex items-center rounded-full border px-4 py-2 text-sm font-semibold ${getPolicyStatusTone(policy)}`}
+                className={`inline-flex max-w-full items-center rounded-full border px-4 py-2 text-sm font-semibold leading-5 ${getPolicyStatusTone(policy)}`}
               >
                 {policy.status}
               </span>
@@ -123,18 +123,18 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
                   target={action.isExternal ? "_blank" : undefined}
                   rel={action.isExternal ? "noopener noreferrer" : undefined}
                   download={action.isExternal ? undefined : true}
-                  className="inline-flex items-center justify-center rounded-md bg-brand-blue px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
+                  className="inline-flex min-h-11 w-full items-center justify-center rounded-md bg-brand-blue px-5 py-2.5 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30 sm:w-auto"
                 >
                   {action.label}
                 </a>
               ) : (
-                <span className="inline-flex items-center justify-center rounded-md border border-border-soft bg-background px-5 py-2.5 text-sm font-semibold text-muted">
+                <span className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-border-soft bg-background px-5 py-2.5 text-center text-sm font-semibold text-muted sm:w-auto">
                   {downloadReadiness.label}
                 </span>
               )}
             </div>
           </div>
-          <aside className="premium-panel overflow-hidden rounded-lg border border-border-soft bg-background">
+          <aside className="overflow-hidden border-y border-border-soft bg-background lg:rounded-lg lg:border">
             <div className="border-b border-border-soft bg-brand-blue-strong p-6 text-white">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-gold">
                 Parent reassurance
@@ -162,9 +162,9 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
         </div>
       </section>
 
-      <section className="bg-background py-14 sm:py-16">
+      <section className="bg-background site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
-          <aside className="premium-panel rounded-lg border border-border-soft bg-surface-muted p-6 sm:p-8">
+          <aside className="border-y border-border-soft bg-surface-muted py-6 sm:py-8 lg:border-l lg:border-y-0 lg:px-8">
             <h2 className="text-xl font-semibold text-brand-blue-strong">
               Page record
             </h2>
@@ -191,7 +191,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
             </div>
           </aside>
 
-          <div className="premium-panel rounded-lg border border-border-soft bg-surface p-6 sm:p-8">
+          <div className="rounded-lg border border-border-soft bg-surface p-6 sm:p-8">
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
               Parent summary
             </h2>
@@ -214,7 +214,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
               {nextSteps.map((step) => (
                 <div
                   key={step.title}
-                  className="rounded-md border border-border-soft bg-background p-4"
+                  className="border-l border-brand-gold bg-background px-4 py-3"
                 >
                   <h4 className="text-sm font-semibold text-brand-blue-strong">
                     {step.title}
@@ -238,7 +238,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
                 </li>
               ))}
             </ul>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <ButtonLink href="/policies" variant="secondary">
                 Back to policy index
               </ButtonLink>
@@ -248,12 +248,12 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
                   target={action.isExternal ? "_blank" : undefined}
                   rel={action.isExternal ? "noopener noreferrer" : undefined}
                   download={action.isExternal ? undefined : true}
-                  className="inline-flex items-center justify-center rounded-md bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
+                  className="inline-flex min-h-11 w-full items-center justify-center rounded-md bg-brand-blue px-5 py-3 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30 sm:w-auto"
                 >
                   {action.label}
                 </a>
               ) : (
-                <span className="inline-flex items-center justify-center rounded-md border border-border-soft px-5 py-3 text-sm font-semibold text-muted">
+                <span className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-border-soft px-5 py-3 text-center text-sm font-semibold text-muted sm:w-auto">
                   {downloadReadiness.label}
                 </span>
               )}
@@ -263,7 +263,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
       </section>
 
       {isSafeguardingPolicy ? (
-        <section className="border-t border-border-soft bg-background py-12">
+        <section className="border-t border-border-soft bg-background site-section-compact">
           <div className="mx-auto grid max-w-7xl gap-6 px-6 lg:grid-cols-[0.75fr_1.25fr] lg:px-8">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
@@ -305,7 +305,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
         </section>
       ) : null}
 
-      <section className="border-t border-border-soft bg-surface py-12">
+      <section className="border-t border-border-soft bg-surface site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-6 px-6 md:grid-cols-[0.8fr_1.2fr] lg:px-8">
           <div>
             <h2 className="text-2xl font-semibold text-brand-blue-strong">

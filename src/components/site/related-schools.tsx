@@ -11,7 +11,7 @@ export function RelatedSchools({ currentSlug, schools }: RelatedSchoolsProps) {
   const relatedSchools = schools.filter((school) => school.slug !== currentSlug);
 
   return (
-    <section className="border-t border-border-soft bg-background py-14 sm:py-16">
+    <section className="border-t border-border-soft bg-background site-section-compact">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>

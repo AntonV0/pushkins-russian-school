@@ -16,16 +16,16 @@ export function FaqList({ groups }: FaqListProps) {
 
   return (
     <div className="grid gap-8 lg:grid-cols-[17rem_1fr] lg:items-start">
-      <aside className="premium-panel rounded-lg border border-border-soft bg-surface p-5 lg:sticky lg:top-32">
+      <aside className="border-y border-border-soft py-5 lg:sticky lg:top-32">
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
           Answer index
         </p>
-        <div className="mt-4 grid gap-1">
+        <div className="mt-4 flex gap-2 overflow-x-auto pb-2 lg:grid lg:overflow-visible lg:pb-0">
           {groups.map((group) => (
             <a
               key={group.title}
               href={`#${getGroupId(group.title)}`}
-              className="rounded-md px-3 py-2 text-sm font-semibold text-brand-blue-strong transition hover:bg-surface-muted hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+              className="shrink-0 rounded-full border border-border-soft bg-background px-3 py-2 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30 lg:rounded-md lg:border-transparent lg:bg-transparent"
             >
               {group.title}
             </a>
@@ -49,10 +49,10 @@ export function FaqList({ groups }: FaqListProps) {
             <section
               id={getGroupId(group.title)}
               key={group.title}
-              className={`scroll-mt-28 overflow-hidden rounded-lg border ${
+              className={`scroll-mt-28 overflow-hidden border-y ${
                 featured
-                  ? "border-brand-blue bg-brand-blue-strong"
-                  : "border-border-soft bg-surface"
+                  ? "border-brand-blue bg-brand-blue-strong lg:rounded-lg lg:border"
+                  : "border-border-soft bg-surface lg:rounded-lg lg:border"
               }`}
             >
               <div className="grid gap-4 p-6 md:grid-cols-[0.72fr_1.28fr]">

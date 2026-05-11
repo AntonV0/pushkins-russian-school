@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ButtonLink } from "@/components/site/button-link";
+import { DecisionPanel } from "@/components/site/decision-panel";
 import { LearningOptions } from "@/components/site/learning-options";
-import { MetricStrip } from "@/components/site/metric-strip";
+import { PageCta } from "@/components/site/page-cta";
+import { PageHero } from "@/components/site/page-hero";
 import { SectionIntro } from "@/components/site/section-intro";
 import { TrustSignals } from "@/components/site/trust-signals";
 import { admissionsSteps } from "@/data/admissions";
@@ -47,65 +49,70 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main>
-      <section className="overflow-hidden border-b border-border-soft bg-surface/80">
-        <div className="mx-auto grid min-h-[calc(100svh-8rem)] max-w-7xl items-center gap-12 px-6 py-14 sm:py-18 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
-          <div className="min-w-0">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-red sm:tracking-[0.2em]">
-              Weekend supplementary Russian school for children
-            </p>
-            <h1 className="mt-5 max-w-4xl break-words text-4xl font-semibold leading-[1.02] text-brand-blue-strong sm:text-6xl lg:text-6xl">
-              Pushkin&apos;s School of Russian Language and Literature
-            </h1>
-            <p className="mt-6 max-w-2xl text-pretty text-xl leading-8 text-slate-700">
-              The school helps children aged 3-18 keep Russian language,
-              literature, culture, and confidence alive in a warm weekend
-              classroom setting.
-            </p>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600">
-              Classes are designed for children with different levels of
-              Russian, from early language exposure through reading, writing,
-              speaking, culture, and GCSE or A Level preparation.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/schools">Find a school location</ButtonLink>
-              <ButtonLink href="/contact#enquiry-form" variant="secondary">
-                {contactDetails.registrationCta}
-              </ButtonLink>
-            </div>
-          </div>
+      <PageHero
+        eyebrow="Weekend supplementary Russian school for children"
+        title="Pushkin's School of Russian Language and Literature"
+        variant="home"
+        aside={<HeroSchoolVisual />}
+        actions={
+          <>
+            <ButtonLink href="/schools">Find a school location</ButtonLink>
+            <ButtonLink href="/contact#enquiry-form" variant="secondary">
+              {contactDetails.registrationCta}
+            </ButtonLink>
+          </>
+        }
+      >
+        <p>
+          The school helps children aged 3-18 keep Russian language,
+          literature, culture, and confidence alive in a warm weekend classroom
+          setting.
+        </p>
+        <p className="mt-4 text-base leading-7 text-slate-600">
+          Classes are designed for different levels of Russian, from early
+          language exposure through reading, writing, speaking, culture, and
+          GCSE or A Level preparation.
+        </p>
+      </PageHero>
 
-          <HeroSchoolVisual />
-
-          <div className="grid gap-6 lg:col-span-2 lg:grid-cols-[0.92fr_1.08fr]">
-            <MetricStrip
-              metrics={[
-                { label: "School locations", value: networkSummary.locations },
-                { label: "Current in-person", value: openSchools.length },
-                {
-                  label: "Future interest",
-                  value: interestSchools.length,
-                },
-              ]}
-            />
-            <div className="grid gap-3 text-sm leading-6 text-slate-700 sm:grid-cols-2">
-              <div className="border-l-2 border-emerald-500 bg-white/75 px-4 py-3">
-                <p className="font-semibold text-brand-blue-strong">
-                  Bracknell weekend school
-                </p>
-                <p>Sunday morning classes currently listed for enquiries.</p>
+      <section className="border-b border-border-soft bg-background/80 py-7">
+        <div className="mx-auto grid max-w-7xl gap-6 px-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-center lg:px-8">
+          <dl className="grid gap-4 border-y border-border-soft py-4 text-sm sm:grid-cols-3 lg:border-y-0 lg:border-l lg:py-0 lg:pl-6">
+            {[
+              { label: "School locations", value: networkSummary.locations },
+              { label: "Current in-person", value: openSchools.length },
+              { label: "Future interest", value: interestSchools.length },
+            ].map((metric) => (
+              <div key={metric.label}>
+                <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+                  {metric.label}
+                </dt>
+                <dd className="mt-1 text-2xl font-semibold text-brand-blue-strong">
+                  {metric.value}
+                </dd>
               </div>
-              <div className="border-l-2 border-sky-500 bg-white/75 px-4 py-3">
-                <p className="font-semibold text-brand-blue-strong">
-                  Other local areas
-                </p>
-                <p>Parents can register interest where local classes pause.</p>
-              </div>
-            </div>
+            ))}
+          </dl>
+          <div className="grid gap-3 text-sm leading-6 text-slate-700 sm:grid-cols-2">
+            <DecisionPanel
+              title="Bracknell weekend school"
+              actions={[{ href: "/schools/bracknell", label: "View branch" }]}
+              className="p-4 sm:p-4"
+            >
+              <p>Sunday morning classes currently listed for enquiries.</p>
+            </DecisionPanel>
+            <DecisionPanel
+              title="Other local areas"
+              actions={[{ href: "/schools", label: "Compare options" }]}
+              className="p-4 sm:p-4"
+            >
+              <p>Parents can register interest where local classes pause.</p>
+            </DecisionPanel>
           </div>
         </div>
       </section>
 
-      <section className="bg-background py-16 sm:py-24">
+      <section className="site-section bg-background">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.78fr_1.22fr] lg:px-8">
           <div className="lg:sticky lg:top-32 lg:self-start">
             <SectionIntro
@@ -212,33 +219,24 @@ export default function Home() {
                 ))}
               </div>
 
-              <div className="premium-panel flex flex-col justify-between rounded-lg border border-border-soft bg-surface-blue p-6">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
-                    Enquiry focus
-                  </p>
-                  <h2 className="mt-3 text-2xl font-semibold text-brand-blue-strong">
-                    Help the school place your child well
-                  </h2>
-                  <p className="mt-4 text-sm leading-6 text-slate-700">
-                    A strong enquiry gives the team the practical context:
-                    preferred location, age, Russian exposure, confidence with
-                    reading and writing, and exam goals where relevant.
-                  </p>
-                </div>
-                <Link
-                  href="/contact#enquiry-form"
-                  className="mt-8 inline-flex min-h-11 items-center justify-center rounded-md bg-brand-blue px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
-                >
-                  Start an enquiry
-                </Link>
-              </div>
+              <DecisionPanel
+                eyebrow="Enquiry focus"
+                title="Help the school place your child well"
+                actions={[{ href: "/contact#enquiry-form", label: "Start an enquiry" }]}
+                className="flex flex-col justify-between"
+              >
+                <p>
+                  A strong enquiry gives the team the practical context:
+                  preferred location, age, Russian exposure, confidence with
+                  reading and writing, and exam goals where relevant.
+                </p>
+              </DecisionPanel>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="border-y border-border-soft bg-surface py-16 sm:py-20">
+      <section className="border-y border-border-soft bg-surface site-section-compact">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <TrustSignals
             align="center"
@@ -247,7 +245,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-b border-border-soft bg-background py-16 sm:py-20">
+      <section className="border-b border-border-soft bg-background site-section-compact">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <LearningOptions
             intro={`${learningOptionSummary} Families can start with a local weekend class, ask about online support when distance is a barrier, or choose focused GCSE self-study support.`}
@@ -255,9 +253,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-brand-blue-strong py-16 text-white sm:py-24">
+      <section className="bg-brand-blue-strong site-section text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-[0.75fr_1.25fr]">
+          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
             <SectionIntro
               eyebrow="Learning approach"
               title="Structured, stimulating, and easy for parents to understand"
@@ -271,18 +269,11 @@ export default function Home() {
               </p>
             </SectionIntro>
 
-            <div className="relative min-h-[34rem]">
-              <div className="absolute inset-0 rounded-lg border border-white/15 bg-white/8" />
+            <div className="grid gap-4 md:grid-cols-3">
               {curriculumPillars.map((pathway, index) => (
                 <article
                   key={pathway.title}
-                  className={`relative rounded-lg border border-white/15 bg-white p-6 text-brand-blue-strong shadow-2xl ${
-                    index === 0
-                      ? "ml-0 max-w-xl"
-                      : index === 1
-                        ? "ml-auto mt-6 max-w-lg"
-                        : "ml-8 mt-6 max-w-2xl sm:ml-20"
-                  }`}
+                  className="rounded-lg border border-white/15 bg-white p-5 text-brand-blue-strong shadow-2xl sm:p-6"
                 >
                   <p className="font-mono text-sm font-semibold text-brand-red">
                     0{index + 1}
@@ -300,7 +291,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-b border-border-soft bg-surface py-16 sm:py-20">
+      <section className="border-b border-border-soft bg-surface site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.72fr_1.28fr] lg:px-8">
           <SectionIntro
             eyebrow="Class placement"
@@ -336,7 +327,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-background py-16 sm:py-20">
+      <section className="bg-background site-section-compact">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="Progression"
@@ -383,7 +374,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-y border-border-soft bg-surface py-16 sm:py-20">
+      <section className="border-y border-border-soft bg-surface site-section-compact">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="Parent journey"
@@ -421,27 +412,19 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-background py-16 sm:py-20">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[1fr_0.85fr] lg:px-8">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
-              Ready to start?
-            </p>
-            <h2 className="mt-3 max-w-3xl text-3xl font-semibold text-brand-blue-strong sm:text-4xl">
-              Ask about current classes or register interest in a future local
-              school
-            </h2>
-          </div>
-          <div className="flex flex-col justify-center gap-4 sm:flex-row lg:justify-end">
-            <ButtonLink href="/contact#enquiry-form">
-              Start an enquiry
-            </ButtonLink>
+      <PageCta
+        eyebrow="Ready to start?"
+        title="Ask about current classes or register interest in a future local school"
+        tone="light"
+        actions={
+          <>
+            <ButtonLink href="/contact#enquiry-form">Start an enquiry</ButtonLink>
             <ButtonLink href="/admissions" variant="secondary">
               Admissions and fees
             </ButtonLink>
-          </div>
-        </div>
-      </section>
+          </>
+        }
+      />
     </main>
   );
 }

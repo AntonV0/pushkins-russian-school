@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { ButtonLink } from "@/components/site/button-link";
 import { MetricStrip } from "@/components/site/metric-strip";
+import { PageCta } from "@/components/site/page-cta";
+import { PageHero } from "@/components/site/page-hero";
 import { SectionIntro } from "@/components/site/section-intro";
 import { TrustSignals } from "@/components/site/trust-signals";
 import { VisualStoryPanel } from "@/components/site/visual-story-panel";
@@ -73,41 +75,37 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main>
-      <section className="border-b border-border-soft bg-surface/80 py-16 sm:py-20">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
-              About Pushkin&apos;s School
-            </p>
-            <h1 className="mt-4 max-w-4xl text-balance text-4xl font-semibold leading-tight text-brand-blue-strong sm:text-6xl">
-              An established Russian school community for children and families
-            </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
-              Pushkin&apos;s School is a warm, academic weekend supplementary
-              school for children studying Russian language, literature, and
-              culture in the UK. Families can see the learning approach,
-              locations, admissions pathway, and policy structure before they
-              enquire.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href="/schools">Explore schools</ButtonLink>
-              <ButtonLink href="/contact#enquiry-form" variant="secondary">
-                Start an enquiry
-              </ButtonLink>
-            </div>
-          </div>
-          {aboutLeadAsset ? (
+      <PageHero
+        eyebrow="About Pushkin's School"
+        title="An established Russian school community for children and families"
+        actions={
+          <>
+            <ButtonLink href="/schools">Explore schools</ButtonLink>
+            <ButtonLink href="/contact#enquiry-form" variant="secondary">
+              Start an enquiry
+            </ButtonLink>
+          </>
+        }
+        aside={
+          aboutLeadAsset ? (
             <AboutSchoolPhotoPanel
               leadAsset={aboutLeadAsset}
               supportingAssets={aboutSupportingAssets}
             />
           ) : aboutVisual ? (
             <VisualStoryPanel slot={aboutVisual} />
-          ) : null}
-        </div>
-      </section>
+          ) : null
+        }
+      >
+        <p>
+          Pushkin&apos;s School is a warm, academic weekend supplementary school
+          for children studying Russian language, literature, and culture in the
+          UK. Families can see the learning approach, locations, admissions
+          pathway, and policy structure before they enquire.
+        </p>
+      </PageHero>
 
-      <section className="bg-background py-14 sm:py-16">
+      <section className="bg-background site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
           <div>
             <SectionIntro
@@ -162,7 +160,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-y border-border-soft bg-surface py-14 sm:py-16">
+      <section className="border-y border-border-soft bg-surface site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
           <div>
             <SectionIntro
@@ -212,7 +210,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-background py-14 sm:py-16">
+      <section className="bg-background site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
           <div>
             <SectionIntro
@@ -262,7 +260,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-y border-border-soft bg-surface py-14 sm:py-16">
+      <section className="border-y border-border-soft bg-surface site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
           <SectionIntro
             eyebrow="Locations"
@@ -284,7 +282,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-background py-14 sm:py-16">
+      <section className="bg-background site-section-compact">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <TrustSignals
             intro="Parents can check school locations, curriculum structure, policy summaries, and practical next steps before they contact the school."
@@ -292,30 +290,28 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-brand-blue-strong py-14 text-white sm:py-16">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 md:grid-cols-[1fr_0.9fr] lg:px-8">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
-              Parent confidence
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold">
-              Clear today, careful as the record grows
-            </h2>
-            <p className="mt-4 max-w-2xl text-sm leading-6 text-white/75">
-              The school can add more history, staff detail, trips,
-              certificates, and photographs over time while keeping the current
-              parent journey clear and reliable.
-            </p>
-          </div>
-          <ul className="space-y-3 text-sm leading-6 text-white/80">
-            {reviewNotes.map((note) => (
-              <li key={note} className="border-l border-brand-gold pl-4">
-                {note}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+      <PageCta
+        eyebrow="Parent confidence"
+        title="Clear today, careful as the record grows"
+        actions={
+          <ButtonLink href="/contact#enquiry-form" variant="light">
+            Start an enquiry
+          </ButtonLink>
+        }
+      >
+        <p>
+          The school can add more history, staff detail, trips, certificates,
+          and photographs over time while keeping the current parent journey
+          clear and reliable.
+        </p>
+        <ul className="mt-4 grid gap-2 text-sm leading-6 text-white/80">
+          {reviewNotes.map((note) => (
+            <li key={note} className="border-l border-brand-gold pl-4">
+              {note}
+            </li>
+          ))}
+        </ul>
+      </PageCta>
     </main>
   );
 }

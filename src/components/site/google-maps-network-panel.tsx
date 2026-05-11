@@ -71,9 +71,6 @@ export function GoogleMapsNetworkPanel({
     orderedSchools[0]?.slug ?? "",
   );
   const [filter, setFilter] = useState<LocationFilter>("all");
-  const selectedSchool =
-    orderedSchools.find((school) => school.slug === selectedSlug) ??
-    orderedSchools[0];
   const filteredSchools = orderedSchools.filter((school) => {
     if (filter === "open") {
       return school.status === "open";
@@ -85,6 +82,10 @@ export function GoogleMapsNetworkPanel({
 
     return true;
   });
+  const selectedSchool =
+    filteredSchools.find((school) => school.slug === selectedSlug) ??
+    filteredSchools[0] ??
+    orderedSchools[0];
   const openCount = schools.filter((school) => school.status === "open").length;
   const interestCount = schools.length - openCount;
   const availability = selectedSchool
@@ -98,8 +99,8 @@ export function GoogleMapsNetworkPanel({
   return (
     <div className="premium-panel overflow-hidden rounded-lg border border-border-soft bg-surface">
       <div className="grid lg:grid-cols-[minmax(0,1.12fr)_minmax(22rem,0.88fr)]">
-        <div className="relative min-h-[28rem] bg-surface-muted lg:min-h-[43rem]">
-          <div className="absolute inset-x-0 top-0 z-10 border-b border-white/60 bg-white/90 p-4 shadow-sm backdrop-blur sm:p-5">
+        <div className="relative bg-surface-muted lg:min-h-[43rem]">
+          <div className="relative z-10 border-b border-white/60 bg-white/90 p-4 shadow-sm backdrop-blur sm:p-5 lg:absolute lg:inset-x-0 lg:top-0">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
@@ -128,7 +129,7 @@ export function GoogleMapsNetworkPanel({
             referrerPolicy="no-referrer-when-downgrade"
             className="h-full min-h-[28rem] w-full border-0 lg:min-h-[43rem]"
           />
-          <div className="absolute inset-x-4 bottom-4 rounded-lg border border-white/70 bg-white/95 p-4 shadow-xl backdrop-blur sm:inset-x-5 sm:bottom-5 sm:p-5">
+          <div className="relative m-4 rounded-lg border border-white/70 bg-white/95 p-4 shadow-xl backdrop-blur sm:m-5 sm:p-5 lg:absolute lg:inset-x-5 lg:bottom-5 lg:m-0">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
               <div>
                 <StatusBadge
@@ -177,7 +178,27 @@ export function GoogleMapsNetworkPanel({
                   <button
                     key={item.value}
                     type="button"
-                    onClick={() => setFilter(item.value)}
+                    onClick={() => {
+                      setFilter(item.value);
+                      const nextSchools = orderedSchools.filter((school) => {
+                        if (item.value === "open") {
+                          return school.status === "open";
+                        }
+
+                        if (item.value === "interest") {
+                          return school.status !== "open";
+                        }
+
+                        return true;
+                      });
+
+                      if (
+                        nextSchools.length > 0 &&
+                        !nextSchools.some((school) => school.slug === selectedSlug)
+                      ) {
+                        setSelectedSlug(nextSchools[0].slug);
+                      }
+                    }}
                     className={`min-h-10 rounded-md border px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-brand-red/30 ${
                       isActive
                         ? "border-brand-blue bg-brand-blue text-white"
