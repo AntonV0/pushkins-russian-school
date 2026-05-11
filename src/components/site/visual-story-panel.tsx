@@ -14,8 +14,8 @@ export function VisualStoryPanel({ slot, compact = false }: VisualStoryPanelProp
       aria-labelledby={headingId}
     >
       <div
-        className={`relative overflow-hidden bg-surface-muted ${
-          compact ? "min-h-64" : "min-h-80"
+        className={`relative aspect-[4/3] overflow-hidden bg-surface-muted ${
+          compact ? "min-h-56" : "min-h-72 sm:min-h-80"
         }`}
       >
         <div className="fine-grid absolute inset-0" aria-hidden="true" />
@@ -30,13 +30,13 @@ export function VisualStoryPanel({ slot, compact = false }: VisualStoryPanelProp
         />
         <VisualMotif slot={slot} />
       </div>
-      <figcaption className="p-6 sm:p-7">
+      <figcaption className="p-5 sm:p-6">
         <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
           {slot.eyebrow}
         </p>
         <h2
           id={headingId}
-          className="mt-3 text-2xl font-semibold leading-tight text-brand-blue-strong"
+          className="mt-3 text-xl font-semibold leading-tight text-brand-blue-strong sm:text-2xl"
         >
           {slot.title}
         </h2>

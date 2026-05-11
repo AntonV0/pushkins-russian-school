@@ -1,18 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --background: #faf7f1;
+  --background: #fbf8f2;
   --foreground: #172033;
   --surface: #ffffff;
-  --surface-muted: #f0eadd;
-  --surface-blue: #eaf2f7;
+  --surface-muted: #f3eee4;
+  --surface-blue: #edf5f8;
   --brand-blue: #16446f;
   --brand-blue-strong: #0b2648;
   --brand-red: #a8323b;
   --brand-gold: #b98c3f;
-  --border-soft: #ddd2c0;
+  --border-soft: #e0d5c4;
   --muted: #667085;
   --ring: #a8323b;
+  --section-y: clamp(3.5rem, 7vw, 5.5rem);
+  --section-y-compact: clamp(2.75rem, 5.5vw, 4.25rem);
 }
 
 @theme inline {
@@ -36,6 +38,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
@@ -50,8 +53,20 @@ main :where(h1, h2, h3, p, a, span, dd, dt, li) {
   overflow-wrap: break-word;
 }
 
+main :where(h1, h2, h3) {
+  text-wrap: balance;
+}
+
+main :where(p, li, dd) {
+  text-wrap: pretty;
+}
+
 main .grid > * {
   min-width: 0;
+}
+
+main :where(section) {
+  scroll-margin-top: 6.5rem;
 }
 
 :focus-visible {
@@ -65,15 +80,15 @@ summary::-webkit-details-marker {
 
 .warm-page-bg {
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.72), transparent 18rem),
-    radial-gradient(circle at 12% 4%, rgba(185, 140, 63, 0.11), transparent 22rem),
-    linear-gradient(180deg, #faf7f1 0%, #f6f1e8 100%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.78), transparent 18rem),
+    radial-gradient(circle at 12% 4%, rgba(185, 140, 63, 0.09), transparent 22rem),
+    linear-gradient(180deg, #fbf8f2 0%, #f7f1e8 100%);
 }
 
 .premium-panel {
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.75) inset,
-    0 18px 42px rgba(11, 38, 72, 0.08);
+    0 14px 34px rgba(11, 38, 72, 0.055);
 }
 
 .fine-grid {
@@ -81,4 +96,34 @@ summary::-webkit-details-marker {
     linear-gradient(90deg, rgba(22, 68, 111, 0.055) 1px, transparent 1px),
     linear-gradient(0deg, rgba(22, 68, 111, 0.055) 1px, transparent 1px);
   background-size: 36px 36px;
+}
+
+.soft-divider {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--brand-gold) 38%, transparent),
+    transparent
+  );
+}
+
+.site-section {
+  padding-block: var(--section-y);
+}
+
+.site-section-compact {
+  padding-block: var(--section-y-compact);
+}
+
+.quiet-panel {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.72) inset;
+}
+
+.editorial-rule {
+  border-image: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--brand-gold) 52%, transparent),
+      transparent
+    )
+    1;
 }
