@@ -93,7 +93,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
   return (
     <main>
       <JsonLd data={policyJsonLd} />
-      <section className="border-b border-border-soft bg-surface/72 site-section-compact">
+      <section className="border-b border-border-soft bg-surface/72 py-9 sm:py-12">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_0.78fr] lg:px-8">
           <div>
             <Breadcrumbs
@@ -134,35 +134,103 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
               )}
             </div>
           </div>
-          <aside className="overflow-hidden border-y border-border-soft bg-background lg:rounded-lg lg:border">
-            <div className="border-b border-border-soft bg-brand-blue-strong p-6 text-white">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-gold">
-                Parent reassurance
-              </p>
-              <h2 className="mt-3 text-2xl font-semibold">
-                Clear guidance before downloads are available
-              </h2>
-            </div>
-            <ol className="divide-y divide-border-soft">
-              {parentPolicyAssurance.map((item, index) => (
-                <li
-                  key={item}
-                  className="grid gap-4 px-6 py-5 sm:grid-cols-[3rem_1fr]"
+          <aside className="border-y border-border-soft py-6 lg:border-l lg:border-y-0 lg:pl-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
+              Document guide
+            </p>
+            {isSafeguardingPolicy ? (
+              <div className="mt-4 border-l-4 border-brand-red bg-background p-4">
+                <h2 className="text-xl font-semibold leading-tight text-brand-blue-strong">
+                  If you are worried about a child
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-slate-700">
+                  The safeguarding concern guidance appears immediately after
+                  this page summary.
+                </p>
+                <a
+                  href="#safeguarding-concern"
+                  className="mt-4 inline-flex text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/40 hover:text-brand-red"
                 >
-                  <span className="flex h-10 w-10 items-center justify-center justify-self-start rounded-full border border-brand-gold/50 bg-surface-muted text-sm font-semibold text-brand-blue-strong">
-                    {index + 1}
-                  </span>
-                  <span className="text-sm leading-6 text-slate-700">
-                    {item}
-                  </span>
-                </li>
-              ))}
-            </ol>
+                  Jump to concern guidance
+                </a>
+              </div>
+            ) : (
+              <>
+                <h2 className="mt-3 text-2xl font-semibold leading-tight text-brand-blue-strong">
+                  Clear guidance before downloads are available
+                </h2>
+                <ol className="mt-5 divide-y divide-border-soft">
+                  {parentPolicyAssurance.map((item, index) => (
+                    <li
+                      key={item}
+                      className="grid gap-4 py-4 first:pt-0 last:pb-0 sm:grid-cols-[3rem_1fr]"
+                    >
+                      <span className="flex h-10 w-10 items-center justify-center justify-self-start rounded-full border border-brand-gold/50 bg-surface-muted text-sm font-semibold text-brand-blue-strong">
+                        {index + 1}
+                      </span>
+                      <span className="text-sm leading-6 text-slate-700">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </>
+            )}
           </aside>
         </div>
       </section>
 
-      <section className="bg-background site-section-compact">
+      {isSafeguardingPolicy ? (
+        <section
+          id="safeguarding-concern"
+          className="border-b border-border-soft bg-surface py-10 sm:py-12"
+        >
+          <div className="mx-auto grid max-w-7xl gap-6 px-6 lg:grid-cols-[0.72fr_1.28fr] lg:px-8">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
+                Safeguarding concern
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold text-brand-blue-strong">
+                {safeguardingConcernGuidance.title}
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-slate-600">
+                {safeguardingConcernGuidance.intro}
+              </p>
+            </div>
+            <div className="grid gap-4 md:grid-cols-3">
+              {safeguardingConcernGuidance.items.map((item) => (
+                <article
+                  key={item.label}
+                  className={`border-l-4 bg-background p-5 ${
+                    item.href
+                      ? "border-brand-red"
+                      : "border-brand-gold"
+                  }`}
+                >
+                  <h3 className="text-sm font-semibold text-brand-blue-strong">
+                    {item.label}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                    {item.body}
+                  </p>
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 inline-flex text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/40 hover:text-brand-red"
+                    >
+                      {item.linkLabel}
+                    </a>
+                  ) : null}
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      <section className="bg-background py-10 sm:py-12">
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
           <aside className="border-y border-border-soft bg-surface-muted py-6 sm:py-8 lg:border-l lg:border-y-0 lg:px-8">
             <h2 className="text-xl font-semibold text-brand-blue-strong">
@@ -191,7 +259,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
             </div>
           </aside>
 
-          <div className="rounded-lg border border-border-soft bg-surface p-6 sm:p-8">
+          <div className="border border-border-soft bg-surface p-6 sm:p-8">
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
               Parent summary
             </h2>
@@ -262,50 +330,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
         </div>
       </section>
 
-      {isSafeguardingPolicy ? (
-        <section className="border-t border-border-soft bg-background site-section-compact">
-          <div className="mx-auto grid max-w-7xl gap-6 px-6 lg:grid-cols-[0.75fr_1.25fr] lg:px-8">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
-                Safeguarding concern
-              </p>
-              <h2 className="mt-3 text-2xl font-semibold text-brand-blue-strong">
-                {safeguardingConcernGuidance.title}
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-slate-600">
-                {safeguardingConcernGuidance.intro}
-              </p>
-            </div>
-            <div className="grid gap-4 md:grid-cols-3">
-              {safeguardingConcernGuidance.items.map((item) => (
-                <article
-                  key={item.label}
-                  className="rounded-lg border border-border-soft bg-surface p-5"
-                >
-                  <h3 className="text-sm font-semibold text-brand-blue-strong">
-                    {item.label}
-                  </h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-600">
-                    {item.body}
-                  </p>
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-4 inline-flex text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/40 hover:text-brand-red"
-                    >
-                      {item.linkLabel}
-                    </a>
-                  ) : null}
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-      ) : null}
-
-      <section className="border-t border-border-soft bg-surface site-section-compact">
+      <section className="border-t border-border-soft bg-surface py-10 sm:py-12">
         <div className="mx-auto grid max-w-7xl gap-6 px-6 md:grid-cols-[0.8fr_1.2fr] lg:px-8">
           <div>
             <h2 className="text-2xl font-semibold text-brand-blue-strong">

@@ -3,8 +3,8 @@ import { ButtonLink } from "@/components/site/button-link";
 import { DecisionPanel } from "@/components/site/decision-panel";
 import { PageCta } from "@/components/site/page-cta";
 import { PageHero } from "@/components/site/page-hero";
+import { SchoolEvidencePanel } from "@/components/site/school-evidence-panel";
 import { SectionIntro } from "@/components/site/section-intro";
-import { VisualStoryPanel } from "@/components/site/visual-story-panel";
 import {
   curriculumDetailsPendingReview,
   curriculumMaterials,
@@ -15,16 +15,43 @@ import {
   placementSignals,
   placementSteps,
 } from "@/data/curriculum";
-import { getVisualPlaceholderSlot } from "@/data/media-assets";
+import { approvedMediaAssets, type MediaAsset } from "@/data/media-assets";
 import { classGroups } from "@/data/schools";
 
-const curriculumVisual = getVisualPlaceholderSlot("curriculum-culture-shelf");
+const quietHeroLink =
+  "min-h-0 w-auto justify-start px-0 py-1 text-left sm:min-h-11 sm:justify-center sm:px-5 sm:py-3";
+
+const curriculumEvidenceAssets = getApprovedMediaByIds([
+  "IMG-0008",
+  "IMG-0035",
+  "IMG-0207",
+]);
+
+const curriculumEvidenceNotes = [
+  "Classroom materials, writing, and cultural work are shown without relying on private pupil records.",
+  "Families can understand the learning texture before asking about the right class group.",
+];
 
 const learningJourneyNotes = [
   "Weekend classes keep Russian visible and usable beyond the home.",
   "Children are supported as bilingual learners, heritage speakers, beginners, or exam-focused pupils.",
   "Teachers can adjust the learning path when a child needs more confidence, more challenge, or a clearer qualification plan.",
 ];
+
+const syllabusThreads = [
+  "Speaking and listening",
+  "Reading and writing",
+  "Grammar and vocabulary",
+  "Literature and culture",
+  "Projects, performance, and celebration",
+  "GCSE or A Level planning when relevant",
+];
+
+function getApprovedMediaByIds(ids: string[]) {
+  return ids
+    .map((id) => approvedMediaAssets.find((asset) => asset.id === id))
+    .filter((asset): asset is MediaAsset => Boolean(asset));
+}
 
 export const metadata: Metadata = {
   title: "Curriculum",
@@ -50,9 +77,13 @@ export default function CurriculumPage() {
         asideAlign="start"
         aside={
           <div className="grid content-start gap-4">
-            {curriculumVisual ? (
-              <VisualStoryPanel slot={curriculumVisual} compact />
-            ) : null}
+            <SchoolEvidencePanel
+              eyebrow="Learning evidence"
+              title="Materials, writing, and culture shape the pathway"
+              summary="Approved archive examples show the kind of practical work that sits behind the syllabus pathway."
+              assets={curriculumEvidenceAssets}
+              notes={curriculumEvidenceNotes}
+            />
             <div className="rounded-lg border border-border-soft bg-background p-5">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
                 Class pathway
@@ -73,31 +104,34 @@ export default function CurriculumPage() {
         actions={
           <>
             <ButtonLink href="/schools">Choose a branch</ButtonLink>
-            <ButtonLink href="/contact#enquiry-form" variant="secondary">
+            <ButtonLink
+              href="/contact#enquiry-form"
+              variant="quiet"
+              className={quietHeroLink}
+            >
               Ask about placement
             </ButtonLink>
           </>
         }
       >
         <p>
-          A parent-friendly view of the pathway: enough structure to choose the
-          right next step, with space for teachers to place each child
-          thoughtfully after learning more about their Russian.
+          A parent-friendly syllabus pathway: what pupils build, how the work
+          becomes more demanding, and what teachers look at before confirming a
+          class.
         </p>
       </PageHero>
 
       <section className="bg-background site-section-compact">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.86fr_1.14fr] lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.82fr_1.18fr] lg:px-8">
           <div>
             <SectionIntro
-              eyebrow="Learning promise"
-              title="A curriculum that moves from confidence to independence"
+              eyebrow="Curriculum map"
+              title="The same strands return at a deeper level each year"
             >
               <p>
-                The curriculum is framed as a progression parents can
-                understand: children start by using Russian more comfortably,
-                then build literacy and cultural knowledge, with exam planning
-                introduced when it becomes relevant.
+                Pupils do not move through isolated topics. Each stage revisits
+                the same core strands, with more independence in speaking,
+                reading, writing, grammar, and cultural interpretation.
               </p>
             </SectionIntro>
             <ul className="mt-8 space-y-3 text-sm leading-6 text-slate-700">
@@ -111,12 +145,26 @@ export default function CurriculumPage() {
               ))}
             </ul>
           </div>
-          <div className="premium-panel rounded-lg border border-border-soft bg-surface p-6 sm:p-8">
+          <div className="grid gap-8">
+            <div className="border-y border-border-soft py-6">
+              <p className="text-sm font-semibold text-brand-blue-strong">
+                Syllabus strands
+              </p>
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                {syllabusThreads.map((thread) => (
+                  <div key={thread} className="border-l border-brand-gold pl-4">
+                    <p className="text-sm leading-6 text-slate-700">
+                      {thread}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
             <div className="divide-y divide-border-soft">
               {curriculumPillars.map((pillar, index) => (
                 <article
                   key={pillar.title}
-                  className="grid gap-4 py-6 first:pt-0 last:pb-0 sm:grid-cols-[4rem_1fr]"
+                  className="grid gap-4 py-5 first:pt-0 last:pb-0 sm:grid-cols-[4rem_1fr]"
                 >
                   <p className="font-mono text-sm font-semibold text-brand-red">
                     0{index + 1}
@@ -140,19 +188,30 @@ export default function CurriculumPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="Progression"
-            title="A simple journey from first confidence to exam focus"
+            title="A clearer route from first confidence to exam focus"
           >
             <p>
-              These high-level stages help parents see where their child may
-              fit, while detailed class plans remain part of teacher-led
-              placement rather than a promise based only on age.
+              These stages show the typical teaching emphasis. Exact class
+              placement still depends on the child&apos;s current Russian, not
+              age alone.
             </p>
           </SectionIntro>
-          <div className="mt-10 overflow-hidden rounded-lg border border-border-soft bg-background">
+          <div className="mt-10 grid gap-8 lg:grid-cols-[0.34fr_0.66fr]">
+            <aside className="border-l border-brand-gold pl-5">
+              <p className="text-sm font-semibold text-brand-blue-strong">
+                What changes as pupils progress
+              </p>
+              <p className="mt-3 text-sm leading-6 text-slate-600">
+                Lessons move from supported oral confidence and early literacy
+                towards longer reading, more accurate writing, explicit grammar,
+                cultural texts, and qualification planning where needed.
+              </p>
+            </aside>
+            <div className="divide-y divide-border-soft border-y border-border-soft">
             {curriculumProgressionStages.map((stage) => (
               <article
                 key={stage.title}
-                className="grid gap-6 border-b border-border-soft p-6 last:border-b-0 lg:grid-cols-[0.75fr_1fr]"
+                className="grid gap-6 py-6 lg:grid-cols-[0.72fr_1fr]"
               >
                 <div>
                   <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
@@ -169,12 +228,9 @@ export default function CurriculumPage() {
                   <p className="text-sm font-semibold text-brand-blue-strong">
                     Typical focus
                   </p>
-                  <ul className="mt-4 grid gap-3 text-sm leading-6 text-slate-700 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+                  <ul className="mt-4 grid gap-2 text-sm leading-6 text-slate-700">
                     {stage.focusAreas.map((area) => (
-                      <li
-                        key={area}
-                        className="border-l border-brand-gold bg-surface px-4 py-3"
-                      >
+                      <li key={area} className="border-l border-brand-gold pl-4">
                         {area}
                       </li>
                     ))}
@@ -182,6 +238,7 @@ export default function CurriculumPage() {
                 </div>
               </article>
             ))}
+            </div>
           </div>
         </div>
       </section>
@@ -262,11 +319,11 @@ export default function CurriculumPage() {
               but distinct.
             </p>
           </SectionIntro>
-          <div className="mt-10 overflow-hidden rounded-lg border border-white/15">
+          <div className="mt-10 divide-y divide-white/15 border-y border-white/15">
             {curriculumRouteRecommendations.map((route) => (
               <article
                 key={route.title}
-                className="grid gap-5 border-b border-white/15 bg-white/10 p-6 last:border-b-0 lg:grid-cols-[0.65fr_1fr_auto] lg:items-center"
+                className="grid gap-5 py-6 lg:grid-cols-[0.65fr_1fr_auto] lg:items-center"
               >
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">

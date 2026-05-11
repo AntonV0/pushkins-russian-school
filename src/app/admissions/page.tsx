@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { ButtonLink } from "@/components/site/button-link";
-import { DecisionPanel } from "@/components/site/decision-panel";
 import { PageCta } from "@/components/site/page-cta";
 import { PageHero } from "@/components/site/page-hero";
+import { SchoolEvidencePanel } from "@/components/site/school-evidence-panel";
 import { SectionIntro } from "@/components/site/section-intro";
-import { VisualStoryPanel } from "@/components/site/visual-story-panel";
 import {
   admissionsSteps,
   childAgeOptions,
@@ -16,10 +15,28 @@ import {
   curriculumRouteRecommendations,
   placementSignals,
 } from "@/data/curriculum";
-import { getVisualPlaceholderSlot } from "@/data/media-assets";
+import { approvedMediaAssets, type MediaAsset } from "@/data/media-assets";
 import { schools } from "@/data/schools";
 
-const admissionsVisual = getVisualPlaceholderSlot("admissions-learning-journey");
+const quietHeroLink =
+  "min-h-0 w-auto justify-start px-0 py-1 text-left sm:min-h-11 sm:justify-center sm:px-5 sm:py-3";
+
+const admissionsEvidenceAssets = getApprovedMediaByIds([
+  "IMG-0006",
+  "IMG-0061",
+  "IMG-0148",
+]);
+
+const admissionsEvidenceNotes = [
+  "The first enquiry is about context and fit, not registration paperwork.",
+  "Venue, classroom, and learning-material details help families picture the route before placement is confirmed.",
+];
+
+function getApprovedMediaByIds(ids: string[]) {
+  return ids
+    .map((id) => approvedMediaAssets.find((asset) => asset.id === id))
+    .filter((asset): asset is MediaAsset => Boolean(asset));
+}
 
 export const metadata: Metadata = {
   title: "Admissions and Fees",
@@ -48,9 +65,13 @@ export default function AdmissionsPage() {
         asideAlign="start"
         aside={
           <div className="grid content-start gap-4">
-            {admissionsVisual ? (
-              <VisualStoryPanel slot={admissionsVisual} compact />
-            ) : null}
+            <SchoolEvidencePanel
+              eyebrow="Before placement"
+              title="A first enquiry connects a child to the right route"
+              summary="Approved public examples sit beside the practical details families share before the school recommends a route."
+              assets={admissionsEvidenceAssets}
+              notes={admissionsEvidenceNotes}
+            />
             <aside className="border-y border-border-soft bg-background/70 py-6">
               <h2 className="text-xl font-semibold text-brand-blue-strong">
                 Current school status
@@ -85,11 +106,12 @@ export default function AdmissionsPage() {
         actions={
           <>
             <ButtonLink href="/contact#enquiry-form">Start an enquiry</ButtonLink>
-            <ButtonLink href="/schools" variant="secondary">
-              Compare branches
-            </ButtonLink>
-            <ButtonLink href="/faq" variant="secondary">
-              Read FAQ
+            <ButtonLink
+              href="/faq"
+              variant="quiet"
+              className={quietHeroLink}
+            >
+              Read common questions
             </ButtonLink>
           </>
         }
@@ -105,62 +127,22 @@ export default function AdmissionsPage() {
       <section className="border-b border-border-soft bg-background site-section-compact">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
-            eyebrow="Choosing the best option"
-            title="One enquiry can point families to the right option"
+            eyebrow="Admissions checklist"
+            title="What happens before a place or route is confirmed"
           >
             <p>
-              Pushkin&apos;s School remains the local weekend option where a
-              branch fits. If distance, branch status, or exam goals suggest a
-              different path, the enquiry can also point families towards Volna
-              Online Russian School or GCSERussian.com.
+              The process is practical and deliberately calm: share enough
+              context, let the school check the options, then confirm the
+              sensible next step.
             </p>
           </SectionIntro>
-          <div className="mt-10 divide-y divide-border-soft border-y border-border-soft">
-            {curriculumRouteRecommendations.map((route) => (
-              <article
-                key={route.title}
-                className="grid gap-5 py-6 lg:grid-cols-[0.56fr_1fr_auto] lg:items-center"
-              >
-                <div>
-                  <h2 className="text-xl font-semibold text-brand-blue-strong">
-                    {route.title}
-                  </h2>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">
-                    {route.bestWhen}
-                  </p>
-                </div>
-                <p className="text-sm leading-6 text-slate-600">
-                  {route.recommendation}
-                </p>
-                <div className="lg:justify-self-end">
-                  <ButtonLink href={route.href} variant="secondary">
-                    {route.ctaLabel}
-                  </ButtonLink>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-background site-section-compact">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <SectionIntro
-            eyebrow="How admissions works"
-            title="Three steps for a useful first conversation"
-          >
-            <p>
-              The process is written for parents: practical, transparent, and
-              careful about what still needs school confirmation.
-            </p>
-          </SectionIntro>
-          <ol className="mt-10 overflow-hidden rounded-lg border border-border-soft bg-surface">
+          <ol className="mt-10 divide-y divide-border-soft border-y border-border-soft">
             {admissionsSteps.map((step, index) => (
               <li
                 key={step.title}
-                className="grid gap-4 border-b border-border-soft p-6 last:border-b-0 md:grid-cols-[4rem_1fr]"
+                className="grid gap-4 py-6 md:grid-cols-[4rem_1fr]"
               >
-                <span className="flex size-11 items-center justify-center rounded-full border border-brand-gold/50 bg-background font-mono text-sm font-semibold text-brand-red">
+                <span className="font-mono text-sm font-semibold text-brand-red">
                   0{index + 1}
                 </span>
                 <span>
@@ -177,41 +159,121 @@ export default function AdmissionsPage() {
         </div>
       </section>
 
-      <section className="border-y border-border-soft bg-surface site-section-compact">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.74fr_1.26fr] lg:px-8">
+      <section className="border-b border-border-soft bg-surface site-section-compact">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.76fr_1.24fr] lg:px-8">
           <SectionIntro
-            eyebrow="Parent decision points"
-            title="What the school can help you decide"
+            eyebrow="What to send"
+            title="The first enquiry only needs the useful basics"
           >
             <p>
-              Parents do not need to solve branch choice, class level, and exam
-              route alone. A good first enquiry gives enough context for the
-              school to recommend the next practical step.
+              You do not need registration paperwork, medical details, or final
+              payment information at this stage. These details are enough for a
+              first recommendation.
             </p>
           </SectionIntro>
-          <div className="grid gap-4 md:grid-cols-3">
-            {[
-              {
-                title: "Current class fit",
-                body: "Whether Bracknell, online lessons, or another route is the right starting point.",
-              },
-              {
-                title: "Future local interest",
-                body: "Whether your preferred area should be recorded for future weekend provision.",
-              },
-              {
-                title: "Exam preparation",
-                body: "Whether GCSE or A Level goals need a class, online support, or self-study route.",
-              },
-            ].map((item) => (
-              <DecisionPanel
-                key={item.title}
-                title={item.title}
+          <div>
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {enquiryChecklist.map((item) => (
+                <li
+                  key={item}
+                  className="border-l border-brand-gold bg-background/70 px-4 py-3 text-sm leading-6 text-slate-700"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8 grid gap-5 md:grid-cols-2">
+              <div>
+                <h2 className="text-lg font-semibold text-brand-blue-strong">
+                  Age range
+                </h2>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {childAgeOptions.map((option) => (
+                    <span
+                      key={option}
+                      className="rounded-full border border-border-soft bg-background px-3 py-2 text-sm font-semibold text-brand-blue-strong"
+                    >
+                      {option}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h2 className="text-lg font-semibold text-brand-blue-strong">
+                  Russian level
+                </h2>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {russianLevelOptions.map((option) => (
+                    <span
+                      key={option}
+                      className="rounded-full border border-border-soft bg-background px-3 py-2 text-sm font-semibold text-brand-blue-strong"
+                    >
+                      {option}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border-soft bg-background site-section-compact">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.72fr_1.28fr] lg:px-8">
+          <SectionIntro
+            eyebrow="Possible routes"
+            title="The enquiry can be directed without repeating the whole curriculum"
+          >
+            <p>
+              Most families start with the nearest weekend school. Where that
+              is not the best fit, the school can point the enquiry to online
+              lessons, future local interest, or exam support.
+            </p>
+          </SectionIntro>
+          <div className="divide-y divide-border-soft border-y border-border-soft">
+            {curriculumRouteRecommendations.map((route) => (
+              <article
+                key={route.title}
+                className="grid gap-4 py-5 md:grid-cols-[1fr_auto] md:items-center"
               >
-                <p>{item.body}</p>
-              </DecisionPanel>
+                <div>
+                  <h2 className="text-lg font-semibold text-brand-blue-strong">
+                    {route.title}
+                  </h2>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    {route.bestWhen}
+                  </p>
+                </div>
+                <ButtonLink href={route.href} variant="secondary">
+                  {route.ctaLabel}
+                </ButtonLink>
+              </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border-soft bg-surface site-section-compact">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.78fr_1.22fr] lg:px-8">
+          <SectionIntro
+            eyebrow="Placement"
+            title="What teachers look at before recommending a group"
+          >
+            <p>
+              Placement is based on the child&apos;s real language confidence,
+              not just their age or school year.
+            </p>
+          </SectionIntro>
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {placementSignals.map((signal) => (
+              <li
+                key={signal}
+                className="border-l border-brand-gold bg-background/70 px-4 py-3 text-sm leading-6 text-slate-700"
+              >
+                {signal}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -242,86 +304,6 @@ export default function AdmissionsPage() {
               Payment method: {paymentDetails.acceptedMethods.join(", ")}.
               {` ${paymentDetails.bankDetailsStatus}`}
             </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-background site-section-compact">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-2 lg:px-8">
-          <div>
-            <h2 className="text-2xl font-semibold text-brand-blue-strong">
-              What to include in an enquiry
-            </h2>
-            <ul className="mt-5 grid gap-3">
-              {enquiryChecklist.map((item) => (
-                <li
-                  key={item}
-                  className="border-l border-brand-gold bg-surface/70 px-4 py-3 text-sm text-slate-700"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
-            <div>
-              <h2 className="text-2xl font-semibold text-brand-blue-strong">
-                Placement signals
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-slate-600">
-                These details help the school understand whether the child is
-                ready for a local class, online support, exam preparation, or a
-                first confidence-building step.
-              </p>
-              <ul className="mt-5 grid gap-2">
-                {placementSignals.slice(0, 4).map((signal) => (
-                  <li
-                    key={signal}
-                    className="border-l border-brand-gold bg-surface/70 px-4 py-3 text-sm leading-6 text-slate-700"
-                  >
-                    {signal}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h2 className="text-2xl font-semibold text-brand-blue-strong">
-                Age ranges
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-slate-600">
-                These ranges help parents describe the child&apos;s stage; the
-                school can confirm the best class group.
-              </p>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {childAgeOptions.map((option) => (
-                  <span
-                    key={option}
-                    className="rounded-full border border-border-soft bg-surface px-3 py-2 text-sm font-semibold text-brand-blue-strong"
-                  >
-                    {option}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h2 className="text-2xl font-semibold text-brand-blue-strong">
-                Russian level
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-slate-600">
-                Families do not need to know the exact group before enquiring.
-                These options simply make the first message easier to answer.
-              </p>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {russianLevelOptions.map((option) => (
-                  <span
-                    key={option}
-                    className="rounded-full border border-border-soft bg-surface px-3 py-2 text-sm font-semibold text-brand-blue-strong"
-                  >
-                    {option}
-                  </span>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </section>

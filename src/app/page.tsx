@@ -2,17 +2,13 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ButtonLink } from "@/components/site/button-link";
-import { DecisionPanel } from "@/components/site/decision-panel";
-import { LearningOptions } from "@/components/site/learning-options";
 import { PageCta } from "@/components/site/page-cta";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionIntro } from "@/components/site/section-intro";
-import { TrustSignals } from "@/components/site/trust-signals";
 import { admissionsSteps } from "@/data/admissions";
 import { contactDetails } from "@/data/contact";
 import {
   curriculumPillars,
-  curriculumProgressionStages,
   placementSteps,
 } from "@/data/curriculum";
 import { learningOptionSummary } from "@/data/learning-options";
@@ -32,6 +28,37 @@ const heroSupportingAssets = [
   getGalleryCategoryCoverAsset("creative-work"),
   getGalleryCategoryCoverAsset("performances"),
 ].filter((asset): asset is MediaAsset => Boolean(asset));
+
+const quietHeroLink =
+  "min-h-0 w-auto justify-start px-0 py-1 text-left sm:min-h-11 sm:justify-center sm:px-5 sm:py-3";
+
+const parentJourney = [
+  {
+    title: "Choose the nearest sensible location",
+    body: "Start with the branch page that fits your journey. Current opening details and paused local interest are easier to compare before you contact the school.",
+    href: "/schools",
+    cta: "Compare branches",
+  },
+  {
+    title: "Describe your child clearly",
+    body: "Age matters, but so do confidence, home language exposure, reading, writing, and whether exams are already part of the family plan.",
+    href: "/curriculum",
+    cta: "Understand levels",
+  },
+  {
+    title: "Ask a focused question",
+    body: "A useful enquiry names the preferred location, the child's current Russian, and the next step you need: a place, advice, online support, or exam preparation.",
+    href: "/contact#enquiry-form",
+    cta: "Start an enquiry",
+  },
+];
+
+const enquiryPrompts = [
+  "Which branch is realistic for your family each weekend?",
+  "How much Russian does your child hear or use at home?",
+  "Can they read or write in Russian already?",
+  "Are you looking for confidence, continuity, culture, or exam support?",
+];
 
 export const metadata: Metadata = {
   title: "Pushkin's School of Russian Language and Literature",
@@ -57,7 +84,11 @@ export default function Home() {
         actions={
           <>
             <ButtonLink href="/schools">Find a school location</ButtonLink>
-            <ButtonLink href="/contact#enquiry-form" variant="secondary">
+            <ButtonLink
+              href="/contact#enquiry-form"
+              variant="quiet"
+              className={quietHeroLink}
+            >
               {contactDetails.registrationCta}
             </ButtonLink>
           </>
@@ -75,55 +106,67 @@ export default function Home() {
         </p>
       </PageHero>
 
-      <section className="border-b border-border-soft bg-background/80 py-7">
-        <div className="mx-auto grid max-w-7xl gap-6 px-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-center lg:px-8">
-          <dl className="grid gap-4 border-y border-border-soft py-4 text-sm sm:grid-cols-3 lg:border-y-0 lg:border-l lg:py-0 lg:pl-6">
-            {[
-              { label: "School locations", value: networkSummary.locations },
-              { label: "Current in-person", value: openSchools.length },
-              { label: "Future interest", value: interestSchools.length },
-            ].map((metric) => (
-              <div key={metric.label}>
-                <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
-                  {metric.label}
-                </dt>
-                <dd className="mt-1 text-2xl font-semibold text-brand-blue-strong">
-                  {metric.value}
-                </dd>
-              </div>
+      <section className="bg-background site-section-compact">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.72fr_1.28fr] lg:px-8">
+          <div>
+            <SectionIntro
+              eyebrow="Parent journey"
+              title="Three useful questions before you enquire"
+            >
+              <p>
+                The first step is not choosing a package. It is making the
+                child&apos;s weekend, language background, and learning goal
+                clear enough for the school to advise the next move.
+              </p>
+            </SectionIntro>
+            <p className="mt-8 max-w-xl text-base leading-7 text-slate-700">
+              {learningOptionSummary} The right option depends on distance,
+              current confidence, and whether your family needs regular
+              classes, online support, or exam preparation.
+            </p>
+          </div>
+
+          <div className="grid gap-6">
+            {parentJourney.map((item, index) => (
+              <article
+                key={item.title}
+                className="grid gap-4 border-l border-brand-gold bg-surface px-5 py-5 sm:grid-cols-[4rem_1fr_auto] sm:items-start sm:px-6"
+              >
+                <p className="font-mono text-3xl font-semibold text-brand-red/80">
+                  0{index + 1}
+                </p>
+                <div>
+                  <h2 className="text-2xl font-semibold leading-tight text-brand-blue-strong">
+                    {item.title}
+                  </h2>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                    {item.body}
+                  </p>
+                </div>
+                <Link
+                  href={item.href}
+                  className="text-sm font-semibold text-brand-blue-strong underline decoration-brand-gold/70 underline-offset-4"
+                >
+                  {item.cta}
+                </Link>
+              </article>
             ))}
-          </dl>
-          <div className="grid gap-3 text-sm leading-6 text-slate-700 sm:grid-cols-2">
-            <DecisionPanel
-              title="Bracknell weekend school"
-              actions={[{ href: "/schools/bracknell", label: "View branch" }]}
-              className="p-4 sm:p-4"
-            >
-              <p>Sunday morning classes currently listed for enquiries.</p>
-            </DecisionPanel>
-            <DecisionPanel
-              title="Other local areas"
-              actions={[{ href: "/schools", label: "Compare options" }]}
-              className="p-4 sm:p-4"
-            >
-              <p>Parents can register interest where local classes pause.</p>
-            </DecisionPanel>
           </div>
         </div>
       </section>
 
-      <section className="site-section bg-background">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.78fr_1.22fr] lg:px-8">
+      <section className="border-y border-border-soft bg-surface site-section">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.72fr_1.28fr] lg:px-8">
           <div className="lg:sticky lg:top-32 lg:self-start">
             <SectionIntro
               eyebrow="Our schools"
-              title="Start with the nearest school location"
+              title="Start with the branch, then the fit"
             >
               <p>
-                Families can compare High Wycombe, Hemel Hempstead, Bracknell,
-                Chelmsford, and Southend-on-Sea in one place, then enquire with
-                the right location, age, Russian level, and goal already in
-                mind.
+                Families can compare {networkSummary.locations} listed
+                locations, including {openSchools.length} current in-person
+                branch and {interestSchools.length} local interest areas, then
+                use the enquiry form to ask about the realistic next step.
               </p>
             </SectionIntro>
             <div className="mt-7 hidden lg:block">
@@ -133,281 +176,138 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid gap-5">
-            <article className="premium-panel overflow-hidden rounded-lg border border-border-soft bg-surface">
-              <div className="grid lg:grid-cols-[0.92fr_1.08fr]">
-                <div className="relative min-h-80 overflow-hidden bg-brand-blue-strong text-white">
-                  <div className="fine-grid absolute inset-0 opacity-25" aria-hidden="true" />
-                  <div className="absolute inset-x-8 top-8 rounded-md border border-white/20 bg-white/10 p-5">
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/65">
-                      School life
-                    </p>
-                    <p className="mt-3 text-2xl font-semibold leading-tight">
-                      Language, culture, performance, and community
-                    </p>
-                  </div>
-                  <div className="absolute bottom-8 left-8 right-10 grid gap-3 sm:grid-cols-3">
-                    {["Language", "Culture", "Community"].map((label) => (
-                      <div
-                        key={label}
-                        className="rounded-md border border-white/15 bg-white/12 px-3 py-4 text-xs font-semibold uppercase tracking-[0.12em] text-white/75"
-                      >
-                        {label}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="p-6 sm:p-8">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
-                    What parents compare
-                  </p>
-                  <h2 className="mt-4 text-3xl font-semibold leading-tight text-brand-blue-strong">
-                    A local Saturday or Sunday rhythm, not a casual activity
-                  </h2>
-                  <p className="mt-4 text-sm leading-6 text-slate-600">
-                    Parents can quickly understand where classes happen,
-                    whether a place is available, how children are placed, and
-                    what the school offers beyond language drills.
-                  </p>
-                  <dl className="mt-6 grid gap-4 text-sm sm:grid-cols-3">
-                    <div>
-                      <dt className="font-mono text-2xl font-semibold text-brand-blue-strong">
-                        {networkSummary.locations}
-                      </dt>
-                      <dd className="mt-1 text-slate-600">listed locations</dd>
-                    </div>
-                    <div>
-                      <dt className="font-mono text-2xl font-semibold text-brand-blue-strong">
-                        3-18
-                      </dt>
-                      <dd className="mt-1 text-slate-600">age range</dd>
-                    </div>
-                    <div>
-                      <dt className="font-mono text-2xl font-semibold text-brand-blue-strong">
-                        {networkSummary.classGroupCount}
-                      </dt>
-                      <dd className="mt-1 text-slate-600">class pathways</dd>
-                    </div>
-                  </dl>
-                </div>
-              </div>
-            </article>
-
-            <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
-              <div className="overflow-hidden rounded-lg border border-border-soft bg-surface">
-                {schools.map((school, index) => (
-                  <Link
-                    key={school.slug}
-                    href={`/schools/${school.slug}`}
-                    className="grid gap-3 border-b border-border-soft px-5 py-4 transition last:border-b-0 hover:bg-surface-muted/60 sm:grid-cols-[2rem_1fr_auto] sm:items-center"
-                  >
-                    <span className="font-mono text-sm font-semibold text-brand-red">
-                      0{index + 1}
+          <div className="grid gap-8">
+            <div className="overflow-hidden bg-background">
+              {schools.map((school, index) => (
+                <Link
+                  key={school.slug}
+                  href={`/schools/${school.slug}`}
+                  className="grid gap-4 border-b border-border-soft py-5 transition last:border-b-0 hover:bg-surface-muted/60 sm:grid-cols-[4rem_1fr_10rem] sm:items-center sm:px-4"
+                >
+                  <span className="font-mono text-sm font-semibold text-brand-red">
+                    0{index + 1}
+                  </span>
+                  <span>
+                    <span className="block text-xl font-semibold text-brand-blue-strong">
+                      {school.name}
                     </span>
-                    <span>
-                      <span className="block font-semibold text-brand-blue-strong">
-                        {school.name}
-                      </span>
-                      <span className="mt-1 block text-sm text-slate-600">
-                        {school.availabilitySummary}
-                      </span>
+                    <span className="mt-1 block text-sm leading-6 text-slate-600">
+                      {school.availabilitySummary}
                     </span>
-                    <span className="text-sm font-semibold text-brand-blue-strong">
-                      Decision guide
-                    </span>
-                  </Link>
+                  </span>
+                  <span className="text-sm font-semibold text-brand-blue-strong">
+                    Branch guide
+                  </span>
+                </Link>
+              ))}
+            </div>
+            <div className="border-l border-brand-gold pl-5">
+              <h2 className="text-xl font-semibold text-brand-blue-strong">
+                What to include in your message
+              </h2>
+              <ul className="mt-4 grid gap-3 text-sm leading-6 text-slate-700 sm:grid-cols-2">
+                {enquiryPrompts.map((prompt) => (
+                  <li key={prompt}>{prompt}</li>
                 ))}
-              </div>
-
-              <DecisionPanel
-                eyebrow="Enquiry focus"
-                title="Help the school place your child well"
-                actions={[{ href: "/contact#enquiry-form", label: "Start an enquiry" }]}
-                className="flex flex-col justify-between"
-              >
-                <p>
-                  A strong enquiry gives the team the practical context:
-                  preferred location, age, Russian exposure, confidence with
-                  reading and writing, and exam goals where relevant.
-                </p>
-              </DecisionPanel>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="border-y border-border-soft bg-surface site-section-compact">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <TrustSignals
-            align="center"
-            intro="Families can check the school locations, curriculum, and policy structure before they enquire, with further school proof points added as suitable public records become available."
-          />
-        </div>
-      </section>
-
-      <section className="border-b border-border-soft bg-background site-section-compact">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <LearningOptions
-            intro={`${learningOptionSummary} Families can start with a local weekend class, ask about online support when distance is a barrier, or choose focused GCSE self-study support.`}
-          />
-        </div>
-      </section>
-
-      <section className="bg-brand-blue-strong site-section text-white">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:items-start">
-            <SectionIntro
-              eyebrow="Learning approach"
-              title="Structured, stimulating, and easy for parents to understand"
-              tone="dark"
-            >
-              <p>
-                The curriculum page gives parents a clear pathway into language
-                confidence, cultural connection, literature, and exam-aware
-                progression while detailed class guidance remains easy to
-                update.
-              </p>
-            </SectionIntro>
-
-            <div className="grid gap-4 md:grid-cols-3">
-              {curriculumPillars.map((pathway, index) => (
-                <article
-                  key={pathway.title}
-                  className="rounded-lg border border-white/15 bg-white p-5 text-brand-blue-strong shadow-2xl sm:p-6"
-                >
-                  <p className="font-mono text-sm font-semibold text-brand-red">
-                    0{index + 1}
-                  </p>
-                  <h2 className="mt-3 text-2xl font-semibold leading-tight">
+      <section className="bg-background site-section">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.72fr_1.28fr] lg:px-8">
+          <SectionIntro
+            eyebrow="Learning approach"
+            title="A curriculum with language, culture, and confidence in view"
+          >
+            <p>
+              The curriculum page gives parents a clearer pathway into
+              language confidence, cultural connection, literature, and
+              exam-aware progression without asking them to diagnose the
+              perfect group alone.
+            </p>
+          </SectionIntro>
+          <div className="divide-y divide-border-soft border-y border-border-soft">
+            {curriculumPillars.map((pathway, index) => (
+              <article
+                key={pathway.title}
+                className="grid gap-4 py-7 sm:grid-cols-[5rem_1fr]"
+              >
+                <p className="font-mono text-sm font-semibold text-brand-red">
+                  0{index + 1}
+                </p>
+                <div>
+                  <h2 className="text-2xl font-semibold leading-tight text-brand-blue-strong">
                     {pathway.title}
                   </h2>
-                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                  <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600">
                     {pathway.body}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-border-soft bg-surface site-section">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.78fr_1.22fr] lg:px-8">
+          <div>
+            <SectionIntro
+              eyebrow="Placement"
+              title="A thoughtful start in the right group"
+            >
+              <p>
+                Families do not need to solve the level question before
+                enquiring. The school separates first contact, teacher
+                placement, and the first-weeks check-in so the start can be
+                sensible for the child.
+              </p>
+            </SectionIntro>
+            <div className="mt-7">
+              <ButtonLink href="/curriculum" variant="secondary">
+                Explore curriculum pathways
+              </ButtonLink>
+            </div>
+          </div>
+          <div className="grid gap-10 md:grid-cols-2">
+            <div className="relative border-l border-brand-gold pl-6">
+              {placementSteps.map((step, index) => (
+                <article key={step.title} className="relative pb-8 last:pb-0">
+                  <span className="absolute -left-[2.05rem] top-1 flex size-5 items-center justify-center rounded-full border border-brand-gold bg-surface">
+                    <span className="size-2 rounded-full bg-brand-red" />
+                  </span>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
+                    Placement {index + 1}
+                  </p>
+                  <h2 className="mt-2 text-xl font-semibold text-brand-blue-strong">
+                    {step.title}
+                  </h2>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                    {step.body}
                   </p>
                 </article>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-border-soft bg-surface site-section-compact">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.72fr_1.28fr] lg:px-8">
-          <SectionIntro
-            eyebrow="Class placement"
-            title="A thoughtful start in the right group"
-          >
-            <p>
-              The school separates the first parent enquiry, teacher placement,
-              and first-weeks check-in so families know what happens before
-              they commit to the right learning option.
-            </p>
-          </SectionIntro>
-          <div className="relative">
-            <div className="absolute left-4 top-8 hidden h-[calc(100%-4rem)] w-px bg-brand-gold/60 md:block" />
-            {placementSteps.map((step, index) => (
-              <article
-                key={step.title}
-                className="relative grid gap-4 border-b border-border-soft py-6 last:border-b-0 md:grid-cols-[4rem_1fr]"
-              >
-                <div className="flex size-9 items-center justify-center rounded-full border border-brand-gold/50 bg-surface text-sm font-semibold text-brand-red shadow-sm">
-                  {index + 1}
-                </div>
-                <div>
-                  <h2 className="text-2xl font-semibold text-brand-blue-strong">
-                    {step.title}
-                  </h2>
-                  <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600">
-                    {step.body}
+            <div className="relative border-l border-brand-gold pl-6">
+              {admissionsSteps.map((item, index) => (
+                <article key={item.title} className="relative pb-8 last:pb-0">
+                  <span className="absolute -left-[2.05rem] top-1 flex size-5 items-center justify-center rounded-full border border-brand-gold bg-surface">
+                    <span className="size-2 rounded-full bg-brand-blue-strong" />
+                  </span>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
+                    Enquiry {index + 1}
                   </p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-background site-section-compact">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <SectionIntro
-            eyebrow="Progression"
-            title="From first confidence to exam preparation"
-            align="center"
-          >
-            <p>
-              Families do not need to diagnose the perfect level before
-              enquiring. The pathway is designed to help parents describe the
-              child&apos;s current confidence and goals, then choose the right
-              next step.
-            </p>
-          </SectionIntro>
-          <div className="mt-10 grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
-            {curriculumProgressionStages.map((stage) => (
-              <article
-                key={stage.title}
-                className="group rounded-lg border border-border-soft bg-surface p-6 transition hover:border-brand-gold/70 first:lg:row-span-2 first:lg:min-h-96 first:lg:p-8"
-              >
-                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
-                  {stage.audience}
-                </p>
-                <h2 className="mt-3 text-2xl font-semibold text-brand-blue-strong">
-                  {stage.title}
-                </h2>
-                <p className="mt-3 text-sm leading-6 text-slate-600">
-                  {stage.parentValue}
-                </p>
-                <ul className="mt-6 grid gap-2 text-sm leading-6 text-slate-600">
-                  {stage.focusAreas.map((area) => (
-                    <li key={area} className="border-l border-brand-gold pl-3">
-                      {area}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-          <div className="mt-8 text-center">
-            <ButtonLink href="/curriculum" variant="secondary">
-              Explore curriculum pathways
-            </ButtonLink>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-border-soft bg-surface site-section-compact">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <SectionIntro
-            eyebrow="Parent journey"
-            title="From branch choice to a useful enquiry"
-            align="center"
-          >
-            <p>
-              The enquiry path is designed to help families share the details
-              the school needs before visiting a location or arranging the next
-              step: child age, current Russian confidence, preferred school,
-              and learning goals.
-            </p>
-          </SectionIntro>
-          <div className="mt-10 overflow-hidden rounded-lg border border-border-soft bg-background">
-            {admissionsSteps.map((item, index) => (
-              <article
-                key={item.title}
-                className="grid gap-5 border-b border-border-soft p-6 last:border-b-0 md:grid-cols-[12rem_1fr_auto] md:items-center"
-              >
-                <p className="font-mono text-4xl font-semibold text-brand-red/80">
-                  0{index + 1}
-                </p>
-                <div>
-                  <h2 className="text-xl font-semibold text-brand-blue-strong">
+                  <h2 className="mt-2 text-xl font-semibold text-brand-blue-strong">
                     {item.title}
                   </h2>
-                  <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">
+                  <p className="mt-3 text-sm leading-6 text-slate-600">
                     {item.body}
                   </p>
-                </div>
-                <span className="hidden h-px w-20 bg-brand-gold md:block" />
-              </article>
-            ))}
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>

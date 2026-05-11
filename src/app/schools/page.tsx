@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ButtonLink } from "@/components/site/button-link";
-import { DecisionPanel } from "@/components/site/decision-panel";
 import { GoogleMapsNetworkPanel } from "@/components/site/google-maps-network-panel";
 import { LearningOptions } from "@/components/site/learning-options";
 import { MetricStrip } from "@/components/site/metric-strip";
@@ -10,8 +9,10 @@ import { PageCta } from "@/components/site/page-cta";
 import { PageHero } from "@/components/site/page-hero";
 import { SchoolComparisonTable } from "@/components/site/school-comparison-table";
 import { SectionIntro } from "@/components/site/section-intro";
-import { admissionsSteps } from "@/data/admissions";
 import { networkSummary, schools } from "@/data/schools";
+
+const quietHeroLink =
+  "min-h-0 w-auto justify-start px-0 py-1 text-left sm:min-h-11 sm:justify-center sm:px-5 sm:py-3";
 
 export const metadata: Metadata = {
   title: "Schools",
@@ -42,7 +43,11 @@ export default function SchoolsPage() {
         actions={
           <>
             <ButtonLink href="#location-explorer">Explore locations</ButtonLink>
-            <ButtonLink href="#compare-branches" variant="secondary">
+            <ButtonLink
+              href="#compare-branches"
+              variant="quiet"
+              className={quietHeroLink}
+            >
               Compare branches
             </ButtonLink>
           </>
@@ -74,13 +79,14 @@ export default function SchoolsPage() {
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
-            eyebrow="Location explorer"
-            title="A clearer way to choose a branch"
+            eyebrow="Location guide"
+            title="Choose by availability first, then by fit"
           >
             <p>
-              The map, status notes, branch summaries, and enquiry actions sit
-              together so parents can separate current weekend availability
-              from future local interest in one scan.
+              The school network mixes one current weekend branch with towns
+              where families can register local demand or ask about online
+              learning. This guide keeps those routes separate before you
+              enquire.
             </p>
           </SectionIntro>
           <div className="mt-8">
@@ -97,69 +103,89 @@ export default function SchoolsPage() {
           <div>
             <SectionIntro
               eyebrow="Current availability"
-              title="Start with the branch status, then the child&apos;s fit"
+              title="The practical order for a parent enquiry"
             >
               <p>
-                Pushkin&apos;s School is a weekend supplementary school, so the
-                most useful enquiry includes location, age, current Russian
-                confidence, and whether your family needs a place now or wants
-                future local provision.
+                Start with whether you need a current weekend place, want to
+                signal future local demand, or need an online option. Then share
+                the child&apos;s age, Russian confidence, and exam goals if relevant.
               </p>
             </SectionIntro>
-            <DecisionPanel
-              eyebrow="Start here"
-              title={
-                currentSchool
-                  ? `${currentSchool.name}: ${currentSchool.schedule}`
-                  : "Weekend timetable confirmed by enquiry"
-              }
-              actions={[
-                {
-                  href: currentSchool
-                    ? `/schools/${currentSchool.slug}`
-                    : "/contact#enquiry-form",
-                  label: currentSchool ? "View current branch" : "Start an enquiry",
-                },
-              ]}
-              className="mt-7"
-            >
-              <p>
+            <div className="mt-7 border-l-4 border-brand-red bg-background px-5 py-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
+                Best first step
+              </p>
+              <h2 className="mt-2 text-xl font-semibold text-brand-blue-strong">
                 {currentSchool
-                  ? `${currentSchool.venueName} is the current listed in-person branch. Other towns remain visible for register-interest enquiries and online learning.`
+                  ? `${currentSchool.name}: ${currentSchool.schedule}`
+                  : "Weekend timetable confirmed by enquiry"}
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-slate-600">
+                {currentSchool
+                  ? `${currentSchool.venueName} is the current listed in-person branch. Use the wider list for register-interest areas and online options.`
                   : "Current in-person places and local venue details are confirmed directly through the school."}
               </p>
-            </DecisionPanel>
-          </div>
-          <div className="premium-panel overflow-hidden rounded-lg border border-border-soft bg-surface">
-            <div className="border-b border-border-soft bg-white px-5 py-4 sm:px-6">
-              <p className="text-sm font-semibold text-brand-blue-strong">
-                Parent enquiry flow
-              </p>
-              <p className="mt-1 text-sm leading-6 text-slate-600">
-                A focused enquiry helps the school recommend a branch, group,
-                or online lesson option without back-and-forth.
-              </p>
+              <ButtonLink
+                href={
+                  currentSchool
+                    ? `/schools/${currentSchool.slug}`
+                    : "/contact#enquiry-form"
+                }
+                className="mt-5"
+              >
+                {currentSchool ? "View current branch" : "Start an enquiry"}
+              </ButtonLink>
             </div>
-            <ol className="divide-y divide-border-soft">
-              {admissionsSteps.map((step, index) => (
-                <li
-                  key={step.title}
-                  className="grid gap-4 px-5 py-5 sm:grid-cols-[3rem_1fr] sm:px-6"
+          </div>
+          <div className="grid gap-4">
+            {[
+              {
+                label: "Current/open",
+                title: "Ask about a weekend place",
+                body: currentSchool
+                  ? `${currentSchool.name} is the current in-person branch. Check spaces, class fit, start date, and arrival details before attending.`
+                  : "Ask the school which current weekend options are available.",
+                href: currentSchool
+                  ? currentSchool.bestNextSteps[0]?.href
+                  : "/contact#enquiry-form",
+                cta: "Ask about current places",
+              },
+              {
+                label: "Register interest",
+                title: "Signal demand for a local town",
+                body: "Use this if you would attend future classes in High Wycombe, Hemel Hempstead, Chelmsford, Southend-on-Sea, or another listed area.",
+                href: "/schools#compare-branches",
+                cta: "Compare interest areas",
+              },
+              {
+                label: "Online route",
+                title: "Start sooner without a nearby branch",
+                body: "Ask whether online lessons or exam-focused support would be more practical while local provision is not confirmed.",
+                href: "/contact?intent=online-learning#enquiry-form",
+                cta: "Ask about online learning",
+              },
+            ].map((item) => (
+              <article
+                key={item.label}
+                className="border-l border-brand-gold bg-background px-5 py-4"
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">
+                  {item.label}
+                </p>
+                <h2 className="mt-2 text-lg font-semibold text-brand-blue-strong">
+                  {item.title}
+                </h2>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  {item.body}
+                </p>
+                <Link
+                  href={item.href ?? "/contact#enquiry-form"}
+                  className="mt-3 inline-flex text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/35 hover:text-brand-red"
                 >
-                  <span className="flex size-11 items-center justify-center rounded-full border border-brand-gold/50 bg-surface-muted text-sm font-semibold text-brand-blue-strong">
-                    {index + 1}
-                  </span>
-                  <span>
-                    <span className="block text-base font-semibold text-brand-blue-strong">
-                      {step.title}
-                    </span>
-                    <span className="mt-2 block text-sm leading-6 text-slate-600">
-                      {step.body}
-                    </span>
-                  </span>
-                </li>
-              ))}
-            </ol>
+                  {item.cta}
+                </Link>
+              </article>
+            ))}
           </div>
         </div>
       </section>

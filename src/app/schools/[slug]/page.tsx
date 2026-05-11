@@ -6,16 +6,9 @@ import { JsonLd } from "@/components/site/json-ld";
 import { LearningOptions } from "@/components/site/learning-options";
 import { LocationMediaShowcase } from "@/components/site/location-media-showcase";
 import { RelatedSchools } from "@/components/site/related-schools";
-import { SectionIntro } from "@/components/site/section-intro";
 import { StatusBadge } from "@/components/site/status-badge";
 import { enquiryChecklist, getSchoolEnquiryHref } from "@/data/admissions";
 import { contactDetails, paymentDetails } from "@/data/contact";
-import {
-  curriculumMaterials,
-  curriculumProgressionStages,
-  placementSignals,
-  placementSteps,
-} from "@/data/curriculum";
 import { getLearningOptionsForBranchStatus } from "@/data/learning-options";
 import { getLocationPageMediaByBranch } from "@/data/media-assets";
 import { getSchoolBySlug, schools } from "@/data/schools";
@@ -24,6 +17,9 @@ import { absoluteUrl, siteConfig } from "@/data/site";
 type SchoolPageProps = {
   params: Promise<{ slug: string }>;
 };
+
+const quietHeroLink =
+  "inline-flex min-h-0 w-auto justify-start rounded-none border-0 bg-transparent px-0 py-1 text-left text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/35 underline-offset-4 shadow-none transition hover:text-brand-red hover:decoration-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30 sm:min-h-11 sm:justify-center sm:rounded-md sm:border sm:border-brand-blue/20 sm:bg-white/70 sm:px-5 sm:py-3 sm:no-underline";
 
 export function generateStaticParams() {
   return schools.map((school) => ({ slug: school.slug }));
@@ -134,7 +130,11 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 {school.enquiryCta}
               </ButtonLink>
               {!hasCurrentVenue && school.bestNextSteps[1] ? (
-                <ButtonLink href={school.bestNextSteps[1].href} variant="secondary">
+                <ButtonLink
+                  href={school.bestNextSteps[1].href}
+                  variant="quiet"
+                  className="min-h-0 w-auto justify-start px-0 py-1 text-left sm:min-h-11 sm:justify-center sm:px-5 sm:py-3"
+                >
                   {school.bestNextSteps[1].ctaLabel}
                 </ButtonLink>
               ) : null}
@@ -142,7 +142,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 href={school.mapHref}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-brand-blue/20 bg-white/70 px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:bg-white hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30 sm:w-auto"
+                className={quietHeroLink}
               >
                 {hasCurrentVenue ? "View map" : "View area map"}
               </a>
@@ -152,7 +152,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
           {hasCurrentVenue ? (
             <aside className="premium-panel rounded-lg border border-border-soft bg-surface-muted p-6 sm:p-8">
               <h2 className="text-xl font-semibold text-brand-blue-strong">
-                Venue and timetable
+                Visit snapshot
               </h2>
               <dl className="mt-6 space-y-5 text-sm">
                 <div>
@@ -176,6 +176,15 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                     Schedule
                   </dt>
                   <dd className="mt-1 text-slate-600">{school.schedule}</dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-brand-blue-strong">
+                    Before attending
+                  </dt>
+                  <dd className="mt-1 text-slate-600">
+                    Enquire first to confirm spaces, class fit, start date, and
+                    any arrival instructions for the school site.
+                  </dd>
                 </div>
               </dl>
               {school.scheduleNote ? (
@@ -231,24 +240,42 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
 
       <LocationMediaShowcase
         assets={branchMedia}
-        title={`Selected images from ${school.name}`}
+        title={`Location images for ${school.name}`}
         intro="These approved public images give families a visual sense of the school setting and learning materials while the current availability notes above stay authoritative."
       />
 
       <section className="bg-background site-section-compact">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           {hasCurrentVenue ? (
-            <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-              <SectionIntro
-                eyebrow="Learning plan"
-                title="A clear school-day rhythm"
-              >
-                <p>
-                  The current branch timetable gives parents a practical sense
-                  of the weekend rhythm before they ask about spaces, class
-                  fit, and start dates.
+            <div className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr]">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
+                  Sunday visit
                 </p>
-              </SectionIntro>
+                <h2 className="mt-3 text-3xl font-semibold leading-tight text-brand-blue-strong">
+                  What the morning looks like
+                </h2>
+                <p className="mt-4 text-sm leading-6 text-slate-600">
+                  The published rhythm gives families a practical picture of
+                  arrival, lessons, and breaks before they ask about spaces or
+                  placement.
+                </p>
+                <ul className="mt-6 space-y-3 text-sm leading-6 text-slate-700">
+                  {[
+                    "Confirm the place and start date before attending the school site.",
+                    "Arrive a few minutes before the first assembly so the child can settle.",
+                    "Bring any context that helps placement: age, spoken Russian, reading, writing, and exam aims.",
+                    "Ask the school directly about drop-off, collection, fees, and payment instructions.",
+                  ].map((note) => (
+                    <li
+                      key={note}
+                      className="border-l border-brand-gold bg-surface px-4 py-3"
+                    >
+                      {note}
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               <ol className="premium-panel divide-y divide-border-soft overflow-hidden rounded-lg border border-border-soft bg-surface">
                 {school.lessonPlan.map((item) => (
@@ -268,15 +295,18 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
             </div>
           ) : (
             <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
-              <SectionIntro
-                eyebrow="Decision guide"
-                title={`Choose the right next step for ${school.name}`}
-              >
-                <p>
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
+                  Decision guide
+                </p>
+                <h2 className="mt-3 text-3xl font-semibold leading-tight text-brand-blue-strong">
+                  Choose the right next step for {school.name}
+                </h2>
+                <p className="mt-4 text-sm leading-6 text-slate-600">
                   The local page stays visible for future demand, while parents
                   can still choose a practical next step for learning now.
                 </p>
-              </SectionIntro>
+              </div>
 
               <div className="premium-panel overflow-hidden rounded-lg border border-border-soft bg-surface">
                 {school.bestNextSteps.map((item, index) => (
@@ -310,135 +340,72 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
         </div>
       </section>
 
-      <section className="border-y border-border-soft bg-surface site-section-compact">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.82fr_1.18fr] lg:px-8">
-          <SectionIntro
-            eyebrow="Class placement"
-            title="Finding the right learning group"
-          >
-            <p>
-              Families can share the child&apos;s current Russian experience in
-              the enquiry. Teachers then use that context, branch availability,
-              and the first weeks of learning to guide the most suitable group
-              or alternative option.
+      <section className="border-b border-border-soft bg-surface site-section-compact">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
+              Practical reference
             </p>
-          </SectionIntro>
-          <div className="relative border-l border-brand-gold pl-6">
-            {placementSteps.map((step, index) => (
-              <article key={step.title} className="relative pb-8 last:pb-0">
-                <span className="absolute -left-[2.05rem] top-1 flex size-5 items-center justify-center rounded-full border border-brand-gold bg-surface">
-                  <span className="size-2 rounded-full bg-brand-red" />
-                </span>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
-                  Placement {index + 1}
-                </p>
-                <h2 className="text-lg font-semibold text-brand-blue-strong">
-                  {step.title}
-                </h2>
-                <p className="mt-3 text-sm leading-6 text-slate-600">
-                  {step.body}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-background site-section-compact">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.82fr_1.18fr] lg:px-8">
-          <div>
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
-              Progression at this branch
+              Class fit, programme, and fees in one place
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              Parents can use these stages to understand the broad learning
-              journey and decide what to mention in the enquiry. Detailed class
-              guidance can then be discussed with the school.
+              These details are useful after the venue and schedule make sense.
+              The enquiry is still the place to confirm availability,
+              placement, fees, and payment instructions.
             </p>
-            <ul className="mt-5 grid gap-2">
-              {placementSignals.slice(0, 3).map((signal) => (
-                <li
-                  key={signal}
-                  className="border-l border-brand-gold bg-surface px-4 py-3 text-sm leading-6 text-slate-700"
-                >
-                  {signal}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {curriculumProgressionStages.map((stage) => (
-              <article
-                key={stage.title}
-                className="premium-panel rounded-lg border border-border-soft bg-surface p-5"
-              >
-                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-brand-red">
-                  {stage.audience}
-                </p>
-                <h2 className="mt-3 text-lg font-semibold text-brand-blue-strong">
-                  {stage.title}
-                </h2>
-                <p className="mt-3 text-sm leading-6 text-slate-600">
-                  {stage.parentValue}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-border-soft bg-surface site-section-compact">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-3 lg:px-8">
-          <div>
-            <h2 className="text-2xl font-semibold text-brand-blue-strong">
-              Class groups
-            </h2>
-            <ul className="mt-5 grid gap-3 text-sm text-slate-700">
-              {school.classGroups.map((group) => (
-                <li
-                  key={group}
-                  className="border-l border-brand-gold bg-background px-4 py-3"
-                >
-                  {group}
-                </li>
-              ))}
-            </ul>
           </div>
 
-          <div>
-            <h2 className="text-2xl font-semibold text-brand-blue-strong">
-              Programme highlights
-            </h2>
-            <ul className="mt-5 space-y-3 text-sm leading-6 text-slate-700">
-              {[...school.highlights, ...curriculumMaterials].map(
-                (highlight) => (
+          <div className="mt-8 grid gap-8 lg:grid-cols-3">
+            <div>
+              <h3 className="text-lg font-semibold text-brand-blue-strong">
+                Class groups
+              </h3>
+              <ul className="mt-5 grid gap-3 text-sm text-slate-700">
+                {school.classGroups.map((group) => (
+                  <li
+                    key={group}
+                    className="border-l border-brand-gold bg-background px-4 py-3"
+                  >
+                    {group}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold text-brand-blue-strong">
+                Programme highlights
+              </h3>
+              <ul className="mt-5 space-y-3 text-sm leading-6 text-slate-700">
+                {school.highlights.map((highlight) => (
                   <li key={highlight}>{highlight}</li>
-                ),
-              )}
-            </ul>
-          </div>
+                ))}
+              </ul>
+            </div>
 
-          <div>
-            <h2 className="text-2xl font-semibold text-brand-blue-strong">
-              Fees and payment
-            </h2>
-            <dl className="mt-5 space-y-3 text-sm">
-              {paymentDetails.termFees.map((fee) => (
-                <div
-                  key={fee.label}
-                  className="flex items-center justify-between gap-4 border-b border-border-soft pb-3"
-                >
-                  <dt className="text-slate-600">{fee.label}</dt>
-                  <dd className="font-semibold text-brand-blue-strong">
-                    {fee.value}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-            <p className="mt-4 text-sm leading-6 text-slate-600">
-              Payment method: {paymentDetails.acceptedMethods.join(", ")}.
-              {` ${paymentDetails.bankDetailsStatus}`}
-            </p>
+            <div>
+              <h3 className="text-lg font-semibold text-brand-blue-strong">
+                Fees and payment
+              </h3>
+              <dl className="mt-5 space-y-3 text-sm">
+                {paymentDetails.termFees.map((fee) => (
+                  <div
+                    key={fee.label}
+                    className="flex items-center justify-between gap-4 border-b border-border-soft pb-3"
+                  >
+                    <dt className="text-slate-600">{fee.label}</dt>
+                    <dd className="font-semibold text-brand-blue-strong">
+                      {fee.value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="mt-4 text-sm leading-6 text-slate-600">
+                Payment method: {paymentDetails.acceptedMethods.join(", ")}.
+                {` ${paymentDetails.bankDetailsStatus}`}
+              </p>
+            </div>
           </div>
         </div>
       </section>

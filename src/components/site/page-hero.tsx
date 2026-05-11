@@ -14,9 +14,9 @@ type PageHeroProps = {
 };
 
 const sectionPadding = {
-  home: "py-10 sm:py-12 lg:py-14",
-  standard: "py-11 sm:py-14 lg:py-16",
-  compact: "py-9 sm:py-12",
+  home: "py-8 sm:py-12 lg:py-14",
+  standard: "py-8 sm:py-14 lg:py-16",
+  compact: "py-7 sm:py-12",
 };
 
 const titleSize = {
@@ -70,7 +70,7 @@ export function PageHero({
             {children}
           </div>
           {actions ? (
-            <CtaGroup className="mt-7 sm:mt-8">{actions}</CtaGroup>
+            <CtaGroup className="mt-6 sm:mt-8">{actions}</CtaGroup>
           ) : null}
         </div>
         {aside ? <div className="min-w-0">{aside}</div> : null}

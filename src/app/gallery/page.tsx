@@ -24,6 +24,9 @@ import {
 
 const galleryVisual = getVisualPlaceholderSlot("gallery-approved-archive");
 
+const quietHeroLink =
+  "min-h-0 w-auto justify-start px-0 py-1 text-left sm:min-h-11 sm:justify-center sm:px-5 sm:py-3";
+
 export const metadata: Metadata = {
   title: "Gallery",
   description:
@@ -103,7 +106,11 @@ export default function GalleryPage() {
         actions={
           <>
             <ButtonLink href="/schools">Explore schools</ButtonLink>
-            <ButtonLink href="/contact#enquiry-form" variant="secondary">
+            <ButtonLink
+              href="/contact#enquiry-form"
+              variant="quiet"
+              className={quietHeroLink}
+            >
               Start an enquiry
             </ButtonLink>
           </>
@@ -150,58 +157,7 @@ export default function GalleryPage() {
         </p>
       </PageHero>
 
-      <section
-        className="border-b border-border-soft bg-background site-section-compact"
-        aria-labelledby="gallery-readiness-notes"
-      >
-        <div className="mx-auto grid max-w-7xl gap-0 divide-y divide-border-soft px-6 md:grid-cols-3 md:divide-x md:divide-y-0 lg:px-8">
-          <h2 id="gallery-readiness-notes" className="sr-only">
-            Gallery readiness notes
-          </h2>
-          {galleryAssuranceNotes.map((note) => (
-            <div
-              key={note}
-              className="py-4 text-sm leading-6 text-slate-700 md:px-5 md:first:pl-0 md:last:pr-0"
-            >
-              {note}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-b border-border-soft bg-surface site-section-compact">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <SectionIntro
-            eyebrow="Curated with care"
-            title="A public gallery needs the same care as a classroom"
-          >
-            <p>
-              A parent-facing school gallery should feel warm and specific while
-              still being careful about children&apos;s privacy and public context.
-            </p>
-          </SectionIntro>
-          <ol className="mt-8 grid gap-0 divide-y divide-border-soft border-y border-border-soft md:grid-cols-3 md:divide-x md:divide-y-0">
-            {galleryCurationStandards.map((stage, index) => (
-              <li
-                key={stage.label}
-                className="py-5 md:px-5 md:first:pl-0 md:last:pr-0"
-              >
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-red">
-                  Standard {index + 1}
-                </p>
-                <h2 className="mt-2 text-base font-semibold text-brand-blue-strong">
-                  {stage.label}
-                </h2>
-                <p className="mt-3 text-sm leading-6 text-slate-600">
-                  {stage.description}
-                </p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <section className="bg-background site-section-compact">
+      <section className="border-b border-border-soft bg-background site-section-compact">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="School archive"
@@ -214,19 +170,27 @@ export default function GalleryPage() {
             </p>
           </SectionIntro>
           {hasApprovedMedia ? (
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {galleryCollections.map((archive) => {
+            <div className="mt-10 grid gap-x-5 gap-y-7 lg:grid-cols-6">
+              {galleryCollections.map((archive, index) => {
                 const coverAsset = getGalleryCategoryCoverAsset(archive.slug);
                 const assetCount = getGalleryCategoryAssetCount(archive.slug);
                 const extendedAssetCount =
                   getExtendedGalleryCategoryAssetCount(archive.slug);
                 const hasCategoryMedia = assetCount > 0;
+                const isLead = index === 0;
+                const isWide = index === 1 || index === 2;
 
                 return (
                   <Link
                     key={archive.slug}
                     href={`/gallery/${archive.slug}`}
-                    className="group flex min-h-[26rem] flex-col overflow-hidden rounded-lg border border-border-soft bg-surface transition hover:-translate-y-0.5 hover:border-brand-red hover:shadow-[0_14px_34px_rgba(11,38,72,0.06)] lg:min-h-[30rem]"
+                    className={`group overflow-hidden border-y border-border-soft bg-background transition hover:border-brand-red ${
+                      isLead
+                        ? "lg:col-span-4 lg:grid lg:grid-cols-[1.2fr_0.8fr]"
+                        : isWide
+                          ? "sm:grid sm:grid-cols-[0.95fr_1.05fr] lg:col-span-3"
+                          : "sm:grid sm:grid-cols-[0.8fr_1.2fr] lg:col-span-2 lg:block"
+                    }`}
                   >
                     <div className="relative aspect-[5/4] min-h-48 bg-surface-muted sm:aspect-[4/3]">
                       {coverAsset ? (
@@ -234,7 +198,13 @@ export default function GalleryPage() {
                           src={coverAsset.approvedPublicPath}
                           alt={coverAsset.altText}
                           fill
-                          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                          sizes={
+                            isLead
+                              ? "(min-width: 1024px) 50vw, 100vw"
+                              : isWide
+                                ? "(min-width: 1024px) 33vw, (min-width: 640px) 40vw, 100vw"
+                                : "(min-width: 1024px) 22vw, (min-width: 640px) 40vw, 100vw"
+                          }
                           className="object-cover transition duration-300 group-hover:scale-[1.02]"
                           loading={
                             archive.slug === galleryCollections[0]?.slug
@@ -254,19 +224,23 @@ export default function GalleryPage() {
                         </div>
                       )}
                     </div>
-                    <div className="flex flex-1 flex-col justify-between p-5 sm:p-6">
+                    <div className="flex flex-1 flex-col justify-between py-5 sm:p-5 lg:p-6">
                       <div>
                         <div className="flex items-start justify-between gap-4">
-                          <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
+                          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-red">
                             {archive.theme}
                           </p>
-                          <span className="shrink-0 rounded-full border border-border-soft bg-background px-3 py-1 text-xs font-semibold text-muted">
+                          <span className="shrink-0 border border-border-soft bg-surface px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.08em] text-muted">
                             {hasCategoryMedia
                               ? `${assetCount} featured`
                               : "Preparing"}
                           </span>
                         </div>
-                        <h2 className="mt-3 text-2xl font-semibold text-brand-blue-strong">
+                        <h2
+                          className={`mt-3 font-semibold text-brand-blue-strong ${
+                            isLead ? "text-3xl" : "text-xl"
+                          }`}
+                        >
                           {archive.title}
                         </h2>
                         <p className="mt-4 text-sm leading-6 text-slate-600">
@@ -274,11 +248,11 @@ export default function GalleryPage() {
                         </p>
                       </div>
                       <div>
-                        <div className="mt-6 flex flex-wrap gap-2">
+                        <div className="mt-5 flex flex-wrap gap-2">
                           {archive.highlights.map((highlight) => (
                             <span
                               key={highlight}
-                              className="rounded-full border border-border-soft px-3 py-1 text-xs font-semibold text-brand-blue-strong"
+                              className="border-b border-brand-gold/60 pb-0.5 text-xs font-semibold text-brand-blue-strong"
                             >
                               {highlight}
                             </span>
@@ -343,6 +317,56 @@ export default function GalleryPage() {
               </div>
             </div>
           )}
+        </div>
+      </section>
+
+      <section className="border-b border-border-soft bg-surface site-section-compact">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.75fr_1.25fr] lg:px-8">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">
+              Curated with care
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold text-brand-blue-strong">
+              Browse first, with publication care close behind
+            </h2>
+            <p className="mt-4 text-sm leading-6 text-slate-600">
+              The gallery is arranged for visual browsing while keeping the
+              public-use standards visible for families and future editors.
+            </p>
+          </div>
+          <div className="grid gap-6">
+            <div
+              className="grid gap-0 divide-y divide-border-soft border-y border-border-soft md:grid-cols-3 md:divide-x md:divide-y-0"
+              aria-labelledby="gallery-readiness-notes"
+            >
+              <h2 id="gallery-readiness-notes" className="sr-only">
+                Gallery readiness notes
+              </h2>
+              {galleryAssuranceNotes.map((note) => (
+                <p
+                  key={note}
+                  className="py-4 text-sm leading-6 text-slate-700 md:px-4 md:first:pl-0 md:last:pr-0"
+                >
+                  {note}
+                </p>
+              ))}
+            </div>
+            <ol className="grid gap-3 sm:grid-cols-3">
+              {galleryCurationStandards.map((stage, index) => (
+                <li key={stage.label} className="border-l border-brand-gold pl-4">
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-muted">
+                    Standard {index + 1}
+                  </p>
+                  <h3 className="mt-2 text-sm font-semibold text-brand-blue-strong">
+                    {stage.label}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    {stage.description}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
       </section>
 

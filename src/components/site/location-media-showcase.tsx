@@ -31,7 +31,7 @@ export function LocationMediaShowcase({
         <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
-              Location archive
+              Location context
             </p>
             <h2 className="mt-3 max-w-xl text-3xl font-semibold leading-tight text-brand-blue-strong">
               {title}
@@ -40,8 +40,8 @@ export function LocationMediaShowcase({
               {intro}
             </p>
             <p className="mt-5 border-l border-brand-gold pl-4 text-sm leading-6 text-slate-700">
-              Images are selected for public suitability, practical location
-              context, and child-safe presentation.
+              These images remain supporting context only; final public image
+              selection can still be reviewed separately.
             </p>
           </div>
 

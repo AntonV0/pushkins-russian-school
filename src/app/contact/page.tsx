@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ButtonLink } from "@/components/site/button-link";
 import { EnquiryForm } from "@/components/site/enquiry-form";
 import { PageHero } from "@/components/site/page-hero";
 import { enquiryChecklist } from "@/data/admissions";
@@ -52,7 +51,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
     <main>
       <PageHero
         eyebrow="Contact"
-        title="Enquire about weekend Russian classes for your child"
+        title="Send a first enquiry"
         variant="compact"
         asideAlign="start"
         aside={
@@ -64,83 +63,77 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         }
       >
         <p>
-          Tell us your preferred location, your child&apos;s age and current
-          Russian level, and whether you are asking about current weekend
-          classes, future local provision, online lessons, or exam support.
+          Use the form to share your preferred location, your child&apos;s age,
+          current Russian level, and the kind of support you are looking for.
         </p>
-        <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <ButtonLink href="#enquiry-form">Start the enquiry form</ButtonLink>
-          <a
-            href={`mailto:${contactDetails.email}`}
-            className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-brand-blue/20 bg-background px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30 sm:w-auto"
-          >
-            Email the school
-          </a>
-        </div>
       </PageHero>
 
       <section className="border-b border-border-soft bg-background site-section-compact">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.7fr_1.3fr] lg:px-8">
-          <dl className="grid gap-5 text-sm sm:grid-cols-3">
-            <div>
-              <dt className="font-semibold text-brand-blue-strong">
-                Current weekend branch
-              </dt>
-              <dd className="mt-1 leading-6 text-slate-600">
-                {openSchools.map((school) => school.name).join(", ")}
-              </dd>
-            </div>
-            <div>
-              <dt className="font-semibold text-brand-blue-strong">
-                Register interest
-              </dt>
-              <dd className="mt-1 leading-6 text-slate-600">
-                {registerInterestSchools.length} local areas plus online
-                lessons
-              </dd>
-            </div>
-            <div>
-              <dt className="font-semibold text-brand-blue-strong">
-                Direct enquiries
-              </dt>
-              <dd className="mt-1 leading-6 text-slate-600">
-                <a
-                  href={`mailto:${contactDetails.email}`}
-                  className="break-all font-semibold underline decoration-brand-red/40 hover:text-brand-red"
-                >
-                  {contactDetails.email}
-                </a>
-              </dd>
-            </div>
-          </dl>
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.78fr_1.22fr] lg:px-8">
           <div>
-            <h2 className="text-lg font-semibold text-brand-blue-strong">
-              Include these details
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
+              Enquiry notes
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold text-brand-blue-strong">
+              Keep the first message focused on placement
             </h2>
-            <ul className="mt-4 grid gap-x-6 gap-y-2 text-sm leading-6 text-slate-700 sm:grid-cols-2 xl:grid-cols-3">
+            <p className="mt-4 text-sm leading-6 text-slate-600">
+              Please do not include medical, safeguarding, emergency contact, or
+              full registration details in the initial enquiry. Those are
+              requested later only if your family joins.
+            </p>
+            <p className="mt-5 text-sm leading-6 text-slate-600">
+              Prefer email?{" "}
+              <a
+                href={`mailto:${contactDetails.email}`}
+                className="break-all font-semibold underline decoration-brand-red/40 hover:text-brand-red"
+              >
+                {contactDetails.email}
+              </a>
+            </p>
+          </div>
+          <div>
+            <h3 className="text-lg font-semibold text-brand-blue-strong">
+              Useful details to include
+            </h3>
+            <ul className="mt-4 grid gap-x-6 gap-y-2 text-sm leading-6 text-slate-700 sm:grid-cols-2">
               {enquiryChecklist.slice(0, 6).map((item) => (
                 <li key={item} className="border-l border-brand-gold pl-3">
                   {item}
                 </li>
               ))}
             </ul>
-            <p className="mt-4 text-xs leading-5 text-slate-500">
-              Please keep the first enquiry focused on learning context. Full
-              registration, consent, emergency contact, and health details are
-              requested later only if your family joins.
-            </p>
+            <dl className="mt-8 grid gap-4 border-y border-border-soft py-5 text-sm sm:grid-cols-2">
+              <div>
+                <dt className="font-semibold text-brand-blue-strong">
+                  Current weekend branch
+                </dt>
+                <dd className="mt-1 leading-6 text-slate-600">
+                  {openSchools.map((school) => school.name).join(", ")}
+                </dd>
+              </div>
+              <div>
+                <dt className="font-semibold text-brand-blue-strong">
+                  Register interest
+                </dt>
+                <dd className="mt-1 leading-6 text-slate-600">
+                  {registerInterestSchools.length} local areas plus online
+                  lessons
+                </dd>
+              </div>
+            </dl>
           </div>
         </div>
       </section>
 
       <section className="border-b border-border-soft bg-background site-section-compact">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
+          <div className="grid gap-8 lg:grid-cols-[0.76fr_1.24fr]">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
                 Locations
               </p>
-              <h2 className="mt-3 text-3xl font-semibold text-brand-blue-strong">
+              <h2 className="mt-3 text-2xl font-semibold text-brand-blue-strong">
                 Choose a branch, or tell us the area you need
               </h2>
               <p className="mt-4 text-sm leading-6 text-slate-600">
@@ -163,7 +156,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               {schools.map((school) => (
                 <div
                   key={school.slug}
-                  className="grid gap-3 py-5 sm:grid-cols-[0.9fr_1fr_auto] sm:items-center"
+                  className="grid gap-3 py-4 sm:grid-cols-[0.9fr_1fr_auto] sm:items-center"
                 >
                   <div>
                     <h3 className="text-lg font-semibold text-brand-blue-strong">
@@ -195,7 +188,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
               Response process
             </p>
-            <h2 className="mt-3 text-3xl font-semibold text-brand-blue-strong">
+            <h2 className="mt-3 text-2xl font-semibold text-brand-blue-strong">
               What happens after you enquire
             </h2>
           </div>
@@ -213,19 +206,19 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
       </section>
 
       <section className="bg-background site-section-compact">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.7fr_1.3fr] lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.78fr_1.22fr] lg:px-8">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
-              Fees
+              Joining details
             </p>
-            <h2 className="mt-3 text-3xl font-semibold text-brand-blue-strong">
-              Payment details are confirmed before joining
+            <h2 className="mt-3 text-2xl font-semibold text-brand-blue-strong">
+              Fees are confirmed after the first enquiry
             </h2>
             <p className="mt-4 text-sm leading-6 text-slate-600">
               {paymentDetails.bankDetailsStatus}
             </p>
           </div>
-          <dl className="grid gap-x-8 gap-y-5 border-y border-border-soft py-6 sm:grid-cols-2">
+          <dl className="grid gap-x-8 gap-y-4 border-y border-border-soft py-5 sm:grid-cols-2 lg:grid-cols-3">
             {paymentDetails.termFees.map((fee) => (
               <div key={fee.label}>
                 <dt className="text-sm font-semibold text-brand-blue-strong">

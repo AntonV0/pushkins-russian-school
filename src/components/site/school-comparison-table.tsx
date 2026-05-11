@@ -31,20 +31,25 @@ function getLocationContext(school: School) {
 }
 
 export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
+  const orderedSchools = [
+    ...schools.filter((school) => school.status === "open"),
+    ...schools.filter((school) => school.status !== "open"),
+  ];
+
   return (
     <div className="premium-panel overflow-hidden rounded-lg border border-border-soft bg-surface">
       <div className="border-b border-border-soft bg-white px-5 py-4">
         <p className="text-sm font-semibold text-brand-blue-strong">
-          Branch comparison
+          Parent comparison
         </p>
         <p className="mt-1 text-sm leading-6 text-slate-600">
-          Status and next-step guidance are shown together so families can
-          separate current in-person classes from future local interest and
-          online learning options.
+          Current provision is listed first, followed by register-interest and
+          online areas. Use the first action when you already know which route
+          fits your family.
         </p>
       </div>
       <div className="grid gap-3 p-4 md:hidden">
-        {schools.map((school) => (
+        {orderedSchools.map((school) => (
           <article
             key={school.slug}
             className={`rounded-lg border border-border-soft p-4 ${rowTone[school.status]}`}
@@ -80,6 +85,9 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
                 </dd>
               </div>
             </dl>
+            <p className="mt-4 text-sm leading-6 text-slate-600">
+              {school.availabilitySummary}
+            </p>
             <div className="mt-4 flex flex-col gap-2">
               <Link
                 href={getNextStepHref(school)}
@@ -122,7 +130,7 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
                 Schedule
               </th>
               <th scope="col" className="px-5 py-4">
-                Class pathway
+                Best for
               </th>
               <th scope="col" className="px-5 py-4">
                 Next step
@@ -130,7 +138,7 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
             </tr>
           </thead>
           <tbody className="divide-y divide-border-soft">
-            {schools.map((school) => (
+            {orderedSchools.map((school) => (
               <tr key={school.slug} className={`align-top ${rowTone[school.status]}`}>
                 <th scope="row" className="px-5 py-5">
                   <Link
@@ -174,7 +182,9 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
                 </td>
                 <td className="px-5 py-5 text-slate-600">
                   <p className="font-medium text-brand-blue-strong">
-                    {school.classGroups[0]}
+                    {school.status === "open"
+                      ? "Families ready to discuss a current weekend place"
+                      : "Families registering future local demand or asking about online learning"}
                   </p>
                   <p className="mt-1 text-xs leading-5 text-muted">
                     {school.availabilitySummary}
@@ -183,7 +193,11 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
                 <td className="px-5 py-5">
                   <Link
                     href={getNextStepHref(school)}
-                    className="inline-flex rounded-md border border-brand-blue/20 bg-white/70 px-3 py-2 text-xs font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+                    className={`inline-flex rounded-md px-3 py-2 text-xs font-semibold transition focus:outline-none focus:ring-2 ${
+                      school.status === "open"
+                        ? "bg-brand-blue text-white hover:bg-brand-blue-strong focus:ring-brand-blue/30"
+                        : "border border-brand-blue/20 bg-white/70 text-brand-blue-strong hover:border-brand-red hover:text-brand-red focus:ring-brand-red/30"
+                    }`}
                   >
                     {getNextStepLabel(school)}
                   </Link>
