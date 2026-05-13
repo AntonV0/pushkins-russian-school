@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fbf8f2;
+  --background: #f7fafc;
   --foreground: #172033;
   --surface: #ffffff;
-  --surface-muted: #f3eee4;
-  --surface-blue: #edf5f8;
-  --brand-blue: #16446f;
-  --brand-blue-strong: #0b2648;
-  --brand-red: #a8323b;
-  --brand-gold: #b98c3f;
-  --border-soft: #e0d5c4;
-  --muted: #667085;
-  --ring: #a8323b;
+  --surface-muted: #eef3f7;
+  --surface-blue: #eaf3fa;
+  --brand-blue: #082850;
+  --brand-blue-strong: #002048;
+  --brand-red: #d01010;
+  --brand-gold: #d01010;
+  --border-soft: #d7e0ea;
+  --muted: #5b6778;
+  --ring: #d01010;
   --section-y: clamp(3.5rem, 7vw, 5.5rem);
   --section-y-compact: clamp(2.75rem, 5.5vw, 4.25rem);
 }
@@ -31,6 +31,7 @@
   --color-muted: var(--muted);
   --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+  --font-logo-display: var(--font-logo-display), Georgia, "Times New Roman", serif;
 }
 
 body {
@@ -87,8 +88,8 @@ nextjs-portal {
 .warm-page-bg {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.78), transparent 18rem),
-    radial-gradient(circle at 12% 4%, rgba(185, 140, 63, 0.09), transparent 22rem),
-    linear-gradient(180deg, #fbf8f2 0%, #f7f1e8 100%);
+    radial-gradient(circle at 12% 4%, rgba(208, 16, 16, 0.07), transparent 22rem),
+    linear-gradient(180deg, #f7fafc 0%, #eef5fb 100%);
 }
 
 .premium-panel {
