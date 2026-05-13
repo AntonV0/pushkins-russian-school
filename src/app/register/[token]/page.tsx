@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ArrowRight, CheckCircle2, LockKeyhole } from "lucide-react";
 import {
   registrationSafetyGuardrails,
   registrationSections,
@@ -57,6 +58,7 @@ export default async function RegistrationInvitationPage({
           </p>
           <div className="mt-8 grid max-w-xl gap-3 border-l-4 border-brand-gold bg-white/10 p-5">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-gold">
+              <LockKeyhole aria-hidden="true" className="mb-2 size-5" />
               Token handling
             </p>
             <p className="font-mono text-sm text-blue-50">
@@ -95,9 +97,10 @@ export default async function RegistrationInvitationPage({
               </button>
               <Link
                 href="/contact#enquiry-form"
-                className="inline-flex justify-center rounded-full border border-brand-blue/20 px-4 py-2 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-brand-blue/20 px-4 py-2 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
               >
-                Use public enquiry instead
+                <span>Use public enquiry instead</span>
+                <ArrowRight aria-hidden="true" className="size-4" />
               </Link>
             </div>
           </aside>
@@ -109,6 +112,7 @@ export default async function RegistrationInvitationPage({
                 className="border border-border-soft bg-surface p-5 shadow-sm"
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">
+                  <LockKeyhole aria-hidden="true" className="mb-2 size-4" />
                   Future section
                 </p>
                 <h2 className="mt-3 text-lg font-semibold text-brand-blue-strong">
@@ -133,7 +137,10 @@ export default async function RegistrationInvitationPage({
               key={note}
               className="border-l border-brand-gold bg-background px-5 py-4 text-sm leading-6 text-slate-700"
             >
-              {note}
+              <span className="flex gap-2">
+                <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
+                <span>{note}</span>
+              </span>
             </div>
           ))}
         </div>

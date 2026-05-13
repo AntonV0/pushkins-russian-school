@@ -1,4 +1,14 @@
 import type { Metadata } from "next";
+import {
+  ArrowRight,
+  Banknote,
+  CheckCircle2,
+  ClipboardCheck,
+  HelpCircle,
+  Mail,
+  MapPin,
+  UsersRound,
+} from "lucide-react";
 import { ButtonLink } from "@/components/site/button-link";
 import { PageCta } from "@/components/site/page-cta";
 import { PageHero } from "@/components/site/page-hero";
@@ -78,13 +88,15 @@ export default function AdmissionsPage() {
               </h2>
               <dl className="mt-6 grid gap-4 text-sm">
                 <div className="border-l border-brand-gold pl-4">
-                  <dt className="font-semibold text-brand-blue-strong">
+                  <dt className="flex items-center gap-2 font-semibold text-brand-blue-strong">
+                    <MapPin aria-hidden="true" className="size-4 text-brand-red" />
                     Current weekend school
                   </dt>
                   <dd className="mt-1 text-slate-600">{openSchools.length}</dd>
                 </div>
                 <div className="border-l border-brand-gold pl-4">
-                  <dt className="font-semibold text-brand-blue-strong">
+                  <dt className="flex items-center gap-2 font-semibold text-brand-blue-strong">
+                    <UsersRound aria-hidden="true" className="size-4 text-brand-red" />
                     Online or register-interest branches
                   </dt>
                   <dd className="mt-1 text-slate-600">
@@ -92,7 +104,8 @@ export default function AdmissionsPage() {
                   </dd>
                 </div>
                 <div className="border-l border-brand-gold pl-4">
-                  <dt className="font-semibold text-brand-blue-strong">
+                  <dt className="flex items-center gap-2 font-semibold text-brand-blue-strong">
+                    <Mail aria-hidden="true" className="size-4 text-brand-red" />
                     Direct enquiries
                   </dt>
                   <dd className="mt-1 text-slate-600">
@@ -105,11 +118,17 @@ export default function AdmissionsPage() {
         }
         actions={
           <>
-            <ButtonLink href="/contact#enquiry-form">Start an enquiry</ButtonLink>
+            <ButtonLink
+              href="/contact#enquiry-form"
+              icon={<ClipboardCheck className="size-4" />}
+            >
+              Start an enquiry
+            </ButtonLink>
             <ButtonLink
               href="/faq"
               variant="quiet"
               className={quietHeroLink}
+              icon={<HelpCircle className="size-4" />}
             >
               Read common questions
             </ButtonLink>
@@ -137,13 +156,13 @@ export default function AdmissionsPage() {
             </p>
           </SectionIntro>
           <ol className="mt-10 divide-y divide-border-soft border-y border-border-soft">
-            {admissionsSteps.map((step, index) => (
+            {admissionsSteps.map((step) => (
               <li
                 key={step.title}
                 className="grid gap-4 py-6 md:grid-cols-[4rem_1fr]"
               >
-                <span className="font-mono text-sm font-semibold text-brand-red">
-                  0{index + 1}
+                <span className="flex size-10 items-center justify-center rounded-md border border-brand-red/15 bg-brand-red/8 text-brand-red">
+                  <ClipboardCheck aria-hidden="true" className="size-4" />
                 </span>
                 <span>
                   <span className="block text-xl font-semibold text-brand-blue-strong">
@@ -176,9 +195,10 @@ export default function AdmissionsPage() {
               {enquiryChecklist.map((item) => (
                 <li
                   key={item}
-                  className="border-l border-brand-gold bg-background/70 px-4 py-3 text-sm leading-6 text-slate-700"
+                  className="flex gap-2 border-l border-brand-gold bg-background/70 px-4 py-3 text-sm leading-6 text-slate-700"
                 >
-                  {item}
+                  <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>
@@ -244,7 +264,12 @@ export default function AdmissionsPage() {
                     {route.bestWhen}
                   </p>
                 </div>
-                <ButtonLink href={route.href} variant="secondary">
+                <ButtonLink
+                  href={route.href}
+                  variant="secondary"
+                  icon={<ArrowRight className="size-4" />}
+                  iconPosition="end"
+                >
                   {route.ctaLabel}
                 </ButtonLink>
               </article>
@@ -268,9 +293,10 @@ export default function AdmissionsPage() {
             {placementSignals.map((signal) => (
               <li
                 key={signal}
-                className="border-l border-brand-gold bg-background/70 px-4 py-3 text-sm leading-6 text-slate-700"
+                className="flex gap-2 border-l border-brand-gold bg-background/70 px-4 py-3 text-sm leading-6 text-slate-700"
               >
-                {signal}
+                <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
+                <span>{signal}</span>
               </li>
             ))}
           </ul>
@@ -292,7 +318,10 @@ export default function AdmissionsPage() {
           <div className="grid gap-3 sm:grid-cols-2">
             {paymentDetails.termFees.map((fee) => (
               <div key={fee.label} className="border-l border-brand-gold bg-background/70 px-4 py-3">
-                <p className="text-sm text-slate-600">{fee.label}</p>
+                <p className="flex items-center gap-2 text-sm text-slate-600">
+                  <Banknote aria-hidden="true" className="size-4 shrink-0 text-brand-red" />
+                  {fee.label}
+                </p>
                 <p className="mt-1 font-semibold text-brand-blue-strong">
                   {fee.value}
                 </p>
@@ -313,10 +342,14 @@ export default function AdmissionsPage() {
         title="Send the school enough context to recommend the right route"
         actions={
           <>
-            <ButtonLink href="/contact#enquiry-form" variant="light">
+            <ButtonLink
+              href="/contact#enquiry-form"
+              variant="light"
+              icon={<ClipboardCheck className="size-4" />}
+            >
               Start an enquiry
             </ButtonLink>
-            <ButtonLink href="/schools" variant="light">
+            <ButtonLink href="/schools" variant="light" icon={<MapPin className="size-4" />}>
               Compare schools
             </ButtonLink>
           </>

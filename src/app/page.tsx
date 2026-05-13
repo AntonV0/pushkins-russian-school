@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  ArrowRight,
+  BookOpen,
+  CheckCircle2,
+  ClipboardCheck,
+  MapPin,
+  MessageSquareText,
+} from "lucide-react";
 import { ButtonLink } from "@/components/site/button-link";
 import { PageCta } from "@/components/site/page-cta";
 import { PageHero } from "@/components/site/page-hero";
@@ -38,18 +46,21 @@ const parentJourney = [
     body: "Start with the branch page that fits your journey. Current opening details and paused local interest are easier to compare before you contact the school.",
     href: "/schools",
     cta: "Compare branches",
+    icon: MapPin,
   },
   {
     title: "Describe your child clearly",
     body: "Age matters, but so do confidence, home language exposure, reading, writing, and whether exams are already part of the family plan.",
     href: "/curriculum",
     cta: "Understand levels",
+    icon: BookOpen,
   },
   {
     title: "Ask a focused question",
     body: "A useful enquiry names the preferred location, the child's current Russian, and the next step you need: a place, advice, online support, or exam preparation.",
     href: "/contact#enquiry-form",
     cta: "Start an enquiry",
+    icon: MessageSquareText,
   },
 ];
 
@@ -83,11 +94,14 @@ export default function Home() {
         aside={<HeroSchoolVisual />}
         actions={
           <>
-            <ButtonLink href="/schools">Find a school location</ButtonLink>
+            <ButtonLink href="/schools" icon={<MapPin className="size-4" />}>
+              Find a school location
+            </ButtonLink>
             <ButtonLink
               href="/contact#enquiry-form"
               variant="quiet"
               className={quietHeroLink}
+              icon={<MessageSquareText className="size-4" />}
             >
               {contactDetails.registrationCta}
             </ButtonLink>
@@ -132,10 +146,13 @@ export default function Home() {
                 key={item.title}
                 className="grid gap-4 border-l border-brand-gold bg-surface px-5 py-5 sm:grid-cols-[4rem_1fr_auto] sm:items-start sm:px-6"
               >
-                <p className="font-mono text-3xl font-semibold text-brand-red/80">
-                  0{index + 1}
-                </p>
+                <span className="flex size-12 items-center justify-center rounded-md border border-brand-red/15 bg-brand-red/8 text-brand-red">
+                  <item.icon aria-hidden="true" className="size-5" />
+                </span>
                 <div>
+                  <p className="font-mono text-sm font-semibold text-brand-red/80">
+                    0{index + 1}
+                  </p>
                   <h2 className="text-2xl font-semibold leading-tight text-brand-blue-strong">
                     {item.title}
                   </h2>
@@ -145,9 +162,10 @@ export default function Home() {
                 </div>
                 <Link
                   href={item.href}
-                  className="text-sm font-semibold text-brand-blue-strong underline decoration-brand-gold/70 underline-offset-4"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-blue-strong underline decoration-brand-gold/70 underline-offset-4"
                 >
-                  {item.cta}
+                  <span>{item.cta}</span>
+                  <ArrowRight aria-hidden="true" className="size-4" />
                 </Link>
               </article>
             ))}
@@ -170,7 +188,11 @@ export default function Home() {
               </p>
             </SectionIntro>
             <div className="mt-7 hidden lg:block">
-              <ButtonLink href="/schools" variant="secondary">
+              <ButtonLink
+                href="/schools"
+                variant="secondary"
+                icon={<MapPin className="size-4" />}
+              >
                 View all school locations
               </ButtonLink>
             </div>
@@ -196,7 +218,10 @@ export default function Home() {
                     </span>
                   </span>
                   <span className="text-sm font-semibold text-brand-blue-strong">
-                    Branch guide
+                    <span className="inline-flex items-center gap-1.5">
+                      Branch guide
+                      <ArrowRight aria-hidden="true" className="size-4" />
+                    </span>
                   </span>
                 </Link>
               ))}
@@ -207,7 +232,10 @@ export default function Home() {
               </h2>
               <ul className="mt-4 grid gap-3 text-sm leading-6 text-slate-700 sm:grid-cols-2">
                 {enquiryPrompts.map((prompt) => (
-                  <li key={prompt}>{prompt}</li>
+                  <li key={prompt} className="flex gap-2">
+                    <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
+                    <span>{prompt}</span>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -266,7 +294,11 @@ export default function Home() {
               </p>
             </SectionIntro>
             <div className="mt-7">
-              <ButtonLink href="/curriculum" variant="secondary">
+              <ButtonLink
+                href="/curriculum"
+                variant="secondary"
+                icon={<BookOpen className="size-4" />}
+              >
                 Explore curriculum pathways
               </ButtonLink>
             </div>
@@ -276,7 +308,7 @@ export default function Home() {
               {placementSteps.map((step, index) => (
                 <article key={step.title} className="relative pb-8 last:pb-0">
                   <span className="absolute -left-[2.05rem] top-1 flex size-5 items-center justify-center rounded-full border border-brand-gold bg-surface">
-                    <span className="size-2 rounded-full bg-brand-red" />
+                    <ClipboardCheck aria-hidden="true" className="size-3 text-brand-red" />
                   </span>
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
                     Placement {index + 1}
@@ -294,7 +326,7 @@ export default function Home() {
               {admissionsSteps.map((item, index) => (
                 <article key={item.title} className="relative pb-8 last:pb-0">
                   <span className="absolute -left-[2.05rem] top-1 flex size-5 items-center justify-center rounded-full border border-brand-gold bg-surface">
-                    <span className="size-2 rounded-full bg-brand-blue-strong" />
+                    <MessageSquareText aria-hidden="true" className="size-3 text-brand-blue-strong" />
                   </span>
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
                     Enquiry {index + 1}
@@ -318,8 +350,17 @@ export default function Home() {
         tone="light"
         actions={
           <>
-            <ButtonLink href="/contact#enquiry-form">Start an enquiry</ButtonLink>
-            <ButtonLink href="/admissions" variant="secondary">
+            <ButtonLink
+              href="/contact#enquiry-form"
+              icon={<MessageSquareText className="size-4" />}
+            >
+              Start an enquiry
+            </ButtonLink>
+            <ButtonLink
+              href="/admissions"
+              variant="secondary"
+              icon={<ClipboardCheck className="size-4" />}
+            >
               Admissions and fees
             </ButtonLink>
           </>

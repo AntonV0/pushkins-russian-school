@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { ArrowRight, CheckCircle2, ExternalLink, FileText, ShieldCheck } from "lucide-react";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { ButtonLink } from "@/components/site/button-link";
 import { JsonLd } from "@/components/site/json-ld";
@@ -123,9 +124,14 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
                   target={action.isExternal ? "_blank" : undefined}
                   rel={action.isExternal ? "noopener noreferrer" : undefined}
                   download={action.isExternal ? undefined : true}
-                  className="inline-flex min-h-11 w-full items-center justify-center rounded-md bg-brand-blue px-5 py-2.5 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30 sm:w-auto"
+                  className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-brand-blue px-5 py-2.5 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30 sm:w-auto"
                 >
-                  {action.label}
+                  <span>{action.label}</span>
+                  {action.isExternal ? (
+                    <ExternalLink aria-hidden="true" className="size-4" />
+                  ) : (
+                    <ArrowRight aria-hidden="true" className="size-4" />
+                  )}
                 </a>
               ) : (
                 <span className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-border-soft bg-background px-5 py-2.5 text-center text-sm font-semibold text-muted sm:w-auto">
@@ -149,9 +155,10 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
                 </p>
                 <a
                   href="#safeguarding-concern"
-                  className="mt-4 inline-flex text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/40 hover:text-brand-red"
+                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/40 hover:text-brand-red"
                 >
-                  Jump to concern guidance
+                  <span>Jump to concern guidance</span>
+                  <ArrowRight aria-hidden="true" className="size-4" />
                 </a>
               </div>
             ) : (
@@ -160,13 +167,13 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
                   Clear guidance before downloads are available
                 </h2>
                 <ol className="mt-5 divide-y divide-border-soft">
-                  {parentPolicyAssurance.map((item, index) => (
+                  {parentPolicyAssurance.map((item) => (
                     <li
                       key={item}
                       className="grid gap-4 py-4 first:pt-0 last:pb-0 sm:grid-cols-[3rem_1fr]"
                     >
                       <span className="flex h-10 w-10 items-center justify-center justify-self-start rounded-full border border-brand-gold/50 bg-surface-muted text-sm font-semibold text-brand-blue-strong">
-                        {index + 1}
+                        <ShieldCheck aria-hidden="true" className="size-4 text-brand-red" />
                       </span>
                       <span className="text-sm leading-6 text-slate-700">
                         {item}
@@ -239,7 +246,8 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
             <dl className="mt-6 space-y-5 text-sm">
               {metadata.map((item) => (
                 <div key={item.label}>
-                  <dt className="font-semibold text-brand-blue-strong">
+                  <dt className="flex items-center gap-2 font-semibold text-brand-blue-strong">
+                    <FileText aria-hidden="true" className="size-4 text-brand-red" />
                     {item.label}
                   </dt>
                   <dd className="mt-1 text-slate-600">{item.value}</dd>
@@ -284,6 +292,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
                   key={step.title}
                   className="border-l border-brand-gold bg-background px-4 py-3"
                 >
+                  <CheckCircle2 aria-hidden="true" className="mb-2 size-4 text-brand-red" />
                   <h4 className="text-sm font-semibold text-brand-blue-strong">
                     {step.title}
                   </h4>
@@ -302,7 +311,10 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
                   key={item}
                   className="border-l border-brand-gold bg-background px-4 py-3"
                 >
-                  {item}
+                  <span className="flex gap-2">
+                    <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
+                    <span>{item}</span>
+                  </span>
                 </li>
               ))}
             </ul>
@@ -316,9 +328,14 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
                   target={action.isExternal ? "_blank" : undefined}
                   rel={action.isExternal ? "noopener noreferrer" : undefined}
                   download={action.isExternal ? undefined : true}
-                  className="inline-flex min-h-11 w-full items-center justify-center rounded-md bg-brand-blue px-5 py-3 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30 sm:w-auto"
+                  className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-brand-blue px-5 py-3 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30 sm:w-auto"
                 >
-                  {action.label}
+                  <span>{action.label}</span>
+                  {action.isExternal ? (
+                    <ExternalLink aria-hidden="true" className="size-4" />
+                  ) : (
+                    <ArrowRight aria-hidden="true" className="size-4" />
+                  )}
                 </a>
               ) : (
                 <span className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-border-soft px-5 py-3 text-center text-sm font-semibold text-muted sm:w-auto">
@@ -354,6 +371,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
                     : "border-border-soft bg-background text-brand-blue-strong hover:border-brand-red hover:text-brand-red"
                 }`}
               >
+                <ArrowRight aria-hidden="true" className="mb-3 size-5" />
                 <span className="block text-sm font-semibold">
                   {link.label}
                 </span>

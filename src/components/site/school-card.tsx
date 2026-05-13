@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight, Clock, MapPin, Network } from "lucide-react";
 import type { School } from "@/data/schools";
 import { getSchoolEnquiryHref } from "@/data/admissions";
 import { ButtonLink } from "./button-link";
@@ -57,13 +58,21 @@ export function SchoolCard({ school }: SchoolCardProps) {
         </div>
         <dl className="mt-6 divide-y divide-border-soft/80 border-y border-border-soft/80 text-sm">
           <div className="py-3">
-            <dt className="font-semibold text-brand-blue-strong">
+            <dt className="flex items-center gap-2 font-semibold text-brand-blue-strong">
+              {school.status === "open" ? (
+                <MapPin aria-hidden="true" className="size-4 shrink-0 text-brand-red" />
+              ) : (
+                <Network aria-hidden="true" className="size-4 shrink-0 text-brand-red" />
+              )}
               {school.status === "open" ? "Venue" : "Network area"}
             </dt>
             <dd className="mt-1 text-slate-600">{school.venueName}</dd>
           </div>
           <div className="py-3">
-            <dt className="font-semibold text-brand-blue-strong">Schedule</dt>
+            <dt className="flex items-center gap-2 font-semibold text-brand-blue-strong">
+              <Clock aria-hidden="true" className="size-4 shrink-0 text-brand-red" />
+              Schedule
+            </dt>
             <dd className="mt-1 text-slate-600">{school.schedule}</dd>
             {school.scheduleNote ? (
               <dd className="mt-1 text-xs leading-5 text-muted">
@@ -72,7 +81,8 @@ export function SchoolCard({ school }: SchoolCardProps) {
             ) : null}
           </div>
           <div className="py-3">
-            <dt className="font-semibold text-brand-blue-strong">
+            <dt className="flex items-center gap-2 font-semibold text-brand-blue-strong">
+              <MapPin aria-hidden="true" className="size-4 shrink-0 text-brand-red" />
               {school.status === "open" ? "Address" : "Area"}
             </dt>
             <dd className="mt-1 text-slate-600">
@@ -86,6 +96,8 @@ export function SchoolCard({ school }: SchoolCardProps) {
         href={getSchoolEnquiryHref(school)}
         variant="secondary"
         className="mt-7 w-full px-4 py-2 sm:w-fit"
+        icon={<ArrowRight className="size-4" />}
+        iconPosition="end"
       >
         {getNextStepLabel(school)}
       </ButtonLink>

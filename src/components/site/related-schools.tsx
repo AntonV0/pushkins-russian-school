@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight, MapPin } from "lucide-react";
 import type { School } from "@/data/schools";
 import { StatusBadge } from "./status-badge";
 
@@ -24,9 +25,10 @@ export function RelatedSchools({ currentSlug, schools }: RelatedSchoolsProps) {
           </div>
           <Link
             href="/schools"
-            className="text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/40 hover:text-brand-red"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/40 hover:text-brand-red"
           >
-            Compare all schools
+            <span>Compare all schools</span>
+            <ArrowRight aria-hidden="true" className="size-4" />
           </Link>
         </div>
 
@@ -45,15 +47,19 @@ export function RelatedSchools({ currentSlug, schools }: RelatedSchoolsProps) {
                   {school.name}
                 </Link>
               </h3>
-              <p className="mt-2 text-sm text-muted">{school.county}</p>
+              <p className="mt-2 flex items-center gap-1.5 text-sm text-muted">
+                <MapPin aria-hidden="true" className="size-3.5 shrink-0" />
+                {school.county}
+              </p>
               <p className="mt-4 text-sm leading-6 text-slate-600">
                 {school.availabilitySummary}
               </p>
               <Link
                 href={school.bestNextSteps[0]?.href ?? `/schools/${school.slug}`}
-                className="mt-5 inline-flex text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/35 hover:text-brand-red"
+                className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/35 hover:text-brand-red"
               >
-                {school.bestNextSteps[0]?.ctaLabel ?? "View branch"}
+                <span>{school.bestNextSteps[0]?.ctaLabel ?? "View branch"}</span>
+                <ArrowRight aria-hidden="true" className="size-4" />
               </Link>
             </article>
           ))}

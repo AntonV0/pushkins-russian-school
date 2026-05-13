@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight, Clock, MapPin } from "lucide-react";
 import { getSchoolEnquiryHref } from "@/data/admissions";
 import type { School } from "@/data/schools";
 import { StatusBadge } from "./status-badge";
@@ -68,7 +69,8 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
             </div>
             <dl className="mt-4 grid gap-3 text-sm">
               <div>
-                <dt className="font-semibold text-brand-blue-strong">
+                <dt className="flex items-center gap-2 font-semibold text-brand-blue-strong">
+                  <MapPin aria-hidden="true" className="size-4 shrink-0 text-brand-red" />
                   Location
                 </dt>
                 <dd className="mt-1 leading-6 text-slate-600">
@@ -77,7 +79,8 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
                 </dd>
               </div>
               <div>
-                <dt className="font-semibold text-brand-blue-strong">
+                <dt className="flex items-center gap-2 font-semibold text-brand-blue-strong">
+                  <Clock aria-hidden="true" className="size-4 shrink-0 text-brand-red" />
                   Schedule
                 </dt>
                 <dd className="mt-1 leading-6 text-slate-600">
@@ -91,14 +94,16 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
             <div className="mt-4 flex flex-col gap-2">
               <Link
                 href={getNextStepHref(school)}
-                className="inline-flex min-h-10 items-center justify-center rounded-md bg-brand-blue px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
+                className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md bg-brand-blue px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
               >
                 {getNextStepLabel(school)}
+                <ArrowRight aria-hidden="true" className="size-4" />
               </Link>
               <Link
                 href={`/schools/${school.slug}`}
-                className="inline-flex min-h-10 items-center justify-center rounded-md border border-brand-blue/20 bg-white/70 px-4 py-2 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+                className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-brand-blue/20 bg-white/70 px-4 py-2 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
               >
+                <MapPin aria-hidden="true" className="size-4" />
                 Branch details
               </Link>
             </div>
@@ -193,13 +198,14 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
                 <td className="px-5 py-5">
                   <Link
                     href={getNextStepHref(school)}
-                    className={`inline-flex rounded-md px-3 py-2 text-xs font-semibold transition focus:outline-none focus:ring-2 ${
+                    className={`inline-flex items-center gap-1.5 rounded-md px-3 py-2 text-xs font-semibold transition focus:outline-none focus:ring-2 ${
                       school.status === "open"
                         ? "bg-brand-blue text-white hover:bg-brand-blue-strong focus:ring-brand-blue/30"
                         : "border border-brand-blue/20 bg-white/70 text-brand-blue-strong hover:border-brand-red hover:text-brand-red focus:ring-brand-red/30"
                     }`}
                   >
                     {getNextStepLabel(school)}
+                    <ArrowRight aria-hidden="true" className="size-3.5" />
                   </Link>
                   {school.status !== "open" ? (
                     <Link

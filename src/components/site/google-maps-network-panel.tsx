@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ArrowRight, Clock, ExternalLink, GraduationCap, MapPin } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { School, SchoolStatus } from "@/data/schools";
 import { StatusBadge } from "./status-badge";
@@ -247,21 +248,26 @@ export function GoogleMapsNetworkPanel({
               href={selectedSchool.mapHref}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex min-h-10 shrink-0 items-center justify-center rounded-md border border-brand-blue/20 bg-white px-4 py-2 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+              className="inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-md border border-brand-blue/20 bg-white px-4 py-2 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
             >
+              <ExternalLink aria-hidden="true" className="size-4" />
               Open map
             </a>
           </div>
 
           <div className="mt-5 grid gap-4 border-y border-border-soft py-5 text-sm sm:grid-cols-2">
             <div>
-              <p className="font-semibold text-brand-blue-strong">Schedule</p>
+              <p className="flex items-center gap-2 font-semibold text-brand-blue-strong">
+                <Clock aria-hidden="true" className="size-4 shrink-0 text-brand-red" />
+                Schedule
+              </p>
               <p className="mt-1 leading-6 text-slate-600">
                 {selectedSchool.schedule}
               </p>
             </div>
             <div>
-              <p className="font-semibold text-brand-blue-strong">
+              <p className="flex items-center gap-2 font-semibold text-brand-blue-strong">
+                <GraduationCap aria-hidden="true" className="size-4 shrink-0 text-brand-red" />
                 Class pathway
               </p>
               <p className="mt-1 leading-6 text-slate-600">
@@ -283,22 +289,25 @@ export function GoogleMapsNetworkPanel({
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link
               href={selectedSchool.bestNextSteps[0]?.href ?? "/contact#enquiry-form"}
-              className="inline-flex min-h-11 items-center justify-center rounded-md bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
             >
               {selectedSchool.bestNextSteps[0]?.ctaLabel ?? "Start an enquiry"}
+              <ArrowRight aria-hidden="true" className="size-4" />
             </Link>
             {selectedSchool.status !== "open" && selectedSchool.bestNextSteps[1] ? (
               <Link
                 href={selectedSchool.bestNextSteps[1].href}
-                className="inline-flex min-h-11 items-center justify-center rounded-md border border-brand-blue/20 bg-white px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-brand-blue/20 bg-white px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
               >
                 {selectedSchool.bestNextSteps[1].ctaLabel}
+                <ArrowRight aria-hidden="true" className="size-4" />
               </Link>
             ) : null}
             <Link
               href={`/schools/${selectedSchool.slug}`}
-              className="inline-flex min-h-11 items-center justify-center rounded-md border border-brand-blue/20 bg-white px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-brand-blue/20 bg-white px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
             >
+              <MapPin aria-hidden="true" className="size-4" />
               Branch details
             </Link>
           </div>

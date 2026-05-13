@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight, Camera, CheckCircle2, Images, MapPin, MessageSquareText } from "lucide-react";
 import { ButtonLink } from "@/components/site/button-link";
 import { PageCta } from "@/components/site/page-cta";
 import { PageHero } from "@/components/site/page-hero";
@@ -105,11 +106,14 @@ export default function GalleryPage() {
         title="School life, shared with care"
         actions={
           <>
-            <ButtonLink href="/schools">Explore schools</ButtonLink>
+            <ButtonLink href="/schools" icon={<MapPin className="size-4" />}>
+              Explore schools
+            </ButtonLink>
             <ButtonLink
               href="/contact#enquiry-form"
               variant="quiet"
               className={quietHeroLink}
+              icon={<MessageSquareText className="size-4" />}
             >
               Start an enquiry
             </ButtonLink>
@@ -139,6 +143,7 @@ export default function GalleryPage() {
               ].map((item) => (
                 <div key={item.label}>
                   <dt className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
+                    <Images aria-hidden="true" className="mb-1 size-4 text-brand-red" />
                     {item.label}
                   </dt>
                   <dd className="mt-1 text-xl font-semibold text-brand-blue-strong">
@@ -259,6 +264,7 @@ export default function GalleryPage() {
                           ))}
                         </div>
                         <p className="mt-5 text-sm font-semibold text-muted">
+                          <ArrowRight aria-hidden="true" className="mr-1 inline size-4 align-[-0.2em]" />
                           {hasCategoryMedia
                             ? extendedAssetCount > 0
                               ? `View selected images and ${extendedAssetCount} archive tiles`
@@ -345,15 +351,17 @@ export default function GalleryPage() {
               {galleryAssuranceNotes.map((note) => (
                 <p
                   key={note}
-                  className="py-4 text-sm leading-6 text-slate-700 md:px-4 md:first:pl-0 md:last:pr-0"
+                  className="flex gap-2 py-4 text-sm leading-6 text-slate-700 md:px-4 md:first:pl-0 md:last:pr-0"
                 >
-                  {note}
+                  <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
+                  <span>{note}</span>
                 </p>
               ))}
             </div>
             <ol className="grid gap-3 sm:grid-cols-3">
               {galleryCurationStandards.map((stage, index) => (
                 <li key={stage.label} className="border-l border-brand-gold pl-4">
+                  <Camera aria-hidden="true" className="mb-2 size-5 text-brand-red" />
                   <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-muted">
                     Standard {index + 1}
                   </p>
@@ -380,6 +388,7 @@ export default function GalleryPage() {
                 key={link.href}
                 href={link.href}
                 variant="light"
+                icon={link.href === "/schools" ? <MapPin className="size-4" /> : <MessageSquareText className="size-4" />}
               >
                 {link.label}
               </ButtonLink>

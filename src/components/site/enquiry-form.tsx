@@ -1,5 +1,6 @@
 "use client";
 
+import { Send } from "lucide-react";
 import type { ReactNode } from "react";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
@@ -425,15 +426,18 @@ function SubmitButton({
     <button
       type="submit"
       disabled={pending}
-      className="inline-flex min-h-11 w-full items-center justify-center rounded-md bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30 disabled:cursor-not-allowed disabled:bg-slate-400 sm:w-auto"
+      className="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30 disabled:cursor-not-allowed disabled:bg-slate-400 sm:w-auto"
     >
-      {pending
-        ? mode === "live"
-          ? "Submitting..."
-          : "Checking..."
-        : mode === "live"
-          ? "Submit initial enquiry"
-          : "Check enquiry details"}
+      <Send aria-hidden="true" className="size-4" />
+      <span>
+        {pending
+          ? mode === "live"
+            ? "Submitting..."
+            : "Checking..."
+          : mode === "live"
+            ? "Submit initial enquiry"
+            : "Check enquiry details"}
+      </span>
     </button>
   );
 }

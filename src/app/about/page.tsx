@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { ArrowRight, BookOpen, CheckCircle2, ClipboardCheck, MapPin, UsersRound } from "lucide-react";
 import { ButtonLink } from "@/components/site/button-link";
 import { PageCta } from "@/components/site/page-cta";
 import { PageHero } from "@/components/site/page-hero";
@@ -35,16 +36,19 @@ const reviewNotes = [
 const schoolStory = [
   {
     label: "In the classroom",
+    icon: BookOpen,
     title: "Russian is treated as a living language",
     body: "Children meet Russian through speaking, reading, writing, stories, cultural work, and creative school moments rather than a narrow vocabulary-only routine.",
   },
   {
     label: "Across childhood",
+    icon: UsersRound,
     title: "Progression is allowed to take time",
     body: "The school presents learning as a steady supplementary pathway, from early confidence through more structured language, literature, and exam-aware preparation where relevant.",
   },
   {
     label: "At the start",
+    icon: ClipboardCheck,
     title: "Placement begins with the child in front of the school",
     body: "Age is useful, but it is not the whole story. Home language exposure, confidence, reading, writing, and teacher judgement all shape the first recommendation.",
   },
@@ -107,11 +111,15 @@ export default function AboutPage() {
         title="A Russian school community for children and families"
         actions={
           <>
-            <ButtonLink href="/schools">Explore schools</ButtonLink>
+            <ButtonLink href="/schools" icon={<MapPin className="size-4" />}>
+              Explore schools
+            </ButtonLink>
             <ButtonLink
               href="/contact#enquiry-form"
               variant="quiet"
               className={quietHeroLink}
+              icon={<ArrowRight className="size-4" />}
+              iconPosition="end"
             >
               Start an enquiry
             </ButtonLink>
@@ -173,7 +181,8 @@ export default function AboutPage() {
                   key={item.title}
                   className="grid gap-3 py-5 first:pt-0 last:pb-0 sm:grid-cols-[8rem_1fr]"
                 >
-                  <p className="text-sm font-semibold text-brand-red">
+                  <p className="flex items-center gap-2 text-sm font-semibold text-brand-red">
+                    <item.icon aria-hidden="true" className="size-4" />
                     {item.label}
                   </p>
                   <div>
@@ -214,6 +223,7 @@ export default function AboutPage() {
           <div className="grid gap-6 sm:grid-cols-2">
             {familyNotices.map((item) => (
               <article key={item.title} className="border-l border-brand-gold pl-5">
+                <CheckCircle2 aria-hidden="true" className="mb-3 size-5 text-brand-red" />
                 <h2 className="text-xl font-semibold leading-tight text-brand-blue-strong">
                   {item.title}
                 </h2>
@@ -246,7 +256,7 @@ export default function AboutPage() {
               {placementSteps.map((step, index) => (
                 <article key={step.title} className="relative pb-8 last:pb-0">
                   <span className="absolute -left-[2.05rem] top-1 flex size-5 items-center justify-center rounded-full border border-brand-gold bg-background">
-                    <span className="size-2 rounded-full bg-brand-red" />
+                    <ClipboardCheck aria-hidden="true" className="size-3 text-brand-red" />
                   </span>
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
                     Step {index + 1}
@@ -266,8 +276,11 @@ export default function AboutPage() {
               </h2>
               <ul className="mt-4 divide-y divide-border-soft text-sm leading-6 text-slate-700">
                 {curriculumMaterials.map((item) => (
-                  <li key={item} className="py-3 first:pt-0 last:pb-0">
-                    {item}
+                <li key={item} className="py-3 first:pt-0 last:pb-0">
+                    <span className="flex gap-2">
+                      <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
+                      <span>{item}</span>
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -290,14 +303,12 @@ export default function AboutPage() {
             </p>
           </SectionIntro>
           <div className="divide-y divide-border-soft border-y border-border-soft">
-            {educationPrinciples.map((item, index) => (
+            {educationPrinciples.map((item) => (
               <article
                 key={item.title}
                 className="grid gap-4 py-6 sm:grid-cols-[4rem_1fr]"
               >
-                <p className="font-mono text-sm font-semibold text-brand-red">
-                  0{index + 1}
-                </p>
+                <CheckCircle2 aria-hidden="true" className="size-5 text-brand-red" />
                 <div>
                   <h2 className="text-xl font-semibold text-brand-blue-strong">
                     {item.title}
@@ -327,6 +338,7 @@ export default function AboutPage() {
           <div className="grid gap-5 sm:grid-cols-3">
             {publicRecordGuides.map((item) => (
               <article key={item.title} className="border-t border-brand-gold pt-5">
+                <BookOpen aria-hidden="true" className="mb-3 size-5 text-brand-red" />
                 <h2 className="text-xl font-semibold text-brand-blue-strong">
                   {item.title}
                 </h2>
@@ -344,7 +356,11 @@ export default function AboutPage() {
         title="Ask about the right next step for your child"
         tone="light"
         actions={
-          <ButtonLink href="/contact#enquiry-form">
+          <ButtonLink
+            href="/contact#enquiry-form"
+            icon={<ArrowRight className="size-4" />}
+            iconPosition="end"
+          >
             Start an enquiry
           </ButtonLink>
         }
@@ -356,8 +372,9 @@ export default function AboutPage() {
         </p>
         <ul className="mt-4 grid gap-2 text-sm leading-6 text-slate-600">
           {reviewNotes.map((note) => (
-            <li key={note} className="border-l border-brand-gold pl-4">
-              {note}
+            <li key={note} className="flex gap-2 border-l border-brand-gold pl-4">
+              <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
+              <span>{note}</span>
             </li>
           ))}
         </ul>

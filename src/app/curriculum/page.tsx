@@ -1,4 +1,12 @@
 import type { Metadata } from "next";
+import {
+  ArrowRight,
+  BookOpen,
+  CheckCircle2,
+  ClipboardCheck,
+  GraduationCap,
+  MapPin,
+} from "lucide-react";
 import { ButtonLink } from "@/components/site/button-link";
 import { DecisionPanel } from "@/components/site/decision-panel";
 import { PageCta } from "@/components/site/page-cta";
@@ -103,11 +111,14 @@ export default function CurriculumPage() {
         }
         actions={
           <>
-            <ButtonLink href="/schools">Choose a branch</ButtonLink>
+            <ButtonLink href="/schools" icon={<MapPin className="size-4" />}>
+              Choose a branch
+            </ButtonLink>
             <ButtonLink
               href="/contact#enquiry-form"
               variant="quiet"
               className={quietHeroLink}
+              icon={<ClipboardCheck className="size-4" />}
             >
               Ask about placement
             </ButtonLink>
@@ -138,9 +149,10 @@ export default function CurriculumPage() {
               {learningJourneyNotes.map((note) => (
                 <li
                   key={note}
-                  className="border-l border-brand-gold bg-surface px-4 py-3"
+                  className="flex gap-2 border-l border-brand-gold bg-surface px-4 py-3"
                 >
-                  {note}
+                  <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
+                  <span>{note}</span>
                 </li>
               ))}
             </ul>
@@ -153,7 +165,8 @@ export default function CurriculumPage() {
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 {syllabusThreads.map((thread) => (
                   <div key={thread} className="border-l border-brand-gold pl-4">
-                    <p className="text-sm leading-6 text-slate-700">
+                    <p className="flex gap-2 text-sm leading-6 text-slate-700">
+                      <BookOpen aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
                       {thread}
                     </p>
                   </div>
@@ -161,14 +174,12 @@ export default function CurriculumPage() {
               </div>
             </div>
             <div className="divide-y divide-border-soft">
-              {curriculumPillars.map((pillar, index) => (
+              {curriculumPillars.map((pillar) => (
                 <article
                   key={pillar.title}
                   className="grid gap-4 py-5 first:pt-0 last:pb-0 sm:grid-cols-[4rem_1fr]"
                 >
-                  <p className="font-mono text-sm font-semibold text-brand-red">
-                    0{index + 1}
-                  </p>
+                  <GraduationCap aria-hidden="true" className="size-5 text-brand-red" />
                   <div>
                     <h2 className="text-xl font-semibold text-brand-blue-strong">
                       {pillar.title}
@@ -259,7 +270,7 @@ export default function CurriculumPage() {
             {placementSteps.map((step, index) => (
               <article key={step.title} className="relative pb-8 last:pb-0">
                 <span className="absolute -left-[2.05rem] top-1 flex size-5 items-center justify-center rounded-full border border-brand-gold bg-surface">
-                  <span className="size-2 rounded-full bg-brand-red" />
+                  <ClipboardCheck aria-hidden="true" className="size-3 text-brand-red" />
                 </span>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
                   Placement {index + 1}
@@ -297,7 +308,10 @@ export default function CurriculumPage() {
                   key={signal}
                   className="py-3 text-sm leading-6 text-slate-700 first:pt-0 last:pb-0"
                 >
-                  {signal}
+                  <span className="flex gap-2">
+                    <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
+                    <span>{signal}</span>
+                  </span>
                 </li>
               ))}
             </ul>
@@ -338,7 +352,12 @@ export default function CurriculumPage() {
                   <p>{route.recommendation}</p>
                 </div>
                 <div className="lg:justify-self-end">
-                  <ButtonLink href={route.href} variant="light">
+                  <ButtonLink
+                    href={route.href}
+                    variant="light"
+                    icon={<ArrowRight className="size-4" />}
+                    iconPosition="end"
+                  >
                     {route.ctaLabel}
                   </ButtonLink>
                 </div>
@@ -373,7 +392,10 @@ export default function CurriculumPage() {
                   key={item}
                   className="py-3 text-sm leading-6 text-slate-700 first:pt-0 last:pb-0"
                 >
-                  {item}
+                  <span className="flex gap-2">
+                    <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
+                    <span>{item}</span>
+                  </span>
                 </li>
               ))}
             </ul>
@@ -387,8 +409,18 @@ export default function CurriculumPage() {
         tone="light"
         actions={
           <>
-            <ButtonLink href="/contact#enquiry-form">Ask about placement</ButtonLink>
-            <ButtonLink href="/admissions" variant="secondary">
+            <ButtonLink
+              href="/contact#enquiry-form"
+              icon={<ClipboardCheck className="size-4" />}
+            >
+              Ask about placement
+            </ButtonLink>
+            <ButtonLink
+              href="/admissions"
+              variant="secondary"
+              icon={<ArrowRight className="size-4" />}
+              iconPosition="end"
+            >
               Admissions and fees
             </ButtonLink>
           </>

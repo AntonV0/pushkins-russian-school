@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight, MapPin, MessageSquareText } from "lucide-react";
 
 export default function NotFound() {
   return (
@@ -18,15 +19,18 @@ export default function NotFound() {
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <Link
             href="/schools"
-            className="inline-flex items-center justify-center rounded-full bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
           >
-            View schools
+            <MapPin aria-hidden="true" className="size-4" />
+            <span>View schools</span>
           </Link>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center rounded-full border border-brand-blue/20 px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-brand-blue/20 px-5 py-3 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
           >
-            Contact us
+            <MessageSquareText aria-hidden="true" className="size-4" />
+            <span>Contact us</span>
+            <ArrowRight aria-hidden="true" className="size-4" />
           </Link>
         </div>
       </section>

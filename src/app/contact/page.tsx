@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowRight, Banknote, CheckCircle2, Mail, MapPin, Send } from "lucide-react";
 import { EnquiryForm } from "@/components/site/enquiry-form";
 import { PageHero } from "@/components/site/page-hero";
 import { enquiryChecklist } from "@/data/admissions";
@@ -86,8 +87,9 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               Prefer email?{" "}
               <a
                 href={`mailto:${contactDetails.email}`}
-                className="break-all font-semibold underline decoration-brand-red/40 hover:text-brand-red"
+                className="inline-flex items-center gap-1.5 break-all font-semibold underline decoration-brand-red/40 hover:text-brand-red"
               >
+                <Mail aria-hidden="true" className="size-4 shrink-0" />
                 {contactDetails.email}
               </a>
             </p>
@@ -98,14 +100,16 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             </h3>
             <ul className="mt-4 grid gap-x-6 gap-y-2 text-sm leading-6 text-slate-700 sm:grid-cols-2">
               {enquiryChecklist.slice(0, 6).map((item) => (
-                <li key={item} className="border-l border-brand-gold pl-3">
-                  {item}
+                <li key={item} className="flex gap-2 border-l border-brand-gold pl-3">
+                  <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>
             <dl className="mt-8 grid gap-4 border-y border-border-soft py-5 text-sm sm:grid-cols-2">
               <div>
-                <dt className="font-semibold text-brand-blue-strong">
+                <dt className="flex items-center gap-2 font-semibold text-brand-blue-strong">
+                  <MapPin aria-hidden="true" className="size-4 text-brand-red" />
                   Current weekend branch
                 </dt>
                 <dd className="mt-1 leading-6 text-slate-600">
@@ -113,7 +117,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                 </dd>
               </div>
               <div>
-                <dt className="font-semibold text-brand-blue-strong">
+                <dt className="flex items-center gap-2 font-semibold text-brand-blue-strong">
+                  <Send aria-hidden="true" className="size-4 text-brand-red" />
                   Register interest
                 </dt>
                 <dd className="mt-1 leading-6 text-slate-600">
@@ -145,9 +150,10 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               <div className="mt-6">
                 <Link
                   href="/schools"
-                  className="text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/40 hover:text-brand-red"
+                  className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/40 hover:text-brand-red"
                 >
-                  Compare all school locations
+                  <span>Compare all school locations</span>
+                  <ArrowRight aria-hidden="true" className="size-4" />
                 </Link>
               </div>
             </div>
@@ -171,9 +177,10 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                   </p>
                   <Link
                     href={school.bestNextSteps[0]?.href ?? `/schools/${school.slug}`}
-                    className="inline-flex min-h-10 items-center justify-center rounded-md border border-brand-blue/20 px-4 py-2 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+                    className="inline-flex min-h-10 items-center justify-center gap-2 rounded-md border border-brand-blue/20 px-4 py-2 text-sm font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
                   >
                     {school.bestNextSteps[0]?.ctaLabel ?? "View details"}
+                    <ArrowRight aria-hidden="true" className="size-4" />
                   </Link>
                 </div>
               ))}
@@ -193,11 +200,9 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             </h2>
           </div>
           <div className="grid gap-5 md:grid-cols-3">
-            {contactSupportNotes.map((note, index) => (
+            {contactSupportNotes.map((note) => (
               <div key={note} className="border-l border-brand-gold pl-5">
-                <p className="font-mono text-sm font-semibold text-brand-red">
-                  0{index + 1}
-                </p>
+                <Send aria-hidden="true" className="size-5 text-brand-red" />
                 <p className="mt-3 text-sm leading-6 text-slate-700">{note}</p>
               </div>
             ))}
@@ -221,7 +226,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           <dl className="grid gap-x-8 gap-y-4 border-y border-border-soft py-5 sm:grid-cols-2 lg:grid-cols-3">
             {paymentDetails.termFees.map((fee) => (
               <div key={fee.label}>
-                <dt className="text-sm font-semibold text-brand-blue-strong">
+                <dt className="flex items-center gap-2 text-sm font-semibold text-brand-blue-strong">
+                  <Banknote aria-hidden="true" className="size-4 text-brand-red" />
                   {fee.label}
                 </dt>
                 <dd className="mt-1 text-sm leading-6 text-slate-600">

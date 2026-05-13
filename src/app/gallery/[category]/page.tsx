@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { ArrowRight, CheckCircle2, Images, MapPin } from "lucide-react";
 import {
   AssetReadinessPanel,
   MediaAssetGrid,
@@ -268,10 +269,16 @@ export default async function GalleryCategoryPage({
               }
             />
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-              <ButtonLink href="/gallery" variant="secondary">
+              <ButtonLink
+                href="/gallery"
+                variant="secondary"
+                icon={<Images className="size-4" />}
+              >
                 Back to gallery
               </ButtonLink>
-              <ButtonLink href="/schools">Explore schools</ButtonLink>
+              <ButtonLink href="/schools" icon={<MapPin className="size-4" />}>
+                Explore schools
+              </ButtonLink>
               <span className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-border-soft px-5 py-3 text-center text-sm font-semibold text-muted sm:w-auto">
                 Photos selected with care
               </span>
@@ -293,13 +300,13 @@ export default async function GalleryCategoryPage({
             </p>
           </div>
           <ol className="divide-y divide-border-soft border-y border-border-soft bg-background">
-            {galleryWorkflowStages.map((stage, index) => (
+            {galleryWorkflowStages.map((stage) => (
               <li
                 key={stage.label}
                 className="grid gap-4 px-5 py-5 sm:grid-cols-[3rem_1fr]"
               >
                 <span className="flex h-10 w-10 items-center justify-center justify-self-start rounded-full border border-brand-gold/50 bg-surface text-sm font-semibold text-brand-blue-strong">
-                  {index + 1}
+                  <CheckCircle2 aria-hidden="true" className="size-4 text-brand-red" />
                 </span>
                 <span>
                   <span className="block text-sm font-semibold text-brand-blue-strong">
@@ -332,7 +339,10 @@ export default async function GalleryCategoryPage({
                 key={note}
                 className="border-l border-brand-gold bg-background px-4 py-3 text-sm leading-6 text-slate-700"
               >
-                {note}
+                <span className="flex gap-2">
+                  <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
+                  <span>{note}</span>
+                </span>
               </div>
             ))}
           </div>
@@ -347,6 +357,8 @@ export default async function GalleryCategoryPage({
               href={link.href}
               variant="light"
               className="h-full items-start text-left"
+              icon={<ArrowRight className="size-4" />}
+              iconPosition="end"
             >
               {link.label}
             </ButtonLink>

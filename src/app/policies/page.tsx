@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowRight, CheckCircle2, ExternalLink, FileText, HelpCircle, MapPin, ShieldCheck } from "lucide-react";
 import { ButtonLink } from "@/components/site/button-link";
 import {
   getPolicyAction,
@@ -106,11 +107,14 @@ export default function PoliciesPage() {
               added for download when the school has confirmed they are ready.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <ButtonLink href="#policy-library">Browse policies</ButtonLink>
+              <ButtonLink href="#policy-library" icon={<FileText className="size-4" />}>
+                Browse policies
+              </ButtonLink>
               <ButtonLink
                 href="/contact#enquiry-form"
                 variant="quiet"
                 className={quietHeroLink}
+                icon={<HelpCircle className="size-4" />}
               >
                 Ask a policy question
               </ButtonLink>
@@ -142,6 +146,7 @@ export default function PoliciesPage() {
                   className="grid grid-cols-[1fr_auto] gap-4 py-3 first:pt-0 last:pb-0"
                 >
                   <dt className="text-sm leading-6 text-slate-600">
+                    <ShieldCheck aria-hidden="true" className="mr-1 inline size-4 align-[-0.2em] text-brand-red" />
                     {item.label}
                   </dt>
                   <dd className="text-sm font-semibold leading-6 text-brand-blue-strong">
@@ -229,9 +234,10 @@ export default function PoliciesPage() {
                         <div className="mt-3 flex flex-wrap items-center gap-3">
                           <Link
                             href={`/policies/${policy.slug}`}
-                            className="text-xs font-semibold uppercase tracking-[0.12em] text-muted hover:text-brand-red"
+                            className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-muted hover:text-brand-red"
                           >
-                            View summary
+                            <FileText aria-hidden="true" className="size-3.5" />
+                            <span>View summary</span>
                           </Link>
                           {action ? (
                             <a
@@ -243,9 +249,14 @@ export default function PoliciesPage() {
                                   : undefined
                               }
                               download={action.isExternal ? undefined : true}
-                              className="text-xs font-semibold uppercase tracking-[0.12em] text-brand-blue-strong hover:text-brand-red"
+                              className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-brand-blue-strong hover:text-brand-red"
                             >
-                              {action.label}
+                              <span>{action.label}</span>
+                              {action.isExternal ? (
+                                <ExternalLink aria-hidden="true" className="size-3.5" />
+                              ) : (
+                                <ArrowRight aria-hidden="true" className="size-3.5" />
+                              )}
                             </a>
                           ) : null}
                         </div>
@@ -270,7 +281,8 @@ export default function PoliciesPage() {
             <dl className="grid gap-4 sm:grid-cols-3">
               {publicationPrinciples.map((principle) => (
                 <div key={principle.label}>
-                  <dt className="text-sm font-semibold text-brand-blue-strong">
+                  <dt className="flex items-center gap-2 text-sm font-semibold text-brand-blue-strong">
+                    <CheckCircle2 aria-hidden="true" className="size-4 text-brand-red" />
                     {principle.label}
                   </dt>
                   <dd className="mt-2 text-sm leading-6 text-slate-600">
@@ -294,9 +306,10 @@ export default function PoliciesPage() {
           {policyAssuranceNotes.map((note) => (
             <div
               key={note}
-              className="py-4 text-sm leading-6 text-slate-700 md:px-5 md:first:pl-0 md:last:pr-0"
+              className="flex gap-2 py-4 text-sm leading-6 text-slate-700 md:px-5 md:first:pl-0 md:last:pr-0"
             >
-              {note}
+              <ShieldCheck aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
+              <span>{note}</span>
             </div>
           ))}
         </div>
@@ -318,7 +331,12 @@ export default function PoliciesPage() {
           </div>
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap md:justify-end">
             {policyContactLinks.map((link) => (
-              <ButtonLink key={link.href} href={link.href} variant="secondary">
+              <ButtonLink
+                key={link.href}
+                href={link.href}
+                variant="secondary"
+                icon={link.href === "/schools" ? <MapPin className="size-4" /> : <HelpCircle className="size-4" />}
+              >
                 {link.label}
               </ButtonLink>
             ))}

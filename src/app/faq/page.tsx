@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ArrowRight, HelpCircle, MessageSquareText, Search } from "lucide-react";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { ButtonLink } from "@/components/site/button-link";
 import { FaqList } from "@/components/site/faq-list";
@@ -71,13 +72,14 @@ export default function FaqPage() {
                 message.
               </p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <ButtonLink href="#faq-choosing-a-branch">
+                <ButtonLink href="#faq-choosing-a-branch" icon={<Search className="size-4" />}>
                   Browse answers
                 </ButtonLink>
                 <ButtonLink
                   href="/contact#enquiry-form"
                   variant="quiet"
                   className={quietHeroLink}
+                  icon={<MessageSquareText className="size-4" />}
                 >
                   Ask the school
                 </ButtonLink>
@@ -110,9 +112,10 @@ export default function FaqPage() {
                       .toLowerCase()
                       .replace(/[^a-z0-9]+/g, "-")
                       .replace(/^-|-$/g, "")}`}
-                    className="rounded-md border border-border-soft bg-background px-3 py-2.5 text-left text-sm font-semibold leading-5 text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30 sm:rounded-full sm:py-2"
+                    className="inline-flex items-center gap-1.5 rounded-md border border-border-soft bg-background px-3 py-2.5 text-left text-sm font-semibold leading-5 text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30 sm:rounded-full sm:py-2"
                   >
-                    {group.title}
+                    <HelpCircle aria-hidden="true" className="size-3.5 shrink-0" />
+                    <span>{group.title}</span>
                   </a>
                 ))}
               </div>
@@ -137,7 +140,13 @@ export default function FaqPage() {
               Send a focused enquiry and the school can point you to the right route
             </h2>
           </div>
-          <ButtonLink href="/contact#enquiry-form">Ask the school</ButtonLink>
+          <ButtonLink
+            href="/contact#enquiry-form"
+            icon={<ArrowRight className="size-4" />}
+            iconPosition="end"
+          >
+            Ask the school
+          </ButtonLink>
         </div>
       </section>
     </main>

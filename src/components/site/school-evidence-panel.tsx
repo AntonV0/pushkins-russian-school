@@ -1,5 +1,7 @@
 import Image from "next/image";
+import { CheckCircle2, Images } from "lucide-react";
 import type { MediaAsset } from "@/data/media-assets";
+import { SiteIconBadge } from "./site-icon-badge";
 
 type SchoolEvidencePanelProps = {
   eyebrow: string;
@@ -20,12 +22,17 @@ export function SchoolEvidencePanel({
 
   return (
     <aside className="border-y border-border-soft bg-background py-5 sm:py-6">
-      <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">
-        {eyebrow}
-      </p>
-      <h2 className="mt-3 text-xl font-semibold leading-tight text-brand-blue-strong sm:text-2xl">
-        {title}
-      </h2>
+      <div className="flex items-start gap-4">
+        <SiteIconBadge icon={Images} />
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">
+            {eyebrow}
+          </p>
+          <h2 className="mt-3 text-xl font-semibold leading-tight text-brand-blue-strong sm:text-2xl">
+            {title}
+          </h2>
+        </div>
+      </div>
       <p className="mt-3 text-sm leading-6 text-slate-600">{summary}</p>
 
       {visibleAssets.length > 0 ? (
@@ -59,8 +66,9 @@ export function SchoolEvidencePanel({
 
       <ul className="mt-5 grid gap-3 text-sm leading-6 text-slate-700">
         {notes.map((note) => (
-          <li key={note} className="border-l border-brand-gold pl-4">
-            {note}
+          <li key={note} className="flex gap-2 border-l border-brand-gold pl-4">
+            <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
+            <span>{note}</span>
           </li>
         ))}
       </ul>

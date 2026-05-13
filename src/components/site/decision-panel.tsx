@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import type { ReactNode } from "react";
 
 type DecisionPanelAction = {
@@ -56,7 +57,7 @@ export function DecisionPanel({
             <Link
               key={action.href}
               href={action.href}
-              className={`inline-flex min-h-10 items-center justify-center rounded-md px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 ${
+              className={`inline-flex min-h-10 items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 ${
                 isBlue
                   ? index === 0
                     ? "bg-white text-brand-blue-strong hover:bg-surface-muted focus:ring-white/40"
@@ -66,7 +67,8 @@ export function DecisionPanel({
                     : "border border-brand-blue/20 bg-white/65 text-brand-blue-strong hover:border-brand-red hover:text-brand-red focus:ring-brand-red/30"
               }`}
             >
-              {action.label}
+              <span>{action.label}</span>
+              <ArrowRight aria-hidden="true" className="size-4" />
             </Link>
           ))}
         </div>

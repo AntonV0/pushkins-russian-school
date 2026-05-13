@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowRight, Laptop, MapPin, Search, UsersRound } from "lucide-react";
 import { ButtonLink } from "@/components/site/button-link";
 import { GoogleMapsNetworkPanel } from "@/components/site/google-maps-network-panel";
 import { LearningOptions } from "@/components/site/learning-options";
@@ -42,11 +43,14 @@ export default function SchoolsPage() {
         aside={<NetworkVisual />}
         actions={
           <>
-            <ButtonLink href="#location-explorer">Explore locations</ButtonLink>
+            <ButtonLink href="#location-explorer" icon={<MapPin className="size-4" />}>
+              Explore locations
+            </ButtonLink>
             <ButtonLink
               href="#compare-branches"
               variant="quiet"
               className={quietHeroLink}
+              icon={<Search className="size-4" />}
             >
               Compare branches
             </ButtonLink>
@@ -132,6 +136,8 @@ export default function SchoolsPage() {
                     : "/contact#enquiry-form"
                 }
                 className="mt-5"
+                icon={<ArrowRight className="size-4" />}
+                iconPosition="end"
               >
                 {currentSchool ? "View current branch" : "Start an enquiry"}
               </ButtonLink>
@@ -141,6 +147,7 @@ export default function SchoolsPage() {
             {[
               {
                 label: "Current/open",
+                icon: UsersRound,
                 title: "Ask about a weekend place",
                 body: currentSchool
                   ? `${currentSchool.name} is the current in-person branch. Check spaces, class fit, start date, and arrival details before attending.`
@@ -152,6 +159,7 @@ export default function SchoolsPage() {
               },
               {
                 label: "Register interest",
+                icon: MapPin,
                 title: "Signal demand for a local town",
                 body: "Use this if you would attend future classes in High Wycombe, Hemel Hempstead, Chelmsford, Southend-on-Sea, or another listed area.",
                 href: "/schools#compare-branches",
@@ -159,6 +167,7 @@ export default function SchoolsPage() {
               },
               {
                 label: "Online route",
+                icon: Laptop,
                 title: "Start sooner without a nearby branch",
                 body: "Ask whether online lessons or exam-focused support would be more practical while local provision is not confirmed.",
                 href: "/contact?intent=online-learning#enquiry-form",
@@ -169,9 +178,12 @@ export default function SchoolsPage() {
                 key={item.label}
                 className="border-l border-brand-gold bg-background px-5 py-4"
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">
-                  {item.label}
-                </p>
+                <div className="flex items-center gap-2">
+                  <item.icon aria-hidden="true" className="size-4 text-brand-red" />
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">
+                    {item.label}
+                  </p>
+                </div>
                 <h2 className="mt-2 text-lg font-semibold text-brand-blue-strong">
                   {item.title}
                 </h2>
@@ -180,9 +192,10 @@ export default function SchoolsPage() {
                 </p>
                 <Link
                   href={item.href ?? "/contact#enquiry-form"}
-                  className="mt-3 inline-flex text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/35 hover:text-brand-red"
+                  className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/35 hover:text-brand-red"
                 >
-                  {item.cta}
+                  <span>{item.cta}</span>
+                  <ArrowRight aria-hidden="true" className="size-4" />
                 </Link>
               </article>
             ))}
@@ -230,9 +243,10 @@ export default function SchoolsPage() {
                 <Link
                   key={school.slug}
                   href={school.bestNextSteps[0]?.href ?? `/schools/${school.slug}`}
-                  className="rounded-full border border-border-soft bg-background px-3 py-1.5 text-xs font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-border-soft bg-background px-3 py-1.5 text-xs font-semibold text-brand-blue-strong transition hover:border-brand-red hover:text-brand-red focus:outline-none focus:ring-2 focus:ring-brand-red/30"
                 >
-                  {school.name}: {school.bestNextSteps[0]?.ctaLabel ?? "View details"}
+                  <MapPin aria-hidden="true" className="size-3.5 shrink-0" />
+                  <span>{school.name}: {school.bestNextSteps[0]?.ctaLabel ?? "View details"}</span>
                 </Link>
               ))}
             </div>
@@ -250,7 +264,12 @@ export default function SchoolsPage() {
         eyebrow="Choosing a location"
         title="Send one useful enquiry about your preferred school"
         actions={
-          <ButtonLink href="/contact#enquiry-form" variant="light">
+          <ButtonLink
+            href="/contact#enquiry-form"
+            variant="light"
+            icon={<ArrowRight className="size-4" />}
+            iconPosition="end"
+          >
             Start an enquiry
           </ButtonLink>
         }

@@ -1,3 +1,4 @@
+import { Plus } from "lucide-react";
 import type { FaqGroup } from "@/data/faqs";
 
 type FaqListProps = {
@@ -80,7 +81,7 @@ export function FaqList({ groups }: FaqListProps) {
                         aria-hidden="true"
                         className="inline-flex size-7 shrink-0 items-center justify-center rounded-full border border-border-soft bg-white text-sm font-semibold text-brand-red transition group-open:rotate-45"
                       >
-                        +
+                        <Plus className="size-4" strokeWidth={2.1} />
                       </span>
                     </summary>
                     <div className="px-6 pb-5">

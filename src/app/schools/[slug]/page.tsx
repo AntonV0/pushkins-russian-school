@@ -1,5 +1,15 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import {
+  ArrowRight,
+  Banknote,
+  CheckCircle2,
+  Clock,
+  ExternalLink,
+  GraduationCap,
+  MapPin,
+  Send,
+} from "lucide-react";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { ButtonLink } from "@/components/site/button-link";
 import { JsonLd } from "@/components/site/json-ld";
@@ -126,7 +136,10 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
               {school.availabilitySummary}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <ButtonLink href={getSchoolEnquiryHref(school)}>
+              <ButtonLink
+                href={getSchoolEnquiryHref(school)}
+                icon={<Send className="size-4" />}
+              >
                 {school.enquiryCta}
               </ButtonLink>
               {!hasCurrentVenue && school.bestNextSteps[1] ? (
@@ -134,6 +147,8 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                   href={school.bestNextSteps[1].href}
                   variant="quiet"
                   className="min-h-0 w-auto justify-start px-0 py-1 text-left sm:min-h-11 sm:justify-center sm:px-5 sm:py-3"
+                  icon={<ArrowRight className="size-4" />}
+                  iconPosition="end"
                 >
                   {school.bestNextSteps[1].ctaLabel}
                 </ButtonLink>
@@ -144,7 +159,8 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 rel="noreferrer"
                 className={quietHeroLink}
               >
-                {hasCurrentVenue ? "View map" : "View area map"}
+                <ExternalLink aria-hidden="true" className="size-4" />
+                <span>{hasCurrentVenue ? "View map" : "View area map"}</span>
               </a>
             </div>
           </div>
@@ -156,11 +172,17 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
               </h2>
               <dl className="mt-6 space-y-5 text-sm">
                 <div>
-                  <dt className="font-semibold text-brand-blue-strong">Venue</dt>
+                  <dt className="flex items-center gap-2 font-semibold text-brand-blue-strong">
+                    <MapPin aria-hidden="true" className="size-4 text-brand-red" />
+                    Venue
+                  </dt>
                   <dd className="mt-1 text-slate-600">{school.venueName}</dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-brand-blue-strong">Address</dt>
+                  <dt className="flex items-center gap-2 font-semibold text-brand-blue-strong">
+                    <MapPin aria-hidden="true" className="size-4 text-brand-red" />
+                    Address
+                  </dt>
                   <dd className="mt-1 text-slate-600">
                     {school.address.join(", ")}
                     {school.postcode ? (
@@ -172,13 +194,15 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-brand-blue-strong">
+                  <dt className="flex items-center gap-2 font-semibold text-brand-blue-strong">
+                    <Clock aria-hidden="true" className="size-4 text-brand-red" />
                     Schedule
                   </dt>
                   <dd className="mt-1 text-slate-600">{school.schedule}</dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-brand-blue-strong">
+                  <dt className="flex items-center gap-2 font-semibold text-brand-blue-strong">
+                    <CheckCircle2 aria-hidden="true" className="size-4 text-brand-red" />
                     Before attending
                   </dt>
                   <dd className="mt-1 text-slate-600">
@@ -229,6 +253,8 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                   href={school.nearbyAlternativeCta.href}
                   variant="secondary"
                   className="mt-4"
+                  icon={<ArrowRight className="size-4" />}
+                  iconPosition="end"
                 >
                   View option
                 </ButtonLink>
@@ -267,11 +293,12 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                     "Bring any context that helps placement: age, spoken Russian, reading, writing, and exam aims.",
                     "Ask the school directly about drop-off, collection, fees, and payment instructions.",
                   ].map((note) => (
-                    <li
+                  <li
                       key={note}
-                      className="border-l border-brand-gold bg-surface px-4 py-3"
+                      className="flex gap-2 border-l border-brand-gold bg-surface px-4 py-3"
                     >
-                      {note}
+                      <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
+                      <span>{note}</span>
                     </li>
                   ))}
                 </ul>
@@ -329,6 +356,8 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                       href={item.href}
                       variant={index === 0 ? "primary" : "secondary"}
                       className="justify-self-start sm:justify-self-end"
+                      icon={<ArrowRight className="size-4" />}
+                      iconPosition="end"
                     >
                       {item.ctaLabel}
                     </ButtonLink>
@@ -365,9 +394,10 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 {school.classGroups.map((group) => (
                   <li
                     key={group}
-                    className="border-l border-brand-gold bg-background px-4 py-3"
+                    className="flex gap-2 border-l border-brand-gold bg-background px-4 py-3"
                   >
-                    {group}
+                    <GraduationCap aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-brand-red" />
+                    <span>{group}</span>
                   </li>
                 ))}
               </ul>
@@ -379,7 +409,10 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
               </h3>
               <ul className="mt-5 space-y-3 text-sm leading-6 text-slate-700">
                 {school.highlights.map((highlight) => (
-                  <li key={highlight}>{highlight}</li>
+                  <li key={highlight} className="flex gap-2">
+                    <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
+                    <span>{highlight}</span>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -394,7 +427,10 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                     key={fee.label}
                     className="flex items-center justify-between gap-4 border-b border-border-soft pb-3"
                   >
-                    <dt className="text-slate-600">{fee.label}</dt>
+                    <dt className="flex items-center gap-2 text-slate-600">
+                      <Banknote aria-hidden="true" className="size-4 shrink-0 text-brand-red" />
+                      {fee.label}
+                    </dt>
                     <dd className="font-semibold text-brand-blue-strong">
                       {fee.value}
                     </dd>
@@ -425,7 +461,10 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
               </p>
               <ul className="mt-5 space-y-2 text-sm text-slate-700">
                 {school.onlineProgramme.details.map((detail) => (
-                  <li key={detail}>{detail}</li>
+                  <li key={detail} className="flex gap-2">
+                    <CheckCircle2 aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-brand-red" />
+                    <span>{detail}</span>
+                  </li>
                 ))}
               </ul>
               <div className="mt-5 flex flex-wrap gap-3">
@@ -435,9 +474,10 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                     href={link.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/40 hover:text-brand-red"
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/40 hover:text-brand-red"
                   >
-                    {link.label}
+                    <span>{link.label}</span>
+                    <ExternalLink aria-hidden="true" className="size-4" />
                   </a>
                 ))}
               </div>
@@ -487,7 +527,10 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                   "Ask about online learning if you would like to start sooner.",
                 ]
             ).map((note) => (
-              <li key={note}>{note}</li>
+              <li key={note} className="flex gap-2">
+                <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-gold" />
+                <span>{note}</span>
+              </li>
             ))}
           </ul>
         </div>
@@ -505,7 +548,10 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
             </p>
             <ul className="mt-5 space-y-3 text-sm leading-6 text-slate-700">
               {enquiryChecklist.slice(1, 8).map((item) => (
-                <li key={item}>{item}</li>
+                <li key={item} className="flex gap-2">
+                  <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
+                  <span>{item}</span>
+                </li>
               ))}
             </ul>
           </div>
@@ -521,10 +567,18 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <ButtonLink href={getSchoolEnquiryHref(school)}>
+              <ButtonLink
+                href={getSchoolEnquiryHref(school)}
+                icon={<Send className="size-4" />}
+              >
                 {school.enquiryCta}
               </ButtonLink>
-              <ButtonLink href="/admissions" variant="secondary">
+              <ButtonLink
+                href="/admissions"
+                variant="secondary"
+                icon={<ArrowRight className="size-4" />}
+                iconPosition="end"
+              >
                 Admissions and fees
               </ButtonLink>
             </div>
