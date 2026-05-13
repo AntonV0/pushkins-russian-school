@@ -8,6 +8,14 @@ export const siteConfig = {
   locale: "en_GB",
 };
 
+export const siteSocialLinks = [
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/PushkinsSchool/",
+    description: "School updates, community photos, and announcements",
+  },
+] as const;
+
 export function absoluteUrl(path = "/") {
   return new URL(path, siteConfig.url).toString();
 }

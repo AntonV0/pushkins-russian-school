@@ -1,7 +1,7 @@
 import { contactDetails } from "./contact";
 import { primaryNavigation } from "./navigation";
 import { schools } from "./schools";
-import { absoluteUrl, siteConfig } from "./site";
+import { absoluteUrl, siteConfig, siteSocialLinks } from "./site";
 
 export const seoKeywords = [
   "Russian school",
@@ -36,6 +36,7 @@ export function buildOrganizationJsonLd() {
     url: siteConfig.url,
     email: contactDetails.email,
     description: siteConfig.description,
+    sameAs: siteSocialLinks.map((link) => link.href),
     areaServed: {
       "@type": "Country",
       name: "United Kingdom",

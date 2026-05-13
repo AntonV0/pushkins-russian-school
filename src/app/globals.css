@@ -98,6 +98,42 @@ nextjs-portal {
     0 14px 34px rgba(11, 38, 72, 0.055);
 }
 
+.site-header-row {
+  container: site-header-row / inline-size;
+}
+
+.site-header-tablet-cta {
+  display: none;
+}
+
+.site-header-menu-cta {
+  display: inline-flex;
+}
+
+.site-header-menu-intro {
+  display: block;
+}
+
+@container site-header-row (min-width: 700px) {
+  .site-header-tablet-cta {
+    display: inline-flex;
+  }
+
+  .site-header-menu-intro {
+    display: none;
+  }
+
+  .site-header-menu-cta {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-header-tablet-cta {
+    display: none;
+  }
+}
+
 .fine-grid {
   background-image:
     linear-gradient(90deg, rgba(22, 68, 111, 0.055) 1px, transparent 1px),

@@ -10,8 +10,8 @@ import { absoluteUrl } from "@/data/site";
 const staticRoutes = Array.from(new Set([
   "/",
   ...primaryNavigation.map((item) => item.href),
-  "/admissions",
-  "/faq",
+  "/contact",
+  "/policies",
 ]));
 const approvedGalleryCategories = new Set(
   approvedMediaAssets

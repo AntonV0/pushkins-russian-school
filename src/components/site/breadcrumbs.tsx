@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 
 export type BreadcrumbItem = {
   label: string;
@@ -26,9 +27,7 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
             key={`${item.label}-${item.href ?? "current"}`}
             className="flex items-center gap-2"
           >
-            <span aria-hidden="true" className="text-slate-300">
-              /
-            </span>
+            <ChevronRight aria-hidden="true" className="size-3.5 text-slate-300" />
             {item.href ? (
               <Link
                 href={item.href}

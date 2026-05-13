@@ -7,13 +7,17 @@ export const primaryNavigation: NavigationItem[] = [
   { label: "About", href: "/about" },
   { label: "Schools", href: "/schools" },
   { label: "Curriculum", href: "/curriculum" },
-  { label: "Policies", href: "/policies" },
+  { label: "Admissions", href: "/admissions" },
   { label: "Gallery", href: "/gallery" },
+  { label: "FAQ", href: "/faq" },
+];
+
+export const supportNavigation: NavigationItem[] = [
   { label: "Contact", href: "/contact" },
+  { label: "Policies", href: "/policies" },
 ];
 
 export const footerNavigation: NavigationItem[] = [
   ...primaryNavigation,
-  { label: "Admissions and fees", href: "/admissions" },
-  { label: "FAQ", href: "/faq" },
+  ...supportNavigation,
 ];
