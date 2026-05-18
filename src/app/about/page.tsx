@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowRight, BookOpen, CheckCircle2, ClipboardCheck, MapPin, UsersRound } from "lucide-react";
-import { ButtonLink } from "@/components/site/button-link";
+import {
+  ButtonLink,
+  quietHeroLinkClassName,
+} from "@/components/site/button-link";
 import { PageCta } from "@/components/site/page-cta";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionIntro } from "@/components/site/section-intro";
@@ -10,12 +13,12 @@ import {
   curriculumMaterials,
   educationPrinciples,
   placementSteps,
-} from "@/data/curriculum";
+} from "@/data/public/curriculum";
 import {
   getGalleryCategoryCoverAsset,
   getVisualPlaceholderSlot,
   type MediaAsset,
-} from "@/data/media-assets";
+} from "@/features/gallery/data/media-assets";
 
 const aboutVisual = getVisualPlaceholderSlot("about-community-table");
 const aboutLeadAsset = getGalleryCategoryCoverAsset("creative-work");
@@ -23,9 +26,6 @@ const aboutSupportingAssets = [
   getGalleryCategoryCoverAsset("locations"),
   getGalleryCategoryCoverAsset("classroom-learning"),
 ].filter((asset): asset is MediaAsset => Boolean(asset));
-
-const quietHeroLink =
-  "min-h-0 w-auto justify-start px-0 py-1 text-left sm:min-h-11 sm:justify-center sm:px-5 sm:py-3";
 
 const reviewNotes = [
   "Class groups and placement guidance are shared clearly, with exact fit confirmed through enquiry.",
@@ -117,7 +117,7 @@ export default function AboutPage() {
             <ButtonLink
               href="/contact#enquiry-form"
               variant="quiet"
-              className={quietHeroLink}
+              className={quietHeroLinkClassName}
               icon={<ArrowRight className="size-4" />}
               iconPosition="end"
             >

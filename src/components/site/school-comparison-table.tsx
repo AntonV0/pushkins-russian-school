@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Clock, MapPin } from "lucide-react";
-import { getSchoolEnquiryHref } from "@/data/admissions";
-import type { School } from "@/data/schools";
+import { getSchoolEnquiryHref } from "@/data/public/admissions";
+import type { School } from "@/data/public/schools";
 import { StatusBadge } from "./status-badge";
 
 type SchoolComparisonTableProps = {

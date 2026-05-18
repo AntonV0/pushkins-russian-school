@@ -9,24 +9,27 @@ import {
   MapPin,
   MessageSquareText,
 } from "lucide-react";
-import { ButtonLink } from "@/components/site/button-link";
+import {
+  ButtonLink,
+  quietHeroLinkClassName,
+} from "@/components/site/button-link";
 import { PageCta } from "@/components/site/page-cta";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionIntro } from "@/components/site/section-intro";
-import { admissionsSteps } from "@/data/admissions";
-import { contactDetails } from "@/data/contact";
+import { admissionsSteps } from "@/data/public/admissions";
+import { contactDetails } from "@/data/public/contact";
 import {
   curriculumPillars,
   placementSteps,
-} from "@/data/curriculum";
-import { learningOptionSummary } from "@/data/learning-options";
+} from "@/data/public/curriculum";
+import { learningOptionSummary } from "@/data/public/learning-options";
 import {
   getGalleryCategoryCoverAsset,
   getHeroReadyMedia,
   type MediaAsset,
-} from "@/data/media-assets";
-import { networkSummary, schools } from "@/data/schools";
-import { siteConfig } from "@/data/site";
+} from "@/features/gallery/data/media-assets";
+import { networkSummary, schools } from "@/data/public/schools";
+import { siteConfig } from "@/data/public/site";
 
 const openSchools = schools.filter((school) => school.status === "open");
 const interestSchools = schools.filter((school) => school.status !== "open");
@@ -36,9 +39,6 @@ const heroSupportingAssets = [
   getGalleryCategoryCoverAsset("creative-work"),
   getGalleryCategoryCoverAsset("performances"),
 ].filter((asset): asset is MediaAsset => Boolean(asset));
-
-const quietHeroLink =
-  "min-h-0 w-auto justify-start px-0 py-1 text-left sm:min-h-11 sm:justify-center sm:px-5 sm:py-3";
 
 const parentJourney = [
   {
@@ -100,7 +100,7 @@ export default function Home() {
             <ButtonLink
               href="/contact#enquiry-form"
               variant="quiet"
-              className={quietHeroLink}
+              className={quietHeroLinkClassName}
               icon={<MessageSquareText className="size-4" />}
             >
               {contactDetails.registrationCta}

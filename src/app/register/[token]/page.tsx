@@ -5,7 +5,7 @@ import { ArrowRight, CheckCircle2, LockKeyhole } from "lucide-react";
 import {
   registrationSafetyGuardrails,
   registrationSections,
-} from "@/data/registration";
+} from "@/features/admin/data/registration";
 
 type RegistrationInvitationPageProps = {
   params: Promise<{ token: string }>;

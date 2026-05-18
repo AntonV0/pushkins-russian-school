@@ -1,10 +1,11 @@
-import type { SchoolStatus } from "@/data/schools";
+import type { SchoolStatus } from "@/data/public/schools";
+import { ToneBadge, type ToneBadgeTone } from "@/components/shared/tone-badge";
 
-const statusStyles: Record<SchoolStatus, string> = {
-  open: "border-emerald-200 bg-emerald-50 text-emerald-800",
-  closed: "border-zinc-200 bg-zinc-100 text-zinc-700",
-  online: "border-sky-200 bg-sky-50 text-sky-800",
-  "opening-soon": "border-amber-200 bg-amber-50 text-amber-800",
+const statusTones: Record<SchoolStatus, ToneBadgeTone> = {
+  open: "success",
+  closed: "neutral",
+  online: "info",
+  "opening-soon": "warning",
 };
 
 type StatusBadgeProps = {
@@ -14,11 +15,13 @@ type StatusBadgeProps = {
 
 export function StatusBadge({ status, label }: StatusBadgeProps) {
   return (
-    <span
-      className={`inline-flex w-fit items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] shadow-sm ${statusStyles[status]}`}
+    <ToneBadge
+      tone={statusTones[status]}
+      uppercase
+      dot
+      className={status === "closed" ? "bg-zinc-100 text-zinc-700" : "shadow-sm"}
     >
-      <span className="size-1.5 rounded-full bg-current" aria-hidden="true" />
       {label}
-    </span>
+    </ToneBadge>
   );
 }

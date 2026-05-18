@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Laptop, MapPin, Search, UsersRound } from "lucide-react";
-import { ButtonLink } from "@/components/site/button-link";
+import {
+  ButtonLink,
+  quietHeroLinkClassName,
+} from "@/components/site/button-link";
 import { GoogleMapsNetworkPanel } from "@/components/site/google-maps-network-panel";
 import { LearningOptions } from "@/components/site/learning-options";
 import { MetricStrip } from "@/components/site/metric-strip";
@@ -10,10 +13,7 @@ import { PageCta } from "@/components/site/page-cta";
 import { PageHero } from "@/components/site/page-hero";
 import { SchoolComparisonTable } from "@/components/site/school-comparison-table";
 import { SectionIntro } from "@/components/site/section-intro";
-import { networkSummary, schools } from "@/data/schools";
-
-const quietHeroLink =
-  "min-h-0 w-auto justify-start px-0 py-1 text-left sm:min-h-11 sm:justify-center sm:px-5 sm:py-3";
+import { networkSummary, schools } from "@/data/public/schools";
 
 export const metadata: Metadata = {
   title: "Schools",
@@ -49,7 +49,7 @@ export default function SchoolsPage() {
             <ButtonLink
               href="#compare-branches"
               variant="quiet"
-              className={quietHeroLink}
+              className={quietHeroLinkClassName}
               icon={<Search className="size-4" />}
             >
               Compare branches

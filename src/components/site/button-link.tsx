@@ -24,6 +24,9 @@ const variants = {
     "relative overflow-hidden bg-[linear-gradient(135deg,var(--brand-blue-strong)_0%,#092f5f_58%,var(--brand-blue)_100%)] text-white shadow-[0_14px_30px_rgba(0,32,72,0.2)] before:absolute before:inset-0 before:-translate-x-full before:bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.24),transparent)] before:transition-transform before:duration-700 hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(0,32,72,0.28)] hover:before:translate-x-full focus:ring-brand-blue/30",
 };
 
+export const quietHeroLinkClassName =
+  "min-h-0 w-auto justify-start px-0 py-1 text-left sm:min-h-11 sm:justify-center sm:px-5 sm:py-3";
+
 export function ButtonLink({
   href,
   children,

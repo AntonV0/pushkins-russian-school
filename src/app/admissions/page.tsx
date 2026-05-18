@@ -9,7 +9,10 @@ import {
   MapPin,
   UsersRound,
 } from "lucide-react";
-import { ButtonLink } from "@/components/site/button-link";
+import {
+  ButtonLink,
+  quietHeroLinkClassName,
+} from "@/components/site/button-link";
 import { PageCta } from "@/components/site/page-cta";
 import { PageHero } from "@/components/site/page-hero";
 import { SchoolEvidencePanel } from "@/components/site/school-evidence-panel";
@@ -19,17 +22,14 @@ import {
   childAgeOptions,
   enquiryChecklist,
   russianLevelOptions,
-} from "@/data/admissions";
-import { contactDetails, paymentDetails } from "@/data/contact";
+} from "@/data/public/admissions";
+import { contactDetails, paymentDetails } from "@/data/public/contact";
 import {
   curriculumRouteRecommendations,
   placementSignals,
-} from "@/data/curriculum";
-import { approvedMediaAssets, type MediaAsset } from "@/data/media-assets";
-import { schools } from "@/data/schools";
-
-const quietHeroLink =
-  "min-h-0 w-auto justify-start px-0 py-1 text-left sm:min-h-11 sm:justify-center sm:px-5 sm:py-3";
+} from "@/data/public/curriculum";
+import { approvedMediaAssets, type MediaAsset } from "@/features/gallery/data/media-assets";
+import { schools } from "@/data/public/schools";
 
 const admissionsEvidenceAssets = getApprovedMediaByIds([
   "IMG-0006",
@@ -127,7 +127,7 @@ export default function AdmissionsPage() {
             <ButtonLink
               href="/faq"
               variant="quiet"
-              className={quietHeroLink}
+              className={quietHeroLinkClassName}
               icon={<HelpCircle className="size-4" />}
             >
               Read common questions

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowRight, Clock, ExternalLink, GraduationCap, MapPin } from "lucide-react";
 import { useMemo, useState } from "react";
-import type { School, SchoolStatus } from "@/data/schools";
+import type { School, SchoolStatus } from "@/data/public/schools";
 import { StatusBadge } from "./status-badge";
 
 type GoogleMapsNetworkPanelProps = {

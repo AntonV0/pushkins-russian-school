@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { enquiryInboxSummary } from "@/data/enquiries";
+import { GoldNote } from "@/components/shared/gold-note";
+import { enquiryInboxSummary } from "@/features/enquiries/data";
 import {
   formatCurrencyFromPence,
   invoiceSummary,
   sampleInvoices,
-} from "@/data/invoices";
-import { registrationSummary } from "@/data/registration";
+} from "@/features/admin/data/invoices";
+import { registrationSummary } from "@/features/admin/data/registration";
 import { getAdminAccessDecision } from "@/lib/admin/access";
 
 export const metadata: Metadata = {
@@ -126,12 +127,7 @@ export default async function AdminPage() {
       <section className="py-14 sm:py-16">
         <div className="mx-auto grid max-w-7xl gap-5 px-6 md:grid-cols-3 lg:px-8">
           {adminNotes.map((note) => (
-            <div
-              key={note}
-              className="border-l border-brand-gold bg-surface px-5 py-4 text-sm leading-6 text-slate-700 shadow-sm"
-            >
-              {note}
-            </div>
+            <GoldNote key={note}>{note}</GoldNote>
           ))}
         </div>
       </section>

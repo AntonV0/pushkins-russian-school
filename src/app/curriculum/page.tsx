@@ -7,7 +7,10 @@ import {
   GraduationCap,
   MapPin,
 } from "lucide-react";
-import { ButtonLink } from "@/components/site/button-link";
+import {
+  ButtonLink,
+  quietHeroLinkClassName,
+} from "@/components/site/button-link";
 import { DecisionPanel } from "@/components/site/decision-panel";
 import { PageCta } from "@/components/site/page-cta";
 import { PageHero } from "@/components/site/page-hero";
@@ -22,12 +25,9 @@ import {
   curriculumRouteRecommendations,
   placementSignals,
   placementSteps,
-} from "@/data/curriculum";
-import { approvedMediaAssets, type MediaAsset } from "@/data/media-assets";
-import { classGroups } from "@/data/schools";
-
-const quietHeroLink =
-  "min-h-0 w-auto justify-start px-0 py-1 text-left sm:min-h-11 sm:justify-center sm:px-5 sm:py-3";
+} from "@/data/public/curriculum";
+import { approvedMediaAssets, type MediaAsset } from "@/features/gallery/data/media-assets";
+import { classGroups } from "@/data/public/schools";
 
 const curriculumEvidenceAssets = getApprovedMediaByIds([
   "IMG-0008",
@@ -117,7 +117,7 @@ export default function CurriculumPage() {
             <ButtonLink
               href="/contact#enquiry-form"
               variant="quiet"
-              className={quietHeroLink}
+              className={quietHeroLinkClassName}
               icon={<ClipboardCheck className="size-4" />}
             >
               Ask about placement

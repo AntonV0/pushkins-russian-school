@@ -1,4 +1,4 @@
-import type { VisualPlaceholderSlot } from "@/data/media-assets";
+import type { VisualPlaceholderSlot } from "@/features/gallery/data/media-assets";
 
 type VisualStoryPanelProps = {
   slot: VisualPlaceholderSlot;

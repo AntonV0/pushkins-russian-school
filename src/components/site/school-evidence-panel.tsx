@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { CheckCircle2, Images } from "lucide-react";
-import type { MediaAsset } from "@/data/media-assets";
+import type { MediaAsset } from "@/features/gallery/data/media-assets";
 import { SiteIconBadge } from "./site-icon-badge";
 
 type SchoolEvidencePanelProps = {

@@ -1,5 +1,5 @@
 import { Plus } from "lucide-react";
-import type { FaqGroup } from "@/data/faqs";
+import type { FaqGroup } from "@/data/public/faqs";
 
 type FaqListProps = {
   groups: FaqGroup[];

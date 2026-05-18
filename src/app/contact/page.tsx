@@ -3,13 +3,13 @@ import Link from "next/link";
 import { ArrowRight, Banknote, CheckCircle2, Mail, MapPin, Send } from "lucide-react";
 import { EnquiryForm } from "@/components/site/enquiry-form";
 import { PageHero } from "@/components/site/page-hero";
-import { enquiryChecklist } from "@/data/admissions";
+import { enquiryChecklist } from "@/data/public/admissions";
 import {
   contactDetails,
   contactSupportNotes,
   paymentDetails,
-} from "@/data/contact";
-import { schools } from "@/data/schools";
+} from "@/data/public/contact";
+import { schools } from "@/data/public/schools";
 
 export const metadata: Metadata = {
   title: "Contact",

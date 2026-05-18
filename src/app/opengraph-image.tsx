@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { siteConfig } from "@/data/site";
+import { siteConfig } from "@/data/public/site";
 
 export const alt = "Pushkin's School Russian Language Network";
 export const size = {

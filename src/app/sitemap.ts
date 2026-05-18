@@ -1,11 +1,11 @@
 import type { MetadataRoute } from "next";
-import { galleryCollections } from "@/data/gallery";
-import { approvedMediaAssets } from "@/data/media-assets";
-import { primaryNavigation } from "@/data/navigation";
-import { policies } from "@/data/policies";
-import { publicRoutePriority } from "@/data/seo";
-import { schools } from "@/data/schools";
-import { absoluteUrl } from "@/data/site";
+import { galleryCollections } from "@/data/public/gallery";
+import { approvedMediaAssets } from "@/features/gallery/data/media-assets";
+import { primaryNavigation } from "@/data/public/navigation";
+import { policies } from "@/data/public/policies";
+import { publicRoutePriority } from "@/data/public/seo";
+import { schools } from "@/data/public/schools";
+import { absoluteUrl } from "@/data/public/site";
 
 const staticRoutes = Array.from(new Set([
   "/",

@@ -2,8 +2,10 @@ import {
   invoicePaymentMethodMeta,
   invoiceReferenceGuidance,
   invoiceWorkflowNotes,
-} from "@/data/invoices";
-import { hostedPaymentReadinessItems } from "@/data/payment-providers";
+} from "@/features/admin/data/invoices";
+import { hostedPaymentReadinessItems } from "@/features/admin/data/payment-providers";
+import { GoldNote } from "@/components/shared/gold-note";
+import { DisabledActionGroup } from "./disabled-action-group";
 
 const workflowColumns = [
   {
@@ -53,16 +55,11 @@ export function InvoiceWorkflowPanel() {
           invoices until access control, storage, and audit logging are agreed.
         </p>
         <div className="mt-5 grid gap-2 sm:grid-cols-2">
-          {futureActions.map((action) => (
-            <button
-              key={action}
-              type="button"
-              disabled
-              className="cursor-not-allowed rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-400"
-            >
-              {action}
-            </button>
-          ))}
+          <DisabledActionGroup
+            actions={futureActions}
+            size="md"
+            className="contents"
+          />
         </div>
         <dl className="mt-6 grid gap-2 border-t border-border-soft pt-5">
           {hostedPaymentReadinessItems.map((item) => (
@@ -157,11 +154,10 @@ export function InvoiceWorkflowPanel() {
           </div>
           <ul className="grid gap-3 md:grid-cols-2 lg:col-span-2">
             {invoiceWorkflowNotes.map((note) => (
-              <li
-                key={note}
-                className="border-l border-brand-gold bg-background px-4 py-3 text-sm leading-6 text-slate-700"
-              >
-                {note}
+              <li key={note}>
+                <GoldNote className="bg-background px-4 py-3 shadow-none">
+                  {note}
+                </GoldNote>
               </li>
             ))}
           </ul>

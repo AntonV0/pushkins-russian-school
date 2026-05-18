@@ -2,11 +2,13 @@ import Link from "next/link";
 import {
   getRegistrationCompletion,
   sampleRegistrationRecords,
-} from "@/data/registration";
+} from "@/features/admin/data/registration";
 import {
   RegistrationInvitationBadge,
   RegistrationReviewBadge,
 } from "./registration-status-badge";
+import { AdminTablePanel } from "./admin-table-panel";
+import { DisabledActionGroup } from "./disabled-action-group";
 
 function formatRegistrationDate(date: string) {
   return new Intl.DateTimeFormat("en-GB", {
@@ -43,38 +45,29 @@ export function RegistrationTable() {
   }
 
   return (
-    <div className="overflow-hidden border border-border-soft bg-surface shadow-sm">
-      <div className="border-b border-border-soft px-5 py-4 sm:px-6">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <h2 className="text-lg font-semibold text-brand-blue-strong">
-              Registration queue
-            </h2>
-            <p className="mt-1 max-w-3xl text-sm leading-6 text-slate-600">
-              Sample-only invitation and review records. Live parent data,
-              medical details, file uploads, email sending, and acceptance
-              actions are intentionally absent.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {disabledActions.map((action) => (
-              <button
-                key={action}
-                type="button"
-                disabled
-                className="cursor-not-allowed rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-400"
-              >
-                {action}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div
-        className="overflow-x-auto focus:outline-none focus:ring-2 focus:ring-brand-red/30"
-        tabIndex={0}
-        aria-label="Scrollable registration queue table"
-      >
+    <AdminTablePanel
+      title="Registration queue"
+      description={
+        <p>
+          Sample-only invitation and review records. Live parent data, medical
+          details, file uploads, email sending, and acceptance actions are
+          intentionally absent.
+        </p>
+      }
+      actions={<DisabledActionGroup actions={disabledActions} />}
+      scrollLabel="Scrollable registration queue table"
+      footer={
+        <>
+          <p className="text-sm font-semibold text-brand-blue-strong">
+            Prototype boundary
+          </p>
+          <p className="mt-1 text-sm leading-6 text-slate-600">
+            A future live queue should re-check admin authorization on the
+            server and never rely on this static UI as a security boundary.
+          </p>
+        </>
+      }
+    >
         <table className="min-w-[68rem] divide-y divide-border-soft text-left text-sm">
           <caption className="sr-only">
             Sample registration queue showing registration reference, family
@@ -188,16 +181,6 @@ export function RegistrationTable() {
             })}
           </tbody>
         </table>
-      </div>
-      <div className="border-t border-border-soft bg-background px-5 py-4 sm:px-6">
-        <p className="text-sm font-semibold text-brand-blue-strong">
-          Prototype boundary
-        </p>
-        <p className="mt-1 text-sm leading-6 text-slate-600">
-          A future live queue should re-check admin authorization on the server
-          and never rely on this static UI as a security boundary.
-        </p>
-      </div>
-    </div>
+    </AdminTablePanel>
   );
 }

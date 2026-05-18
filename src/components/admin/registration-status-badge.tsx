@@ -2,18 +2,19 @@ import type {
   RegistrationInvitationStatus,
   RegistrationReviewState,
   RegistrationTone,
-} from "@/data/registration";
+} from "@/features/admin/data/registration";
 import {
   registrationInvitationStatusMeta,
   registrationReviewStateMeta,
-} from "@/data/registration";
+} from "@/features/admin/data/registration";
+import { ToneBadge, type ToneBadgeTone } from "@/components/shared/tone-badge";
 
-const toneClasses: Record<RegistrationTone, string> = {
-  neutral: "border-slate-200 bg-slate-50 text-slate-600",
-  info: "border-brand-blue/20 bg-surface-blue text-brand-blue-strong",
-  success: "border-emerald-200 bg-emerald-50 text-emerald-700",
-  warning: "border-amber-200 bg-amber-50 text-amber-700",
-  danger: "border-brand-red/20 bg-red-50 text-brand-red",
+const toneMap: Record<RegistrationTone, ToneBadgeTone> = {
+  neutral: "neutral",
+  info: "brand",
+  success: "success",
+  warning: "warning",
+  danger: "danger",
 };
 
 type RegistrationInvitationBadgeProps = {
@@ -30,13 +31,16 @@ export function RegistrationInvitationBadge({
   const meta = registrationInvitationStatusMeta[status];
 
   return (
-    <span
+    <ToneBadge
+      tone={toneMap[meta.tone]}
       title={meta.description}
       aria-label={`${meta.label}: ${meta.description}`}
-      className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-semibold ${toneClasses[meta.tone]}`}
+      className={`px-2.5 ${
+        meta.tone === "danger" ? "border-brand-red/20 text-brand-red" : ""
+      }`}
     >
       {meta.label}
-    </span>
+    </ToneBadge>
   );
 }
 
@@ -46,12 +50,15 @@ export function RegistrationReviewBadge({
   const meta = registrationReviewStateMeta[state];
 
   return (
-    <span
+    <ToneBadge
+      tone={toneMap[meta.tone]}
       title={meta.description}
       aria-label={`${meta.label}: ${meta.description}`}
-      className={`inline-flex rounded-full border px-2.5 py-1 text-xs font-semibold ${toneClasses[meta.tone]}`}
+      className={`px-2.5 ${
+        meta.tone === "danger" ? "border-brand-red/20 text-brand-red" : ""
+      }`}
     >
       {meta.label}
-    </span>
+    </ToneBadge>
   );
 }

@@ -8,8 +8,8 @@ import {
   buildSiteNavigationJsonLd,
   buildWebsiteJsonLd,
   seoKeywords,
-} from "@/data/seo";
-import { siteConfig } from "@/data/site";
+} from "@/data/public/seo";
+import { siteConfig } from "@/data/public/site";
 import "./globals.css";
 
 const geistSans = Geist({

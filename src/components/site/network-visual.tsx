@@ -1,4 +1,4 @@
-import { schools } from "@/data/schools";
+import { schools } from "@/data/public/schools";
 
 const statusDot = {
   open: "bg-emerald-500",

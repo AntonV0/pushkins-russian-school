@@ -1,7 +1,8 @@
 import {
   registrationSummary,
   sampleRegistrationRecords,
-} from "@/data/registration";
+} from "@/features/admin/data/registration";
+import { AdminSummaryGrid } from "./admin-summary-grid";
 
 const summaryCards = [
   {
@@ -38,29 +39,16 @@ const summaryCards = [
 
 export function RegistrationSummaryCards() {
   return (
-    <section
-      aria-label="Registration summary"
-      className="grid gap-4 md:grid-cols-2 xl:grid-cols-5"
-    >
-      {summaryCards.map((card) => (
-        <div
-          key={card.label}
-          className={`border border-l-4 bg-surface p-5 shadow-sm ${card.accent}`}
-        >
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">
-            {card.label}
-          </p>
-          <p className="mt-3 text-3xl font-semibold text-brand-blue-strong">
-            {card.value}
-          </p>
-          <p className="mt-2 text-sm text-slate-600">{card.detail}</p>
-        </div>
-      ))}
-      <p className="sr-only">
-        This admin shell contains {sampleRegistrationRecords.length} sample
-        registration records and no real parent, child, medical, or safeguarding
-        data.
-      </p>
-    </section>
+    <AdminSummaryGrid
+      ariaLabel="Registration summary"
+      cards={summaryCards}
+      srOnly={
+        <>
+          This admin shell contains {sampleRegistrationRecords.length} sample
+          registration records and no real parent, child, medical, or
+          safeguarding data.
+        </>
+      }
+    />
   );
 }

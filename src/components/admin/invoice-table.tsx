@@ -10,11 +10,13 @@ import {
   invoicePaymentMethodMeta,
   invoiceReferenceGuidance,
   sampleInvoices,
-} from "@/data/invoices";
+} from "@/features/admin/data/invoices";
 import {
   InvoiceStatusBadge,
   PaymentMethodBadge,
 } from "./invoice-status-badge";
+import { AdminTablePanel } from "./admin-table-panel";
+import { DisabledActionGroup } from "./disabled-action-group";
 
 function formatInvoiceDate(date: string) {
   return new Intl.DateTimeFormat("en-GB", {
@@ -46,39 +48,31 @@ export function InvoiceTable() {
   }
 
   return (
-    <div className="overflow-hidden border border-border-soft bg-surface shadow-sm">
-      <div className="border-b border-border-soft px-5 py-4 sm:px-6">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <h2 className="text-lg font-semibold text-brand-blue-strong">
-              Invoice register
-            </h2>
-            <p className="mt-1 max-w-3xl text-sm leading-6 text-slate-600">
-              Sample-only records showing reference matching, manual
-              reconciliation, and future hosted payment readiness. Live storage,
-              editing, payment links, and PDF generation are intentionally
-              disabled.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {disabledActions.map((action) => (
-              <button
-                key={action}
-                type="button"
-                disabled
-                className="cursor-not-allowed rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold text-slate-400"
-              >
-                {action}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-      <div
-        className="overflow-x-auto focus:outline-none focus:ring-2 focus:ring-brand-red/30"
-        tabIndex={0}
-        aria-label="Scrollable invoice register table"
-      >
+    <AdminTablePanel
+      title="Invoice register"
+      description={
+        <p>
+          Sample-only records showing reference matching, manual reconciliation,
+          and future hosted payment readiness. Live storage, editing, payment
+          links, and PDF generation are intentionally disabled.
+        </p>
+      }
+      actions={<DisabledActionGroup actions={disabledActions} />}
+      scrollLabel="Scrollable invoice register table"
+      footer={
+        <>
+          <p className="text-sm font-semibold text-brand-blue-strong">
+            Selection state placeholder
+          </p>
+          <p className="mt-1 text-sm leading-6 text-slate-600">
+            A live admin build should open a detail pane for the selected
+            invoice, showing audit history, line items, reconciliation evidence,
+            and disabled-by-default payment actions until authorization is
+            present.
+          </p>
+        </>
+      }
+    >
         <table className="min-w-[68rem] divide-y divide-border-soft text-left text-sm">
           <caption className="sr-only">
             Sample invoice register showing invoice reference, family label,
@@ -195,17 +189,6 @@ export function InvoiceTable() {
             })}
           </tbody>
         </table>
-      </div>
-      <div className="border-t border-border-soft bg-background px-5 py-4 sm:px-6">
-        <p className="text-sm font-semibold text-brand-blue-strong">
-          Selection state placeholder
-        </p>
-        <p className="mt-1 text-sm leading-6 text-slate-600">
-          A live admin build should open a detail pane for the selected invoice,
-          showing audit history, line items, reconciliation evidence, and
-          disabled-by-default payment actions until authorization is present.
-        </p>
-      </div>
-    </div>
+    </AdminTablePanel>
   );
 }

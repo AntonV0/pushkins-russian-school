@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { MediaAsset } from "@/data/media-assets";
+import type { MediaAsset } from "@/features/gallery/data/media-assets";
 
 type AssetReadinessPanelProps = {
   title?: string;

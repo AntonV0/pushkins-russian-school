@@ -1,10 +1,10 @@
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import { Compass, ExternalLink, Mail, MapPin } from "lucide-react";
-import { contactDetails } from "@/data/contact";
-import { footerNavigation } from "@/data/navigation";
-import { schools } from "@/data/schools";
-import { siteSocialLinks } from "@/data/site";
+import { contactDetails } from "@/data/public/contact";
+import { footerNavigation } from "@/data/public/navigation";
+import { schools } from "@/data/public/schools";
+import { siteSocialLinks } from "@/data/public/site";
 import { BrandMark } from "./brand-mark";
 import { FooterAccordion } from "./footer-accordion";
 

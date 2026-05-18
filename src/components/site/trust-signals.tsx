@@ -14,7 +14,7 @@ import {
   publishableTrustSignals,
   trustHistoryNotes,
   type TrustSignal,
-} from "@/data/trust";
+} from "@/data/public/trust";
 
 type TrustSignalsProps = {
   intro?: string;

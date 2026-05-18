@@ -11,7 +11,7 @@ import {
   type EnquiryStorageMode,
   type EnquirySubmissionState,
   validateEnquiryForm,
-} from "@/data/enquiries";
+} from "@/features/enquiries/data";
 
 const SUPABASE_STORAGE_MODE = "supabase";
 const DISABLED_MODE = "disabled";

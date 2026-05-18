@@ -14,15 +14,15 @@ import {
   gallerySupportLinks,
   galleryWorkflowStages,
   getGalleryCollection,
-} from "@/data/gallery";
+} from "@/data/public/gallery";
 import {
   getExtendedGalleryMediaByCategory,
-} from "@/data/extended-gallery-assets";
+} from "@/features/gallery/data/extended-gallery-assets";
 import {
   getApprovedMediaByGalleryCategory,
   mediaReadinessNotes,
-} from "@/data/media-assets";
-import { absoluteUrl, siteConfig } from "@/data/site";
+} from "@/features/gallery/data/media-assets";
+import { absoluteUrl, siteConfig } from "@/data/public/site";
 
 type GalleryCategoryPageProps = {
   params: Promise<{ category: string }>;

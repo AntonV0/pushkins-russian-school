@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Camera, CheckCircle2, Images, MapPin, MessageSquareText } from "lucide-react";
-import { ButtonLink } from "@/components/site/button-link";
+import {
+  ButtonLink,
+  quietHeroLinkClassName,
+} from "@/components/site/button-link";
 import { PageCta } from "@/components/site/page-cta";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionIntro } from "@/components/site/section-intro";
@@ -10,23 +13,20 @@ import { VisualStoryPanel } from "@/components/site/visual-story-panel";
 import {
   getExtendedGalleryAssetCount,
   getExtendedGalleryCategoryAssetCount,
-} from "@/data/extended-gallery-assets";
+} from "@/features/gallery/data/extended-gallery-assets";
 import {
   galleryCollections,
   galleryThemes,
-} from "@/data/gallery";
+} from "@/data/public/gallery";
 import {
   approvedMediaAssets,
   getGalleryCategoryAssetCount,
   getGalleryCategoryCoverAsset,
   getVisualPlaceholderSlot,
   type MediaAsset,
-} from "@/data/media-assets";
+} from "@/features/gallery/data/media-assets";
 
 const galleryVisual = getVisualPlaceholderSlot("gallery-approved-archive");
-
-const quietHeroLink =
-  "min-h-0 w-auto justify-start px-0 py-1 text-left sm:min-h-11 sm:justify-center sm:px-5 sm:py-3";
 
 export const metadata: Metadata = {
   title: "Gallery",
@@ -112,7 +112,7 @@ export default function GalleryPage() {
             <ButtonLink
               href="/contact#enquiry-form"
               variant="quiet"
-              className={quietHeroLink}
+              className={quietHeroLinkClassName}
               icon={<MessageSquareText className="size-4" />}
             >
               Start an enquiry

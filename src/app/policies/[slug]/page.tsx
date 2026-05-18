@@ -15,8 +15,8 @@ import {
   policyPublicationChecklist,
   policySupportLinks,
   safeguardingConcernGuidance,
-} from "@/data/policies";
-import { absoluteUrl, siteConfig } from "@/data/site";
+} from "@/data/public/policies";
+import { absoluteUrl, siteConfig } from "@/data/public/site";
 
 type PolicyPageProps = {
   params: Promise<{ slug: string }>;

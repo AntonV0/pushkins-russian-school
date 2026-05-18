@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, MapPin } from "lucide-react";
-import type { School } from "@/data/schools";
+import type { School } from "@/data/public/schools";
 import { StatusBadge } from "./status-badge";
 
 type RelatedSchoolsProps = {

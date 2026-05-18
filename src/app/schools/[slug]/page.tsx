@@ -11,18 +11,21 @@ import {
   Send,
 } from "lucide-react";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
-import { ButtonLink } from "@/components/site/button-link";
+import {
+  ButtonLink,
+  quietHeroLinkClassName,
+} from "@/components/site/button-link";
 import { JsonLd } from "@/components/site/json-ld";
 import { LearningOptions } from "@/components/site/learning-options";
 import { LocationMediaShowcase } from "@/components/site/location-media-showcase";
 import { RelatedSchools } from "@/components/site/related-schools";
 import { StatusBadge } from "@/components/site/status-badge";
-import { enquiryChecklist, getSchoolEnquiryHref } from "@/data/admissions";
-import { contactDetails, paymentDetails } from "@/data/contact";
-import { getLearningOptionsForBranchStatus } from "@/data/learning-options";
-import { getLocationPageMediaByBranch } from "@/data/media-assets";
-import { getSchoolBySlug, schools } from "@/data/schools";
-import { absoluteUrl, siteConfig } from "@/data/site";
+import { enquiryChecklist, getSchoolEnquiryHref } from "@/data/public/admissions";
+import { contactDetails, paymentDetails } from "@/data/public/contact";
+import { getLearningOptionsForBranchStatus } from "@/data/public/learning-options";
+import { getLocationPageMediaByBranch } from "@/features/gallery/data/media-assets";
+import { getSchoolBySlug, schools } from "@/data/public/schools";
+import { absoluteUrl, siteConfig } from "@/data/public/site";
 
 type SchoolPageProps = {
   params: Promise<{ slug: string }>;
@@ -146,7 +149,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 <ButtonLink
                   href={school.bestNextSteps[1].href}
                   variant="quiet"
-                  className="min-h-0 w-auto justify-start px-0 py-1 text-left sm:min-h-11 sm:justify-center sm:px-5 sm:py-3"
+                  className={quietHeroLinkClassName}
                   icon={<ArrowRight className="size-4" />}
                   iconPosition="end"
                 >

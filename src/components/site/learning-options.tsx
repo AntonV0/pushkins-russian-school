@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, BookOpen, CheckCircle2, GraduationCap, MonitorPlay } from "lucide-react";
-import type { LearningOption } from "@/data/learning-options";
-import { learningOptions } from "@/data/learning-options";
+import type { LearningOption } from "@/data/public/learning-options";
+import { learningOptions } from "@/data/public/learning-options";
 import { SectionIntro } from "./section-intro";
 import { SiteIconBadge } from "./site-icon-badge";
 

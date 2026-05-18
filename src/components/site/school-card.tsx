@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Clock, MapPin, Network } from "lucide-react";
-import type { School } from "@/data/schools";
-import { getSchoolEnquiryHref } from "@/data/admissions";
+import type { School } from "@/data/public/schools";
+import { getSchoolEnquiryHref } from "@/data/public/admissions";
 import { ButtonLink } from "./button-link";
 import { StatusBadge } from "./status-badge";
 

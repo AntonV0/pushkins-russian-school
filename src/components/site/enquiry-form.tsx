@@ -8,8 +8,8 @@ import { submitEnquiry } from "@/app/contact/actions";
 import {
   enquiryTypes,
   russianLevelOptions,
-} from "@/data/admissions";
-import { contactDetails } from "@/data/contact";
+} from "@/data/public/admissions";
+import { contactDetails } from "@/data/public/contact";
 import {
   enquiryPrivacyNotice,
   enquiryRouteOptions,
@@ -18,7 +18,7 @@ import {
   normalizeEnquiryIntent,
   type EnquiryField,
   type EnquirySubmissionState,
-} from "@/data/enquiries";
+} from "@/features/enquiries/data";
 
 type EnquiryFormProps = {
   selectedSchool?: string;

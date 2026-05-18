@@ -3,14 +3,15 @@ import {
   invoicePaymentStatusMeta,
   type InvoicePaymentMethod,
   type InvoicePaymentStatus,
-} from "@/data/invoices";
+} from "@/features/admin/data/invoices";
+import { ToneBadge, type ToneBadgeTone } from "@/components/shared/tone-badge";
 
-const statusToneClasses = {
-  neutral: "border-slate-200 bg-slate-50 text-slate-700",
-  info: "border-blue-200 bg-blue-50 text-blue-800",
-  success: "border-emerald-200 bg-emerald-50 text-emerald-800",
-  warning: "border-amber-200 bg-amber-50 text-amber-800",
-  danger: "border-red-200 bg-red-50 text-red-800",
+const statusToneMap = {
+  neutral: "neutral",
+  info: "info",
+  success: "success",
+  warning: "warning",
+  danger: "danger",
 };
 
 type InvoiceStatusBadgeProps = {
@@ -21,14 +22,14 @@ export function InvoiceStatusBadge({ status }: InvoiceStatusBadgeProps) {
   const meta = invoicePaymentStatusMeta[status];
 
   return (
-    <span
-      className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold ${statusToneClasses[meta.tone]}`}
+    <ToneBadge
+      tone={statusToneMap[meta.tone] as ToneBadgeTone}
       title={meta.description}
       aria-label={`${meta.label}: ${meta.description}`}
+      dot
     >
-      <span className="size-1.5 rounded-full bg-current" aria-hidden="true" />
       {meta.label}
-    </span>
+    </ToneBadge>
   );
 }
 
@@ -38,20 +39,16 @@ type PaymentMethodBadgeProps = {
 
 export function PaymentMethodBadge({ method }: PaymentMethodBadgeProps) {
   const meta = invoicePaymentMethodMeta[method];
-  const className = meta.online
-    ? "border-brand-blue/20 bg-surface-blue text-brand-blue-strong"
-    : meta.manual
-      ? "border-brand-gold/40 bg-[#fff8e8] text-brand-blue-strong"
-      : "border-slate-200 bg-slate-50 text-slate-700";
+  const tone = meta.online ? "brand" : meta.manual ? "gold" : "neutral";
 
   return (
-    <span
-      className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold ${className}`}
+    <ToneBadge
+      tone={tone}
       title={meta.description}
       aria-label={`${meta.label}: ${meta.description}`}
+      dot
     >
-      <span className="size-1.5 rounded-full bg-current" aria-hidden="true" />
       {meta.label}
-    </span>
+    </ToneBadge>
   );
 }

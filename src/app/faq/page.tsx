@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import { ArrowRight, HelpCircle, MessageSquareText, Search } from "lucide-react";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
-import { ButtonLink } from "@/components/site/button-link";
+import {
+  ButtonLink,
+  quietHeroLinkClassName,
+} from "@/components/site/button-link";
 import { FaqList } from "@/components/site/faq-list";
 import { JsonLd } from "@/components/site/json-ld";
-import { faqGroups, faqs } from "@/data/faqs";
-import { absoluteUrl, siteConfig } from "@/data/site";
-
-const quietHeroLink =
-  "min-h-0 w-auto justify-start px-0 py-1 text-left sm:min-h-11 sm:justify-center sm:px-5 sm:py-3";
+import { faqGroups, faqs } from "@/data/public/faqs";
+import { absoluteUrl, siteConfig } from "@/data/public/site";
 
 export const metadata: Metadata = {
   title: "Frequently Asked Questions",
@@ -78,7 +78,7 @@ export default function FaqPage() {
                 <ButtonLink
                   href="/contact#enquiry-form"
                   variant="quiet"
-                  className={quietHeroLink}
+                  className={quietHeroLinkClassName}
                   icon={<MessageSquareText className="size-4" />}
                 >
                   Ask the school

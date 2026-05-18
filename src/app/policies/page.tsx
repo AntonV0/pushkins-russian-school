@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, CheckCircle2, ExternalLink, FileText, HelpCircle, MapPin, ShieldCheck } from "lucide-react";
-import { ButtonLink } from "@/components/site/button-link";
+import {
+  ButtonLink,
+  quietHeroLinkClassName,
+} from "@/components/site/button-link";
 import {
   getPolicyAction,
   getPolicyStatusTone,
@@ -9,7 +12,7 @@ import {
   type Policy,
   policies,
   policyGroups,
-} from "@/data/policies";
+} from "@/data/public/policies";
 
 export const metadata: Metadata = {
   title: "Policies",
@@ -65,9 +68,6 @@ const policyContactLinks = [
   },
 ];
 
-const quietHeroLink =
-  "min-h-0 w-auto justify-start px-0 py-1 text-left sm:min-h-11 sm:justify-center sm:px-5 sm:py-3";
-
 function getParentPolicyStatusLabel(policy: Policy) {
   if (hasReviewedPublicPolicyPdf(policy)) {
     return "Download available";
@@ -113,7 +113,7 @@ export default function PoliciesPage() {
               <ButtonLink
                 href="/contact#enquiry-form"
                 variant="quiet"
-                className={quietHeroLink}
+                className={quietHeroLinkClassName}
                 icon={<HelpCircle className="size-4" />}
               >
                 Ask a policy question
