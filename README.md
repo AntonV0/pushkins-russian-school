@@ -53,7 +53,12 @@ Start here when trying to understand the project:
   actions.
 - `src/components/site/` contains reusable public website components.
 - `src/components/admin/` contains disabled-by-default admin workflow prototypes.
-- `src/data/` is the main content and configuration layer.
+- `src/data/public/` is the main public content and configuration layer.
+- `src/features/admin/data/` contains sample-only admin planning data.
+- `src/features/enquiries/` contains enquiry form validation and submission
+  helpers.
+- `src/features/gallery/data/` contains reviewed media manifests, with
+  limited-use archive assets kept separate from featured public media.
 - `src/lib/` contains shared helpers, including Supabase environment handling.
 - `public/images/` contains approved, optimized public images used by the site.
 - `docs/` is ignored locally and may contain private migration/source material.
@@ -64,17 +69,17 @@ business facts.
 
 ## Key Data Files
 
-- `src/data/site.ts` - shared site metadata and absolute URL helpers
-- `src/data/navigation.ts` - primary navigation and route labels
-- `src/data/schools.ts` - branch status, location, timetable, and venue notes
-- `src/data/curriculum.ts` - learning pathways and placement guidance
-- `src/data/admissions.ts` - admissions steps, age ranges, and enquiry prompts
-- `src/data/contact.ts` - public contact details and payment categories
-- `src/data/policies.ts` - policy groups, publication states, and shells
-- `src/data/gallery.ts` - public gallery collection structure
-- `src/data/media-assets.ts` - featured approved public image registry
-- `src/data/extended-gallery-assets.ts` - lower-priority archive gallery tiles
-- `src/data/trust.ts` - public-safe trust signals and pending proof points
+- `src/data/public/site.ts` - shared site metadata and absolute URL helpers
+- `src/data/public/navigation.ts` - primary navigation and route labels
+- `src/data/public/schools.ts` - branch status, location, timetable, and venue notes
+- `src/data/public/curriculum.ts` - learning pathways and placement guidance
+- `src/data/public/admissions.ts` - admissions steps, age ranges, and enquiry prompts
+- `src/data/public/contact.ts` - public contact details and payment categories
+- `src/data/public/policies.ts` - policy groups, publication states, and shells
+- `src/data/public/gallery.ts` - public gallery collection structure
+- `src/features/gallery/data/media-assets.ts` - featured approved public image registry
+- `src/features/gallery/data/extended-gallery-assets.ts` - limited-use archive gallery tiles
+- `src/data/public/trust.ts` - public-safe trust signals and pending proof points
 
 ## Public Safety Rules
 
