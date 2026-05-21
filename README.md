@@ -104,7 +104,8 @@ npm install
 npm.cmd run dev
 ```
 
-The development server uses the port configured in `package.json`.
+The development server is pinned to this project at
+`http://localhost:3023`, using the port configured in `package.json`.
 
 Create `.env.local` from `.env.example` only when the required services are
 ready. Never commit `.env.local`.
