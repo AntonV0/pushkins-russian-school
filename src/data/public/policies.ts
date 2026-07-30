@@ -569,7 +569,7 @@ export function getPolicyStatusTone(policy: Policy) {
     return "border-brand-blue/15 bg-brand-blue/5 text-brand-blue-strong";
   }
 
-  return "border-brand-gold/40 bg-brand-gold/10 text-brand-blue-strong";
+  return "border-brand-accent/40 bg-brand-accent/10 text-brand-blue-strong";
 }
 
 export function getPolicyAvailabilitySummary(policy: Policy) {

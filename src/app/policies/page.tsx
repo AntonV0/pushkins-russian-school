@@ -198,7 +198,7 @@ export default function PoliciesPage() {
                   <p className="mt-3 text-sm leading-6 text-slate-600">
                     {group.description}
                   </p>
-                  <p className="mt-4 border-l border-brand-gold pl-4 text-sm leading-6 text-slate-700">
+                  <p className="mt-4 border-l border-brand-accent pl-4 text-sm leading-6 text-slate-700">
                     {group.title === "Useful Guidance"
                       ? "Official guidance opens from source publication pages."
                       : "Formal school downloads are added once they are ready for families to use."}

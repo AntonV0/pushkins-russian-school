@@ -16,14 +16,14 @@ export const faqGroups: FaqGroup[] = [
       "How families can compare current, online, and register-interest locations.",
     items: [
       {
-        question: "Can I enquire about an online-only location?",
+        question: "Can I ask about an online-only location?",
         answer:
           "Yes. Online-only locations stay visible so families can register local interest, ask about online lessons, or compare the current in-person branch.",
       },
       {
         question: "Are all listed timetables final?",
         answer:
-          "No. Branch pages distinguish current in-person provision from future local interest. The school confirms times, availability, and practical joining details after enquiry.",
+          "No. Branch pages distinguish current in-person provision from future local interest. The school confirms times, availability, and practical joining details before a family joins.",
       },
       {
         question: "What should I send if I am not sure which branch fits?",
@@ -38,9 +38,9 @@ export const faqGroups: FaqGroup[] = [
       "How children can start in the right learning group.",
     items: [
       {
-        question: "Do I need to know the exact class group before enquiring?",
+        question: "Do I need to know the exact class group before contacting the school?",
         answer:
-          "No. The enquiry form is designed to gather context first. Teachers can then use the child's age, language experience, branch availability, and early lessons to guide the most suitable group or recommend another learning option.",
+          "No. The form is designed to gather context first. Teachers can then use the child's age, language experience, branch availability, and early lessons to guide the most suitable group or recommend another learning option.",
       },
       {
         question: "What Russian level should I choose on the form?",
@@ -50,19 +50,19 @@ export const faqGroups: FaqGroup[] = [
       {
         question: "What information helps with placement?",
         answer:
-          "The most useful details are how much Russian the child hears or uses at home, whether they read or write in Russian, their age and school year, any previous lessons, and whether GCSE or A Level preparation is a goal.",
+          "The most useful details are how much Russian the child hears or uses at home, whether they read or write in Russian, their age and school year, any previous lessons, and whether GCSE or A Level Russian through Volna is a goal.",
       },
       {
-        question: "Is exam preparation included?",
+        question: "Does Pushkin's School teach GCSE or A Level Russian?",
         answer:
-          "GCSE and A Level exam preparation is included as a pathway. Families should mention exam goals in the enquiry so the school can confirm whether Pushkin's School, Volna online lessons, or GCSERussian.com is the best fit.",
+          "No. Pushkin's School focuses on weekend Russian language, literature, culture, and bilingual confidence. GCSE and A Level Russian are handled through Volna Online Russian School, which has dedicated online courses for exam students.",
       },
     ],
   },
   {
     title: "Related learning options",
     summary:
-      "How Pushkin's School, Volna Online Russian School, and GCSERussian.com fit together.",
+      "How Pushkin's School and Volna Online Russian School fit together.",
     items: [
       {
         question: "What if there is no open Pushkin's School branch near us?",
@@ -75,9 +75,9 @@ export const faqGroups: FaqGroup[] = [
           "No. It is presented as a related but distinct online Russian-learning option, useful for families who need fully online lessons or live support outside a local branch.",
       },
       {
-        question: "Where does GCSERussian.com fit?",
+        question: "Where do GCSE and A Level Russian fit?",
         answer:
-          "GCSERussian.com is treated as a separate GCSE Russian self-study project. It gives exam-focused families another option alongside local weekend classes or online lessons.",
+          "GCSE and A Level Russian sit with Volna Online Russian School, not Pushkin's School. The Pushkin's School website points exam-focused families to the Volna pages so parents can compare the right route.",
       },
     ],
   },
@@ -89,7 +89,7 @@ export const faqGroups: FaqGroup[] = [
       {
         question: "Where can I confirm current fees?",
         answer:
-          "The admissions page and each school page show fee categories, but current amounts are confirmed directly by the school after enquiry.",
+          "The admissions page and each school page show fee categories, but current amounts are confirmed directly by the school before a family joins.",
       },
       {
         question: "Are bank details published yet?",
@@ -99,14 +99,14 @@ export const faqGroups: FaqGroup[] = [
       {
         question: "Can families use childcare vouchers?",
         answer:
-          "Childcare vouchers are listed as a payment method to confirm. Ask in the enquiry so the school can confirm the current method and any required reference.",
+          "Childcare vouchers are listed as a payment method to confirm. Ask the school so it can confirm the current method and any required reference.",
       },
     ],
   },
   {
     title: "Policies, gallery, and documents",
     summary:
-      "How public documents, gallery images, and enquiry details are handled carefully.",
+      "How public documents, gallery images, and first-contact details are handled carefully.",
     items: [
       {
         question: "Why are some policy downloads not shown yet?",
@@ -119,9 +119,9 @@ export const faqGroups: FaqGroup[] = [
           "Gallery collections are reserved for selected school images with suitable captions and privacy checks.",
       },
       {
-        question: "Will the website store enquiry form information?",
+        question: "Will the website store contact form information?",
         answer:
-          "The enquiry form asks only for the first details needed for a reply. Full registration, consent, emergency contact, and health information are requested later if a family joins.",
+          "The contact form asks only for the first details needed for a reply. Full registration, consent, emergency contact, and health information are requested later if a family joins.",
       },
     ],
   },

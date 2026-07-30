@@ -26,6 +26,7 @@ import {
   placementSignals,
   placementSteps,
 } from "@/data/public/curriculum";
+import { schoolLifeHighlights, schoolStory } from "@/data/public/school-story";
 import { approvedMediaAssets, type MediaAsset } from "@/features/gallery/data/media-assets";
 import { classGroups } from "@/data/public/schools";
 
@@ -36,14 +37,15 @@ const curriculumEvidenceAssets = getApprovedMediaByIds([
 ]);
 
 const curriculumEvidenceNotes = [
-  "Classroom materials, writing, and cultural work show the kind of work children actually meet.",
-  "Families can picture the lesson rhythm before asking about the right class group.",
+  "Classroom materials, writing, and cultural work show the kind of Russian children actually meet.",
+  "Families can picture a pathway from everyday Russian to literacy, literature, cultural confidence, and stronger communication.",
 ];
 
 const learningJourneyNotes = [
   "Weekend classes keep Russian visible and usable beyond the home.",
   "Children are supported as bilingual learners, heritage speakers, beginners, or exam-focused pupils.",
-  "Teachers can adjust the learning path when a child needs more confidence, more challenge, or a clearer qualification plan.",
+  "The curriculum is shaped by Moscow-linked expertise and textbooks designed for children brought up in the UK.",
+  "Teachers can adjust the learning path when a child needs more confidence, more challenge, or a clearer next step.",
 ];
 
 const syllabusThreads = [
@@ -52,7 +54,7 @@ const syllabusThreads = [
   "Grammar and vocabulary",
   "Literature and culture",
   "Projects, performance, and celebration",
-  "GCSE or A Level planning when relevant",
+  "Guidance towards Volna when GCSE or A Level Russian is the goal",
 ];
 
 function getApprovedMediaByIds(ids: string[]) {
@@ -64,14 +66,14 @@ function getApprovedMediaByIds(ids: string[]) {
 export const metadata: Metadata = {
   title: "Curriculum",
   description:
-    "Explore Pushkin's School curriculum pathways, class placement guidance, Russian language learning, culture, and exam preparation.",
+    "Explore Pushkin's School curriculum for balanced bilingualism, Russian language, literature, culture, performances, and guidance towards Volna for exam routes.",
   alternates: {
     canonical: "/curriculum",
   },
   openGraph: {
     title: "Curriculum | Pushkin's School",
     description:
-      "Russian language, culture, literature, and exam preparation pathways across Pushkin's School locations.",
+      "Balanced bilingualism, Russian language, culture, literature, performances, and clear guidance towards Volna for GCSE or A Level Russian.",
     url: "/curriculum",
   },
 };
@@ -81,14 +83,15 @@ export default function CurriculumPage() {
     <main>
       <PageHero
         eyebrow="Curriculum"
-        title="Russian language learning with culture, confidence, and clear progression"
+        title="Balanced bilingualism, Russian literature, and confident progression"
         asideAlign="start"
         aside={
           <div className="grid content-start gap-4">
             <SchoolEvidencePanel
+              devPageId="curriculum"
               eyebrow="Learning evidence"
               title="Materials, writing, and culture shape the pathway"
-              summary="Exercise books, cultural materials, and classroom moments make the syllabus feel less abstract for parents comparing routes."
+              summary="Exercise books, cultural materials, and classroom moments show how pupils build practical Russian, literacy, and cultural confidence."
               assets={curriculumEvidenceAssets}
               notes={curriculumEvidenceNotes}
             />
@@ -112,7 +115,7 @@ export default function CurriculumPage() {
         actions={
           <>
             <ButtonLink href="/schools" icon={<MapPin className="size-4" />}>
-              Choose a branch
+              See current locations
             </ButtonLink>
             <ButtonLink
               href="/contact#enquiry-form"
@@ -126,9 +129,9 @@ export default function CurriculumPage() {
         }
       >
         <p>
-          A parent-friendly syllabus pathway: what pupils build, how the work
-          becomes more demanding, and what teachers look at before confirming a
-          class.
+          {schoolStory.philosophy} The curriculum connects practical Russian,
+          grammar, reading, writing, literature, theatre, culture, and visible
+          class progress.
         </p>
       </PageHero>
 
@@ -137,19 +140,20 @@ export default function CurriculumPage() {
           <div>
             <SectionIntro
               eyebrow="Curriculum map"
-              title="The same strands return at a deeper level each year"
+              title="A connected pathway for children growing up in the UK"
             >
               <p>
-                Pupils do not move through isolated topics. Each stage revisits
-                the same core strands, with more independence in speaking,
-                reading, writing, grammar, and cultural interpretation.
+                {schoolStory.curriculum} Pupils do not move through isolated
+                topics. Each stage revisits the same core strands with more
+                independence in speaking, reading, writing, grammar, and
+                cultural interpretation.
               </p>
             </SectionIntro>
             <ul className="mt-8 space-y-3 text-sm leading-6 text-slate-700">
               {learningJourneyNotes.map((note) => (
                 <li
                   key={note}
-                  className="flex gap-2 border-l border-brand-gold bg-surface px-4 py-3"
+                  className="flex gap-2 border-l border-brand-accent bg-surface px-4 py-3"
                 >
                   <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
                   <span>{note}</span>
@@ -164,7 +168,7 @@ export default function CurriculumPage() {
               </p>
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 {syllabusThreads.map((thread) => (
-                  <div key={thread} className="border-l border-brand-gold pl-4">
+                  <div key={thread} className="border-l border-brand-accent pl-4">
                     <p className="flex gap-2 text-sm leading-6 text-slate-700">
                       <BookOpen aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
                       {thread}
@@ -203,19 +207,20 @@ export default function CurriculumPage() {
           >
             <p>
               These stages show the typical teaching emphasis. Exact class
-              placement still depends on the child&apos;s current Russian, not
-              age alone.
+              placement depends on the child&apos;s current Russian, not age
+              alone.
             </p>
           </SectionIntro>
           <div className="mt-10 grid gap-8 lg:grid-cols-[0.34fr_0.66fr]">
-            <aside className="border-l border-brand-gold pl-5">
+            <aside className="border-l border-brand-accent pl-5">
               <p className="text-sm font-semibold text-brand-blue-strong">
                 What changes as pupils progress
               </p>
               <p className="mt-3 text-sm leading-6 text-slate-600">
                 Lessons move from supported oral confidence and early literacy
                 towards longer reading, more accurate writing, explicit grammar,
-                cultural texts, and qualification planning where needed.
+                cultural texts, Pushkin and Russian literature, and clear
+                next-step guidance where needed.
               </p>
             </aside>
             <div className="divide-y divide-border-soft border-y border-border-soft">
@@ -241,7 +246,7 @@ export default function CurriculumPage() {
                   </p>
                   <ul className="mt-4 grid gap-2 text-sm leading-6 text-slate-700">
                     {stage.focusAreas.map((area) => (
-                      <li key={area} className="border-l border-brand-gold pl-4">
+                      <li key={area} className="border-l border-brand-accent pl-4">
                         {area}
                       </li>
                     ))}
@@ -262,14 +267,14 @@ export default function CurriculumPage() {
           >
             <p>
               Placement is not just a form field. The school needs a rounded
-              picture of the child&apos;s Russian before confirming the best
-              group or recommending a different learning option.
+              picture of the child&apos;s Russian before recommending the best
+              group or learning option.
             </p>
           </SectionIntro>
-          <div className="relative border-l border-brand-gold pl-6">
+          <div className="relative border-l border-brand-accent pl-6">
             {placementSteps.map((step, index) => (
               <article key={step.title} className="relative pb-8 last:pb-0">
-                <span className="absolute -left-[2.05rem] top-1 flex size-5 items-center justify-center rounded-full border border-brand-gold bg-surface">
+                <span className="absolute -left-[2.05rem] top-1 flex size-5 items-center justify-center rounded-full border border-brand-accent bg-surface">
                   <ClipboardCheck aria-hidden="true" className="size-3 text-brand-red" />
                 </span>
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
@@ -294,13 +299,13 @@ export default function CurriculumPage() {
               What helps teachers place a child well
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              Parents do not need perfect answers before enquiring. These
-              prompts simply make the first conversation more useful.
+              Parents do not need perfect answers. These prompts simply help
+              the school understand the child&apos;s Russian life now.
             </p>
           </div>
           <DecisionPanel
             eyebrow="Placement prompts"
-            title="You do not need perfect answers before enquiring"
+            title="A few details help us understand your child"
           >
             <ul className="divide-y divide-border-soft">
               {placementSignals.map((signal) => (
@@ -323,14 +328,14 @@ export default function CurriculumPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="Choosing the pathway"
-            title="Local school, online lessons, or GCSE self-study"
+            title="Local school, online lessons, or exam-focused support"
             tone="dark"
           >
             <p>
-              The strongest enquiry path is the one that matches the
-              family&apos;s location and goal. These options keep Pushkin&apos;s
-              School, Volna Online Russian School, and GCSERussian.com connected
-              but distinct.
+              The strongest pathway is the one that matches the family&apos;s
+              location, child&apos;s Russian level, and goal. These options keep
+              Pushkin&apos;s School and Volna Online Russian School connected but
+              distinct.
             </p>
           </SectionIntro>
           <div className="mt-10 divide-y divide-white/15 border-y border-white/15">
@@ -371,18 +376,18 @@ export default function CurriculumPage() {
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
           <div>
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
-              More detail as families need it
+              Performances, class progress, and the Pushkin pathway
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              The curriculum is useful for parents at enquiry stage, and the
-              school can share more detailed teaching schemes, named materials,
-              and branch-specific notes where they are relevant.
+              {schoolStory.pushkin} {schoolStory.culturalLife}{" "}
+              {schoolStory.progression}
             </p>
           </div>
           <div className="rounded-lg border border-border-soft bg-surface p-5">
             <ul className="divide-y divide-border-soft">
               {[
                 ...curriculumMaterials,
+                ...schoolLifeHighlights,
                 ...curriculumReviewNotes,
                 ...curriculumDetailsPendingReview.map(
                   (item) => `${item.title}: ${item.body}`,
@@ -405,7 +410,7 @@ export default function CurriculumPage() {
 
       <PageCta
         eyebrow="Curriculum next step"
-        title="Ask which pathway fits your child's Russian now"
+        title="Find the right class for your child's Russian now"
         tone="light"
         actions={
           <>
@@ -413,7 +418,7 @@ export default function CurriculumPage() {
               href="/contact#enquiry-form"
               icon={<ClipboardCheck className="size-4" />}
             >
-              Ask about placement
+              Tell us about your child
             </ButtonLink>
             <ButtonLink
               href="/admissions"

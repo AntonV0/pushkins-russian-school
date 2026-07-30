@@ -1,5 +1,6 @@
 import { curriculumPillars } from "./curriculum";
 import { policies, policyGroups } from "./policies";
+import { schoolStory } from "./school-story";
 import { networkSummary } from "./schools";
 
 export type TrustSignalKind =
@@ -31,9 +32,9 @@ export const trustSignals: TrustSignal[] = [
     id: "known-school-network",
     kind: "location-scale",
     title: "Known school locations",
-    value: `${networkSummary.locations} location pages`,
+    value: `${networkSummary.locations} school locations`,
     summary:
-      "Every known location has a full page with clear status wording and a practical enquiry path, whether families are asking about a current class or future local interest.",
+      "Pushkin's School has a five-location heritage across England, with current pages explaining in-person, online, and local-interest routes clearly.",
     status: "publishable",
     href: "/schools",
     evidenceNote:
@@ -57,7 +58,7 @@ export const trustSignals: TrustSignal[] = [
     title: "Structured curriculum",
     value: `${curriculumPillars.length} learning pillars`,
     summary:
-      "The public curriculum explains language foundations, literature and culture, placement, and exam preparation without overclaiming class-by-class detail.",
+      "The public curriculum explains balanced bilingualism, Russian language, literature, culture, performance, and the right route for older learners.",
     status: "publishable",
     href: "/curriculum",
     evidenceNote:
@@ -67,14 +68,12 @@ export const trustSignals: TrustSignal[] = [
     id: "founding-year",
     kind: "years-established",
     title: "Years established",
-    value: "Opening year to confirm",
+    value: `Founded in ${schoolStory.foundedYear}`,
     summary:
-      "The site is ready to show a strong longevity claim once the founding or first-opening year is verified from business records.",
-    status: "needs-review",
+      "Pushkin's School has supported Russian language, literature, and culture learning for children since 2009.",
+    status: "publishable",
     evidenceNote:
-      "Historic archive years suggest a long-running school community, but they should not be treated as a founding-year claim.",
-    reviewNote:
-      "Confirm the official founding/opening year before publishing 'since' or 'years established' wording.",
+      "Founding year approved by the site owner for public use.",
   },
   {
     id: "testimonials",
@@ -93,14 +92,13 @@ export const trustSignals: TrustSignal[] = [
     id: "partnerships",
     kind: "partnerships",
     title: "Partnerships and collaborators",
-    value: "Needs current confirmation",
+    value: "Moscow-linked curriculum",
     summary:
-      "Historic partner references should only become public trust signals after relationship, permission, and wording checks.",
-    status: "needs-review",
+      "The curriculum is described through cooperation with RUDN University, the Pushkin State Institute, and the Scientific Methodical Russian Speech Centre in Moscow.",
+    status: "publishable",
+    href: "/curriculum",
     evidenceNote:
-      "Historic institutional references need current relationship and publication-permission checks before they become public proof points.",
-    reviewNote:
-      "Verify each institution, logo permission, and whether the relationship is current before adding partner badges or copy.",
+      "Institutional curriculum wording approved by the site owner for public use. No logos or current formal partner badges are implied.",
   },
   {
     id: "staff-details",
@@ -118,15 +116,14 @@ export const trustSignals: TrustSignal[] = [
   {
     id: "exam-outcomes",
     kind: "exam-outcomes",
-    title: "Exam outcomes",
-    value: "Evidence needed",
+    title: "Exam route clarity",
+    value: "Volna exam pathway",
     summary:
-      "GCSE and A Level success stories would be powerful, but results and outcomes should be supported by verified, anonymised evidence.",
-    status: "needs-review",
+      "Pushkin's School does not teach GCSE or A Level Russian. Families with exam goals are guided towards Volna Online Russian School.",
+    status: "publishable",
+    href: "/online-lessons",
     evidenceNote:
-      "The site can describe exam preparation, but no verified outcome statistics are currently approved for publication.",
-    reviewNote:
-      "Confirm whether to publish anonymised results, case studies, exam pass rates, or only exam-preparation pathways.",
+      "Approved clarification from the site owner; no exam teaching is claimed for Pushkin's School.",
   },
 ];
 
@@ -139,7 +136,7 @@ export const pendingTrustSignals = trustSignals.filter(
 );
 
 export const trustHistoryNotes = [
-  "A 'since' or 'years established' proof point can be added once the official opening year is confirmed.",
+  "Founded in 2009 and five-school network claims are approved for public parent-facing copy.",
   "Historic gallery material should be published only after image, consent, caption, and quality checks.",
-  "Partnership, certificate, trip, staff, and exam-result claims should be added only when the school approves the exact public wording.",
+  "Staff profiles, testimonials, trips, and outcome statistics can be added later if the school approves exact wording and evidence.",
 ];

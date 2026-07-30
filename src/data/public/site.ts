@@ -3,7 +3,7 @@ export const siteConfig = {
   fullName: "Pushkin's School of Russian Language and Literature",
   legalName: "Pushkin's School of Russian Language and Literature",
   description:
-    "Weekend supplementary Russian language and literature school for children aged 3-18, with local classes, culture, and exam preparation.",
+    "Russian language, literature, and culture school for children aged 3-18, helping UK families build balanced bilingualism, confidence, and cultural connection.",
   url: "https://www.pushkinsrussianschool.co.uk",
   locale: "en_GB",
 };

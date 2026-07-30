@@ -28,6 +28,7 @@ import {
   curriculumRouteRecommendations,
   placementSignals,
 } from "@/data/public/curriculum";
+import { schoolStory } from "@/data/public/school-story";
 import { approvedMediaAssets, type MediaAsset } from "@/features/gallery/data/media-assets";
 import { schools } from "@/data/public/schools";
 
@@ -38,7 +39,7 @@ const admissionsEvidenceAssets = getApprovedMediaByIds([
 ]);
 
 const admissionsEvidenceNotes = [
-  "The first enquiry is about context and fit, not registration paperwork.",
+  "The first conversation is about the child, their Russian, and the right learning route.",
   "Venue, classroom, and learning-material details help families picture the school before placement is confirmed.",
 ];
 
@@ -51,14 +52,14 @@ function getApprovedMediaByIds(ids: string[]) {
 export const metadata: Metadata = {
   title: "Admissions and Fees",
   description:
-    "Admissions, enquiry guidance, fees, introductory course notes, and payment information for Pushkin's School families.",
+    "Admissions, joining guidance, fees, placement notes, and warm next steps for Pushkin's School families.",
   alternates: {
     canonical: "/admissions",
   },
   openGraph: {
     title: "Admissions and Fees | Pushkin's School",
     description:
-      "Understand the enquiry process, placement information, fee summary, and payment notes for Pushkin's School.",
+      "Tell Pushkin's School about your child and understand placement, joining routes, fees, and payment notes.",
     url: "/admissions",
   },
 };
@@ -71,14 +72,15 @@ export default function AdmissionsPage() {
     <main>
       <PageHero
         eyebrow="Admissions and fees"
-        title="A clear path from enquiry to the right school group"
+        title="Tell us about your child and the right class can follow"
         asideAlign="start"
         aside={
           <div className="grid content-start gap-4">
             <SchoolEvidencePanel
+              devPageId="admissions"
               eyebrow="Before placement"
-              title="A first enquiry connects a child to the right route"
-              summary="Real classroom, venue, and learning-material examples sit beside the practical details families share before the school recommends a route."
+              title="A few details help us guide your child"
+              summary="Real classroom, venue, and learning-material examples sit beside the details families share before the school recommends a route."
               assets={admissionsEvidenceAssets}
               notes={admissionsEvidenceNotes}
             />
@@ -87,14 +89,14 @@ export default function AdmissionsPage() {
                 Current school status
               </h2>
               <dl className="mt-6 grid gap-4 text-sm">
-                <div className="border-l border-brand-gold pl-4">
+                <div className="border-l border-brand-accent pl-4">
                   <dt className="flex items-center gap-2 font-semibold text-brand-blue-strong">
                     <MapPin aria-hidden="true" className="size-4 text-brand-red" />
                     Current weekend school
                   </dt>
                   <dd className="mt-1 text-slate-600">{openSchools.length}</dd>
                 </div>
-                <div className="border-l border-brand-gold pl-4">
+                <div className="border-l border-brand-accent pl-4">
                   <dt className="flex items-center gap-2 font-semibold text-brand-blue-strong">
                     <UsersRound aria-hidden="true" className="size-4 text-brand-red" />
                     Online or register-interest branches
@@ -103,10 +105,10 @@ export default function AdmissionsPage() {
                     {interestSchools.length}
                   </dd>
                 </div>
-                <div className="border-l border-brand-gold pl-4">
+                <div className="border-l border-brand-accent pl-4">
                   <dt className="flex items-center gap-2 font-semibold text-brand-blue-strong">
                     <Mail aria-hidden="true" className="size-4 text-brand-red" />
-                    Direct enquiries
+                    Email
                   </dt>
                   <dd className="mt-1 text-slate-600">
                     {contactDetails.email}
@@ -122,7 +124,7 @@ export default function AdmissionsPage() {
               href="/contact#enquiry-form"
               icon={<ClipboardCheck className="size-4" />}
             >
-              Start an enquiry
+              Tell us about your child
             </ButtonLink>
             <ButtonLink
               href="/faq"
@@ -136,10 +138,9 @@ export default function AdmissionsPage() {
         }
       >
         <p>
-          Families can enquire for current weekend classes, register interest in
-          future local provision, ask about Volna online lessons, or flag GCSE
-          self-study goals. The final placement is confirmed after the school
-          reviews the child&apos;s learning context.
+          {schoolStory.shortMission} Admissions begins with understanding your
+          child&apos;s age, Russian background, confidence, literacy, and goals,
+          then matching that to the most suitable class or learning route.
         </p>
       </PageHero>
 
@@ -147,12 +148,12 @@ export default function AdmissionsPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="Admissions checklist"
-            title="What happens before a place or route is confirmed"
+            title="From first conversation to confident start"
           >
             <p>
               The process is practical and deliberately calm: share enough
               context, let the school check the options, then confirm the
-              sensible next step.
+              sensible next step before your child starts.
             </p>
           </SectionIntro>
           <ol className="mt-10 divide-y divide-border-soft border-y border-border-soft">
@@ -182,7 +183,7 @@ export default function AdmissionsPage() {
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.76fr_1.24fr] lg:px-8">
           <SectionIntro
             eyebrow="What to send"
-            title="The first enquiry only needs the useful basics"
+            title="Tell us the useful basics"
           >
             <p>
               You do not need registration paperwork, medical details, or final
@@ -195,7 +196,7 @@ export default function AdmissionsPage() {
               {enquiryChecklist.map((item) => (
                 <li
                   key={item}
-                  className="flex gap-2 border-l border-brand-gold bg-background/70 px-4 py-3 text-sm leading-6 text-slate-700"
+                  className="flex gap-2 border-l border-brand-accent bg-background/70 px-4 py-3 text-sm leading-6 text-slate-700"
                 >
                   <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
                   <span>{item}</span>
@@ -242,12 +243,12 @@ export default function AdmissionsPage() {
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.72fr_1.28fr] lg:px-8">
           <SectionIntro
             eyebrow="Possible routes"
-            title="The enquiry can be directed without repeating the whole curriculum"
+            title="The right route depends on your child and your location"
           >
             <p>
               Most families start with the nearest weekend school. Where that
-              is not the best fit, the school can point the enquiry to online
-              lessons, future local interest, or exam support.
+              is not the best fit, the school can suggest online lessons,
+              future local interest, or exam-focused support.
             </p>
           </SectionIntro>
           <div className="divide-y divide-border-soft border-y border-border-soft">
@@ -293,7 +294,7 @@ export default function AdmissionsPage() {
             {placementSignals.map((signal) => (
               <li
                 key={signal}
-                className="flex gap-2 border-l border-brand-gold bg-background/70 px-4 py-3 text-sm leading-6 text-slate-700"
+                className="flex gap-2 border-l border-brand-accent bg-background/70 px-4 py-3 text-sm leading-6 text-slate-700"
               >
                 <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
                 <span>{signal}</span>
@@ -310,14 +311,14 @@ export default function AdmissionsPage() {
             title="Fee categories to confirm before joining"
           >
             <p>
-              Fee and payment categories are kept clear at enquiry stage.
+              Fee and payment categories are kept clear before joining.
               Current amounts and payment instructions are confirmed directly
               by the school before a family joins.
             </p>
           </SectionIntro>
           <div className="grid gap-3 sm:grid-cols-2">
             {paymentDetails.termFees.map((fee) => (
-              <div key={fee.label} className="border-l border-brand-gold bg-background/70 px-4 py-3">
+              <div key={fee.label} className="border-l border-brand-accent bg-background/70 px-4 py-3">
                 <p className="flex items-center gap-2 text-sm text-slate-600">
                   <Banknote aria-hidden="true" className="size-4 shrink-0 text-brand-red" />
                   {fee.label}
@@ -339,7 +340,7 @@ export default function AdmissionsPage() {
 
       <PageCta
         eyebrow="Admissions next step"
-        title="Send the school enough context to recommend the right route"
+        title="Tell us about your child and we will suggest the right route"
         actions={
           <>
             <ButtonLink
@@ -347,7 +348,7 @@ export default function AdmissionsPage() {
               variant="light"
               icon={<ClipboardCheck className="size-4" />}
             >
-              Start an enquiry
+              Tell us about your child
             </ButtonLink>
             <ButtonLink href="/schools" variant="light" icon={<MapPin className="size-4" />}>
               Compare schools

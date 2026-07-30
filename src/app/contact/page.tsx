@@ -14,14 +14,14 @@ import { schools } from "@/data/public/schools";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Pushkin's School to enquire about current classes, online lessons, future local classes, and registration interest.",
+    "Tell Pushkin's School about your child and ask about Russian language, literature, culture, current classes, online lessons, or future local provision.",
   alternates: {
     canonical: "/contact",
   },
   openGraph: {
     title: "Contact Pushkin's School",
     description:
-      "Enquire about Pushkin's School branches, current places, future local classes, and Russian language learning.",
+      "Tell Pushkin's School about your child and ask about Russian language learning routes.",
     url: "/contact",
   },
 };
@@ -52,7 +52,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
     <main>
       <PageHero
         eyebrow="Contact"
-        title="Send a first enquiry"
+        title="Tell us about your child"
         variant="compact"
         asideAlign="start"
         aside={
@@ -65,7 +65,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
       >
         <p>
           Use the form to share your preferred location, your child&apos;s age,
-          current Russian level, and the kind of support you are looking for.
+          current Russian level, and the kind of Russian learning, culture, or
+          exam support you are looking for.
         </p>
       </PageHero>
 
@@ -73,14 +74,14 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.78fr_1.22fr] lg:px-8">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
-              Enquiry notes
+              Joining notes
             </p>
             <h2 className="mt-3 text-2xl font-semibold text-brand-blue-strong">
-              Keep the first message focused on placement
+              Keep the first message focused on your child
             </h2>
             <p className="mt-4 text-sm leading-6 text-slate-600">
               Please do not include medical, safeguarding, emergency contact, or
-              full registration details in the initial enquiry. Those are
+              full registration details in this first message. Those are
               requested later only if your family joins.
             </p>
             <p className="mt-5 text-sm leading-6 text-slate-600">
@@ -100,7 +101,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
             </h3>
             <ul className="mt-4 grid gap-x-6 gap-y-2 text-sm leading-6 text-slate-700 sm:grid-cols-2">
               {enquiryChecklist.slice(0, 6).map((item) => (
-                <li key={item} className="flex gap-2 border-l border-brand-gold pl-3">
+                <li key={item} className="flex gap-2 border-l border-brand-accent pl-3">
                   <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
                   <span>{item}</span>
                 </li>
@@ -139,12 +140,12 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                 Locations
               </p>
               <h2 className="mt-3 text-2xl font-semibold text-brand-blue-strong">
-                Choose a branch, or tell us the area you need
+              Choose a school area, or tell us what would work
               </h2>
               <p className="mt-4 text-sm leading-6 text-slate-600">
                 Select the closest school or learning option in the form. If
                 your preferred area is online-only or not currently open, your
-                enquiry still helps the school understand local demand and
+                message still helps the school understand local demand and
                 suggest online or current-branch alternatives.
               </p>
               <div className="mt-6">
@@ -196,12 +197,12 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               Response process
             </p>
             <h2 className="mt-3 text-2xl font-semibold text-brand-blue-strong">
-              What happens after you enquire
+              How we reply
             </h2>
           </div>
           <div className="grid gap-5 md:grid-cols-3">
             {contactSupportNotes.map((note) => (
-              <div key={note} className="border-l border-brand-gold pl-5">
+              <div key={note} className="border-l border-brand-accent pl-5">
                 <Send aria-hidden="true" className="size-5 text-brand-red" />
                 <p className="mt-3 text-sm leading-6 text-slate-700">{note}</p>
               </div>
@@ -217,7 +218,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               Joining details
             </p>
             <h2 className="mt-3 text-2xl font-semibold text-brand-blue-strong">
-              Fees are confirmed after the first enquiry
+              Fees are confirmed before joining
             </h2>
             <p className="mt-4 text-sm leading-6 text-slate-600">
               {paymentDetails.bankDetailsStatus}

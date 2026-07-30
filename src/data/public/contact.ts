@@ -3,18 +3,18 @@ export const contactDetails = {
   email: "info@pushkinsrussianschool.co.uk",
   phoneLabel: "Enquiries by email",
   enquiryFormNote:
-    "Email directly if you prefer, or use the enquiry form to share the first details the school needs for a helpful reply.",
-  registrationCta: "Start an enquiry",
+    "Email directly if you prefer, or use the form to tell the school about your child and the Russian learning route you are looking for.",
+  registrationCta: "Tell us about your child",
 };
 
 export const contactSupportNotes = [
-  "Use the form to share preferred school location, child age, Russian level, goals, and basic contact details.",
-  "If a local class is not currently available, enquiries can still register interest for future weekend provision.",
-  "Do not include medical, safeguarding, emergency contact, or full registration details in the initial enquiry.",
+  "Share preferred school location, child age, Russian level, learning goals, and basic contact details.",
+  "If a local class is not currently available, the school can note interest and suggest online or current-location alternatives.",
+  "Full registration, medical, safeguarding, emergency contact, and consent details are requested later if your family joins.",
 ];
 
 export const paymentDetails = {
-  acceptedMethods: ["Confirmed after enquiry"],
+  acceptedMethods: ["Confirmed before joining"],
   enrolmentFee: "Annual enrolment fee",
   introductoryCourse: "Introductory course",
   termFees: [
@@ -23,8 +23,8 @@ export const paymentDetails = {
     { label: "Term fees", value: "Confirmed directly by the school" },
     { label: "Single school day", value: "Confirm current rate" },
     { label: "Sibling discount", value: "Confirm current discount" },
-    { label: "Payment method", value: "Confirmed after enquiry" },
+    { label: "Payment method", value: "Confirmed before joining" },
   ],
   bankDetailsStatus:
-    "Current fees, discounts, payment instructions, and bank details are confirmed directly by the school after enquiry.",
+    "Current fees, discounts, payment instructions, and bank details are confirmed directly by the school before a family joins.",
 };

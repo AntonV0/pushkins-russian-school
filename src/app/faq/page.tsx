@@ -64,7 +64,7 @@ export default function FaqPage() {
                 FAQ
               </p>
               <h1 className="mt-4 max-w-3xl text-balance text-4xl font-semibold leading-[1.05] text-brand-blue-strong sm:text-5xl">
-                Clear answers before you enquire
+                Clear answers for parents
               </h1>
               <p className="mt-5 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg">
                 Find practical guidance on school locations, placement, fees,
@@ -137,7 +137,7 @@ export default function FaqPage() {
               Still deciding?
             </p>
             <h2 className="mt-3 text-2xl font-semibold text-brand-blue-strong">
-              Send a focused enquiry and the school can point you to the right route
+              Tell us about your child and the school can point you to the right route
             </h2>
           </div>
           <ButtonLink

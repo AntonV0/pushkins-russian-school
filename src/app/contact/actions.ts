@@ -60,7 +60,7 @@ export async function submitEnquiry(
     return {
       status: "success",
       message:
-        "Thank you. If the enquiry is genuine, the school will follow up using the details provided.",
+        "Thank you. If the message is genuine, the school will follow up using the details provided.",
     };
   }
 
@@ -70,7 +70,7 @@ export async function submitEnquiry(
     return {
       status: "error",
       message:
-        "Too many enquiry attempts have been made from this browser or network. Please wait a little while, or email the school directly.",
+        "Too many contact attempts have been made from this browser or network. Please wait a little while, or email the school directly.",
     };
   }
 
@@ -94,7 +94,7 @@ export async function submitEnquiry(
     return {
       status: "success",
       message:
-        "Thank you. Your initial enquiry has been submitted securely. The school will contact you about the most suitable next step.",
+        "Thank you. Your message has been submitted securely. The school will contact you about the most suitable next step.",
       values: validation.values,
     };
   }

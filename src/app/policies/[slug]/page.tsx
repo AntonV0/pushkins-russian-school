@@ -172,7 +172,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
                       key={item}
                       className="grid gap-4 py-4 first:pt-0 last:pb-0 sm:grid-cols-[3rem_1fr]"
                     >
-                      <span className="flex h-10 w-10 items-center justify-center justify-self-start rounded-full border border-brand-gold/50 bg-surface-muted text-sm font-semibold text-brand-blue-strong">
+                      <span className="flex h-10 w-10 items-center justify-center justify-self-start rounded-full border border-brand-accent/50 bg-surface-muted text-sm font-semibold text-brand-blue-strong">
                         <ShieldCheck aria-hidden="true" className="size-4 text-brand-red" />
                       </span>
                       <span className="text-sm leading-6 text-slate-700">
@@ -211,7 +211,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
                   className={`border-l-4 bg-background p-5 ${
                     item.href
                       ? "border-brand-red"
-                      : "border-brand-gold"
+                      : "border-brand-accent"
                   }`}
                 >
                   <h3 className="text-sm font-semibold text-brand-blue-strong">
@@ -290,7 +290,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
               {nextSteps.map((step) => (
                 <div
                   key={step.title}
-                  className="border-l border-brand-gold bg-background px-4 py-3"
+                  className="border-l border-brand-accent bg-background px-4 py-3"
                 >
                   <CheckCircle2 aria-hidden="true" className="mb-2 size-4 text-brand-red" />
                   <h4 className="text-sm font-semibold text-brand-blue-strong">
@@ -309,7 +309,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
               {policyPublicationChecklist.map((item) => (
                 <li
                   key={item}
-                  className="border-l border-brand-gold bg-background px-4 py-3"
+                  className="border-l border-brand-accent bg-background px-4 py-3"
                 >
                   <span className="flex gap-2">
                     <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />

@@ -1,15 +1,15 @@
 export const admissionsSteps = [
   {
-    title: "Choose a preferred branch",
-    body: "Review the branch status, venue, schedule, class groups, and next-step guidance before enquiring.",
+    title: "Tell us about your child",
+    body: "Share your child's age, Russian background, confidence with speaking, reading and writing, and what you hope the school will help them keep or build.",
   },
   {
-    title: "Share the child's learning context",
-    body: "Include age, home-language exposure, Russian speaking, reading and writing confidence, and any GCSE or A Level goals.",
+    title: "Find the right class or route",
+    body: "The school considers current locations, online options, age, language level, and whether a separate Volna route is better for GCSE or A Level goals.",
   },
   {
-    title: "Confirm availability and fit",
-    body: "The school can confirm current places, future local interest, online alternatives, introductory options, and the most suitable starting group.",
+    title: "Start with confidence",
+    body: "Once the practical details are clear, your child can begin in a group or learning option that supports balanced bilingualism without guessing from age alone.",
   },
 ];
 
@@ -20,8 +20,8 @@ export const enquiryChecklist = [
   "Preferred school location or online learning option",
   "How much Russian the child hears or uses at home",
   "Current Russian language level",
-  "Interest in GCSE or A Level preparation, if relevant",
-  "Whether the enquiry is for current classes, future local classes, or online learning",
+  "Interest in GCSE or A Level Russian through Volna, if relevant",
+  "Whether you are asking about current classes, future local classes, or online learning",
 ];
 
 export const enquiryTypes = [
@@ -35,7 +35,7 @@ export const enquiryTypes = [
   },
   {
     value: "exam-preparation",
-    label: "GCSE or A Level preparation",
+    label: "GCSE or A Level route through Volna",
   },
   {
     value: "online-learning",
