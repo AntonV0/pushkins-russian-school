@@ -41,8 +41,8 @@ export function EnquiryForm({
   const statusId = "enquiry-form-status";
   const formIntro =
     mode === "live"
-      ? "Submit a simple initial enquiry. The detailed registration form for health, safeguarding, emergency contacts, and consents comes later if your family joins."
-      : "Check the details for a clear first enquiry. If online submission is not available, the form will prompt you to email the school directly.";
+      ? "Share a few details about your child. The detailed registration form for health, safeguarding, emergency contacts, and consents comes later if your family joins."
+      : "Share a few details about your child. If online submission is unavailable, the form will prompt you to email the school directly.";
 
   return (
     <form
@@ -54,10 +54,10 @@ export function EnquiryForm({
     >
       <div>
         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red sm:text-sm">
-          Enquiry form
+          Contact form
         </p>
         <h2 className="mt-3 text-2xl font-semibold leading-tight text-brand-blue-strong sm:text-3xl">
-          Tell us what you are looking for
+          Tell us about your child
         </h2>
         <p
           id={statusId}
@@ -67,12 +67,12 @@ export function EnquiryForm({
           {formIntro}
         </p>
         {mode === "preview" ? (
-          <div className="mt-4 border-l border-brand-gold bg-background/80 px-4 py-3 text-xs leading-5 text-slate-600">
+          <div className="mt-4 border-l border-brand-accent bg-background/80 px-4 py-3 text-xs leading-5 text-slate-600">
             <span className="font-semibold text-brand-blue-strong">
               Email fallback:
             </span>{" "}
             if online submission is unavailable, the form will help check the
-            enquiry details before asking you to email the school directly.
+            details before asking you to email the school directly.
           </div>
         ) : null}
       </div>
@@ -251,7 +251,7 @@ export function EnquiryForm({
             htmlFor="enquiry-type"
             className="text-sm font-semibold text-brand-blue-strong"
           >
-            Enquiry type
+            What are you asking about?
           </label>
           <select
             id="enquiry-type"
@@ -320,7 +320,7 @@ export function EnquiryForm({
               className="mt-1 size-4 rounded border-border-soft text-brand-blue focus:ring-brand-blue/30"
             />
             <span id="enquiry-privacy-notice">
-              I understand this is only an initial enquiry and I should not add
+              I understand this is only a first message and I should not add
               medical, safeguarding, emergency contact, full registration, or
               document details here.
             </span>
@@ -435,8 +435,8 @@ function SubmitButton({
             ? "Submitting..."
             : "Checking..."
           : mode === "live"
-            ? "Submit initial enquiry"
-            : "Check enquiry details"}
+            ? "Send message"
+            : "Check details"}
       </span>
     </button>
   );

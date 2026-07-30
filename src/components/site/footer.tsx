@@ -108,7 +108,7 @@ export function Footer() {
           <BrandMark className="[&_*]:text-white" />
           <p className="mt-3 max-w-md text-sm leading-6 text-white/75">
             Weekend supplementary Russian language and literature classes for
-            children, with culture, exam preparation, and local school
+            children, with culture, performance, and local school
             communities across England.
           </p>
           <a

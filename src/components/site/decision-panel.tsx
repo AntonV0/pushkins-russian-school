@@ -37,7 +37,7 @@ export function DecisionPanel({
       {eyebrow ? (
         <p
           className={`text-xs font-semibold uppercase tracking-[0.16em] ${
-            isBlue ? "text-brand-gold" : "text-brand-red"
+            isBlue ? "text-brand-accent" : "text-brand-red"
           }`}
         >
           {eyebrow}

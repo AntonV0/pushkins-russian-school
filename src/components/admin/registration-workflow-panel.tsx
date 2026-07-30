@@ -74,7 +74,7 @@ export function RegistrationWorkflowPanel() {
           {registrationConsentCategories.slice(0, 8).map((consent) => (
             <div
               key={consent.category}
-              className="border-l border-brand-gold bg-background px-4 py-3"
+              className="border-l border-brand-accent bg-background px-4 py-3"
             >
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <p className="font-semibold text-brand-blue-strong">

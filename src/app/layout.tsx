@@ -23,7 +23,7 @@ const geistMono = Geist_Mono({
 });
 
 const logoDisplay = Great_Vibes({
-  variable: "--font-logo-display",
+  variable: "--font-logo-next",
   subsets: ["latin"],
   weight: "400",
 });
@@ -70,12 +70,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const devSectionMarkersClass =
+    process.env.NODE_ENV === "production" ? "" : " dev-section-markers";
+
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${logoDisplay.variable} h-full antialiased`}
     >
-      <body className="warm-page-bg flex min-h-full flex-col">
+      <body
+        className={`warm-page-bg flex min-h-full flex-col${devSectionMarkersClass}`}
+      >
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-brand-blue focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"

@@ -22,7 +22,7 @@ const summaryCards = [
     label: "Active follow-up",
     value: invoiceSummary.activeFollowUpCount.toString(),
     detail: `${invoiceSummary.overdueCount} overdue, ${invoiceSummary.draftCount} draft`,
-    accent: "border-brand-gold/50",
+    accent: "border-brand-accent/50",
   },
   {
     label: "Payment routes",

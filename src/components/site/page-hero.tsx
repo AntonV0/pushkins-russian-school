@@ -14,13 +14,13 @@ type PageHeroProps = {
 };
 
 const sectionPadding = {
-  home: "py-8 sm:py-12 lg:py-14",
+  home: "py-8 sm:py-12 lg:py-10 min-[1180px]:py-12",
   standard: "py-8 sm:py-14 lg:py-16",
   compact: "py-7 sm:py-12",
 };
 
 const titleSize = {
-  home: "text-4xl sm:text-5xl lg:text-6xl",
+  home: "text-4xl sm:text-[2.65rem] md:text-5xl lg:text-[2.65rem] min-[1100px]:text-[3.25rem] min-[1180px]:text-[4rem]",
   standard: "text-3xl sm:text-4xl lg:text-5xl",
   compact: "text-3xl sm:text-4xl",
 };
@@ -38,16 +38,17 @@ export function PageHero({
 }: PageHeroProps) {
   const isHome = variant === "home";
   const asideAlignment = asideAlign === "start" ? "lg:items-start" : "lg:items-center";
+  const gridGap = isHome ? "gap-7 sm:gap-8 lg:gap-7 min-[1180px]:gap-8" : "gap-8";
 
   return (
     <section
       className={`border-b border-border-soft bg-[linear-gradient(180deg,rgba(255,255,255,0.86),rgba(255,255,255,0.58))] ${sectionPadding[variant]} ${className}`}
     >
       <div
-        className={`mx-auto grid max-w-7xl gap-8 px-6 lg:px-8 ${
+        className={`mx-auto grid max-w-7xl ${gridGap} px-6 lg:px-8 ${
           aside
             ? isHome
-              ? `lg:min-h-[clamp(30rem,calc(100svh-18rem),38rem)] lg:grid-cols-[0.92fr_1.08fr] ${asideAlignment}`
+              ? `lg:min-h-[clamp(28rem,calc(100svh-16rem),34rem)] lg:grid-cols-[0.98fr_1.02fr] min-[1180px]:min-h-[clamp(30rem,calc(100svh-18rem),38rem)] ${asideAlignment}`
               : `lg:grid-cols-[0.96fr_1.04fr] ${asideAlignment}`
             : ""
         }`}

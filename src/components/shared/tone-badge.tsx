@@ -16,7 +16,7 @@ const toneClasses: Record<ToneBadgeTone, string> = {
   warning: "border-amber-200 bg-amber-50 text-amber-800",
   danger: "border-red-200 bg-red-50 text-red-800",
   brand: "border-brand-blue/20 bg-surface-blue text-brand-blue-strong",
-  gold: "border-brand-gold/40 bg-[#fff8e8] text-brand-blue-strong",
+  gold: "border-brand-accent/40 bg-brand-accent/10 text-brand-blue-strong",
 };
 
 type ToneBadgeProps = {

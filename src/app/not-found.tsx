@@ -13,7 +13,7 @@ export default function NotFound() {
         </h1>
         <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
           The new site structure is being rebuilt around clear school, policy,
-          gallery, and enquiry routes. The page you followed may be from the old
+          gallery, and contact routes. The page you followed may be from the old
           website.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">

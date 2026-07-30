@@ -99,7 +99,7 @@ export function InvoiceWorkflowPanel() {
           {Object.entries(invoicePaymentMethodMeta).map(([method, meta]) => (
             <div
               key={method}
-              className="border-l border-brand-gold bg-background px-4 py-3"
+              className="border-l border-brand-accent bg-background px-4 py-3"
             >
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <p className="font-semibold text-brand-blue-strong">

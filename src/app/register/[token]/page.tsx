@@ -44,7 +44,7 @@ export default async function RegistrationInvitationPage({
     <main className="bg-background">
       <section className="border-b border-border-soft bg-brand-blue-strong py-16 text-white sm:py-20">
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-gold">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-accent">
             Registration invitation prototype
           </p>
           <h1 className="mt-4 max-w-4xl text-4xl font-semibold sm:text-5xl">
@@ -56,8 +56,8 @@ export default async function RegistrationInvitationPage({
             controls are approved. For now, the route displays sample structure
             only.
           </p>
-          <div className="mt-8 grid max-w-xl gap-3 border-l-4 border-brand-gold bg-white/10 p-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-gold">
+          <div className="mt-8 grid max-w-xl gap-3 border-l-4 border-brand-accent bg-white/10 p-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-accent">
               <LockKeyhole aria-hidden="true" className="mb-2 size-5" />
               Token handling
             </p>
@@ -135,7 +135,7 @@ export default async function RegistrationInvitationPage({
           {registrationSafetyGuardrails.map((note) => (
             <div
               key={note}
-              className="border-l border-brand-gold bg-background px-5 py-4 text-sm leading-6 text-slate-700"
+              className="border-l border-brand-accent bg-background px-5 py-4 text-sm leading-6 text-slate-700"
             >
               <span className="flex gap-2">
                 <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />

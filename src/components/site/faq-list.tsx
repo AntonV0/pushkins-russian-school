@@ -85,7 +85,7 @@ export function FaqList({ groups }: FaqListProps) {
                       </span>
                     </summary>
                     <div className="px-6 pb-5">
-                      <p className="max-w-3xl border-l border-brand-gold pl-4 text-sm leading-6 text-slate-600">
+                      <p className="max-w-3xl border-l border-brand-accent pl-4 text-sm leading-6 text-slate-600">
                         {item.answer}
                       </p>
                     </div>

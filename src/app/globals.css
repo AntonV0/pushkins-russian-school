@@ -9,7 +9,7 @@
   --brand-blue: #082850;
   --brand-blue-strong: #002048;
   --brand-red: #d01010;
-  --brand-gold: #d01010;
+  --brand-accent: #7b5f7d;
   --border-soft: #d7e0ea;
   --muted: #5b6778;
   --ring: #d01010;
@@ -26,12 +26,12 @@
   --color-brand-blue: var(--brand-blue);
   --color-brand-blue-strong: var(--brand-blue-strong);
   --color-brand-red: var(--brand-red);
-  --color-brand-gold: var(--brand-gold);
+  --color-brand-accent: var(--brand-accent);
   --color-border-soft: var(--border-soft);
   --color-muted: var(--muted);
   --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
-  --font-logo-display: var(--font-logo-display), Georgia, "Times New Roman", serif;
+  --font-logo-display: var(--font-logo-next), Georgia, "Times New Roman", serif;
 }
 
 body {
@@ -68,6 +68,43 @@ main .grid > * {
 
 main :where(section) {
   scroll-margin-top: 6.5rem;
+}
+
+body.dev-section-markers main {
+  counter-reset: dev-section;
+}
+
+body.dev-section-markers main > section {
+  counter-increment: dev-section;
+  position: relative;
+}
+
+body.dev-section-markers main > section::before {
+  content: counter(dev-section, decimal-leading-zero);
+  pointer-events: none;
+  position: absolute;
+  right: 0.75rem;
+  top: 0.75rem;
+  z-index: 30;
+  color: rgba(148, 163, 184, 0.55);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: clamp(3rem, 7vw, 4.5rem);
+  font-weight: 600;
+  line-height: 1;
+  user-select: none;
+}
+
+@media (min-width: 640px) {
+  body.dev-section-markers main > section::before {
+    right: 1.25rem;
+    top: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  body.dev-section-markers main > section::before {
+    right: 2rem;
+  }
 }
 
 :focus-visible {
@@ -145,7 +182,7 @@ nextjs-portal {
   background: linear-gradient(
     90deg,
     transparent,
-    color-mix(in srgb, var(--brand-gold) 38%, transparent),
+    color-mix(in srgb, var(--brand-accent) 38%, transparent),
     transparent
   );
 }
@@ -165,7 +202,7 @@ nextjs-portal {
 .editorial-rule {
   border-image: linear-gradient(
       180deg,
-      color-mix(in srgb, var(--brand-gold) 52%, transparent),
+      color-mix(in srgb, var(--brand-accent) 52%, transparent),
       transparent
     )
     1;

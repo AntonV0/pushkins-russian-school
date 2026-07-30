@@ -42,11 +42,11 @@ export function BrandMark({ className = "", compact = false, short = false }: Br
             Pushkin&apos;s School
           </span>
           {!short ? (
-            <span className="block max-w-[16.5rem] -mt-0.5 text-[0.72rem] font-semibold leading-snug tracking-[0.05em] text-brand-red sm:max-w-[21.5rem] sm:text-[0.82rem]">
+            <span className="block max-w-[16.5rem] -mt-0.5 whitespace-nowrap text-[0.72rem] font-semibold leading-snug tracking-[0.05em] text-brand-red sm:max-w-none sm:text-[0.82rem]">
               of Russian Language and Literature
             </span>
           ) : (
-            <span className="hidden max-w-[15rem] -mt-px text-[0.78rem] font-semibold leading-snug tracking-normal text-brand-red min-[430px]:block sm:text-[0.82rem]">
+            <span className="hidden -mt-px whitespace-nowrap text-[0.72rem] font-semibold leading-snug tracking-normal text-brand-red min-[430px]:block sm:text-[0.78rem] md:text-[0.82rem]">
               of Russian Language and Literature
             </span>
           )}

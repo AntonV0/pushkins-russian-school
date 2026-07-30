@@ -24,7 +24,7 @@ type TrustSignalsProps = {
 
 function TrustSignalCard({ signal }: { signal: TrustSignal }) {
   const content = (
-    <article className="flex h-full flex-col border-l border-brand-gold bg-background px-5 py-4 transition group-hover:border-brand-red">
+    <article className="flex h-full flex-col border-l border-brand-accent bg-background px-5 py-4 transition group-hover:border-brand-red">
       <div className="flex items-start justify-between gap-4">
         <p className="font-mono text-sm font-semibold text-brand-red">
           {signal.value}
@@ -81,7 +81,7 @@ function TrustSignalIcon({
 }
 
 export function TrustSignals({
-  intro = "Parents can check the school locations, curriculum structure, and policy library before they enquire.",
+  intro = "Parents can see the school story, curriculum structure, locations, and policies before deciding which route fits their child.",
   align = "left",
   includeReviewQueue = false,
 }: TrustSignalsProps) {
@@ -102,12 +102,12 @@ export function TrustSignals({
               href={publishableTrustSignals[0].href ?? "/schools"}
               className="group block bg-brand-blue-strong p-8 text-white focus:outline-none focus:ring-2 focus:ring-brand-red/30 sm:p-10"
             >
-              <p className="break-words font-mono text-3xl font-semibold text-brand-gold sm:text-5xl">
+              <p className="break-words font-mono text-3xl font-semibold text-brand-accent sm:text-5xl">
                 {publishableTrustSignals[0].value}
               </p>
               <span
                 aria-hidden="true"
-                className="mt-6 inline-flex size-11 shrink-0 items-center justify-center rounded-md border border-white/15 bg-white/10 text-brand-gold"
+                className="mt-6 inline-flex size-11 shrink-0 items-center justify-center rounded-md border border-white/15 bg-white/10 text-brand-accent"
               >
                 <TrustSignalIcon
                   kind={publishableTrustSignals[0].kind}
@@ -137,7 +137,7 @@ export function TrustSignals({
 
       {includeReviewQueue ? (
         <div className="mt-10 grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
-          <div className="border-l-4 border-brand-gold bg-surface px-6 py-5">
+          <div className="border-l-4 border-brand-accent bg-surface px-6 py-5">
             <h3 className="text-lg font-semibold text-brand-blue-strong">
               What families can expect
             </h3>
@@ -155,7 +155,7 @@ export function TrustSignals({
                 className="rounded-lg border border-border-soft bg-background p-5"
               >
                 <div className="flex flex-wrap items-center gap-3">
-                  <span className="rounded-full border border-brand-gold/40 bg-brand-gold/10 px-3 py-1 text-xs font-semibold text-brand-blue-strong">
+                  <span className="rounded-full border border-brand-accent/40 bg-brand-accent/10 px-3 py-1 text-xs font-semibold text-brand-blue-strong">
                     Being prepared
                   </span>
                   <CheckCircle2 aria-hidden="true" className="size-4 text-brand-red" />

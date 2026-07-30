@@ -31,7 +31,7 @@ export function PageCta({
           {eyebrow ? (
             <p
               className={`text-xs font-semibold uppercase tracking-[0.18em] ${
-                isDark ? "text-brand-gold" : "text-brand-red"
+                isDark ? "text-brand-accent" : "text-brand-red"
               }`}
             >
               {eyebrow}

@@ -50,10 +50,6 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-20 border-b border-border-soft/80 bg-background/94 shadow-[0_1px_0_rgba(255,255,255,0.75)_inset] backdrop-blur-xl">
-      <div className="mx-auto hidden max-w-7xl items-center justify-between gap-6 border-b border-border-soft/70 px-6 py-2 text-xs font-medium text-slate-600 min-[1180px]:flex lg:px-8">
-        <span>Weekend Russian classes for children aged 3-18</span>
-        <span>Tell us your child&apos;s age, level, and preferred location</span>
-      </div>
       <div className="site-header-row mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-2 sm:gap-4 sm:py-2.5 lg:px-8 lg:py-2.5 min-[1180px]:py-3">
         <Link href="/" className="group min-w-0">
           <span className="hidden lg:inline">
@@ -162,7 +158,7 @@ export function Header() {
                     Join Pushkin&apos;s School
                   </p>
                   <p className="mt-1 text-sm leading-5 text-slate-600">
-                    Tell us your child&apos;s age, level, and preferred location.
+                    Share your child&apos;s age, Russian confidence, and preferred route.
                   </p>
                   <ButtonLink
                     href={registerInterestHref}

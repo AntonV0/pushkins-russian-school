@@ -15,7 +15,7 @@ const summaryCards = [
     label: "Invited",
     value: registrationSummary.invitedCount.toString(),
     detail: "Admin-created invitation state",
-    accent: "border-brand-gold/50",
+    accent: "border-brand-accent/50",
   },
   {
     label: "Needs update",

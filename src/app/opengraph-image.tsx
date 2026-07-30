@@ -69,7 +69,7 @@ export default function OpenGraphImage() {
                   textTransform: "uppercase",
                 }}
               >
-                Russian Language Network
+                Russian Language, Literature, and Culture
               </div>
             </div>
           </div>
@@ -83,7 +83,7 @@ export default function OpenGraphImage() {
               padding: "18px 26px",
             }}
           >
-            Learning pathways
+            Founded in 2009
           </div>
         </div>
 
@@ -98,7 +98,7 @@ export default function OpenGraphImage() {
               textTransform: "uppercase",
             }}
           >
-            Language, culture, and exam preparation
+            Balanced bilingualism for children in the UK
           </div>
           <div
             style={{
@@ -109,7 +109,7 @@ export default function OpenGraphImage() {
               maxWidth: 900,
             }}
           >
-            A refined Russian school for families
+            Keeping Russian language and culture alive
           </div>
           <div
             style={{
@@ -135,7 +135,7 @@ export default function OpenGraphImage() {
             paddingTop: 26,
           }}
         >
-          <span>Current classes and register-interest locations</span>
+          <span>Five-school heritage and current learning routes</span>
           <span>pushkinsrussianschool.co.uk</span>
         </div>
       </div>

@@ -16,7 +16,7 @@ export function AdminShellStatusCard({
   links,
 }: AdminShellStatusCardProps) {
   return (
-    <div className="grid min-w-64 gap-3 border-l-4 border-brand-gold bg-background p-5 shadow-sm">
+    <div className="grid min-w-64 gap-3 border-l-4 border-brand-accent bg-background p-5 shadow-sm">
       <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">
         {label}
       </p>

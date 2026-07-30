@@ -31,7 +31,7 @@ export function SectionIntro({
         </p>
       ) : null}
       <h2
-        className={`mt-3 text-balance font-semibold leading-tight ${titleSize} ${titleColor}`}
+        className={`${eyebrow ? "mt-3" : ""} text-balance font-semibold leading-tight ${titleSize} ${titleColor}`}
       >
         {title}
       </h2>
