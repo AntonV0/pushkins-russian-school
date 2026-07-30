@@ -13,19 +13,20 @@ import { PageCta } from "@/components/site/page-cta";
 import { PageHero } from "@/components/site/page-hero";
 import { SchoolComparisonTable } from "@/components/site/school-comparison-table";
 import { SectionIntro } from "@/components/site/section-intro";
+import { schoolProofPoints, schoolStory } from "@/data/public/school-story";
 import { networkSummary, schools } from "@/data/public/schools";
 
 export const metadata: Metadata = {
   title: "Schools",
   description:
-    "Explore Pushkin's School locations, current weekend classes, online-only areas, and register-interest options.",
+    "Explore Pushkin's School's five-school Russian language and culture network, current locations, online options, and ways to join.",
   alternates: {
     canonical: "/schools",
   },
   openGraph: {
     title: "Pushkin's School Locations",
     description:
-      "Explore Pushkin's School locations, current weekend classes, online-only areas, and register-interest options.",
+      "Explore Pushkin's School's Russian language and culture network, current locations, online options, and ways to join.",
     url: "/schools",
   },
 };
@@ -39,12 +40,12 @@ export default function SchoolsPage() {
     <main>
       <PageHero
         eyebrow="School locations"
-        title="Find the right Pushkin's School option for your family"
+        title="A five-school Russian learning community across England"
         aside={<NetworkVisual />}
         actions={
           <>
             <ButtonLink href="#location-explorer" icon={<MapPin className="size-4" />}>
-              Explore locations
+              See current locations
             </ButtonLink>
             <ButtonLink
               href="#compare-branches"
@@ -52,15 +53,15 @@ export default function SchoolsPage() {
               className={quietHeroLinkClassName}
               icon={<Search className="size-4" />}
             >
-              Compare branches
+              Compare options
             </ButtonLink>
           </>
         }
       >
         <p>
-          Explore current weekend classes, register-interest areas, and online
-          options for children learning Russian language, literature, and
-          culture around England.
+          Since {schoolStory.foundedYear}, Pushkin&apos;s School has helped
+          children keep Russian language, literature, culture, and confidence
+          alive through a five-location supplementary school heritage.
         </p>
       </PageHero>
 
@@ -70,10 +71,39 @@ export default function SchoolsPage() {
             variant="quiet"
             metrics={[
               { label: "School locations", value: networkSummary.locations },
+              { label: "Founded", value: schoolStory.foundedYear },
               { label: "Current in-person", value: openSchools.length },
-              { label: "Counties covered", value: networkSummary.counties },
             ]}
           />
+        </div>
+      </section>
+
+      <section className="border-b border-border-soft bg-surface site-section-compact">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.78fr_1.22fr] lg:px-8">
+          <SectionIntro
+            eyebrow="School heritage"
+            title="One curriculum, one cultural purpose, several local communities"
+          >
+            <p>
+              The school network has included High Wycombe, Hemel Hempstead,
+              Bracknell, Chelmsford, and Southend-on-Sea. Current local
+              availability can change, but the educational purpose remains the
+              same: balanced bilingualism, Russian literacy, culture,
+              performance, and progression.
+            </p>
+          </SectionIntro>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {schoolProofPoints.map((point) => (
+              <article key={point.value} className="border-l border-brand-accent pl-5">
+                <h2 className="text-lg font-semibold text-brand-blue-strong">
+                  {point.value}
+                </h2>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  {point.label}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -83,14 +113,13 @@ export default function SchoolsPage() {
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
-            eyebrow="Location guide"
-            title="Choose by availability first, then by fit"
+            eyebrow="Current ways to join"
+            title="See the current locations and learning routes"
           >
             <p>
-              The school network mixes one current weekend branch with towns
-              where families can register local demand or ask about online
-              learning. This guide keeps those routes separate before you
-              enquire.
+              This guide shows what is currently available: one listed
+              in-person weekend branch, local interest areas, and online
+              learning routes for families who want Russian to continue now.
             </p>
           </SectionIntro>
           <div className="mt-8">
@@ -107,26 +136,26 @@ export default function SchoolsPage() {
           <div>
             <SectionIntro
               eyebrow="Current availability"
-              title="The practical order for a parent enquiry"
+              title="How to join now"
             >
               <p>
-                Start with whether you need a current weekend place, want to
-                signal future local demand, or need an online option. Then share
-                the child&apos;s age, Russian confidence, and exam goals if relevant.
+                Start with the route that fits your family now: a current
+                weekend place, future local interest, or online learning. Then
+                tell the school about your child&apos;s Russian and goals.
               </p>
             </SectionIntro>
             <div className="mt-7 border-l-4 border-brand-red bg-background px-5 py-4">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
-                Best first step
+                Current in-person branch
               </p>
               <h2 className="mt-2 text-xl font-semibold text-brand-blue-strong">
                 {currentSchool
                   ? `${currentSchool.name}: ${currentSchool.schedule}`
-                  : "Weekend timetable confirmed by enquiry"}
+                  : "Weekend timetable confirmed directly"}
               </h2>
               <p className="mt-3 text-sm leading-6 text-slate-600">
                 {currentSchool
-                  ? `${currentSchool.venueName} is the current listed in-person branch. Use the wider list for register-interest areas and online options.`
+                  ? `${currentSchool.venueName} is the current listed in-person branch. The wider list shows local interest areas and online options.`
                   : "Current in-person places and local venue details are confirmed directly through the school."}
               </p>
               <ButtonLink
@@ -139,7 +168,7 @@ export default function SchoolsPage() {
                 icon={<ArrowRight className="size-4" />}
                 iconPosition="end"
               >
-                {currentSchool ? "View current branch" : "Start an enquiry"}
+                {currentSchool ? "View current branch" : "Tell us about your child"}
               </ButtonLink>
             </div>
           </div>
@@ -148,27 +177,27 @@ export default function SchoolsPage() {
               {
                 label: "Current/open",
                 icon: UsersRound,
-                title: "Ask about a weekend place",
+                title: "Find a weekend place",
                 body: currentSchool
                   ? `${currentSchool.name} is the current in-person branch. Check spaces, class fit, start date, and arrival details before attending.`
                   : "Ask the school which current weekend options are available.",
                 href: currentSchool
                   ? currentSchool.bestNextSteps[0]?.href
                   : "/contact#enquiry-form",
-                cta: "Ask about current places",
+                cta: "Ask about joining",
               },
               {
                 label: "Register interest",
                 icon: MapPin,
-                title: "Signal demand for a local town",
+                title: "Ask about a local town",
                 body: "Use this if you would attend future classes in High Wycombe, Hemel Hempstead, Chelmsford, Southend-on-Sea, or another listed area.",
                 href: "/schools#compare-branches",
-                cta: "Compare interest areas",
+                cta: "See local areas",
               },
               {
                 label: "Online route",
                 icon: Laptop,
-                title: "Start sooner without a nearby branch",
+                title: "Keep learning without a nearby branch",
                 body: "Ask whether online lessons or exam-focused support would be more practical while local provision is not confirmed.",
                 href: "/contact?intent=online-learning#enquiry-form",
                 cta: "Ask about online learning",
@@ -176,7 +205,7 @@ export default function SchoolsPage() {
             ].map((item) => (
               <article
                 key={item.label}
-                className="border-l border-brand-gold bg-background px-5 py-4"
+                className="border-l border-brand-accent bg-background px-5 py-4"
               >
                 <div className="flex items-center gap-2">
                   <item.icon aria-hidden="true" className="size-4 text-brand-red" />
@@ -210,13 +239,12 @@ export default function SchoolsPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="Compare branches"
-            title="One scan before you enquire"
+            title="Compare locations without losing the school story"
           >
             <p>
               Current, online-only, and register-interest locations stay
               together so families can compare status, area, learning route,
-              and the right next step without browsing separate branch pages
-              first.
+              and the right next step.
             </p>
           </SectionIntro>
           <div className="mt-8">
@@ -232,11 +260,12 @@ export default function SchoolsPage() {
               Wider locations
             </p>
             <h2 className="mt-3 text-2xl font-semibold leading-tight text-brand-blue-strong">
-              {otherSchools.length} towns are open for future local interest
+              {otherSchools.length} towns remain part of the local school story
             </h2>
             <p className="mt-4 text-sm leading-6 text-slate-600">
               Families outside the current weekend branch can still signal
-              demand, ask about online learning, and discuss exam preparation.
+              demand, ask about online learning, and discuss Russian language,
+              culture, or a Volna route for GCSE and A Level Russian.
             </p>
             <div className="mt-5 flex flex-wrap gap-2">
               {otherSchools.map((school) => (
@@ -254,7 +283,7 @@ export default function SchoolsPage() {
           <LearningOptions
             eyebrow="Beyond local branches"
             title="If a nearby school is not currently available"
-            intro="Families can register interest locally, ask about online lessons, or explore GCSE-focused self-study support while waiting for a nearby weekend class."
+            intro="Families can register interest locally, ask about online lessons, or use Volna for GCSE and A Level Russian while keeping learning moving."
             compact
           />
         </div>
@@ -262,7 +291,7 @@ export default function SchoolsPage() {
 
       <PageCta
         eyebrow="Choosing a location"
-        title="Send one useful enquiry about your preferred school"
+        title="Tell us about your child and the area that works for your family"
         actions={
           <ButtonLink
             href="/contact#enquiry-form"
@@ -270,13 +299,14 @@ export default function SchoolsPage() {
             icon={<ArrowRight className="size-4" />}
             iconPosition="end"
           >
-            Start an enquiry
+            Tell us about your child
           </ButtonLink>
         }
       >
         <p>
           Share your preferred area, child&apos;s age, current Russian level,
-          and whether you are looking for current places or future classes.
+          and whether you are looking for current classes, future local
+          provision, online learning, or exam support.
         </p>
       </PageCta>
     </main>

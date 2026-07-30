@@ -57,7 +57,7 @@ export const classGroups = [
   "Senior Group",
   "Grade Zero",
   "Grades 1-4",
-  "GCSE and A Level Exam Preparation",
+  "Older Learners",
 ];
 
 const saturdayMorningPlan: LessonPlanItem[] = [
@@ -89,17 +89,19 @@ const sundayPlan: LessonPlanItem[] = [
 
 const sharedHighlights = [
   "Russian language, literature, culture, and creative learning",
-  "Age-aware class groups from early years to exam preparation",
+  "Balanced bilingualism for children growing up in the UK",
   "Structured weekend timetable with assembly, lessons, and supervised breaks",
+  "Performances, cultural confidence, and clear progress in Russian",
 ];
 
 const onlineOnlyStatusDescription =
-  "This location is currently online-only while local demand, staffing, and venue options are being confirmed. Families can register interest for future in-person classes.";
+  "This school is part of the historic Pushkin's School network. Local in-person classes are not currently listed, but families can register interest and ask about online Russian learning.";
 
 const onlineOnlyHighlights = [
-  "Online learning option available while local classes are paused",
-  "Register interest helps the school understand local demand",
-  "Future local classes can reopen when enough families and operational capacity align",
+  "Part of the Pushkin's School five-school heritage",
+  "Russian language, culture, literature, and balanced bilingualism remain the learning focus",
+  "Online learning can help children keep progressing while local provision is not listed",
+  "Registering interest helps the school understand future local demand",
 ];
 
 function getFutureInterestHref(slug: string) {
@@ -117,21 +119,21 @@ function getOnlineLearningHref(slug: string) {
 function createOnlineBranchDecisionSteps(areaName: string, slug: string) {
   return [
     {
-      title: "Register local interest",
+      title: "Ask about joining from this area",
       body: `Tell the school if your family would use future in-person Russian classes in the ${areaName} area.`,
-      ctaLabel: "Register local interest",
+      ctaLabel: "Ask about joining",
       href: getFutureInterestHref(slug),
     },
     {
       title: "Ask about online lessons",
-      body: "Discuss online Russian lessons if your child would benefit from starting before a local class is available.",
+      body: "Discuss online Russian lessons if your child would benefit from keeping language, literacy, and confidence moving now.",
       ctaLabel: "Ask about online lessons",
       href: getOnlineLearningHref(slug),
     },
     {
-      title: "Compare current branches",
+      title: "See current locations",
       body: "Check Bracknell and the wider school network if you are open to travelling for current in-person classes.",
-      ctaLabel: "Compare branches",
+      ctaLabel: "See current locations",
       href: "/schools#compare-branches",
     },
   ];
@@ -139,7 +141,7 @@ function createOnlineBranchDecisionSteps(areaName: string, slug: string) {
 
 const bracknellAlternativeCta = {
   label: "Compare with Bracknell",
-  body: "Bracknell is the current listed in-person weekend branch.",
+  body: "Bracknell is the current listed in-person weekend branch for families able to travel.",
   href: "/schools/bracknell",
 };
 
@@ -153,8 +155,8 @@ export const schools: School[] = [
     statusLabel: "Online only / register interest",
     statusDescription: onlineOnlyStatusDescription,
     availabilitySummary:
-      "High Wycombe families can register interest in future local classes, ask about online Russian lessons, or compare Bracknell as the current in-person branch.",
-    lead: "A long-standing school location for families around High Wycombe, currently kept open for online learning and future local interest.",
+      "High Wycombe is part of the school's five-location heritage. Families can ask about future local classes, online Russian lessons, or current in-person options.",
+    lead: "A long-standing Pushkin's School location for families around High Wycombe, with the same focus on Russian language, literature, culture, and balanced bilingualism.",
     venueName: "High Wycombe area",
     address: ["Buckinghamshire"],
     postcode: "",
@@ -166,7 +168,7 @@ export const schools: School[] = [
     highlights: onlineOnlyHighlights,
     bestNextSteps: createOnlineBranchDecisionSteps("High Wycombe", "high-wycombe"),
     nearbyAlternativeCta: bracknellAlternativeCta,
-    enquiryCta: "Register interest in High Wycombe classes",
+    enquiryCta: "Ask about High Wycombe",
     mapHref:
       "https://www.google.com/maps/search/?api=1&query=High%20Wycombe%20Buckinghamshire",
     sourceNotes: [
@@ -183,8 +185,8 @@ export const schools: School[] = [
     statusLabel: "Online only / register interest",
     statusDescription: onlineOnlyStatusDescription,
     availabilitySummary:
-      "Hemel Hempstead families can register interest in future local classes, ask about online Russian lessons, or compare Bracknell as the current in-person branch.",
-    lead: "A Hertfordshire location for Russian-learning families, currently online-only with a register-interest option for future local classes.",
+      "Hemel Hempstead is part of the school's five-location heritage. Families can ask about future local classes, online Russian lessons, or current in-person options.",
+    lead: "A Hertfordshire Pushkin's School location for families who want children to keep Russian language, culture, and literacy alive.",
     venueName: "Hemel Hempstead area",
     address: ["Hertfordshire"],
     postcode: "",
@@ -194,7 +196,7 @@ export const schools: School[] = [
     highlights: onlineOnlyHighlights,
     bestNextSteps: createOnlineBranchDecisionSteps("Hemel Hempstead", "hemel-hempstead"),
     nearbyAlternativeCta: bracknellAlternativeCta,
-    enquiryCta: "Register interest in Hemel Hempstead classes",
+    enquiryCta: "Ask about Hemel Hempstead",
     mapHref:
       "https://www.google.com/maps/search/?api=1&query=Hemel%20Hempstead%20Hertfordshire",
     sourceNotes: [
@@ -210,10 +212,10 @@ export const schools: School[] = [
     status: "open",
     statusLabel: "Weekend school",
     statusDescription:
-      "Sunday morning classes are presented for local families, with final details confirmed through enquiry.",
+      "Sunday morning classes for children learning Russian language, literature, culture, and confidence.",
     availabilitySummary:
-      "Bracknell is the current listed in-person weekend branch. Families can ask about spaces, class fit, start dates, and exam preparation.",
-    lead: "A Sunday branch for children learning Russian language, culture, reading, writing, and exam skills.",
+      "Bracknell is the current listed in-person weekend branch. Families can ask about spaces, class fit, start dates, and whether Volna is better for GCSE or A Level goals.",
+    lead: "A Sunday Russian school community for children learning language, literature, culture, reading, writing, and performance.",
     venueName: "Saint Joseph's Primary School",
     address: ["Gipsy Lane"],
     postcode: "RG12 9AP",
@@ -224,20 +226,20 @@ export const schools: School[] = [
     bestNextSteps: [
       {
         title: "Ask about current spaces",
-        body: "Check whether the current Sunday branch has a suitable place for your child.",
+        body: "Check whether the current Sunday branch has a suitable class for your child.",
         ctaLabel: "Ask about current places",
         href: getCurrentClassHref("bracknell"),
       },
       {
         title: "Discuss class fit",
-        body: "Share age, Russian confidence, reading and writing level, and any GCSE or A Level goals.",
+        body: "Share age, Russian confidence, reading and writing level, and whether exam-focused online lessons may be needed through Volna.",
         ctaLabel: "Ask about placement",
         href: getCurrentClassHref("bracknell"),
       },
       {
         title: "Confirm start date",
-        body: "Use the enquiry to confirm timing, fees, payment instructions, and the next practical step.",
-        ctaLabel: "Start an enquiry",
+        body: "Confirm timing, fees, payment instructions, and the next practical step before joining.",
+        ctaLabel: "Tell us about your child",
         href: getCurrentClassHref("bracknell"),
       },
     ],
@@ -246,7 +248,7 @@ export const schools: School[] = [
       body: "See current and register-interest locations across the school network.",
       href: "/schools#compare-branches",
     },
-    enquiryCta: "Enquire about Bracknell places",
+    enquiryCta: "Ask about Bracknell",
     mapHref:
       "https://www.google.com/maps/search/?api=1&query=Saint%20Joseph%27s%20Primary%20School%20Gipsy%20Lane%20RG12%209AP",
     sourceNotes: [
@@ -263,8 +265,8 @@ export const schools: School[] = [
     statusLabel: "Online only / register interest",
     statusDescription: onlineOnlyStatusDescription,
     availabilitySummary:
-      "Chelmsford families can register interest in future local classes, ask about online Russian lessons, or compare Bracknell as the current in-person branch.",
-    lead: "An Essex location for families around Chelmsford, currently online-only with interest gathered for future local provision.",
+      "Chelmsford is part of the school's five-location heritage. Families can ask about future local classes, online Russian lessons, or current in-person options.",
+    lead: "An Essex Pushkin's School location for families who want Russian language, literature, culture, and identity to remain part of childhood.",
     venueName: "Chelmsford area",
     address: ["Essex"],
     postcode: "",
@@ -276,7 +278,7 @@ export const schools: School[] = [
     highlights: onlineOnlyHighlights,
     bestNextSteps: createOnlineBranchDecisionSteps("Chelmsford", "chelmsford"),
     nearbyAlternativeCta: bracknellAlternativeCta,
-    enquiryCta: "Register interest in Chelmsford classes",
+    enquiryCta: "Ask about Chelmsford",
     mapHref:
       "https://www.google.com/maps/search/?api=1&query=Chelmsford%20Essex",
     sourceNotes: [
@@ -288,8 +290,8 @@ export const schools: School[] = [
       summary:
         "Chelmsford families can ask about Volna Online Russian School while local in-person classes are not available.",
       details: [
-        "Online group and private lesson options can be discussed after enquiry.",
-        "Exam-focused pupils can ask whether online support or GCSE self-study is the better fit.",
+        "Online group and private lesson options can be discussed before joining.",
+        "Exam-focused pupils can compare Volna's GCSE and A Level online courses.",
         "Specific timetable, pricing, and trial details should be confirmed directly before joining.",
       ],
       links: [
@@ -310,8 +312,8 @@ export const schools: School[] = [
     statusLabel: "Online only / register interest",
     statusDescription: onlineOnlyStatusDescription,
     availabilitySummary:
-      "Southend-on-Sea families can register interest in future local classes, ask about online Russian lessons, or compare Bracknell as the current in-person branch.",
-    lead: "A Southend-on-Sea location retained for online learning and future local class interest.",
+      "Southend-on-Sea is part of the school's five-location heritage. Families can ask about future local classes, online Russian lessons, or current in-person options.",
+    lead: "A Southend-on-Sea Pushkin's School location for families who want children to keep Russian language, culture, and literacy strong.",
     venueName: "Southend-on-Sea area",
     address: ["Essex"],
     postcode: "",
@@ -321,7 +323,7 @@ export const schools: School[] = [
     highlights: onlineOnlyHighlights,
     bestNextSteps: createOnlineBranchDecisionSteps("Southend-on-Sea", "southend-on-sea"),
     nearbyAlternativeCta: bracknellAlternativeCta,
-    enquiryCta: "Register interest in Southend-on-Sea classes",
+    enquiryCta: "Ask about Southend-on-Sea",
     mapHref:
       "https://www.google.com/maps/search/?api=1&query=Southend-on-Sea%20Essex",
     sourceNotes: [

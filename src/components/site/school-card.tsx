@@ -31,7 +31,7 @@ function getNextStepLabel(school: School) {
 export function SchoolCard({ school }: SchoolCardProps) {
   return (
     <article
-      className={`premium-panel flex h-full flex-col justify-between rounded-lg border border-border-soft bg-surface p-5 transition hover:-translate-y-0.5 hover:border-brand-gold/70 sm:p-6 ${statusAccent[school.status]}`}
+      className={`premium-panel flex h-full flex-col justify-between rounded-lg border border-border-soft bg-surface p-5 transition hover:-translate-y-0.5 hover:border-brand-accent/70 sm:p-6 ${statusAccent[school.status]}`}
     >
       <div>
         <div className="flex flex-wrap items-start justify-between gap-3">

@@ -190,7 +190,7 @@ export function GoogleMapsNetworkPanel({
                 className={`w-full border-l-4 px-4 py-3 text-left transition focus:outline-none focus:ring-2 focus:ring-brand-red/30 ${
                   isSelected
                     ? "border-brand-red bg-white shadow-sm"
-                    : "border-transparent bg-transparent hover:border-brand-gold hover:bg-white/70"
+                    : "border-transparent bg-transparent hover:border-brand-accent hover:bg-white/70"
                 }`}
                 aria-pressed={isSelected}
               >
@@ -271,8 +271,8 @@ export function GoogleMapsNetworkPanel({
                 Class pathway
               </p>
               <p className="mt-1 leading-6 text-slate-600">
-                {selectedSchool.classGroups[0]} through exam preparation where
-                suitable.
+                {selectedSchool.classGroups[0]} through older learner groups
+                where suitable.
               </p>
             </div>
           </div>
@@ -291,7 +291,7 @@ export function GoogleMapsNetworkPanel({
               href={selectedSchool.bestNextSteps[0]?.href ?? "/contact#enquiry-form"}
               className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-brand-blue px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-blue-strong focus:outline-none focus:ring-2 focus:ring-brand-blue/30"
             >
-              {selectedSchool.bestNextSteps[0]?.ctaLabel ?? "Start an enquiry"}
+              {selectedSchool.bestNextSteps[0]?.ctaLabel ?? "Ask about joining"}
               <ArrowRight aria-hidden="true" className="size-4" />
             </Link>
             {selectedSchool.status !== "open" && selectedSchool.bestNextSteps[1] ? (

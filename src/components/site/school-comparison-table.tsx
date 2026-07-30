@@ -16,7 +16,7 @@ const rowTone = {
 };
 
 function getNextStepLabel(school: School) {
-  return school.bestNextSteps[0]?.ctaLabel ?? "Start an enquiry";
+  return school.bestNextSteps[0]?.ctaLabel ?? "Ask about joining";
 }
 
 function getNextStepHref(school: School) {
@@ -44,9 +44,9 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
           Parent comparison
         </p>
         <p className="mt-1 text-sm leading-6 text-slate-600">
-          Current provision is listed first, followed by register-interest and
+          Current provision is listed first, followed by local-interest and
           online areas. Use the first action when you already know which route
-          fits your family.
+          could fit your family.
         </p>
       </div>
       <div className="grid gap-3 p-4 md:hidden">
@@ -118,7 +118,7 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
         <table className="min-w-[58rem] text-left text-sm">
           <caption className="sr-only">
             Compare Pushkin&apos;s School branches by status, location, schedule,
-            and enquiry action.
+            and joining action.
           </caption>
           <thead className="bg-surface-muted text-xs font-semibold uppercase tracking-[0.14em] text-muted">
             <tr>
@@ -161,7 +161,7 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
                   />
                   {school.status === "open" ? (
                     <p className="mt-2 text-xs font-semibold text-brand-blue-strong">
-                      Current weekend places can be discussed by enquiry.
+                      Current weekend places can be discussed before joining.
                     </p>
                   ) : null}
                 </td>
@@ -180,7 +180,7 @@ export function SchoolComparisonTable({ schools }: SchoolComparisonTableProps) {
                 <td className="px-5 py-5 text-slate-600">
                   <p>{school.schedule}</p>
                   {school.scheduleNote ? (
-                    <p className="mt-2 border-l-2 border-brand-gold pl-3 text-xs leading-5 text-muted">
+                    <p className="mt-2 border-l-2 border-brand-accent pl-3 text-xs leading-5 text-muted">
                       {school.scheduleNote}
                     </p>
                   ) : null}

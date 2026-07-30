@@ -24,7 +24,7 @@ export function NetworkVisual() {
         aria-hidden="true"
       />
       <div
-        className="absolute left-[23%] top-[33%] h-[38%] w-[54%] rounded-[48%] border border-brand-gold/35"
+        className="absolute left-[23%] top-[33%] h-[38%] w-[54%] rounded-[48%] border border-brand-accent/35"
         aria-hidden="true"
       />
       <div className="relative grid min-w-0 gap-6 p-6 sm:p-8 lg:min-h-[24rem] lg:grid-cols-[0.92fr_1.08fr]">
@@ -53,7 +53,7 @@ export function NetworkVisual() {
             </div>
           </div>
           {openSchool ? (
-            <div className="rounded-lg border border-brand-gold/40 bg-white/95 p-4 shadow-lg">
+            <div className="rounded-lg border border-brand-accent/40 bg-white/95 p-4 shadow-lg">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
                 Current listed weekend school
               </p>
