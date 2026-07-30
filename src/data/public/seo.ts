@@ -6,17 +6,25 @@ import { absoluteUrl, siteConfig, siteSocialLinks } from "./site";
 export const seoKeywords = [
   "Russian school",
   "Russian language classes",
+  "Russian language classes for children",
   "weekend Russian school",
   "Russian school UK",
-  "GCSE Russian",
-  "A Level Russian",
+  "Russian school near me",
   "Russian culture lessons",
+  "balanced bilingualism",
+  "Russian literature for children",
+  "Russian heritage school",
+  "online Russian lessons",
+  "Volna Online Russian School",
+  "GCSE Russian through Volna",
+  "A Level Russian through Volna",
   "Pushkin's School",
 ];
 
 export const publicRoutePriority: Record<string, number> = {
   "/": 1,
   "/schools": 0.9,
+  "/online-lessons": 0.88,
   "/contact": 0.9,
   "/admissions": 0.85,
   "/curriculum": 0.82,
@@ -45,8 +53,8 @@ export function buildOrganizationJsonLd() {
       "Russian language",
       "Russian literature",
       "Russian culture",
-      "GCSE Russian preparation",
-      "A Level Russian preparation",
+      "GCSE Russian route guidance",
+      "A Level Russian route guidance",
     ],
     department: schools.map((school) => ({
       "@type": "EducationalOrganization",
@@ -90,7 +98,7 @@ export function buildWebsiteJsonLd() {
     potentialAction: {
       "@type": "ContactAction",
       target: absoluteUrl("/contact#enquiry-form"),
-      name: "Submit an initial enquiry",
+      name: "Tell the school about your child",
     },
   };
 }

@@ -18,7 +18,7 @@ type LearningOptionsProps = {
 const cardAccent = {
   "pushkins-school": "border-brand-blue/25",
   "volna-online": "border-brand-red/25",
-  "gcse-russian": "border-brand-gold/70",
+  "gcse-russian": "border-brand-accent/70",
 };
 
 const optionIcons = {
@@ -201,7 +201,7 @@ export function LearningOptions({
                   <li key={item} className="flex gap-2">
                     <CheckCircle2
                       aria-hidden="true"
-                      className={`mt-1 size-4 shrink-0 ${isDark ? "text-brand-gold" : "text-brand-red"}`}
+                      className={`mt-1 size-4 shrink-0 ${isDark ? "text-brand-accent" : "text-brand-red"}`}
                     />
                     <span>{item}</span>
                   </li>

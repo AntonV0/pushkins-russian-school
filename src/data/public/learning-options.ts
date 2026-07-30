@@ -32,13 +32,13 @@ export const learningOptions: LearningOption[] = [
     label: "Local weekend classes",
     delivery: "In-person branches where available",
     summary:
-      "Weekend Russian school classes for children learning language, literacy, literature, culture, and exam preparation in a structured school setting.",
+      "Weekend Russian school classes for children learning language, literacy, literature, culture, and performance in a structured school setting.",
     bestFor: [
       "Families near a current or future local branch",
       "Children who benefit from classroom rhythm and community",
       "Parents looking for a serious supplementary school",
     ],
-    audience: "Children and young people, including GCSE and A Level learners.",
+    audience: "Children and young people building Russian language, literacy, and culture.",
     relationship:
       "This is the main school offer. Location pages stay visible so families can see where classes have operated and register interest locally.",
     primaryCta: {
@@ -46,7 +46,7 @@ export const learningOptions: LearningOption[] = [
       href: "/schools",
     },
     secondaryCta: {
-      label: "Start a local enquiry",
+      label: "Ask about joining locally",
       href: "/contact?intent=current-classes#enquiry-form",
     },
   },
@@ -66,43 +66,43 @@ export const learningOptions: LearningOption[] = [
     relationship:
       "A separate online school option, useful when local classes are unavailable or distance is a barrier.",
     primaryCta: {
-      label: "Visit Volna online",
-      href: "https://volnaschool.com",
-      external: true,
+      label: "Explore online lessons",
+      href: "/online-lessons",
     },
     secondaryCta: {
-      label: "Ask about online lessons",
-      href: "/contact?intent=online-learning#enquiry-form",
+      label: "Visit Volna online",
+      href: "https://www.volnaschool.com/",
+      external: true,
     },
     verificationNote:
       "Ask for current lesson format, timetable, and pricing before choosing this option.",
   },
   {
     id: "gcse-russian",
-    name: "GCSERussian.com",
-    label: "GCSE self-study project",
-    delivery: "Self-study GCSE Russian support",
+    name: "Volna GCSE and A Level Russian",
+    label: "Online exam courses",
+    delivery: "Online GCSE and A Level Russian lessons",
     summary:
-      "A separate GCSE Russian project for families who want focused self-study support alongside, or instead of, school or online lessons.",
+      "A separate Volna route for families who want GCSE or A Level Russian support. Pushkin's School does not teach these exam courses.",
     bestFor: [
-      "GCSE Russian students who need structured independent study",
-      "Families comparing tutoring, classes, and self-study options",
+      "GCSE Russian students who need structured online teaching",
+      "A Level Russian students who need exam-focused support",
       "Learners outside a current local branch",
     ],
-    audience: "GCSE Russian learners and families planning exam preparation.",
+    audience: "GCSE and A Level Russian learners and families planning exam preparation.",
     relationship:
-      "A distinct project from Pushkin's School and Volna, included so parents can compare Russian-learning pathways.",
+      "A Volna pathway, included on Pushkin's School so families understand where exam-focused Russian lessons sit.",
     primaryCta: {
-      label: "Ask about GCSE self-study",
-      href: "/contact?intent=exam-preparation#enquiry-form",
+      label: "See GCSE and A Level routes",
+      href: "/online-lessons#gcse-a-level",
     },
     verificationNote:
-      "Ask through the enquiry form if GCSE self-study is the main goal.",
+      "Volna keeps its own course pages, timetables, fees, and registration details.",
   },
 ];
 
 export const learningOptionSummary =
-  "Pushkin's School is the local weekend school offer, with Volna Online Russian School and GCSERussian.com presented as separate options for distance learning or exam preparation.";
+  "Pushkin's School is the local weekend school offer. Volna Online Russian School is the related online route for distance learning, private lessons, GCSE Russian, and A Level Russian.";
 
 export function getLearningOptionById(id: LearningOptionId) {
   return learningOptions.find((option) => option.id === id);
