@@ -52,6 +52,15 @@ docs/assets/source/*
 public/images/original/*
 !public/images/original/.gitkeep
 
+# Temporary local media review area. Remove or narrow these rules when the
+# final publication-ready website media is selected.
+public/images/archive/extended/wix-missing/
+public/images/site/homepage-hero-*.jpg
+public/videos/
+
+# Local development server output.
+*.log
+
 # vercel
 .vercel
 
