@@ -1,0 +1,3211 @@
+{
+  "exportedAt": "2026-05-21T20:28:51.203Z",
+  "source": "admin/media-review local browser decisions",
+  "storageKey": "pushkins:all-media-review:v4",
+  "totalDecisions": 341,
+  "counts": {
+    "location-page": 55,
+    "skip": 17,
+    "gallery": 228,
+    "archive": 5,
+    "hero": 36
+  },
+  "decisions": [
+    {
+      "id": "approved-featured:IMG-0061",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/chelmsford/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/locations/chelmsford/chelmsford-school-exterior.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0062",
+      "decision": "skip",
+      "targetPath": "/images/locations/chelmsford/chelmsford-school-corridor.webp",
+      "eligibleUses": [
+        "skip"
+      ],
+      "assetPath": "/images/locations/chelmsford/chelmsford-school-corridor.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0066",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/locations/chelmsford/chelmsford-classroom-empty.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0069",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/locations/chelmsford/chelmsford-creative-work.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0127",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/southend-on-sea/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/locations/southend-on-sea/southend-school-lockers.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0129",
+      "decision": "skip",
+      "targetPath": "/images/locations/southend-on-sea/southend-school-corridor.webp",
+      "eligibleUses": [
+        "skip"
+      ],
+      "assetPath": "/images/locations/southend-on-sea/southend-school-corridor.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0134",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/southend-on-sea/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/locations/southend-on-sea/southend-classroom-setup.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0135",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/southend-on-sea/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/locations/southend-on-sea/southend-classroom-table.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0148",
+      "decision": "archive",
+      "targetPath": "/images/locations/southend-on-sea/southend-learning-materials.webp",
+      "eligibleUses": [
+        "archive"
+      ],
+      "assetPath": "/images/locations/southend-on-sea/southend-learning-materials.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0162",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/locations/southend-on-sea/southend-maths-activity.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0008",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/exeter/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/locations/exeter/exeter-workbook-detail.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0035",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/locations/exeter/exeter-cultural-table.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0037",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/locations/exeter/exeter-craft-detail.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0207",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/locations/high-wycombe/high-wycombe-learning-materials.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0208",
+      "decision": "skip",
+      "targetPath": "/images/locations/high-wycombe/high-wycombe-classroom-materials.webp",
+      "eligibleUses": [
+        "skip"
+      ],
+      "assetPath": "/images/locations/high-wycombe/high-wycombe-classroom-materials.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0006",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/locations/exeter/exeter-classroom-learning.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0014",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/locations/exeter/exeter-teacher-alphabet-lesson.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0047",
+      "decision": "archive",
+      "targetPath": "/images/locations/exeter/exeter-staff-portrait.webp",
+      "eligibleUses": [
+        "archive"
+      ],
+      "assetPath": "/images/locations/exeter/exeter-staff-portrait.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0052",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/bracknell/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/locations/bracknell/bracknell-performance-wide.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0054",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/bracknell/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/performances/bracknell-performance-archive.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0114",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/locations/hemel-hempstead/hemel-classroom-learning.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0118",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/hemel-hempstead/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/performances/hemel-performance-archive.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0174",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/locations/high-wycombe/high-wycombe-classroom-wide.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0212",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/celebrations/archive-winter-market-visit.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0224",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/celebrations/archive-new-year-classroom-visit.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0228",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/performances/archive-student-recital-2012.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0243",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/creative-work/archive-drawing-display-2012.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0255",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/classroom-learning/archive-letter-e-activity.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0305",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/celebrations/archive-balloon-classroom-2014.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0311",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/performances/archive-fabric-performance-2014.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0317",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/community-archive/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/community-archive/archive-staff-celebration-2014.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0376",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/celebrations/archive-summer-balloon-event.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0382",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/classroom-learning/archive-floor-writing-activity.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0393",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/performances/archive-costume-group-2015.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0405",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/community-archive/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/community-archive/archive-outdoor-school-game.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0468",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/classroom-learning/archive-group-book-activity.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0474",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/performances/archive-costume-stage-seating.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0558",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/community-archive/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/brand/legacy/pushkin-legacy-background.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0249",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/creative-work/archive-student-art-showcase-2012.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0348",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/performances/archive-fabric-performance-wide-2014.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0370",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/performances/archive-striped-recital-group-2014.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0387",
+      "decision": "archive",
+      "targetPath": "/images/archive/community-archive/archive-staff-portrait-red-jumper.webp",
+      "eligibleUses": [
+        "archive"
+      ],
+      "assetPath": "/images/archive/community-archive/archive-staff-portrait-red-jumper.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0267",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/performances/archive-recital-group-2012.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0276",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/performances/archive-guitar-performance-2012.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0283",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/performances/archive-classroom-recital-wide-2012.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0485",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/creative-work/archive-face-painting-prep-2015.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0491",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/performances/archive-umbrella-character-performance.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0497",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/performances/archive-kolobok-stage-scene.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0503",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/performances/archive-kolobok-curtain-call.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0509",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/performances/archive-comedy-characters-performance.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0527",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/performances/archive-character-dialogue-2015.webp"
+    },
+    {
+      "id": "approved-featured:IMG-0533",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/performances/archive-performance-curtain-call-2015.webp"
+    },
+    {
+      "id": "wix-import:WIX-LOOSE-0001",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/loose-gallery/loose-gallery-wix-0001.webp"
+    },
+    {
+      "id": "wix-import:WIX-LOOSE-0002",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/loose-gallery/loose-gallery-wix-0002.webp"
+    },
+    {
+      "id": "wix-import:WIX-LOOSE-0003",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/loose-gallery/loose-gallery-wix-0003.webp"
+    },
+    {
+      "id": "wix-import:WIX-LOOSE-0004",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/loose-gallery/loose-gallery-wix-0004.webp"
+    },
+    {
+      "id": "wix-import:WIX-LOOSE-0005",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/loose-gallery/loose-gallery-wix-0005.webp"
+    },
+    {
+      "id": "wix-import:WIX-LOOSE-0006",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/loose-gallery/loose-gallery-wix-0006.webp"
+    },
+    {
+      "id": "wix-import:WIX-LOOSE-0007",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/loose-gallery/loose-gallery-wix-0007.webp"
+    },
+    {
+      "id": "wix-import:WIX-LOOSE-0008",
+      "decision": "archive",
+      "targetPath": "/images/archive/extended/wix-missing/loose-gallery/loose-gallery-wix-0008.webp",
+      "eligibleUses": [
+        "archive"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/loose-gallery/loose-gallery-wix-0008.webp"
+    },
+    {
+      "id": "wix-import:WIX-LOOSE-0009",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/loose-gallery/loose-gallery-wix-0009.webp"
+    },
+    {
+      "id": "wix-import:WIX-LOOSE-0010",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/loose-gallery/loose-gallery-wix-0010.webp"
+    },
+    {
+      "id": "wix-import:WIX-LOOSE-0011",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/loose-gallery/loose-gallery-wix-0011.webp"
+    },
+    {
+      "id": "wix-import:WIX-LOOSE-0012",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/loose-gallery/loose-gallery-wix-0012.webp"
+    },
+    {
+      "id": "wix-import:WIX-LOOSE-0013",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/loose-gallery/loose-gallery-wix-0013.webp"
+    },
+    {
+      "id": "wix-import:WIX-LOOSE-0014",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/loose-gallery/loose-gallery-wix-0014.webp"
+    },
+    {
+      "id": "wix-import:WIX-BRACKNELL-0018",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/bracknell/bracknell-wix-0018.webp"
+    },
+    {
+      "id": "wix-import:WIX-BRACKNELL-0020",
+      "decision": "skip",
+      "targetPath": "/images/archive/extended/wix-missing/bracknell/bracknell-wix-0020.webp",
+      "eligibleUses": [
+        "skip"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/bracknell/bracknell-wix-0020.webp"
+    },
+    {
+      "id": "wix-import:WIX-BRACKNELL-0021",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/bracknell/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/bracknell/bracknell-wix-0021.webp"
+    },
+    {
+      "id": "wix-import:WIX-CHELMSFORD-0027",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/chelmsford/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/chelmsford/chelmsford-wix-0027.webp"
+    },
+    {
+      "id": "wix-import:WIX-CHELMSFORD-0028",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/chelmsford/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/chelmsford/chelmsford-wix-0028.webp"
+    },
+    {
+      "id": "wix-import:WIX-CHELMSFORD-0034",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/chelmsford/chelmsford-wix-0034.webp"
+    },
+    {
+      "id": "wix-import:WIX-CHELMSFORD-0037",
+      "decision": "skip",
+      "targetPath": "/images/archive/extended/wix-missing/chelmsford/chelmsford-wix-0037.webp",
+      "eligibleUses": [
+        "skip"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/chelmsford/chelmsford-wix-0037.webp"
+    },
+    {
+      "id": "wix-import:WIX-CHELMSFORD-0039",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/chelmsford/chelmsford-wix-0039.webp"
+    },
+    {
+      "id": "wix-import:WIX-CHELMSFORD-0043",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/chelmsford/chelmsford-wix-0043.webp"
+    },
+    {
+      "id": "wix-import:WIX-CHELMSFORD-0044",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/chelmsford/chelmsford-wix-0044.webp"
+    },
+    {
+      "id": "wix-import:WIX-CHELMSFORD-0046",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/chelmsford/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/chelmsford/chelmsford-wix-0046.webp"
+    },
+    {
+      "id": "wix-import:WIX-CHELMSFORD-0048",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/chelmsford/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/chelmsford/chelmsford-wix-0048.webp"
+    },
+    {
+      "id": "wix-import:WIX-CHELMSFORD-0055",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/chelmsford/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/chelmsford/chelmsford-wix-0055.webp"
+    },
+    {
+      "id": "wix-import:WIX-CHELMSFORD-0056",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/chelmsford/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/chelmsford/chelmsford-wix-0056.webp"
+    },
+    {
+      "id": "wix-import:WIX-CHELMSFORD-0057",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/chelmsford/chelmsford-wix-0057.webp"
+    },
+    {
+      "id": "wix-import:WIX-CHELMSFORD-0061",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/chelmsford/chelmsford-wix-0061.webp"
+    },
+    {
+      "id": "wix-import:WIX-CHELMSFORD-0062",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/chelmsford/chelmsford-wix-0062.webp"
+    },
+    {
+      "id": "wix-import:WIX-CHELMSFORD-0063",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/chelmsford/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/chelmsford/chelmsford-wix-0063.webp"
+    },
+    {
+      "id": "wix-import:WIX-CHELMSFORD-0065",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/chelmsford/chelmsford-wix-0065.webp"
+    },
+    {
+      "id": "wix-import:WIX-CHELMSFORD-0067",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/chelmsford/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/chelmsford/chelmsford-wix-0067.webp"
+    },
+    {
+      "id": "wix-import:WIX-CHELMSFORD-0077",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/chelmsford/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/chelmsford/chelmsford-wix-0077.webp"
+    },
+    {
+      "id": "wix-import:WIX-CHELMSFORD-0078",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/chelmsford/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/chelmsford/chelmsford-wix-0078.webp"
+    },
+    {
+      "id": "wix-import:WIX-HEMEL-0081",
+      "decision": "skip",
+      "targetPath": "/images/archive/extended/wix-missing/hemel-hempstead/hemel-hempstead-wix-0081.webp",
+      "eligibleUses": [
+        "skip"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/hemel-hempstead/hemel-hempstead-wix-0081.webp"
+    },
+    {
+      "id": "wix-import:WIX-HEMEL-0082",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/hemel-hempstead/hemel-hempstead-wix-0082.webp"
+    },
+    {
+      "id": "wix-import:WIX-HEMEL-0092",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/hemel-hempstead/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/hemel-hempstead/hemel-hempstead-wix-0092.webp"
+    },
+    {
+      "id": "wix-import:WIX-HEMEL-0093",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/hemel-hempstead/hemel-hempstead-wix-0093.webp"
+    },
+    {
+      "id": "wix-import:WIX-HEMEL-0094",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/hemel-hempstead/hemel-hempstead-wix-0094.webp"
+    },
+    {
+      "id": "wix-import:WIX-HIGH-WYCOMBE-0096",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/high-wycombe/high-wycombe-wix-0096.webp"
+    },
+    {
+      "id": "wix-import:WIX-HIGH-WYCOMBE-0104",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/high-wycombe/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/high-wycombe/high-wycombe-wix-0104.webp"
+    },
+    {
+      "id": "wix-import:WIX-HIGH-WYCOMBE-0105",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/high-wycombe/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/high-wycombe/high-wycombe-wix-0105.webp"
+    },
+    {
+      "id": "wix-import:WIX-HIGH-WYCOMBE-0114",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/community-archive/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/high-wycombe/high-wycombe-wix-0114.webp"
+    },
+    {
+      "id": "wix-import:WIX-HIGH-WYCOMBE-0129",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/high-wycombe/high-wycombe-wix-0129.webp"
+    },
+    {
+      "id": "wix-import:WIX-HIGH-WYCOMBE-0130",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/high-wycombe/high-wycombe-wix-0130.webp"
+    },
+    {
+      "id": "wix-import:WIX-HIGH-WYCOMBE-0131",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/high-wycombe/high-wycombe-wix-0131.webp"
+    },
+    {
+      "id": "wix-import:WIX-HIGH-WYCOMBE-0132",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/high-wycombe/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/high-wycombe/high-wycombe-wix-0132.webp"
+    },
+    {
+      "id": "wix-import:WIX-HIGH-WYCOMBE-0133",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/high-wycombe/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/high-wycombe/high-wycombe-wix-0133.webp"
+    },
+    {
+      "id": "wix-import:WIX-SOUTHEND-0135",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/southend-on-sea/southend-on-sea-wix-0135.webp"
+    },
+    {
+      "id": "wix-import:WIX-SOUTHEND-0136",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/southend-on-sea/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/southend-on-sea/southend-on-sea-wix-0136.webp"
+    },
+    {
+      "id": "wix-import:WIX-SOUTHEND-0137",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/southend-on-sea/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/southend-on-sea/southend-on-sea-wix-0137.webp"
+    },
+    {
+      "id": "wix-import:WIX-SOUTHEND-0138",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/southend-on-sea/southend-on-sea-wix-0138.webp"
+    },
+    {
+      "id": "wix-import:WIX-SOUTHEND-0139",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/southend-on-sea/southend-on-sea-wix-0139.webp"
+    },
+    {
+      "id": "wix-import:WIX-SOUTHEND-0140",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/southend-on-sea/southend-on-sea-wix-0140.webp"
+    },
+    {
+      "id": "wix-import:WIX-SOUTHEND-0141",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/southend-on-sea/southend-on-sea-wix-0141.webp"
+    },
+    {
+      "id": "wix-import:WIX-SOUTHEND-0142",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/southend-on-sea/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/southend-on-sea/southend-on-sea-wix-0142.webp"
+    },
+    {
+      "id": "wix-import:WIX-SOUTHEND-0144",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/southend-on-sea/southend-on-sea-wix-0144.webp"
+    },
+    {
+      "id": "wix-import:WIX-SOUTHEND-0145",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/southend-on-sea/southend-on-sea-wix-0145.webp"
+    },
+    {
+      "id": "wix-import:WIX-SOUTHEND-0146",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/southend-on-sea/southend-on-sea-wix-0146.webp"
+    },
+    {
+      "id": "wix-import:WIX-SOUTHEND-0147",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/southend-on-sea/southend-on-sea-wix-0147.webp"
+    },
+    {
+      "id": "wix-import:WIX-SOUTHEND-0158",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/southend-on-sea/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/southend-on-sea/southend-on-sea-wix-0158.webp"
+    },
+    {
+      "id": "wix-import:WIX-SOUTHEND-0165",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/southend-on-sea/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/southend-on-sea/southend-on-sea-wix-0165.webp"
+    },
+    {
+      "id": "wix-import:WIX-SOUTHEND-0167",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/southend-on-sea/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/southend-on-sea/southend-on-sea-wix-0167.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0180",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0180.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0181",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0181.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0182",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0182.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0183",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0183.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0184",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0184.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0185",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0185.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0186",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0186.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0187",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0187.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0188",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0188.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0189",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0189.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0190",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0190.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0191",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0191.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0192",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0192.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0193",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0193.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0194",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0194.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0195",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0195.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0196",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0196.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0197",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0197.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0198",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0198.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0199",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0199.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0200",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0200.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0201",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0201.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0202",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0202.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0203",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0203.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0204",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0204.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0205",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0205.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0206",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0206.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0207",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0207.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0208",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0208.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0209",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0209.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0210",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0210.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0211",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0211.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0212",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0212.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0213",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0213.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0215",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0215.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0220",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0220.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0224",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/community-archive/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0224.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0225",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/community-archive/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0225.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0226",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/community-archive/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0226.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0227",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/community-archive/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0227.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0228",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/community-archive/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0228.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0229",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/community-archive/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0229.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0230",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/community-archive/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0230.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0231",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/community-archive/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0231.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0232",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/community-archive/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0232.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0233",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/community-archive/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0233.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0255",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0255.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0256",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0256.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0257",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0257.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0258",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0258.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0259",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0259.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0260",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0260.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0261",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0261.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0262",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0262.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0263",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0263.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0264",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0264.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0265",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0265.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0266",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0266.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0267",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0267.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0268",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0268.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0269",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0269.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0270",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0270.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0271",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0271.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0272",
+      "decision": "archive",
+      "targetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0272.webp",
+      "eligibleUses": [
+        "archive"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0272.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0273",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0273.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0274",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0274.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0275",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0275.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0276",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0276.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0277",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0277.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0278",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0278.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0279",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0279.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0280",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0280.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0281",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0281.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0282",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0282.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0283",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0283.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0284",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0284.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0285",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0285.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0286",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0286.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0289",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0289.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0290",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0290.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0291",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0291.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0292",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0292.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0293",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0293.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0294",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0294.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0295",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/community-archive/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0295.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0296",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0296.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0297",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0297.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0298",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0298.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0299",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0299.webp"
+    },
+    {
+      "id": "wix-import:WIX-PAST-0300",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/wix-missing/past-gallery/past-gallery-wix-0300.webp"
+    },
+    {
+      "id": "extended-archive:IMG-0007",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0007.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0009",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0009.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0010",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0010.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0011",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0011.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0012",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0012.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0013",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0013.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0015",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0015.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0018",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/exeter/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0018.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0022",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/exeter/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0022.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0025",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/celebrations/extended-celebrations-img-0025.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0026",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/celebrations/extended-celebrations-img-0026.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0027",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/celebrations/extended-celebrations-img-0027.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0028",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/celebrations/extended-celebrations-img-0028.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0029",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/celebrations/extended-celebrations-img-0029.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0030",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/celebrations/extended-celebrations-img-0030.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0031",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/celebrations/extended-celebrations-img-0031.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0034",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0034.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0036",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0036.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0038",
+      "decision": "skip",
+      "targetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0038.jpg",
+      "eligibleUses": [
+        "skip"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0038.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0039",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0039.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0040",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0040.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0041",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0041.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0042",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0042.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0043",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0043.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0044",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0044.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0045",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0045.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0046",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0046.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0063",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/chelmsford/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/locations/extended-locations-img-0063.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0065",
+      "decision": "skip",
+      "targetPath": "/images/archive/extended/locations/extended-locations-img-0065.jpg",
+      "eligibleUses": [
+        "skip"
+      ],
+      "assetPath": "/images/archive/extended/locations/extended-locations-img-0065.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0067",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/locations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/locations/extended-locations-img-0067.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0084",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0084.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0085",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0085.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0086",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0086.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0087",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0087.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0088",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0088.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0089",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0089.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0093",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0093.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0096",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0096.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0097",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0097.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0098",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0098.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0100",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0100.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0103",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/celebrations/extended-celebrations-img-0103.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0105",
+      "decision": "skip",
+      "targetPath": "/images/archive/extended/celebrations/extended-celebrations-img-0105.jpg",
+      "eligibleUses": [
+        "skip"
+      ],
+      "assetPath": "/images/archive/extended/celebrations/extended-celebrations-img-0105.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0109",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/performances/extended-performances-img-0109.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0121",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/performances/extended-performances-img-0121.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0122",
+      "decision": "skip",
+      "targetPath": "/images/archive/extended/performances/extended-performances-img-0122.jpg",
+      "eligibleUses": [
+        "skip"
+      ],
+      "assetPath": "/images/archive/extended/performances/extended-performances-img-0122.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0128",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/locations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/locations/extended-locations-img-0128.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0130",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/locations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/locations/extended-locations-img-0130.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0131",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/locations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/locations/extended-locations-img-0131.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0132",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/southend-on-sea/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/locations/extended-locations-img-0132.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0133",
+      "decision": "skip",
+      "targetPath": "/images/archive/extended/locations/extended-locations-img-0133.jpg",
+      "eligibleUses": [
+        "skip"
+      ],
+      "assetPath": "/images/archive/extended/locations/extended-locations-img-0133.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0136",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0136.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0138",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0138.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0141",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0141.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0142",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0142.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0151",
+      "decision": "skip",
+      "targetPath": "/images/archive/extended/locations/extended-locations-img-0151.jpg",
+      "eligibleUses": [
+        "skip"
+      ],
+      "assetPath": "/images/archive/extended/locations/extended-locations-img-0151.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0152",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/southend-on-sea/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/locations/extended-locations-img-0152.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0154",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/southend-on-sea/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/locations/extended-locations-img-0154.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0155",
+      "decision": "skip",
+      "targetPath": "/images/archive/extended/locations/extended-locations-img-0155.jpg",
+      "eligibleUses": [
+        "skip"
+      ],
+      "assetPath": "/images/archive/extended/locations/extended-locations-img-0155.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0156",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/locations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/locations/extended-locations-img-0156.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0186",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/high-wycombe/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0186.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0187",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/high-wycombe/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0187.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0188",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/high-wycombe/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0188.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0190",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0190.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0197",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0197.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0201",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0201.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0053",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/performances/extended-performances-img-0053.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0055",
+      "decision": "skip",
+      "targetPath": "/images/archive/extended/performances/extended-performances-img-0055.jpg",
+      "eligibleUses": [
+        "skip"
+      ],
+      "assetPath": "/images/archive/extended/performances/extended-performances-img-0055.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0172",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/performances/extended-performances-img-0172.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0173",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/performances/extended-performances-img-0173.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0176",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/high-wycombe/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/performances/extended-performances-img-0176.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0177",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/high-wycombe/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/performances/extended-performances-img-0177.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0178",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/performances/extended-performances-img-0178.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0179",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/performances/extended-performances-img-0179.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0180",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/high-wycombe/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/performances/extended-performances-img-0180.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0181",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/performances/extended-performances-img-0181.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0182",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/performances/extended-performances-img-0182.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0183",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/high-wycombe/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/performances/extended-performances-img-0183.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0184",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/high-wycombe/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/performances/extended-performances-img-0184.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0399",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/performances/extended-performances-img-0399.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0423",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0423.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0443",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/performances/extended-performances-img-0443.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0448",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/performances/extended-performances-img-0448.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0453",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/performances/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/performances/extended-performances-img-0453.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0049",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0049.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0060",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/chelmsford/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/locations/extended-locations-img-0060.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0064",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/chelmsford/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/locations/extended-locations-img-0064.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0068",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/locations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/locations/extended-locations-img-0068.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0070",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/chelmsford/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0070.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0072",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0072.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0074",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0074.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0078",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0078.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0079",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0079.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0080",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0080.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0091",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0091.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0102",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0102.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0112",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/hemel-hempstead/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/performances/extended-performances-img-0112.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0123",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/community-archive/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/community-archive/extended-community-archive-img-0123.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0124",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0124.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0140",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0140.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0143",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0143.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0144",
+      "decision": "skip",
+      "targetPath": "/images/archive/extended/locations/extended-locations-img-0144.jpg",
+      "eligibleUses": [
+        "skip"
+      ],
+      "assetPath": "/images/archive/extended/locations/extended-locations-img-0144.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0145",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/southend-on-sea/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0145.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0147",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0147.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0149",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0149.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0150",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0150.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0161",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0161.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0163",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0163.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0171",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/creative-work/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0171.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0175",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/high-wycombe/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/creative-work/extended-creative-work-img-0175.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0189",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/high-wycombe/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0189.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0192",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/classroom-learning/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0192.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0193",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/high-wycombe/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/locations/extended-locations-img-0193.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0199",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0199.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0203",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/high-wycombe/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0203.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0205",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/high-wycombe/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/classroom-learning/extended-classroom-learning-img-0205.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0106",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/celebrations/extended-celebrations-img-0106.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0107",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/celebrations/extended-celebrations-img-0107.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0108",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/celebrations/extended-celebrations-img-0108.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0211",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/celebrations/extended-celebrations-img-0211.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0515",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/celebrations/extended-celebrations-img-0515.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0521",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/celebrations/extended-celebrations-img-0521.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0539",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/celebrations/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/celebrations/extended-celebrations-img-0539.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0056",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/community-archive/extended-community-archive-img-0056.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0117",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/community-archive/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/community-archive/extended-community-archive-img-0117.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0119",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/community-archive/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/community-archive/extended-community-archive-img-0119.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0120",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/community-archive/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/community-archive/extended-community-archive-img-0120.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0125",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/community-archive/extended-community-archive-img-0125.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0153",
+      "decision": "location-page",
+      "targetPath": "/public/images/locations/southend-on-sea/",
+      "eligibleUses": [
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/community-archive/extended-community-archive-img-0153.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0191",
+      "decision": "gallery",
+      "targetPath": "/public/images/archive/community-archive/",
+      "eligibleUses": [
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/community-archive/extended-community-archive-img-0191.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0194",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/community-archive/extended-community-archive-img-0194.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0196",
+      "decision": "hero",
+      "targetPath": "/public/images/site/",
+      "eligibleUses": [
+        "hero",
+        "location-page",
+        "gallery"
+      ],
+      "assetPath": "/images/archive/extended/community-archive/extended-community-archive-img-0196.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0237",
+      "decision": "skip",
+      "targetPath": "/images/archive/extended/community-archive/extended-community-archive-img-0237.jpg",
+      "eligibleUses": [
+        "skip"
+      ],
+      "assetPath": "/images/archive/extended/community-archive/extended-community-archive-img-0237.jpg"
+    },
+    {
+      "id": "extended-archive:IMG-0342",
+      "decision": "skip",
+      "targetPath": "/images/archive/extended/community-archive/extended-community-archive-img-0342.jpg",
+      "eligibleUses": [
+        "skip"
+      ],
+      "assetPath": "/images/archive/extended/community-archive/extended-community-archive-img-0342.jpg"
+    }
+  ]
+}
