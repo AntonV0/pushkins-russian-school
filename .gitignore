@@ -56,7 +56,10 @@ public/images/original/*
 # final publication-ready website media is selected.
 public/images/archive/extended/wix-missing/
 public/images/site/homepage-hero-*.jpg
-public/videos/
+public/videos/*
+!public/videos/site/
+public/videos/site/*
+!public/videos/site/pushkins-school-classroom-introduction.mp4
 
 # Local development server output.
 *.log
