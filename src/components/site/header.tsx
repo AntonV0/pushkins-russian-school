@@ -50,8 +50,12 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-20 border-b border-border-soft/80 bg-background/94 shadow-[0_1px_0_rgba(255,255,255,0.75)_inset] backdrop-blur-xl">
-      <div className="site-header-row mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-2 sm:gap-4 sm:py-2.5 lg:px-8 lg:py-2.5 min-[1180px]:py-3">
-        <Link href="/" className="group min-w-0">
+      <div className="site-header-row mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-2 sm:gap-4 sm:py-2.5 lg:px-8 lg:py-1.5">
+        <Link
+          href="/"
+          aria-label="Pushkin's School home"
+          className="group min-w-0"
+        >
           <span className="hidden lg:inline">
             <BrandMark className="min-w-0" />
           </span>
@@ -69,7 +73,7 @@ export function Header() {
               key={item.href}
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
-              className={`relative px-2.5 py-2 transition-colors duration-200 after:absolute after:inset-x-2.5 after:-bottom-1 after:h-0.5 after:origin-left after:rounded-full after:bg-brand-red after:transition after:duration-200 focus:outline-none focus-visible:text-brand-red ${
+              className={`relative flex min-h-11 items-center px-2.5 py-2 transition-colors duration-200 after:absolute after:inset-x-2.5 after:-bottom-0.5 after:h-0.5 after:origin-left after:rounded-full after:bg-brand-red after:transition after:duration-200 focus:outline-none focus-visible:text-brand-red ${
                 isActive(item.href)
                   ? "text-brand-blue-strong after:scale-x-100 after:opacity-100"
                   : "hover:text-brand-red after:scale-x-0 after:opacity-0 hover:after:scale-x-100 hover:after:opacity-45 focus-visible:after:scale-x-100 focus-visible:after:opacity-70"
@@ -98,7 +102,7 @@ export function Header() {
               key={item.href}
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
-              className={`relative px-1.5 py-2 transition-colors duration-200 after:absolute after:inset-x-1.5 after:-bottom-1 after:h-0.5 after:origin-left after:rounded-full after:bg-brand-red after:transition after:duration-200 focus:outline-none focus-visible:text-brand-red ${
+              className={`relative flex min-h-10 items-center px-1.5 py-2 transition-colors duration-200 after:absolute after:inset-x-1.5 after:-bottom-0.5 after:h-0.5 after:origin-left after:rounded-full after:bg-brand-red after:transition after:duration-200 focus:outline-none focus-visible:text-brand-red ${
                 isActive(item.href)
                   ? "text-brand-blue-strong after:scale-x-100 after:opacity-100"
                   : "hover:text-brand-red after:scale-x-0 after:opacity-0 hover:after:scale-x-100 hover:after:opacity-45 focus-visible:after:scale-x-100 focus-visible:after:opacity-70"
