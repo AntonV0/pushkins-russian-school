@@ -1,9 +1,14 @@
 import Image from "next/image";
 import { CheckCircle2, Images } from "lucide-react";
-import type { MediaAsset } from "@/features/gallery/data/media-assets";
+import {
+  getPublicImageDevChooserAssets,
+  type MediaAsset,
+} from "@/features/gallery/data/media-assets";
+import { HeroImageDevChooser } from "./hero-image-dev-chooser";
 import { SiteIconBadge } from "./site-icon-badge";
 
 type SchoolEvidencePanelProps = {
+  devPageId: string;
   eyebrow: string;
   title: string;
   summary: string;
@@ -12,6 +17,7 @@ type SchoolEvidencePanelProps = {
 };
 
 export function SchoolEvidencePanel({
+  devPageId,
   eyebrow,
   title,
   summary,
@@ -19,6 +25,8 @@ export function SchoolEvidencePanel({
   notes,
 }: SchoolEvidencePanelProps) {
   const visibleAssets = assets.slice(0, 3);
+  const devChooserEnabled = process.env.NODE_ENV === "development";
+  const devChooserAssets = getPublicImageDevChooserAssets(visibleAssets);
 
   return (
     <aside className="border-y border-border-soft bg-background py-5 sm:py-6">
@@ -44,18 +52,35 @@ export function SchoolEvidencePanel({
                 index === 0 ? "col-span-2 row-span-2" : ""
               }`}
             >
-              <Image
-                src={asset.approvedPublicPath}
-                alt={asset.altText}
-                fill
-                sizes={
-                  index === 0
-                    ? "(min-width: 1024px) 32vw, 66vw"
-                    : "(min-width: 1024px) 14vw, 33vw"
-                }
-                className="object-cover"
-                priority={index === 0}
-              />
+              {devChooserEnabled ? (
+                <HeroImageDevChooser
+                  assets={devChooserAssets}
+                  initialAssetId={asset.id}
+                  pageId={devPageId}
+                  slotId={`evidence-${index + 1}`}
+                  slotLabel={`Evidence ${index + 1}`}
+                  sizes={
+                    index === 0
+                      ? "(min-width: 1024px) 32vw, 66vw"
+                      : "(min-width: 1024px) 14vw, 33vw"
+                  }
+                  className="object-cover"
+                  priority={index === 0}
+                />
+              ) : (
+                <Image
+                  src={asset.approvedPublicPath}
+                  alt={asset.altText}
+                  fill
+                  sizes={
+                    index === 0
+                      ? "(min-width: 1024px) 32vw, 66vw"
+                      : "(min-width: 1024px) 14vw, 33vw"
+                  }
+                  className="object-cover"
+                  priority={index === 0}
+                />
+              )}
               <figcaption className="absolute inset-x-0 bottom-0 bg-brand-blue-strong/78 px-3 py-2 text-[0.68rem] font-semibold leading-4 text-white">
                 {asset.caption}
               </figcaption>
@@ -66,7 +91,7 @@ export function SchoolEvidencePanel({
 
       <ul className="mt-5 grid gap-3 text-sm leading-6 text-slate-700">
         {notes.map((note) => (
-          <li key={note} className="flex gap-2 border-l border-brand-gold pl-4">
+          <li key={note} className="flex gap-2 border-l border-brand-accent pl-4">
             <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
             <span>{note}</span>
           </li>
