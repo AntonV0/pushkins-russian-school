@@ -16,12 +16,12 @@ import {
   getGalleryCollection,
 } from "@/data/public/gallery";
 import {
-  getExtendedGalleryMediaByCategory,
-} from "@/features/gallery/data/extended-gallery-assets";
-import {
-  getApprovedMediaByGalleryCategory,
   mediaReadinessNotes,
 } from "@/features/gallery/data/media-assets";
+import {
+  getSelectedGalleryMediaByCategory,
+  getSelectedGalleryMediaGroupsByCategory,
+} from "@/features/gallery/data/selected-gallery-media";
 import { absoluteUrl, siteConfig } from "@/data/public/site";
 
 type GalleryCategoryPageProps = {
@@ -46,20 +46,20 @@ export async function generateMetadata({
     };
   }
 
-  const approvedAssets = getApprovedMediaByGalleryCategory(archive.slug);
-  const assetCount = approvedAssets.length;
+  const selectedAssets = getSelectedGalleryMediaByCategory(archive.slug);
+  const assetCount = selectedAssets.length;
   const description =
     assetCount > 0
-      ? `${archive.title} with ${assetCount} approved public Pushkin's School image${
+      ? `${archive.title} with ${assetCount} Pushkin's School image${
           assetCount === 1 ? "" : "s"
         } and captions.`
-      : `${archive.title} for selected Pushkin's School public images and captions.`;
+      : `${archive.title} for Pushkin's School images and captions.`;
 
   return {
     title: archive.title,
     description,
     robots:
-      approvedAssets.length > 0
+      selectedAssets.length > 0
         ? undefined
         : {
             index: false,
@@ -87,17 +87,18 @@ export default async function GalleryCategoryPage({
     notFound();
   }
 
-  const approvedAssets = getApprovedMediaByGalleryCategory(archive.slug);
-  const extendedAssets = getExtendedGalleryMediaByCategory(archive.slug);
-  const assetCount = approvedAssets.length;
-  const extendedAssetCount = extendedAssets.length;
+  const selectedAssets = getSelectedGalleryMediaByCategory(archive.slug);
+  const { featuredAssets, supportingAssets } =
+    getSelectedGalleryMediaGroupsByCategory(archive.slug);
+  const assetCount = selectedAssets.length;
+  const supportingAssetCount = supportingAssets.length;
   const hasApprovedAssets = assetCount > 0;
-  const hasExtendedAssets = extendedAssetCount > 0;
+  const hasSupportingAssets = supportingAssetCount > 0;
   const assetCountLabel = `${assetCount} ${
-    assetCount === 1 ? "approved image" : "approved images"
+    assetCount === 1 ? "school-life image" : "school-life images"
   }`;
-  const extendedAssetCountLabel = `${extendedAssetCount} ${
-    extendedAssetCount === 1 ? "extended archive image" : "extended archive images"
+  const supportingAssetCountLabel = `${supportingAssetCount} ${
+    supportingAssetCount === 1 ? "additional image" : "additional images"
   }`;
 
   const galleryJsonLd = {
@@ -117,7 +118,9 @@ export default async function GalleryCategoryPage({
     })),
     ...(hasApprovedAssets
       ? {
-          image: approvedAssets.map((asset) => absoluteUrl(asset.approvedPublicPath)),
+          image: selectedAssets.map((asset) =>
+            absoluteUrl(asset.approvedPublicPath),
+          ),
         }
       : {}),
   };
@@ -144,15 +147,15 @@ export default async function GalleryCategoryPage({
               {archive.tone}
             </p>
             <div className="mt-4 flex flex-col gap-1.5 sm:mt-6 sm:flex-row sm:flex-wrap sm:gap-2">
-              <span className="inline-flex max-w-full items-center border-l border-brand-gold bg-background px-3 py-1.5 text-sm font-semibold leading-5 text-brand-blue-strong sm:py-2">
-                {hasApprovedAssets ? "Approved collection" : archive.readinessLabel}
+              <span className="inline-flex max-w-full items-center border-l border-brand-accent bg-background px-3 py-1.5 text-sm font-semibold leading-5 text-brand-blue-strong sm:py-2">
+                {hasApprovedAssets ? "School-life collection" : archive.readinessLabel}
               </span>
               <span className="inline-flex max-w-full items-center border-l border-border-soft bg-background px-3 py-1.5 text-sm font-semibold leading-5 text-muted sm:py-2">
-                {hasApprovedAssets ? assetCountLabel : "Selected with care"}
+                {hasApprovedAssets ? assetCountLabel : "School life"}
               </span>
-              {hasExtendedAssets ? (
+              {hasSupportingAssets ? (
                 <span className="hidden max-w-full items-center border-l border-border-soft bg-background px-3 py-2 text-sm font-semibold leading-5 text-muted sm:inline-flex">
-                  {extendedAssetCountLabel}
+                  {supportingAssetCountLabel}
                 </span>
               ) : null}
             </div>
@@ -163,12 +166,12 @@ export default async function GalleryCategoryPage({
             </p>
             <h2 className="mt-2 text-lg font-semibold leading-snug text-brand-blue-strong sm:mt-3 sm:text-2xl sm:leading-tight">
               {hasApprovedAssets
-                ? "Approved images for public family browsing"
-                : "A careful public record for selected school moments"}
+                ? "Images for family browsing"
+                : "School moments for families"}
             </h2>
-            <p className="mt-3 border-l border-brand-gold pl-3 text-sm leading-6 text-slate-700 sm:mt-4 sm:pl-4">
+            <p className="mt-3 border-l border-brand-accent pl-3 text-sm leading-6 text-slate-700 sm:mt-4 sm:pl-4">
               {hasApprovedAssets
-                ? "This collection is live with public images that have been selected, optimised, captioned, and checked for suitable presentation."
+                ? "This collection brings together school-life images and captions for families."
                 : archive.readinessDetail}
             </p>
             <div className="mt-4 hidden flex-wrap gap-2 sm:flex sm:mt-5">
@@ -187,60 +190,60 @@ export default async function GalleryCategoryPage({
 
       <section className="bg-background py-6 sm:py-[var(--section-y-compact)]">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <section aria-labelledby={`${archive.slug}-approved-gallery`}>
+          <section aria-labelledby={`${archive.slug}-selected-gallery`}>
             <div className="mb-4 flex flex-col gap-2 border-b border-border-soft pb-4 sm:mb-6 sm:gap-3 sm:pb-5 md:flex-row md:items-end md:justify-between">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">
-                  Approved public selection
+                  School-life highlights
                 </p>
                 <h2
-                  id={`${archive.slug}-approved-gallery`}
+                  id={`${archive.slug}-selected-gallery`}
                   className="mt-2 text-2xl font-semibold text-brand-blue-strong"
                 >
-                  Featured images
+                  Featured school moments
                 </h2>
               </div>
               <p className="hidden max-w-2xl text-sm leading-6 text-slate-600 sm:block">
-                These are the prominent gallery images for this collection,
-                kept separate from the smaller extended archive below.
+                These images introduce the collection before the denser gallery
+                section below.
               </p>
             </div>
             <MediaAssetGrid
-              assets={approvedAssets}
+              assets={featuredAssets}
               emptyLabel={`${archive.title} image`}
-              emptyDescription="A selected school image can appear here after consent, alt text, caption, and accessibility checks."
-              reviewLabel="Featured"
+              emptyDescription="A school image can appear here after consent, alt text, caption, and accessibility checks."
+              reviewLabel="School life"
               featureFirst={hasApprovedAssets}
             />
           </section>
 
-          {hasExtendedAssets ? (
+          {hasSupportingAssets ? (
             <section
               className="mt-12 border-t border-border-soft pt-8"
-              aria-labelledby={`${archive.slug}-extended-archive`}
+              aria-labelledby={`${archive.slug}-supporting-gallery`}
             >
               <div className="mb-5 grid gap-3 lg:grid-cols-[0.45fr_0.55fr] lg:items-end">
-                <div className="border-l border-brand-gold pl-4">
+                <div className="border-l border-brand-accent pl-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">
-                    Extended archive
+                    Gallery
                   </p>
                   <h2
-                    id={`${archive.slug}-extended-archive`}
+                    id={`${archive.slug}-supporting-gallery`}
                     className="mt-2 text-2xl font-semibold text-brand-blue-strong"
                   >
-                    Smaller archive tiles
+                    More school-life images
                   </h2>
                 </div>
                 <p className="max-w-3xl text-sm leading-6 text-slate-600">
-                  These extra archive images are kept intentionally smaller:
-                  useful for depth and history, but separate from the main
-                  featured set.
+                  These images stay in a denser gallery grid so families can
+                  browse more moments without making every archive image feel
+                  like a hero.
                 </p>
               </div>
               <MediaAssetGrid
-                assets={extendedAssets}
+                assets={supportingAssets}
                 variant="compact"
-                reviewLabel="Archive"
+                reviewLabel="Gallery"
               />
             </section>
           ) : null}
@@ -250,9 +253,9 @@ export default async function GalleryCategoryPage({
               title="Curation standard"
               status={
                 hasApprovedAssets
-                  ? `${assetCountLabel} are currently featured in this collection. ${
-                      hasExtendedAssets
-                        ? `${extendedAssetCountLabel} are shown separately as smaller archive tiles.`
+                  ? `${assetCountLabel} are currently live in this collection. ${
+                      hasSupportingAssets
+                        ? `${supportingAssetCountLabel} are shown in the denser gallery section.`
                         : "Future additions should follow the same consent, caption, crop, and accessibility checks."
                     }`
                   : "Selected photos, captions, and alt text will appear here once they are suitable for public school use."
@@ -261,9 +264,9 @@ export default async function GalleryCategoryPage({
                 hasApprovedAssets
                   ? [
                       ...galleryReadinessNotes,
-                      "Keep adding images only after public suitability and crop checks.",
+                      "Keep adding images only after suitability and crop checks.",
                       "Avoid near-duplicates so each image adds a distinct school-life detail.",
-                      "Use the extended archive tier for useful lower-resolution images that should not become prominent page imagery.",
+                      "Use the denser gallery section for useful images that should not become prominent page imagery.",
                     ]
                   : [...archive.expectedContent, ...mediaReadinessNotes]
               }
@@ -280,7 +283,7 @@ export default async function GalleryCategoryPage({
                 Explore schools
               </ButtonLink>
               <span className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-border-soft px-5 py-3 text-center text-sm font-semibold text-muted sm:w-auto">
-                Photos selected with care
+                School life gallery
               </span>
             </div>
           </div>
@@ -291,12 +294,12 @@ export default async function GalleryCategoryPage({
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
           <div>
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
-              How this archive is curated
+              How this archive is organised
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">
               {hasApprovedAssets
-                ? "This collection keeps approved school photos organised while future images can be added through the same review path."
-                : "This collection keeps the archive organised while suitable school photos, captions, and accessibility details are selected."}
+                ? "This collection keeps school photos organised so families can understand the life around the curriculum."
+                : "This collection keeps the archive organised while suitable school photos, captions, and accessibility details are prepared."}
             </p>
           </div>
           <ol className="divide-y divide-border-soft border-y border-border-soft bg-background">
@@ -305,7 +308,7 @@ export default async function GalleryCategoryPage({
                 key={stage.label}
                 className="grid gap-4 px-5 py-5 sm:grid-cols-[3rem_1fr]"
               >
-                <span className="flex h-10 w-10 items-center justify-center justify-self-start rounded-full border border-brand-gold/50 bg-surface text-sm font-semibold text-brand-blue-strong">
+                <span className="flex h-10 w-10 items-center justify-center justify-self-start rounded-full border border-brand-accent/50 bg-surface text-sm font-semibold text-brand-blue-strong">
                   <CheckCircle2 aria-hidden="true" className="size-4 text-brand-red" />
                 </span>
                 <span>
@@ -326,7 +329,7 @@ export default async function GalleryCategoryPage({
         <div className="mx-auto grid max-w-7xl gap-4 px-6 lg:grid-cols-[0.7fr_1.3fr] lg:px-8">
           <div>
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
-              Publication care
+              Family confidence
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">
               The gallery can feel warm while still protecting child image
@@ -337,7 +340,7 @@ export default async function GalleryCategoryPage({
             {galleryReadinessNotes.map((note) => (
               <div
                 key={note}
-                className="border-l border-brand-gold bg-background px-4 py-3 text-sm leading-6 text-slate-700"
+                className="border-l border-brand-accent bg-background px-4 py-3 text-sm leading-6 text-slate-700"
               >
                 <span className="flex gap-2">
                   <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />

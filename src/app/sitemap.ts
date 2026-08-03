@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { galleryCollections } from "@/data/public/gallery";
-import { approvedMediaAssets } from "@/features/gallery/data/media-assets";
+import { selectedGalleryMediaAssets } from "@/features/gallery/data/selected-gallery-media";
 import { primaryNavigation } from "@/data/public/navigation";
 import { policies } from "@/data/public/policies";
 import { publicRoutePriority } from "@/data/public/seo";
@@ -13,13 +13,13 @@ const staticRoutes = Array.from(new Set([
   "/contact",
   "/policies",
 ]));
-const approvedGalleryCategories = new Set(
-  approvedMediaAssets
+const selectedGalleryCategories = new Set(
+  selectedGalleryMediaAssets
     .map((asset) => asset.galleryCategorySlug)
     .filter((slug): slug is string => Boolean(slug)),
 );
 const publicGalleryCollections = galleryCollections.filter((collection) =>
-  approvedGalleryCategories.has(collection.slug),
+  selectedGalleryCategories.has(collection.slug),
 );
 
 export default function sitemap(): MetadataRoute.Sitemap {

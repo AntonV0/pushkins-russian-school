@@ -1,4 +1,5 @@
 import type { School } from "@/data/public/schools";
+import { wixImportedMediaAssets } from "./wix-imported-media-assets";
 
 export type MediaAssetCategory =
   | "classroom"
@@ -80,7 +81,7 @@ export type MediaIntakeField = {
   required: boolean;
 };
 
-export const approvedMediaAssets: MediaAsset[] = [
+const coreApprovedMediaAssets: MediaAsset[] = [
   {
     id: "IMG-0061",
     sourceFilename: "20200202_093324.jpg",
@@ -1123,6 +1124,11 @@ export const approvedMediaAssets: MediaAsset[] = [
   },
 ];
 
+export const approvedMediaAssets: MediaAsset[] = [
+  ...coreApprovedMediaAssets,
+  ...wixImportedMediaAssets,
+];
+
 export const visualPlaceholderSlots: VisualPlaceholderSlot[] = [
   {
     id: "about-community-table",
@@ -1550,6 +1556,22 @@ export function getHeroReadyMedia() {
     (asset) =>
       asset.qualityRating === "hero" &&
       asset.consentStatus === "approved-for-public-web",
+  );
+}
+
+export function getPublicImageDevChooserAssets(extraAssets: MediaAsset[] = []) {
+  return [
+    ...getHeroReadyMedia(),
+    ...approvedMediaAssets.filter(
+      (asset) =>
+        asset.consentStatus === "approved-for-public-web" &&
+        asset.category !== "illustration" &&
+        (asset.qualityRating === "hero" || asset.qualityRating === "feature"),
+    ),
+    ...extraAssets,
+  ].filter(
+    (asset, index, assets) =>
+      assets.findIndex((candidate) => candidate.id === asset.id) === index,
   );
 }
 

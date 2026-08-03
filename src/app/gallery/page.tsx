@@ -11,49 +11,48 @@ import { PageHero } from "@/components/site/page-hero";
 import { SectionIntro } from "@/components/site/section-intro";
 import { VisualStoryPanel } from "@/components/site/visual-story-panel";
 import {
-  getExtendedGalleryAssetCount,
-  getExtendedGalleryCategoryAssetCount,
-} from "@/features/gallery/data/extended-gallery-assets";
-import {
   galleryCollections,
   galleryThemes,
 } from "@/data/public/gallery";
 import {
-  approvedMediaAssets,
-  getGalleryCategoryAssetCount,
-  getGalleryCategoryCoverAsset,
   getVisualPlaceholderSlot,
   type MediaAsset,
 } from "@/features/gallery/data/media-assets";
+import {
+  getSelectedGalleryAssetCount,
+  getSelectedGalleryCategoryAssetCount,
+  getSelectedGalleryCategoryCoverAsset,
+  selectedGalleryMediaAssets,
+} from "@/features/gallery/data/selected-gallery-media";
 
 const galleryVisual = getVisualPlaceholderSlot("gallery-approved-archive");
 
 export const metadata: Metadata = {
   title: "Gallery",
   description:
-    "A curated view of Pushkin's School life, events, traditions, and selected school archive moments.",
+    "A warm view of Pushkin's School life, Russian lessons, performances, celebrations, creative work, and school archive moments.",
   alternates: {
     canonical: "/gallery",
   },
   openGraph: {
     title: "Pushkin's School Gallery",
     description:
-      "A curated view of Pushkin's School life, events, traditions, and selected school archive moments.",
+      "A warm view of Pushkin's School life, Russian lessons, performances, celebrations, creative work, and school archive moments.",
     url: "/gallery",
   },
 };
 
 const galleryAssuranceNotes = [
   "Gallery collections are organised around learning, culture, performance, locations, and community life.",
-  "Public images are selected carefully so captions, consent, and child privacy stay appropriate.",
-  "Legacy archive images can be used at modest sizes when they add useful school-history context.",
+  "Captions and image choices keep child privacy and family confidence in view.",
+  "Archive images can be used at modest sizes when they add useful school-history context.",
 ];
 
 const galleryCurationStandards = [
   {
-    label: "Curated selection",
+    label: "School-life selection",
     description:
-      "Images are chosen for warmth, clarity, and relevance to real school life before they appear publicly.",
+      "Images are chosen for warmth, clarity, and relevance to real Russian school life.",
   },
   {
     label: "Respectful captions",
@@ -61,9 +60,9 @@ const galleryCurationStandards = [
       "Captions give context for families without exposing personal details or relying on children being named.",
   },
   {
-    label: "Archive quality",
+    label: "Archive context",
     description:
-      "Gallery collections are reserved for accessible images, useful alt text, and a balanced mix of school moments.",
+      "Gallery collections balance accessible images, useful alt text, and a meaningful mix of school moments.",
   },
 ];
 
@@ -75,16 +74,16 @@ const galleryContactLinks = [
       "See current branch pages and locations for families considering lessons.",
   },
   {
-    label: "Start an enquiry",
+    label: "Tell us about your child",
     href: "/contact#enquiry-form",
     description:
-      "Ask about classes, availability, or the best option for your child.",
+      "Ask about classes, availability, online learning, or the best option for your child.",
   },
 ];
 
 function getGalleryHeroCoverAssets() {
   return galleryCollections.reduce<MediaAsset[]>((assets, collection) => {
-    const coverAsset = getGalleryCategoryCoverAsset(collection.slug);
+    const coverAsset = getSelectedGalleryCategoryCoverAsset(collection.slug);
 
     if (!coverAsset) {
       return assets;
@@ -95,15 +94,15 @@ function getGalleryHeroCoverAssets() {
 }
 
 export default function GalleryPage() {
-  const hasApprovedMedia = approvedMediaAssets.length > 0;
+  const selectedGalleryAssetCount = getSelectedGalleryAssetCount();
+  const hasApprovedMedia = selectedGalleryMediaAssets.length > 0;
   const galleryHeroCoverAssets = getGalleryHeroCoverAssets();
-  const extendedGalleryAssetCount = getExtendedGalleryAssetCount();
 
   return (
     <main>
       <PageHero
         eyebrow="Gallery"
-        title="School life, shared with care"
+        title="Russian school life in lessons, performances, and celebrations"
         actions={
           <>
             <ButtonLink href="/schools" icon={<MapPin className="size-4" />}>
@@ -115,7 +114,7 @@ export default function GalleryPage() {
               className={quietHeroLinkClassName}
               icon={<MessageSquareText className="size-4" />}
             >
-              Start an enquiry
+              Tell us about your child
             </ButtonLink>
           </>
         }
@@ -124,8 +123,7 @@ export default function GalleryPage() {
             {hasApprovedMedia && galleryHeroCoverAssets.length > 0 ? (
               <GalleryHeroMosaic
                 assets={galleryHeroCoverAssets}
-                totalAssets={approvedMediaAssets.length}
-                extendedAssets={extendedGalleryAssetCount}
+                totalAssets={selectedGalleryAssetCount}
               />
             ) : galleryVisual ? (
               <VisualStoryPanel slot={galleryVisual} compact />
@@ -137,7 +135,7 @@ export default function GalleryPage() {
                 {
                   label: "Photo care",
                   value: hasApprovedMedia
-                    ? `${approvedMediaAssets.length} + ${extendedGalleryAssetCount}`
+                    ? selectedGalleryAssetCount
                     : "Curated",
                 },
               ].map((item) => (
@@ -156,9 +154,8 @@ export default function GalleryPage() {
         }
       >
         <p>
-          A thoughtful public record of lessons, performances, celebrations,
-          and cultural traditions from Pushkin&apos;s School, curated from selected
-          location and archive images.
+          A warm view of lessons, performances, celebrations, creative work,
+          and cultural traditions from Pushkin&apos;s School.
         </p>
       </PageHero>
 
@@ -177,10 +174,12 @@ export default function GalleryPage() {
           {hasApprovedMedia ? (
             <div className="mt-10 grid gap-x-5 gap-y-7 lg:grid-cols-6">
               {galleryCollections.map((archive, index) => {
-                const coverAsset = getGalleryCategoryCoverAsset(archive.slug);
-                const assetCount = getGalleryCategoryAssetCount(archive.slug);
-                const extendedAssetCount =
-                  getExtendedGalleryCategoryAssetCount(archive.slug);
+                const coverAsset = getSelectedGalleryCategoryCoverAsset(
+                  archive.slug,
+                );
+                const assetCount = getSelectedGalleryCategoryAssetCount(
+                  archive.slug,
+                );
                 const hasCategoryMedia = assetCount > 0;
                 const isLead = index === 0;
                 const isWide = index === 1 || index === 2;
@@ -237,7 +236,7 @@ export default function GalleryPage() {
                           </p>
                           <span className="shrink-0 border border-border-soft bg-surface px-2.5 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.08em] text-muted">
                             {hasCategoryMedia
-                              ? `${assetCount} featured`
+                              ? `${assetCount} selected`
                               : "Preparing"}
                           </span>
                         </div>
@@ -257,7 +256,7 @@ export default function GalleryPage() {
                           {archive.highlights.map((highlight) => (
                             <span
                               key={highlight}
-                              className="border-b border-brand-gold/60 pb-0.5 text-xs font-semibold text-brand-blue-strong"
+                              className="border-b border-brand-accent/60 pb-0.5 text-xs font-semibold text-brand-blue-strong"
                             >
                               {highlight}
                             </span>
@@ -266,9 +265,7 @@ export default function GalleryPage() {
                         <p className="mt-5 text-sm font-semibold text-muted">
                           <ArrowRight aria-hidden="true" className="mr-1 inline size-4 align-[-0.2em]" />
                           {hasCategoryMedia
-                            ? extendedAssetCount > 0
-                              ? `View selected images and ${extendedAssetCount} archive tiles`
-                              : "View selected images"
+                              ? "View school-life images"
                             : archive.readinessLabel}
                         </p>
                       </div>
@@ -330,14 +327,15 @@ export default function GalleryPage() {
         <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.75fr_1.25fr] lg:px-8">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-red">
-              Curated with care
+              School life, shown thoughtfully
             </p>
             <h2 className="mt-3 text-2xl font-semibold text-brand-blue-strong">
-              Browse first, with publication care close behind
+              Browse lessons, performances, and culture
             </h2>
             <p className="mt-4 text-sm leading-6 text-slate-600">
-              The gallery is arranged for visual browsing while keeping the
-              public-use standards visible for families and future editors.
+              The gallery is arranged so families can quickly see classroom
+              learning, performances, celebrations, locations, and creative
+              work.
             </p>
           </div>
           <div className="grid gap-6">
@@ -360,7 +358,7 @@ export default function GalleryPage() {
             </div>
             <ol className="grid gap-3 sm:grid-cols-3">
               {galleryCurationStandards.map((stage, index) => (
-                <li key={stage.label} className="border-l border-brand-gold pl-4">
+                <li key={stage.label} className="border-l border-brand-accent pl-4">
                   <Camera aria-hidden="true" className="mb-2 size-5 text-brand-red" />
                   <p className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-muted">
                     Standard {index + 1}
@@ -397,8 +395,8 @@ export default function GalleryPage() {
         }
       >
         <p>
-          Families can explore branches, timetables, and enquiries while the
-          public archive is curated.
+          Families can explore the school network and ask about the right
+          Russian learning route for their child.
         </p>
       </PageCta>
     </main>
@@ -408,11 +406,9 @@ export default function GalleryPage() {
 function GalleryHeroMosaic({
   assets,
   totalAssets,
-  extendedAssets,
 }: {
   assets: MediaAsset[];
   totalAssets: number;
-  extendedAssets: number;
 }) {
   const visibleAssets = assets.slice(0, 6);
 
@@ -453,19 +449,18 @@ function GalleryHeroMosaic({
       </div>
       <figcaption className="p-5 sm:p-6">
         <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
-          Selected archive
+          School life archive
         </p>
         <h2
           id="gallery-hero-mosaic-heading"
           className="mt-2 text-xl font-semibold leading-tight text-brand-blue-strong"
         >
-          {totalAssets} featured images across {galleryCollections.length}{" "}
+          {totalAssets} school-life images across {galleryCollections.length}{" "}
           gallery collections
         </h2>
         <p className="mt-3 text-sm leading-6 text-slate-600">
-          The featured set stays carefully curated, with {extendedAssets} more
-          small archive tiles adding depth where lower-resolution images still
-          help tell the school story.
+          Each collection shows distinct school-life moments across lessons,
+          performances, celebrations, locations, and creative work.
         </p>
       </figcaption>
     </figure>

@@ -17,26 +17,26 @@ export type GalleryWorkflowStage = {
 };
 
 export const galleryReadinessNotes = [
-  "Use only images selected for public school use.",
-  "Show only school images that are suitable for families to view publicly.",
-  "Check captions for child privacy, consent, and current publication suitability.",
+  "School-life images are chosen for warmth, relevance, and family privacy.",
+  "Captions explain the school moment without naming children unnecessarily.",
+  "Collections balance classroom learning, performances, celebrations, locations, and creative work.",
 ];
 
 export const galleryWorkflowStages: GalleryWorkflowStage[] = [
   {
-    label: "Careful selection",
+    label: "School-life selection",
     description:
-      "Archive photos are selected carefully before they are shown to prospective families.",
+      "Photos are grouped around real school moments: lessons, performances, celebrations, creative work, and community history.",
   },
   {
-    label: "Caption and consent check",
+    label: "Respectful captions",
     description:
-      "Each public image needs suitable consent, alt text, captioning, and useful category context.",
+      "Captions give families useful context while keeping children and families private.",
   },
   {
     label: "Public gallery collection",
     description:
-      "Gallery collections become visual records of school life when selected images are ready.",
+      "Gallery collections become visual records of Russian learning, culture, performances, and school community.",
   },
 ];
 
@@ -48,10 +48,10 @@ export const gallerySupportLinks = [
       "See current branch pages while historic gallery images are being selected.",
   },
   {
-    label: "Start an enquiry",
+    label: "Tell us about your child",
     href: "/contact#enquiry-form",
     description:
-      "Ask about classes or future places while archive images are being selected.",
+      "Ask about classes, future places, online learning, or the right route for your child.",
   },
 ];
 
@@ -60,56 +60,56 @@ export const galleryCollections: GalleryCollection[] = [
     slug: "classroom-learning",
     title: "Classroom learning",
     theme: "Lessons and learning",
-    tone: "Selected classroom images can show reading, writing, conversation, and teacher-led learning without relying on a specific upload year.",
+    tone: "Classroom images show reading, writing, conversation, teacher-led learning, and the steady work behind bilingual confidence.",
     highlights: ["Lessons", "Reading", "Writing"],
   },
   {
     slug: "creative-work",
     title: "Creative work",
     theme: "Projects and making",
-    tone: "Crafts, displays, notebooks, and hands-on activities can give the archive warmth even when older source images need modest sizing.",
+    tone: "Crafts, displays, notebooks, and hands-on activities show how children meet Russian culture creatively.",
     highlights: ["Crafts", "Projects", "Displays"],
   },
   {
     slug: "performances",
     title: "Performances",
     theme: "Stage and recital",
-    tone: "The performance collection can hold plays, recitals, assemblies, and cultural stage moments from both current school folders and legacy uploads.",
+    tone: "Plays, recitals, assemblies, and cultural stage moments show speech, pronunciation, confidence, and creativity.",
     highlights: ["Drama", "Music", "Recitals"],
   },
   {
     slug: "celebrations",
     title: "Celebrations",
     theme: "Community and traditions",
-    tone: "Celebrations, seasonal events, and shared school traditions can sit together as a public archive collection after consent checks.",
+    tone: "Celebrations, seasonal events, and shared traditions show Russian culture as something children can experience together.",
     highlights: ["Traditions", "Community", "Culture"],
   },
   {
     slug: "locations",
     title: "School locations",
     theme: "Places and rooms",
-    tone: "Venue exteriors, classrooms, corridors, displays, and low-privacy setting images can support the gallery and individual location pages.",
+    tone: "Venue exteriors, classrooms, corridors, displays, and setting images help families picture the school environment.",
     highlights: ["Venues", "Classrooms", "Displays"],
   },
   {
     slug: "community-archive",
     title: "Community archive",
     theme: "School history",
-    tone: "Legacy upload-folder images can become a broader school-history showcase when they are resized appropriately and captioned carefully.",
+    tone: "Archive images show the longer school story and the community that has grown around Russian language and culture.",
     highlights: ["Archive", "Milestones", "School life"],
   },
 ].map((archive) => ({
   ...archive,
   summary:
-    "This gallery collection is reserved for selected public images from school records.",
-  status: "Images being selected for public use",
-  readinessLabel: "Gallery images in preparation",
+    "This gallery collection shows school-life images from Pushkin's School.",
+  status: "School-life images",
+  readinessLabel: "School-life collection",
   readinessDetail:
-    "This collection is reserved for selected public photos, captions, and school-life context.",
+    "This collection brings together school photos, captions, and school-life context.",
   expectedContent: [
     ...galleryReadinessNotes,
-    "Images should be accessible, well-captioned, and suitable for the category where they appear.",
-    "Resize lower-quality legacy images for modest display rather than rejecting them solely for resolution.",
+    "Images should be accessible, well-captioned, and useful for the category where they appear.",
+    "Lower-resolution archive images can be shown modestly when they add meaningful school-history context.",
     "Balance current location images with archive material where suitable images are available.",
   ],
 }));
