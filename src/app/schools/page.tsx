@@ -19,7 +19,7 @@ import { networkSummary, schools } from "@/data/public/schools";
 export const metadata: Metadata = {
   title: "Schools",
   description:
-    "Explore Pushkin's School's five-school Russian language and culture network, current locations, online options, and ways to join.",
+    "Explore Pushkin's School's Russian language and culture heritage, current location areas, online options, and ways to join.",
   alternates: {
     canonical: "/schools",
   },
@@ -40,7 +40,7 @@ export default function SchoolsPage() {
     <main>
       <PageHero
         eyebrow="School locations"
-        title="A five-school Russian learning community across England"
+        title="A Russian learning community across England"
         aside={<NetworkVisual />}
         actions={
           <>
@@ -61,7 +61,8 @@ export default function SchoolsPage() {
         <p>
           Since {schoolStory.foundedYear}, Pushkin&apos;s School has helped
           children keep Russian language, literature, culture, and confidence
-          alive through a five-location supplementary school heritage.
+          alive through a five-location supplementary school heritage, with
+          Exeter now listed as a Devon area where details are being confirmed.
         </p>
       </PageHero>
 
@@ -70,7 +71,7 @@ export default function SchoolsPage() {
           <MetricStrip
             variant="quiet"
             metrics={[
-              { label: "School locations", value: networkSummary.locations },
+              { label: "School areas", value: networkSummary.locations },
               { label: "Founded", value: schoolStory.foundedYear },
               { label: "Current in-person", value: openSchools.length },
             ]}
@@ -89,7 +90,8 @@ export default function SchoolsPage() {
               Bracknell, Chelmsford, and Southend-on-Sea. Current local
               availability can change, but the educational purpose remains the
               same: balanced bilingualism, Russian literacy, culture,
-              performance, and progression.
+              performance, and progression. Exeter is listed separately while
+              the Devon provision is confirmed.
             </p>
           </SectionIntro>
           <div className="grid gap-4 sm:grid-cols-2">

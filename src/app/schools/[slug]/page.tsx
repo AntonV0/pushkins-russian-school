@@ -23,7 +23,8 @@ import { StatusBadge } from "@/components/site/status-badge";
 import { enquiryChecklist, getSchoolEnquiryHref } from "@/data/public/admissions";
 import { contactDetails, paymentDetails } from "@/data/public/contact";
 import { getLearningOptionsForBranchStatus } from "@/data/public/learning-options";
-import { getLocationPageMediaByBranch } from "@/features/gallery/data/media-assets";
+import { schoolStory } from "@/data/public/school-story";
+import { getSelectedLocationMediaByBranch } from "@/features/gallery/data/selected-location-media";
 import { getSchoolBySlug, schools } from "@/data/public/schools";
 import { absoluteUrl, siteConfig } from "@/data/public/site";
 
@@ -59,8 +60,8 @@ export async function generateMetadata({
     title: pageTitle,
     description:
       school.status === "open"
-        ? `${school.name} Pushkin's School branch: venue, timetable, class groups, fee categories, and enquiry information.`
-        : `${school.name} Pushkin's School location: online-only learning, register-interest option, class groups, and enquiry information.`,
+        ? `${school.name} Pushkin's School branch for Russian language, literature, culture, balanced bilingualism, and current joining details.`
+        : `${school.name} Pushkin's School location in the five-school Russian language and culture network, with current online and register-interest options.`,
     alternates: {
       canonical: `/schools/${school.slug}`,
     },
@@ -86,7 +87,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
   const learningOptions = getLearningOptionsForBranchStatus(school.status);
   const highlightedLearningOption =
     school.status === "online" ? "volna-online" : undefined;
-  const branchMedia = getLocationPageMediaByBranch(school.slug).slice(0, 4);
+  const branchMedia = getSelectedLocationMediaByBranch(school.slug);
 
   const schoolJsonLd = {
     "@context": "https://schema.org",
@@ -111,6 +112,13 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
       name: siteConfig.name,
       url: siteConfig.url,
     },
+    ...(branchMedia.length > 0
+      ? {
+          image: branchMedia.map((asset) =>
+            absoluteUrl(asset.approvedPublicPath),
+          ),
+        }
+      : {}),
   };
 
   return (
@@ -130,7 +138,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
               {school.county}
             </p>
             <h1 className="mt-3 text-balance text-4xl font-semibold leading-[1.06] text-brand-blue-strong sm:text-5xl">
-              {school.name}
+              {school.name} Russian school community
             </h1>
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-700">
               {school.lead}
@@ -215,7 +223,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 </div>
               </dl>
               {school.scheduleNote ? (
-                <p className="mt-5 border-l-2 border-brand-gold pl-4 text-sm leading-6 text-slate-600">
+                <p className="mt-5 border-l-2 border-brand-accent pl-4 text-sm leading-6 text-slate-600">
                   {school.scheduleNote}
                 </p>
               ) : null}
@@ -223,16 +231,16 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
           ) : (
             <aside className="premium-panel rounded-lg border border-border-soft bg-surface-muted p-6 sm:p-8">
               <h2 className="text-xl font-semibold text-brand-blue-strong">
-                What families can do next
+                How families can stay connected
               </h2>
               <p className="mt-3 text-sm leading-6 text-slate-600">
-                Choose the enquiry route that best matches your family&apos;s
-                situation. The school can then respond with the most practical
-                option.
+                This location remains part of the Pushkin&apos;s School network.
+                Families can ask about local interest, online learning, or a
+                current in-person branch.
               </p>
               <div className="mt-6 grid gap-4">
                 {school.bestNextSteps.map((step, index) => (
-                  <div key={step.title} className="border-l border-brand-gold pl-4">
+                  <div key={step.title} className="border-l border-brand-accent pl-4">
                     <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-red">
                       Option {index + 1}
                     </p>
@@ -269,8 +277,9 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
 
       <LocationMediaShowcase
         assets={branchMedia}
-        title={`Location images for ${school.name}`}
-        intro="These approved public images give families a visual sense of the school setting and learning materials while the current availability notes above stay authoritative."
+        devPageId={`school-${school.slug}`}
+        title={`School life connected to ${school.name}`}
+        intro="These images give families a sense of the learning materials, classrooms, performances, and school-life moments connected to Pushkin's School."
       />
 
       <section className="bg-background site-section-compact">
@@ -279,26 +288,26 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
             <div className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr]">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
-                  Sunday visit
+                  Sunday school morning
                 </p>
                 <h2 className="mt-3 text-3xl font-semibold leading-tight text-brand-blue-strong">
-                  What the morning looks like
+                  A weekend rhythm for Russian learning
                 </h2>
                 <p className="mt-4 text-sm leading-6 text-slate-600">
-                  The published rhythm gives families a practical picture of
-                  arrival, lessons, and breaks before they ask about spaces or
-                  placement.
+                  The morning combines assembly, lessons, breaks, and classroom
+                  rhythm so children can build Russian language, literacy, and
+                  confidence in a familiar weekly setting.
                 </p>
                 <ul className="mt-6 space-y-3 text-sm leading-6 text-slate-700">
                   {[
-                    "Confirm the place and start date before attending the school site.",
+                    "Ask about the right class and start date before attending the school site.",
                     "Arrive a few minutes before the first assembly so the child can settle.",
                     "Bring any context that helps placement: age, spoken Russian, reading, writing, and exam aims.",
                     "Ask the school directly about drop-off, collection, fees, and payment instructions.",
                   ].map((note) => (
                   <li
                       key={note}
-                      className="flex gap-2 border-l border-brand-gold bg-surface px-4 py-3"
+                      className="flex gap-2 border-l border-brand-accent bg-surface px-4 py-3"
                     >
                       <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
                       <span>{note}</span>
@@ -327,14 +336,15 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
             <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
-                  Decision guide
+                  Current options
                 </p>
                 <h2 className="mt-3 text-3xl font-semibold leading-tight text-brand-blue-strong">
-                  Choose the right next step for {school.name}
+                  Keep Russian learning moving from {school.name}
                 </h2>
                 <p className="mt-4 text-sm leading-6 text-slate-600">
-                  The local page stays visible for future demand, while parents
-                  can still choose a practical next step for learning now.
+                  Local in-person provision is not currently listed here, but
+                  families can still stay connected to the school network and
+                  choose a practical route for learning now.
                 </p>
               </div>
 
@@ -344,7 +354,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                     key={item.title}
                     className="grid gap-5 border-b border-border-soft p-5 last:border-b-0 sm:grid-cols-[3rem_1fr_auto] sm:items-start"
                   >
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center justify-self-start rounded-full border border-brand-gold/50 bg-surface-muted text-sm font-semibold text-brand-blue-strong">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center justify-self-start rounded-full border border-brand-accent/50 bg-surface-muted text-sm font-semibold text-brand-blue-strong">
                       {index + 1}
                     </span>
                     <div>
@@ -376,15 +386,15 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
-              Practical reference
+              Learning and practical details
             </p>
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
-              Class fit, programme, and fees in one place
+              Class groups, culture, and joining details in one place
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              These details are useful after the venue and schedule make sense.
-              The enquiry is still the place to confirm availability,
-              placement, fees, and payment instructions.
+              The educational aim stays the same across the network:
+              {` ${schoolStory.philosophy}`} Current places, placement, fees,
+              and payment instructions are confirmed directly before joining.
             </p>
           </div>
 
@@ -397,7 +407,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 {school.classGroups.map((group) => (
                   <li
                     key={group}
-                    className="flex gap-2 border-l border-brand-gold bg-background px-4 py-3"
+                    className="flex gap-2 border-l border-brand-accent bg-background px-4 py-3"
                   >
                     <GraduationCap aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-brand-red" />
                     <span>{group}</span>
@@ -496,7 +506,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
               options={learningOptions}
               eyebrow="Alternative options"
               title={`More ways to learn Russian while local classes in ${school.name} are not available`}
-              intro="This location keeps its full page for local interest, while families can also consider online Russian lessons or GCSE-focused self-study support."
+              intro="This location remains part of the school network, while families can also consider Volna online Russian lessons or Volna's GCSE and A Level routes."
               highlightId={highlightedLearningOption}
               compact
             />
@@ -510,19 +520,19 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
             <h2 className="text-3xl font-semibold">
               {hasCurrentVenue
                 ? "Before your first visit"
-                : "Before local details are published"}
+                : "If you are interested in this area"}
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-white/75">
               {hasCurrentVenue
                 ? "These practical notes help families confirm the right class fit and next step before attending."
-                : "These practical notes help families choose the next step while local venue, timetable, and payment details are still being gathered."}
+                : "These notes help families choose a learning route while local venue, timetable, and payment details are not currently listed."}
             </p>
           </div>
           <ul className="space-y-3 text-sm leading-6 text-white/80">
             {(hasCurrentVenue
               ? [
                   "Ask about current spaces, class fit, and start date before attending.",
-                  "Current fees and payment instructions are confirmed directly after enquiry.",
+                  "Current fees and payment instructions are confirmed directly before joining.",
                 ]
               : [
                   `Register interest if you would use local classes in the ${school.name} area.`,
@@ -531,7 +541,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 ]
             ).map((note) => (
               <li key={note} className="flex gap-2">
-                <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-gold" />
+                <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-accent" />
                 <span>{note}</span>
               </li>
             ))}
@@ -541,13 +551,14 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
 
       <section className="bg-surface site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[1fr_1fr] lg:px-8">
-          <div className="border-l-4 border-brand-gold pl-6">
+          <div className="border-l-4 border-brand-accent pl-6">
             <h2 className="text-2xl font-semibold text-brand-blue-strong">
-              What to include in your enquiry
+              What to tell us about your child
             </h2>
             <p className="mt-3 text-sm leading-6 text-slate-600">
-              A focused first message helps the school recommend local interest,
-              online learning, a current branch, or exam preparation.
+              A thoughtful first message helps the school understand your
+              child&apos;s Russian and suggest local interest, online learning, a
+              current branch, or a Volna exam route.
             </p>
             <ul className="mt-5 space-y-3 text-sm leading-6 text-slate-700">
               {enquiryChecklist.slice(1, 8).map((item) => (
@@ -565,8 +576,8 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 Interested in {school.name}?
               </h2>
               <p className="mt-2 text-sm leading-6 text-slate-600">
-                Use the enquiry form or email {contactDetails.email} directly
-                to ask about the most suitable next step.
+                Use the form or email {contactDetails.email} directly to ask
+                about the most suitable Russian learning route.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">

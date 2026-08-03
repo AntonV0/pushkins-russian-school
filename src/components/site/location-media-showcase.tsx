@@ -1,8 +1,13 @@
 import Image from "next/image";
-import type { MediaAsset } from "@/features/gallery/data/media-assets";
+import {
+  getPublicImageDevChooserAssets,
+  type MediaAsset,
+} from "@/features/gallery/data/media-assets";
+import { HeroImageDevChooser } from "./hero-image-dev-chooser";
 
 type LocationMediaShowcaseProps = {
   assets: MediaAsset[];
+  devPageId: string;
   title: string;
   intro: string;
 };
@@ -16,6 +21,7 @@ function formatCategoryLabel(category: MediaAsset["category"]) {
 
 export function LocationMediaShowcase({
   assets,
+  devPageId,
   title,
   intro,
 }: LocationMediaShowcaseProps) {
@@ -24,14 +30,19 @@ export function LocationMediaShowcase({
   }
 
   const [leadAsset, ...supportingAssets] = assets;
+  const devChooserEnabled = process.env.NODE_ENV === "development";
+  const devChooserAssets = getPublicImageDevChooserAssets(assets);
+  const imageCountLabel = `${assets.length} school-life ${
+    assets.length === 1 ? "image" : "images"
+  }`;
 
   return (
     <section className="border-b border-border-soft bg-background site-section-compact">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
+        <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-start">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
-              Location context
+              School life
             </p>
             <h2 className="mt-3 max-w-xl text-3xl font-semibold leading-tight text-brand-blue-strong">
               {title}
@@ -39,23 +50,39 @@ export function LocationMediaShowcase({
             <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-600">
               {intro}
             </p>
-            <p className="mt-5 border-l border-brand-gold pl-4 text-sm leading-6 text-slate-700">
-              These images remain supporting context only; final public image
-              selection can still be reviewed separately.
+            <p className="mt-5 border-l border-brand-accent pl-4 text-sm font-semibold leading-6 text-brand-blue-strong">
+              {imageCountLabel}
+            </p>
+            <p className="mt-3 text-sm leading-6 text-slate-600">
+              These images help families picture the learning environment,
+              classroom materials, performances, and culture around the school.
             </p>
           </div>
 
-          <div className="grid gap-4 lg:grid-cols-[1.25fr_0.75fr]">
+          <div className="grid gap-4">
             <figure className="overflow-hidden rounded-lg border border-border-soft bg-surface">
               <div className="relative aspect-[4/3] min-h-64 bg-surface-muted">
-                <Image
-                  src={leadAsset.approvedPublicPath}
-                  alt={leadAsset.altText}
-                  fill
-                  sizes="(min-width: 1024px) 560px, 100vw"
-                  className="object-cover"
-                  loading="eager"
-                />
+                {devChooserEnabled ? (
+                  <HeroImageDevChooser
+                    assets={devChooserAssets}
+                    initialAssetId={leadAsset.id}
+                    pageId={devPageId}
+                    slotId="location-lead"
+                    slotLabel="Location lead"
+                    sizes="(min-width: 1024px) 560px, 100vw"
+                    className="object-cover"
+                    priority
+                  />
+                ) : (
+                  <Image
+                    src={leadAsset.approvedPublicPath}
+                    alt={leadAsset.altText}
+                    fill
+                    sizes="(min-width: 1024px) 560px, 100vw"
+                    className="object-cover"
+                    loading="eager"
+                  />
+                )}
               </div>
               <figcaption className="p-4">
                 <p className="text-sm font-semibold text-brand-blue-strong">
@@ -68,24 +95,39 @@ export function LocationMediaShowcase({
             </figure>
 
             {supportingAssets.length > 0 ? (
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-                {supportingAssets.slice(0, 3).map((asset) => (
+              <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
+                {supportingAssets.map((asset, index) => (
                   <figure
                     key={asset.id}
                     className="overflow-hidden rounded-lg border border-border-soft bg-surface"
                   >
-                    <div className="relative aspect-[4/3] min-h-40 bg-surface-muted">
-                      <Image
-                        src={asset.approvedPublicPath}
-                        alt={asset.altText}
-                        fill
-                        sizes="(min-width: 1024px) 280px, (min-width: 640px) 50vw, 100vw"
-                        className="object-cover"
-                      />
+                    <div className="relative aspect-[4/3] min-h-32 bg-surface-muted sm:min-h-40">
+                      {devChooserEnabled ? (
+                        <HeroImageDevChooser
+                          assets={devChooserAssets}
+                          initialAssetId={asset.id}
+                          pageId={devPageId}
+                          slotId={`location-small-${index + 1}`}
+                          slotLabel={`Location small ${index + 1}`}
+                          sizes="(min-width: 1024px) 260px, (min-width: 640px) 50vw, 100vw"
+                          className="object-cover"
+                        />
+                      ) : (
+                        <Image
+                          src={asset.approvedPublicPath}
+                          alt={asset.altText}
+                          fill
+                          sizes="(min-width: 1024px) 260px, (min-width: 640px) 50vw, 100vw"
+                          className="object-cover"
+                        />
+                      )}
                     </div>
                     <figcaption className="p-3">
-                      <p className="text-sm font-semibold leading-5 text-brand-blue-strong">
+                      <p className="line-clamp-2 text-xs font-semibold leading-5 text-brand-blue-strong sm:text-sm">
                         {asset.caption}
+                      </p>
+                      <p className="mt-1 hidden text-[0.62rem] font-semibold uppercase tracking-[0.1em] text-muted sm:block">
+                        {formatCategoryLabel(asset.category)}
                       </p>
                     </figcaption>
                   </figure>

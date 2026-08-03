@@ -104,6 +104,13 @@ const onlineOnlyHighlights = [
   "Registering interest helps the school understand future local demand",
 ];
 
+const confirmationPendingHighlights = [
+  "Exeter and Devon are included as a register-interest area while local details are confirmed",
+  "Russian language, literature, culture, and balanced bilingualism remain the learning focus",
+  "Families can ask about online learning while local provision is being reviewed",
+  "Venue, timetable, staffing, and fees will be published only after confirmation",
+];
+
 function getFutureInterestHref(slug: string) {
   return `/contact?school=${slug}&intent=future-interest#enquiry-form`;
 }
@@ -329,6 +336,41 @@ export const schools: School[] = [
     sourceNotes: [
       "Confirm whether local demand is high enough to reopen in-person classes.",
       "Confirm venue, timetable, staffing, and fees before publishing a weekend schedule.",
+    ],
+  },
+  {
+    slug: "exeter",
+    name: "Exeter",
+    area: "Exeter",
+    county: "Devon",
+    status: "online",
+    statusLabel: "Details to be confirmed / register interest",
+    statusDescription:
+      "Exeter is listed as a Devon register-interest area while local school details are confirmed. Families can also ask about online Russian learning.",
+    availabilitySummary:
+      "Exeter is listed as a Devon register-interest area while venue, timetable, and local provision are confirmed.",
+    lead: "A developing Devon route for families interested in Russian language, literature, culture, and balanced bilingualism.",
+    venueName: "Exeter area",
+    address: ["Devon"],
+    postcode: "",
+    schedule: "Local provision and timetable to be confirmed",
+    scheduleNote:
+      "No local venue or timetable should be treated as confirmed until the school publishes final details.",
+    lessonPlan: [],
+    classGroups,
+    highlights: confirmationPendingHighlights,
+    bestNextSteps: createOnlineBranchDecisionSteps("Exeter", "exeter"),
+    nearbyAlternativeCta: {
+      label: "See current locations",
+      body: "Compare the current in-person branch, other register-interest areas, and online routes.",
+      href: "/schools#compare-branches",
+    },
+    enquiryCta: "Ask about Exeter",
+    mapHref:
+      "https://www.google.com/maps/search/?api=1&query=Exeter%20Devon",
+    sourceNotes: [
+      "Confirm Exeter's relationship to the current school network before final publication.",
+      "Confirm venue, timetable, staffing, class groups, fees, and launch status before publishing local provision.",
     ],
   },
 ];
