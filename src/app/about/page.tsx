@@ -5,6 +5,7 @@ import {
   ButtonLink,
   quietHeroLinkClassName,
 } from "@/components/site/button-link";
+import { HeroImageDevChooser } from "@/components/site/hero-image-dev-chooser";
 import { PageCta } from "@/components/site/page-cta";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionIntro } from "@/components/site/section-intro";
@@ -15,7 +16,14 @@ import {
   placementSteps,
 } from "@/data/public/curriculum";
 import {
+  parentValueProps,
+  schoolLifeHighlights,
+  schoolProofPoints,
+  schoolStory,
+} from "@/data/public/school-story";
+import {
   getGalleryCategoryCoverAsset,
+  getPublicImageDevChooserAssets,
   getVisualPlaceholderSlot,
   type MediaAsset,
 } from "@/features/gallery/data/media-assets";
@@ -27,78 +35,44 @@ const aboutSupportingAssets = [
   getGalleryCategoryCoverAsset("classroom-learning"),
 ].filter((asset): asset is MediaAsset => Boolean(asset));
 
-const reviewNotes = [
-  "Class groups and placement guidance are shared clearly, with exact fit confirmed through enquiry.",
-  "Branch pages focus on current practical details so families can choose the best next step.",
-  "Photos, staff details, certificates, and partner references can be added when they are suitable for families to view.",
+const nextStepNotes = [
+  "Tell us about your child's Russian, confidence, reading and writing, and family goals.",
+  "Ask about the current location, online route, or future local classes that could fit your family.",
+  "The school can guide placement without expecting parents to diagnose the perfect class alone.",
 ];
 
-const schoolStory = [
+const schoolStoryCards = [
   {
     label: "In the classroom",
     icon: BookOpen,
-    title: "Russian is treated as a living language",
-    body: "Children meet Russian through speaking, reading, writing, stories, cultural work, and creative school moments rather than a narrow vocabulary-only routine.",
+    title: "Russian is taught as a living language",
+    body: "Children meet Russian through speaking, reading, writing, grammar, stories, cultural work, and creative school moments rather than a narrow vocabulary-only routine.",
   },
   {
     label: "Across childhood",
     icon: UsersRound,
-    title: "Progression is allowed to take time",
-    body: "The school presents learning as a steady supplementary pathway, from early confidence through more structured language, literature, and exam-aware preparation where relevant.",
+    title: "Balanced bilingualism is the goal",
+    body: "The school helps children growing up in the UK keep Russian strong enough for family life, culture, literacy, and later study.",
   },
   {
-    label: "At the start",
+    label: "Through culture",
     icon: ClipboardCheck,
-    title: "Placement begins with the child in front of the school",
-    body: "Age is useful, but it is not the whole story. Home language exposure, confidence, reading, writing, and teacher judgement all shape the first recommendation.",
-  },
-];
-
-const familyNotices = [
-  {
-    title: "The tone is academic without feeling cold",
-    body: "The public site should make room for seriousness, care, and warmth in the same breath.",
-  },
-  {
-    title: "Culture sits beside language, not after it",
-    body: "Literature, performance, creative work, and shared traditions help explain why families choose a weekend school.",
-  },
-  {
-    title: "The practical questions are welcomed early",
-    body: "Location, age, confidence, reading, writing, and goals are treated as useful context rather than barriers to asking.",
-  },
-  {
-    title: "The record stays careful",
-    body: "Public claims can grow as suitable photos, staff details, certificates, and archive material are reviewed for family-facing use.",
-  },
-];
-
-const publicRecordGuides = [
-  {
-    title: "Branch pages",
-    body: "Use these for current location details, availability language, and the best next step for a local enquiry.",
-  },
-  {
-    title: "Curriculum pages",
-    body: "Use these to understand the learning route before asking about the right class group.",
-  },
-  {
-    title: "Policies and contact",
-    body: "Use these to check the school structure and share the practical information needed for a useful reply.",
+    title: "Pushkin is more than a name",
+    body: "The school takes inspiration from Alexander Pushkin and the ambition that pupils can move towards reading Russian works in the original.",
   },
 ];
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About Pushkin's School of Russian Language and Literature, a weekend supplementary Russian school for children.",
+    "About Pushkin's School of Russian Language and Literature: founded in 2009 to help children in the UK build balanced bilingualism, Russian culture, and literacy.",
   alternates: {
     canonical: "/about",
   },
   openGraph: {
     title: "About Pushkin's School",
     description:
-      "Learn about Pushkin's School and its weekend Russian language, literature, and culture classes for children.",
+      "Learn about Pushkin's School, its Russian language and literature mission, Moscow-linked curriculum, and cultural pathway for children.",
     url: "/about",
   },
 };
@@ -108,7 +82,7 @@ export default function AboutPage() {
     <main>
       <PageHero
         eyebrow="About Pushkin's School"
-        title="A Russian school community for children and families"
+        title="A Russian school community built around language, culture, and identity"
         actions={
           <>
             <ButtonLink href="/schools" icon={<MapPin className="size-4" />}>
@@ -121,7 +95,7 @@ export default function AboutPage() {
               icon={<ArrowRight className="size-4" />}
               iconPosition="end"
             >
-              Start an enquiry
+              Tell us about your child
             </ButtonLink>
           </>
         }
@@ -137,10 +111,9 @@ export default function AboutPage() {
         }
       >
         <p>
-          Pushkin&apos;s School is a warm, academic weekend supplementary school
-          for children studying Russian language, literature, and culture in the
-          UK. Families can see the learning approach, locations, admissions
-          pathway, and policy structure before they enquire.
+          {schoolStory.history} It was created for families who want Russian
+          to remain part of their child&apos;s everyday confidence, literacy,
+          culture, and future study.
         </p>
       </PageHero>
 
@@ -149,25 +122,20 @@ export default function AboutPage() {
           <div>
             <SectionIntro
               eyebrow="School story"
-              title="A weekend school built around continuity"
+              title="Founded in 2009 to keep Russian strong for children in the UK"
             >
               <p>
-                Parents need to see more than a list of subjects. Pushkin&apos;s
-                School is a long-term educational setting: a place where
-                Russian is practised, read, written, performed, and kept
+                Pushkin&apos;s School is a long-term educational setting: a place
+                where Russian is practised, read, written, performed, and kept
                 culturally alive across childhood.
               </p>
             </SectionIntro>
             <div className="mt-8 space-y-5 text-base leading-7 text-slate-700">
               <p>
-                The school&apos;s public message focuses on what matters most to
-                parents: a reliable weekend rhythm, thoughtful placement, clear
-                branch information, and careful safeguarding and policy
-                signposting.
+                {schoolStory.curriculum}
               </p>
               <p>
-                Families can understand the school&apos;s standards and rhythm
-                through practical detail rather than generic promises.
+                {schoolStory.materials}
               </p>
             </div>
           </div>
@@ -176,7 +144,7 @@ export default function AboutPage() {
               The shape of the story
             </p>
             <div className="mt-6 divide-y divide-border-soft">
-              {schoolStory.map((item) => (
+              {schoolStoryCards.map((item) => (
                 <article
                   key={item.title}
                   className="grid gap-3 py-5 first:pt-0 last:pb-0 sm:grid-cols-[8rem_1fr]"
@@ -205,24 +173,22 @@ export default function AboutPage() {
           <div>
             <SectionIntro
               eyebrow="What families notice"
-              title="A human school, not just a timetable"
+              title="What parents are choosing"
             >
               <p>
-                The strongest public story is the one families can recognise:
-                a child arriving with a particular mix of confidence,
-                hesitation, ability, and family context, then being guided into
-                a suitable learning rhythm.
+                Parents are not only choosing weekend lessons. They are choosing
+                a place where Russian culture, literature, identity, and
+                confident bilingualism are treated as a serious part of
+                childhood.
               </p>
             </SectionIntro>
             <p className="mt-8 max-w-xl text-base leading-7 text-slate-700">
-              This page keeps the claims modest while giving parents a clearer
-              feel for the school: warm, structured, culturally grounded, and
-              practical about placement.
+              {schoolStory.culturalLife}
             </p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
-            {familyNotices.map((item) => (
-              <article key={item.title} className="border-l border-brand-gold pl-5">
+            {parentValueProps.map((item) => (
+              <article key={item.title} className="border-l border-brand-accent pl-5">
                 <CheckCircle2 aria-hidden="true" className="mb-3 size-5 text-brand-red" />
                 <h2 className="text-xl font-semibold leading-tight text-brand-blue-strong">
                   {item.title}
@@ -241,21 +207,20 @@ export default function AboutPage() {
           <div>
             <SectionIntro
               eyebrow="Curriculum and placement"
-              title="A shared pathway that still leaves room for the child"
+              title="A Moscow-linked curriculum that still starts with the child"
             >
               <p>
-                Common class groups, an introductory period, and teacher
-                judgement help new pupils start in a sensible place. This is
-                presented as a measured parent journey instead of a quick set of
-                cards.
+                Common class groups, teacher judgement, and an understanding of
+                UK-raised bilingual children help new pupils start in a
+                sensible place.
               </p>
             </SectionIntro>
           </div>
           <div className="grid gap-8">
-            <div className="relative border-l border-brand-gold pl-6">
+            <div className="relative border-l border-brand-accent pl-6">
               {placementSteps.map((step, index) => (
                 <article key={step.title} className="relative pb-8 last:pb-0">
-                  <span className="absolute -left-[2.05rem] top-1 flex size-5 items-center justify-center rounded-full border border-brand-gold bg-background">
+                  <span className="absolute -left-[2.05rem] top-1 flex size-5 items-center justify-center rounded-full border border-brand-accent bg-background">
                     <ClipboardCheck aria-hidden="true" className="size-3 text-brand-red" />
                   </span>
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
@@ -275,8 +240,8 @@ export default function AboutPage() {
                 Teaching spine
               </h2>
               <ul className="mt-4 divide-y divide-border-soft text-sm leading-6 text-slate-700">
-                {curriculumMaterials.map((item) => (
-                <li key={item} className="py-3 first:pt-0 last:pb-0">
+                {[...curriculumMaterials, ...schoolLifeHighlights].map((item) => (
+                  <li key={item} className="py-3 first:pt-0 last:pb-0">
                     <span className="flex gap-2">
                       <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
                       <span>{item}</span>
@@ -293,13 +258,11 @@ export default function AboutPage() {
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
           <SectionIntro
             eyebrow="Education philosophy"
-            title="Language learning that connects home, school, and culture"
+            title="Language learning that connects home, school, Moscow, and culture"
           >
             <p>
-              The school message centres on bilingual development, practical
-              communication, cultural literacy, and a shared curriculum.
-              Together, these principles form a coherent philosophy rather than
-              a set of interchangeable boxes.
+              {schoolStory.philosophy} This is why language, literature,
+              performance, grammar, and culture are taught together.
             </p>
           </SectionIntro>
           <div className="divide-y divide-border-soft border-y border-border-soft">
@@ -326,24 +289,26 @@ export default function AboutPage() {
       <section className="bg-background site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
           <SectionIntro
-            eyebrow="Public record"
-            title="Clear enough for today, careful enough to grow"
+            eyebrow="Proof points"
+            title="A school history parents can understand quickly"
           >
             <p>
-              The website can help families now without overstating the record.
-              It gives practical school information first, then leaves room for
-              more public proof points as they are reviewed.
+              The school story is simple: a long-running Russian school
+              founded in 2009, with a five-school heritage, a Moscow-linked
+              curriculum, performances, and progression for children growing
+              up in England. GCSE and A Level Russian are handled through the
+              related Volna Online Russian School route.
             </p>
           </SectionIntro>
           <div className="grid gap-5 sm:grid-cols-3">
-            {publicRecordGuides.map((item) => (
-              <article key={item.title} className="border-t border-brand-gold pt-5">
+            {schoolProofPoints.map((item) => (
+              <article key={item.value} className="border-t border-brand-accent pt-5">
                 <BookOpen aria-hidden="true" className="mb-3 size-5 text-brand-red" />
                 <h2 className="text-xl font-semibold text-brand-blue-strong">
-                  {item.title}
+                  {item.value}
                 </h2>
                 <p className="mt-3 text-sm leading-6 text-slate-600">
-                  {item.body}
+                  {item.label}
                 </p>
               </article>
             ))}
@@ -353,7 +318,7 @@ export default function AboutPage() {
 
       <PageCta
         eyebrow="Parent confidence"
-        title="Ask about the right next step for your child"
+        title="Tell us about your child and the right class can follow"
         tone="light"
         actions={
           <ButtonLink
@@ -361,18 +326,18 @@ export default function AboutPage() {
             icon={<ArrowRight className="size-4" />}
             iconPosition="end"
           >
-            Start an enquiry
+            Tell us about your child
           </ButtonLink>
         }
       >
         <p>
-          The school can add more history, staff detail, trips, certificates,
-          and photographs over time while keeping the current parent journey
-          clear and reliable.
+          Share your child&apos;s age, Russian confidence, home-language
+          background, and goals. The school can then suggest the most suitable
+          route.
         </p>
         <ul className="mt-4 grid gap-2 text-sm leading-6 text-slate-600">
-          {reviewNotes.map((note) => (
-            <li key={note} className="flex gap-2 border-l border-brand-gold pl-4">
+          {nextStepNotes.map((note) => (
+            <li key={note} className="flex gap-2 border-l border-brand-accent pl-4">
               <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
               <span>{note}</span>
             </li>
@@ -390,19 +355,37 @@ function AboutSchoolPhotoPanel({
   leadAsset: MediaAsset;
   supportingAssets: MediaAsset[];
 }) {
+  const devChooserEnabled = process.env.NODE_ENV === "development";
+  const devChooserAssets = getPublicImageDevChooserAssets([
+    leadAsset,
+    ...supportingAssets,
+  ]);
+
   return (
     <figure
       className="premium-panel overflow-hidden rounded-lg border border-border-soft bg-surface"
       aria-labelledby="about-school-photo-heading"
     >
       <div className="relative min-h-80 bg-surface-muted sm:min-h-[25rem]">
-        <Image
-          src={leadAsset.approvedPublicPath}
-          alt={leadAsset.altText}
-          fill
-          sizes="(min-width: 1024px) 48vw, 100vw"
-          className="object-cover"
-        />
+        {devChooserEnabled ? (
+          <HeroImageDevChooser
+            assets={devChooserAssets}
+            initialAssetId={leadAsset.id}
+            pageId="about"
+            slotId="lead"
+            slotLabel="About lead"
+            sizes="(min-width: 1024px) 48vw, 100vw"
+            className="object-cover"
+          />
+        ) : (
+          <Image
+            src={leadAsset.approvedPublicPath}
+            alt={leadAsset.altText}
+            fill
+            sizes="(min-width: 1024px) 48vw, 100vw"
+            className="object-cover"
+          />
+        )}
       </div>
       <figcaption className="p-5 sm:p-6">
         <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-red">
@@ -419,18 +402,30 @@ function AboutSchoolPhotoPanel({
         </p>
         {supportingAssets.length > 0 ? (
           <div className="mt-5 grid grid-cols-2 gap-2">
-            {supportingAssets.slice(0, 2).map((asset) => (
+            {supportingAssets.slice(0, 2).map((asset, index) => (
               <div
                 key={asset.id}
                 className="relative min-h-32 overflow-hidden rounded-md bg-surface-muted"
               >
-                <Image
-                  src={asset.approvedPublicPath}
-                  alt={asset.altText}
-                  fill
-                  sizes="(min-width: 1024px) 18vw, 50vw"
-                  className="object-cover"
-                />
+                {devChooserEnabled ? (
+                  <HeroImageDevChooser
+                    assets={devChooserAssets}
+                    initialAssetId={asset.id}
+                    pageId="about"
+                    slotId={`small-${index + 1}`}
+                    slotLabel={`About small ${index + 1}`}
+                    sizes="(min-width: 1024px) 18vw, 50vw"
+                    className="object-cover"
+                  />
+                ) : (
+                  <Image
+                    src={asset.approvedPublicPath}
+                    alt={asset.altText}
+                    fill
+                    sizes="(min-width: 1024px) 18vw, 50vw"
+                    className="object-cover"
+                  />
+                )}
               </div>
             ))}
           </div>
