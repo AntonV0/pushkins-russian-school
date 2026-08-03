@@ -50,7 +50,7 @@ export function AssetReadinessPanel({
       <p className="mt-3 text-sm leading-6 text-slate-600">{status}</p>
       <ul className="mt-6 space-y-3 text-sm text-slate-700">
         {notes.map((note) => (
-          <li key={note} className="border-l border-brand-gold pl-4">
+          <li key={note} className="border-l border-brand-accent pl-4">
             {note}
           </li>
         ))}
@@ -88,7 +88,7 @@ export function MediaAssetGrid({
               aria-hidden="true"
             />
             <div
-              className="absolute right-8 top-10 h-20 w-28 rounded-md border border-dashed border-brand-gold/40 bg-white/60"
+              className="absolute right-8 top-10 h-20 w-28 rounded-md border border-dashed border-brand-accent/40 bg-white/60"
               aria-hidden="true"
             />
             <figcaption className="relative">

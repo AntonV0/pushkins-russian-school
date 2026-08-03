@@ -21,7 +21,7 @@ export function VisualStoryPanel({ slot, compact = false }: VisualStoryPanelProp
         <div className="fine-grid absolute inset-0" aria-hidden="true" />
         <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/55 to-transparent" />
         <div
-          className="absolute right-8 top-8 h-24 w-36 rotate-3 rounded-md border border-brand-gold/30 bg-white/40"
+          className="absolute right-8 top-8 h-24 w-36 rotate-3 rounded-md border border-brand-accent/30 bg-white/40"
           aria-hidden="true"
         />
         <div
@@ -41,7 +41,7 @@ export function VisualStoryPanel({ slot, compact = false }: VisualStoryPanelProp
           {slot.title}
         </h2>
         <p className="mt-3 text-sm leading-6 text-slate-600">{slot.summary}</p>
-        <p className="mt-5 border-l border-brand-gold pl-4 text-sm font-semibold leading-6 text-brand-blue-strong">
+        <p className="mt-5 border-l border-brand-accent pl-4 text-sm font-semibold leading-6 text-brand-blue-strong">
           {slot.statusLabel}
         </p>
       </figcaption>
@@ -67,20 +67,20 @@ function LanguageTableMotif() {
     <div className="absolute inset-0" aria-hidden="true">
       <div className="absolute bottom-8 left-8 right-8 h-24 rounded-lg border border-brand-blue/10 bg-white shadow-sm" />
       <div className="absolute bottom-20 left-[18%] h-32 w-28 rotate-[-5deg] rounded-md border border-border-soft bg-white shadow-md">
-        <div className="mx-auto mt-5 h-2 w-16 rounded-full bg-brand-gold/45" />
+        <div className="mx-auto mt-5 h-2 w-16 rounded-full bg-brand-accent/45" />
         <div className="mx-auto mt-4 h-16 w-16 rounded-md bg-surface-blue text-center text-5xl font-semibold leading-[4rem] text-brand-blue-strong">
           {"\u042f"}
         </div>
       </div>
       <div className="absolute bottom-24 right-[18%] h-28 w-24 rotate-[7deg] rounded-md border border-border-soft bg-white shadow-md">
         <div className="mx-auto mt-4 h-2 w-14 rounded-full bg-brand-red/25" />
-        <div className="mx-auto mt-4 h-14 w-14 rounded-md bg-brand-gold/15 text-center text-4xl font-semibold leading-[3.5rem] text-brand-red">
+        <div className="mx-auto mt-4 h-14 w-14 rounded-md bg-brand-accent/15 text-center text-4xl font-semibold leading-[3.5rem] text-brand-red">
           {"\u0410"}
         </div>
       </div>
       <div className="absolute bottom-14 left-[44%] h-3 w-36 rotate-[-12deg] rounded-full bg-brand-red/70 shadow-sm" />
-      <div className="absolute bottom-11 left-[41%] h-3 w-10 rotate-[-12deg] rounded-full bg-brand-gold" />
-      <div className="absolute right-12 top-12 rounded-full border border-brand-gold/50 bg-white px-4 py-2 text-sm font-semibold text-brand-blue-strong shadow-sm">
+      <div className="absolute bottom-11 left-[41%] h-3 w-10 rotate-[-12deg] rounded-full bg-brand-accent" />
+      <div className="absolute right-12 top-12 rounded-full border border-brand-accent/50 bg-white px-4 py-2 text-sm font-semibold text-brand-blue-strong shadow-sm">
         Reading
       </div>
     </div>
@@ -93,7 +93,7 @@ function CultureShelfMotif() {
       <div className="absolute left-10 right-10 top-20 h-3 rounded-full bg-brand-blue/15" />
       <div className="absolute left-16 top-10 h-28 w-10 rounded-t-md bg-brand-blue shadow-sm" />
       <div className="absolute left-[7.5rem] top-16 h-[5.5rem] w-9 rounded-t-md bg-brand-red shadow-sm" />
-      <div className="absolute left-44 top-8 h-[7.5rem] w-10 rounded-t-md bg-brand-gold shadow-sm" />
+      <div className="absolute left-44 top-8 h-[7.5rem] w-10 rounded-t-md bg-brand-accent shadow-sm" />
       <div className="absolute left-60 top-14 h-24 w-9 rounded-t-md bg-white shadow-sm" />
       <div className="absolute bottom-12 left-14 right-14 h-28 rounded-lg border border-border-soft bg-white shadow-md">
         <div className="absolute left-6 top-6 h-16 w-28 rounded-md bg-surface-blue" />
@@ -102,9 +102,9 @@ function CultureShelfMotif() {
         </div>
         <div className="absolute right-8 top-7 grid grid-cols-3 gap-2">
           <span className="size-7 rounded-sm bg-brand-red" />
-          <span className="size-7 rounded-sm bg-brand-gold" />
+          <span className="size-7 rounded-sm bg-brand-accent" />
           <span className="size-7 rounded-sm bg-brand-blue" />
-          <span className="size-7 rounded-sm bg-brand-gold" />
+          <span className="size-7 rounded-sm bg-brand-accent" />
           <span className="size-7 rounded-sm bg-brand-blue" />
           <span className="size-7 rounded-sm bg-brand-red" />
         </div>
@@ -116,7 +116,7 @@ function CultureShelfMotif() {
 function LearningJourneyMotif() {
   return (
     <div className="absolute inset-0" aria-hidden="true">
-      <div className="absolute left-[20%] top-[52%] h-1 w-[60%] rounded-full bg-brand-gold/60" />
+      <div className="absolute left-[20%] top-[52%] h-1 w-[60%] rounded-full bg-brand-accent/60" />
       {[0, 1, 2].map((step) => (
         <div
           key={step}
@@ -129,13 +129,13 @@ function LearningJourneyMotif() {
       <div className="absolute left-10 top-10 h-24 w-32 rotate-[-4deg] rounded-md border border-border-soft bg-white shadow-sm">
         <div className="mx-4 mt-4 h-2 rounded-full bg-brand-red/30" />
         <div className="mx-4 mt-3 h-2 rounded-full bg-brand-blue/20" />
-        <div className="mx-4 mt-3 h-2 w-16 rounded-full bg-brand-gold/45" />
+        <div className="mx-4 mt-3 h-2 w-16 rounded-full bg-brand-accent/45" />
       </div>
       <div className="absolute bottom-8 right-12 h-28 w-36 rotate-[5deg] rounded-md border border-border-soft bg-white shadow-sm">
         <div className="mx-auto mt-5 size-14 rounded-md bg-surface-blue text-center text-4xl font-semibold leading-[3.5rem] text-brand-red">
           {"\u0411"}
         </div>
-        <div className="mx-auto mt-4 h-2 w-20 rounded-full bg-brand-gold/45" />
+        <div className="mx-auto mt-4 h-2 w-20 rounded-full bg-brand-accent/45" />
       </div>
     </div>
   );
@@ -150,12 +150,12 @@ function ArchiveGridMotif() {
             key={slot}
             className="aspect-[4/3] rounded-md border border-dashed border-brand-blue/25 bg-white/75 shadow-sm"
           >
-            <div className="m-4 h-2 rounded-full bg-brand-gold/35" />
+            <div className="m-4 h-2 rounded-full bg-brand-accent/35" />
             <div className="mx-4 mt-3 h-2 w-1/2 rounded-full bg-brand-blue/15" />
           </div>
         ))}
       </div>
-      <div className="absolute bottom-8 left-10 right-10 rounded-md border border-brand-gold/35 bg-white px-5 py-4 shadow-sm">
+      <div className="absolute bottom-8 left-10 right-10 rounded-md border border-brand-accent/35 bg-white px-5 py-4 shadow-sm">
         <div className="h-2 w-28 rounded-full bg-brand-red/30" />
         <div className="mt-3 h-2 w-44 rounded-full bg-brand-blue/15" />
       </div>
