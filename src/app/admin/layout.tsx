@@ -30,27 +30,33 @@ export default async function AdminLayout({
           <nav aria-label="Admin navigation" className="flex gap-4">
             <Link
               href="/admin"
-              className="text-blue-50 underline decoration-brand-gold/60 underline-offset-4 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40"
+              className="text-blue-50 underline decoration-brand-accent/60 underline-offset-4 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40"
             >
               Overview
             </Link>
             <Link
               href="/admin/invoices"
-              className="text-blue-50 underline decoration-brand-gold/60 underline-offset-4 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40"
+              className="text-blue-50 underline decoration-brand-accent/60 underline-offset-4 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40"
             >
               Invoices
             </Link>
             <Link
               href="/admin/enquiries"
-              className="text-blue-50 underline decoration-brand-gold/60 underline-offset-4 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40"
+              className="text-blue-50 underline decoration-brand-accent/60 underline-offset-4 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40"
             >
               Enquiries
             </Link>
             <Link
               href="/admin/registrations"
-              className="text-blue-50 underline decoration-brand-gold/60 underline-offset-4 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40"
+              className="text-blue-50 underline decoration-brand-accent/60 underline-offset-4 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40"
             >
               Registrations
+            </Link>
+            <Link
+              href="/admin/media-review"
+              className="text-blue-50 underline decoration-brand-accent/60 underline-offset-4 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/40"
+            >
+              Media review
             </Link>
           </nav>
         </div>

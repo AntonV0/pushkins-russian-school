@@ -8,6 +8,7 @@ import {
   sampleInvoices,
 } from "@/features/admin/data/invoices";
 import { registrationSummary } from "@/features/admin/data/registration";
+import { wixImportedMediaAssets } from "@/features/gallery/data/wix-imported-media-assets";
 import { getAdminAccessDecision } from "@/lib/admin/access";
 
 export const metadata: Metadata = {
@@ -55,6 +56,12 @@ export default async function AdminPage() {
       detail: "Registration sections modelled for future onboarding",
       href: "/admin/registrations",
     },
+    {
+      label: "Media review",
+      value: wixImportedMediaAssets.length.toString(),
+      detail: "Recovered Wix images sorted for editorial review",
+      href: "/admin/media-review",
+    },
   ];
   const adminNotes = [
     access.notice,
@@ -67,7 +74,7 @@ export default async function AdminPage() {
     <main className="bg-background">
       <section className="border-b border-border-soft bg-brand-blue-strong py-16 text-white sm:py-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-gold">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-accent">
             Admin shell
           </p>
           <h1 className="mt-4 max-w-4xl text-4xl font-semibold sm:text-5xl">
@@ -103,7 +110,7 @@ export default async function AdminPage() {
       </section>
 
       <section className="border-b border-border-soft bg-surface py-12">
-        <div className="mx-auto grid max-w-7xl gap-4 px-6 md:grid-cols-3 xl:grid-cols-6 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-4 px-6 md:grid-cols-3 xl:grid-cols-7 lg:px-8">
           {adminTiles.map((tile) => (
             <Link
               key={tile.label}
