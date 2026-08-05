@@ -55,6 +55,7 @@ public/images/original/*
 # Temporary local media review area. Remove or narrow these rules when the
 # final publication-ready website media is selected.
 public/images/archive/extended/wix-missing/
+public/images/review/
 public/images/site/homepage-hero-*.jpg
 public/videos/*
 !public/videos/site/

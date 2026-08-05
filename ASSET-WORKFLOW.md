@@ -57,6 +57,11 @@ media is provided.
 
 ## Folder Intent
 
+Use `public/images/review/{location}` for optimised, local-only candidates that
+must be visible in the admin media-review tool before a publication decision.
+This folder stays ignored by Git. Promote only chosen, consent-checked images
+into the location, archive, or site folders below.
+
 Use these folders only after image review:
 
 - `public/images/locations/bracknell`: approved Bracknell location-page images.

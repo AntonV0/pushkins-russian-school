@@ -23,8 +23,12 @@ type MediaReviewDashboardProps = {
 };
 
 type FilterValue = "all" | string;
-type ReviewScope = "selected" | "all" | "excluded";
-type ReviewSource = "approved-featured" | "extended-archive" | "wix-import";
+type ReviewScope = "selected" | "needs-review" | "all" | "excluded";
+type ReviewSource =
+  | "approved-featured"
+  | "extended-archive"
+  | "wix-import"
+  | "bracknell-import";
 export type MediaReviewAsset = MediaAsset & {
   reviewKey: string;
   reviewSource: ReviewSource;
@@ -79,6 +83,11 @@ const reviewScopeOptions: Array<{
     scope: "selected",
     label: "Selected only",
     description: "Deduped images ready for page/gallery assignment.",
+  },
+  {
+    scope: "needs-review",
+    label: "Needs review",
+    description: "New candidates awaiting a use decision and consent check.",
   },
   {
     scope: "all",
@@ -166,10 +175,15 @@ function getEligibleUses(decision: ReviewDecision) {
   return [decision];
 }
 
-function getSuggestedDecision(asset: MediaReviewAsset): ReviewDecision {
+function getSuggestedDecision(asset: MediaReviewAsset): ReviewDecision | null {
+  if (
+    asset.consentStatus === "needs-review"
+  ) {
+    return null;
+  }
+
   if (
     asset.consentStatus === "do-not-use" ||
-    asset.consentStatus === "needs-review" ||
     asset.qualityRating === "replace"
   ) {
     return "skip";
@@ -201,6 +215,10 @@ function getSuggestedDecision(asset: MediaReviewAsset): ReviewDecision {
 function buildSuggestedDecisions(assets: MediaReviewAsset[]) {
   return assets.reduce<ReviewDecisions>((suggestions, asset) => {
     const decision = getSuggestedDecision(asset);
+
+    if (!decision) {
+      return suggestions;
+    }
 
     suggestions[asset.reviewKey] = {
       decision,
@@ -332,6 +350,8 @@ export function MediaReviewDashboard({
       assets.filter(
         (asset) =>
           (reviewScope === "all" ||
+            (reviewScope === "needs-review" &&
+              asset.consentStatus === "needs-review") ||
             (reviewScope === "selected" &&
               selectedReviewKeySet.has(asset.reviewKey)) ||
             (reviewScope === "excluded" &&
@@ -355,6 +375,8 @@ export function MediaReviewDashboard({
       assets.filter(
         (asset) =>
           reviewScope === "all" ||
+          (reviewScope === "needs-review" &&
+            asset.consentStatus === "needs-review") ||
           (reviewScope === "selected" &&
             selectedReviewKeySet.has(asset.reviewKey)) ||
           (reviewScope === "excluded" &&
@@ -578,7 +600,7 @@ export function MediaReviewDashboard({
 
       <section className="border-b border-border-soft bg-surface py-5">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-3 md:grid-cols-3">
+          <div className="grid gap-3 md:grid-cols-4">
             {reviewScopeOptions.map((option) => {
               const isSelected = reviewScope === option.scope;
 

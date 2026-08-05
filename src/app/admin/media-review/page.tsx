@@ -4,6 +4,7 @@ import {
   MediaReviewDashboard,
   type MediaReviewAsset,
 } from "@/components/admin/media-review-dashboard";
+import { bracknellImportedMediaAssets } from "@/features/gallery/data/bracknell-imported-media-assets";
 import { extendedGalleryMediaAssets } from "@/features/gallery/data/extended-gallery-assets";
 import { approvedMediaAssets } from "@/features/gallery/data/media-assets";
 import mediaSelectionManifest from "@/features/gallery/data/media-selection-manifest.json";
@@ -13,12 +14,15 @@ import { wixImportedVideoAssets } from "@/features/gallery/data/wix-imported-vid
 export const metadata: Metadata = {
   title: "Media Review",
   description:
-    "Internal review dashboard for recovered Wix images and videos.",
+    "Internal review dashboard for imported and approved project media.",
 };
 
 export default function MediaReviewPage() {
   const wixImportedIds = new Set(
     wixImportedMediaAssets.map((asset) => asset.id),
+  );
+  const bracknellImportedIds = new Set(
+    bracknellImportedMediaAssets.map((asset) => asset.id),
   );
   const selectedReviewKeys = Array.from(
     new Set([
@@ -42,12 +46,16 @@ export default function MediaReviewPage() {
   const reviewAssets: MediaReviewAsset[] = [
     ...approvedMediaAssets.map((asset) => ({
       ...asset,
-      reviewKey: wixImportedIds.has(asset.id)
-        ? `wix-import:${asset.id}`
-        : `approved-featured:${asset.id}`,
-      reviewSource: wixImportedIds.has(asset.id)
-        ? ("wix-import" as const)
-        : ("approved-featured" as const),
+      reviewKey: bracknellImportedIds.has(asset.id)
+        ? `bracknell-import:${asset.id}`
+        : wixImportedIds.has(asset.id)
+          ? `wix-import:${asset.id}`
+          : `approved-featured:${asset.id}`,
+      reviewSource: bracknellImportedIds.has(asset.id)
+        ? ("bracknell-import" as const)
+        : wixImportedIds.has(asset.id)
+          ? ("wix-import" as const)
+          : ("approved-featured" as const),
     })),
     ...extendedGalleryMediaAssets.map((asset) => ({
       ...asset,
@@ -60,7 +68,7 @@ export default function MediaReviewPage() {
     <main className="bg-background">
       <AdminPageHeader
         eyebrow="Media review"
-        title="Recovered Wix media"
+        title="Project media review"
         backLink={{ href: "/admin", label: "Back to admin overview" }}
       >
         <p>

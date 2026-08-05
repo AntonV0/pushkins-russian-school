@@ -8,6 +8,7 @@ import {
   sampleInvoices,
 } from "@/features/admin/data/invoices";
 import { registrationSummary } from "@/features/admin/data/registration";
+import { bracknellImportedMediaAssets } from "@/features/gallery/data/bracknell-imported-media-assets";
 import { wixImportedMediaAssets } from "@/features/gallery/data/wix-imported-media-assets";
 import { getAdminAccessDecision } from "@/lib/admin/access";
 
@@ -57,9 +58,11 @@ export default async function AdminPage() {
       href: "/admin/registrations",
     },
     {
-      label: "Media review",
-      value: wixImportedMediaAssets.length.toString(),
-      detail: "Recovered Wix images sorted for editorial review",
+      label: "Imported media",
+      value: (
+        wixImportedMediaAssets.length + bracknellImportedMediaAssets.length
+      ).toString(),
+      detail: "Wix and Bracknell images ready for editorial review",
       href: "/admin/media-review",
     },
   ];

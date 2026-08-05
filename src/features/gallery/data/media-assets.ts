@@ -1,4 +1,5 @@
 import type { School } from "@/data/public/schools";
+import { bracknellImportedMediaAssets } from "./bracknell-imported-media-assets";
 import { wixImportedMediaAssets } from "./wix-imported-media-assets";
 
 export type MediaAssetCategory =
@@ -1127,6 +1128,7 @@ const coreApprovedMediaAssets: MediaAsset[] = [
 export const approvedMediaAssets: MediaAsset[] = [
   ...coreApprovedMediaAssets,
   ...wixImportedMediaAssets,
+  ...bracknellImportedMediaAssets,
 ];
 
 export const visualPlaceholderSlots: VisualPlaceholderSlot[] = [
