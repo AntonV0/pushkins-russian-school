@@ -21,10 +21,7 @@ import { PageHero } from "@/components/site/page-hero";
 import { SectionIntro } from "@/components/site/section-intro";
 import { VideoPosterPlayer } from "@/components/site/video-poster-player";
 import { curriculumPillars } from "@/data/public/curriculum";
-import {
-  schoolProofPoints,
-  schoolStory,
-} from "@/data/public/school-story";
+import { schoolProofPoints } from "@/data/public/school-story";
 import {
   approvedMediaAssets,
   getGalleryCategoryCoverAsset,
@@ -50,7 +47,7 @@ const homepageHeroLeadSrcSetByMediaId: Record<string, string> = {
 };
 
 const heroLeadAsset =
-  getApprovedMediaAssetById("WIX-HIGH-WYCOMBE-0096") ??
+  getApprovedMediaAssetById("BRACKNELL-DSC03280") ??
   getHeroReadyMedia()[0] ??
   getGalleryCategoryCoverAsset("classroom-learning");
 const heroLeadImageSrc =
@@ -184,23 +181,14 @@ export default function Home() {
             </>
           }
         >
-          <p className="max-w-2xl text-xl leading-8 text-brand-blue-strong sm:text-2xl sm:leading-9 lg:text-xl lg:leading-8 min-[1180px]:text-2xl min-[1180px]:leading-9">
-            Founded in {schoolStory.foundedYear}, Pushkin&apos;s School helps
-            children aged {schoolStory.ageRange} speak, read, write, and grow
-            confident in Russian.
-          </p>
-          <p className="mt-5 hidden max-w-2xl border-l-4 border-brand-accent bg-white/60 px-4 py-3 text-base leading-7 text-slate-600 sm:block">
-            Our weekend school lessons connect language, literature, traditions,
-            creative work, performances, and{" "}
-            <strong className="font-semibold text-brand-blue-strong">
-              balanced bilingualism
-            </strong>
-            , welcoming children from{" "}
-            <strong className="font-semibold text-brand-blue-strong">
-              Russian-speaking homes
-            </strong>{" "}
+          <p className="max-w-2xl text-lg leading-7 text-brand-blue-strong sm:text-2xl sm:leading-9 lg:text-xl lg:leading-8 min-[1180px]:text-2xl min-[1180px]:leading-9">
+            Our weekend Russian school classes connect language, literature,
+            traditions, creative work, performances, and{" "}
+            <strong className="font-semibold">balanced bilingualism</strong>,
+            welcoming children from{" "}
+            <strong className="font-semibold">Russian-speaking homes</strong>{" "}
             and children{" "}
-            <strong className="font-semibold text-brand-blue-strong">
+            <strong className="font-semibold">
               learning Russian for the first time
             </strong>
             .
@@ -688,9 +676,9 @@ function HeroSchoolVisual() {
             <div className="flex items-center justify-center bg-brand-accent">
               <School aria-hidden="true" className="size-5.5 text-white" />
             </div>
-            <p className="max-w-xl bg-white/72 px-4 py-3 text-base font-semibold leading-6 text-brand-blue-strong sm:px-5">
-              Experienced teacher-led Russian education in Buckinghamshire,
-              Hertfordshire, Berkshire, Essex, and Devon.
+            <p className="max-w-xl bg-white/72 px-4 py-3 text-base font-semibold leading-6 text-brand-blue-strong sm:px-5 min-[1180px]:whitespace-nowrap min-[1180px]:px-4 min-[1180px]:text-sm min-[1180px]:leading-5">
+              Located across Buckinghamshire, Hertfordshire, Berkshire, Essex,
+              and Devon.
             </p>
           </div>
         </figcaption>
