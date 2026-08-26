@@ -147,13 +147,13 @@ const homepageSchoolSummaries: Record<string, string> = {
   "hemel-hempstead":
     "Register local interest in Hertfordshire or discuss online Russian lessons.",
   bracknell:
-    "Current Sunday in-person classes for families looking for classroom rhythm and community.",
+    "Structured Sunday classes with a regular classroom rhythm and a welcoming school community.",
   chelmsford:
     "Register local interest in Essex or ask about Volna online lessons.",
   "southend-on-sea":
     "Register local interest in Essex or discuss online learning routes.",
   exeter:
-    "Register interest in Devon while the local venue, timetable, and provision are confirmed.",
+    "Ask us about the current timetable, venue, availability and the best group for your child.",
 };
 
 export const metadata: Metadata = {
@@ -181,8 +181,7 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  const currentSchool = schools.find((school) => school.status === "open");
-  const interestSchools = schools.filter((school) => school.status !== "open");
+  const currentSchools = schools.filter((school) => school.status === "open");
 
   return (
     <main>
@@ -378,116 +377,82 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
             eyebrow="School locations"
-            title="Start with the option that fits your family"
+            title="Join us in Bracknell or Exeter"
           >
             <p>
-              Bracknell is the current listed in-person school. Families in
-              other areas can register local interest, explore the full location
-              map, or ask about online Russian lessons.
+              We currently teach children in person in Bracknell, Berkshire,
+              and Exeter, Devon. Explore each school below, or view other
+              locations if neither is nearby.
             </p>
           </SectionIntro>
 
-          <div className="mt-9 grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-            {currentSchool ? (
-              <article className="border-t-4 border-brand-red bg-background px-6 py-6 shadow-[0_14px_35px_rgba(0,32,72,0.08)] sm:px-7 sm:py-7">
+          <div className="mt-9 grid gap-6 lg:grid-cols-2">
+            {currentSchools.map((school) => (
+              <article
+                key={school.slug}
+                className="flex h-full flex-col border-t-4 border-brand-red bg-background px-6 py-6 shadow-[0_14px_35px_rgba(0,32,72,0.08)] sm:px-7 sm:py-7"
+              >
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
                   Current in-person school
                 </p>
                 <h3 className="mt-3 text-3xl font-semibold text-brand-blue-strong">
-                  {currentSchool.name}
+                  {school.name}
                 </h3>
                 <p className="mt-2 text-sm font-semibold text-brand-accent">
-                  {currentSchool.area}, {currentSchool.county}
+                  {school.area}, {school.county}
                 </p>
                 <p className="mt-5 text-lg font-semibold leading-7 text-brand-blue-strong">
-                  {currentSchool.schedule}
+                  {school.slug === "exeter"
+                    ? "Weekend Russian classes in Exeter"
+                    : school.schedule}
                 </p>
                 <p className="mt-3 text-sm leading-6 text-slate-600">
-                  {homepageSchoolSummaries[currentSchool.slug] ??
-                    currentSchool.availabilitySummary}
+                  {homepageSchoolSummaries[school.slug] ??
+                    school.availabilitySummary}
                 </p>
                 <ButtonLink
-                  href={`/schools/${currentSchool.slug}`}
-                  className="mt-6"
+                  href={`/schools/${school.slug}`}
+                  className="mt-6 self-start"
                   icon={<ArrowRight className="size-4" />}
                   iconPosition="end"
                 >
-                  View Bracknell school
+                  View {school.name} school
                 </ButtonLink>
               </article>
-            ) : null}
+            ))}
+          </div>
 
-            <div className="border-y border-border-soft bg-background">
-              <div className="flex flex-col gap-3 border-b border-border-soft px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-                <div>
-                  <h3 className="text-xl font-semibold text-brand-blue-strong">
-                    Other school areas
-                  </h3>
-                  <p className="mt-1 text-sm leading-6 text-slate-600">
-                    Register interest or discuss an online route.
-                  </p>
-                </div>
-                <ButtonLink
-                  href="/schools#location-explorer"
-                  variant="quiet"
-                  className="min-h-0 justify-start px-0 py-1 text-left"
-                  icon={<MapPin className="size-4" />}
-                >
-                  Explore locations and map
-                </ButtonLink>
-              </div>
-
-              <div className="grid sm:grid-cols-2">
-                {interestSchools.map((school) => (
-                  <Link
-                    key={school.slug}
-                    href={`/schools/${school.slug}`}
-                    className="group border-b border-border-soft px-5 py-4 transition hover:bg-surface-muted/70 sm:px-6 sm:[&:nth-child(odd)]:border-r"
-                  >
-                    <span className="flex items-start justify-between gap-4">
-                      <span>
-                        <span className="block text-lg font-semibold text-brand-blue-strong transition group-hover:text-brand-red">
-                          {school.name}
-                        </span>
-                        <span className="mt-1 block text-sm text-slate-600">
-                          {school.county}
-                        </span>
-                      </span>
-                      <ArrowRight
-                        aria-hidden="true"
-                        className="mt-1 size-4 shrink-0 text-brand-blue-strong transition-transform group-hover:translate-x-1"
-                      />
-                    </span>
-                    <span className="mt-3 block text-xs font-semibold uppercase tracking-[0.08em] text-brand-accent">
-                      {school.slug === "exeter"
-                        ? "Details being confirmed"
-                        : "Register interest / online route"}
-                    </span>
-                  </Link>
-                ))}
-                <Link
-                  href="/online-lessons"
-                  className="group border-b border-border-soft bg-brand-blue-strong px-5 py-4 text-white transition hover:bg-brand-blue sm:px-6"
-                >
-                  <span className="flex items-start justify-between gap-4">
-                    <span>
-                      <span className="block text-lg font-semibold">
-                        No nearby branch?
-                      </span>
-                      <span className="mt-1 block text-sm text-white/70">
-                        Volna Online Russian School
-                      </span>
-                    </span>
-                    <ArrowRight
-                      aria-hidden="true"
-                      className="mt-1 size-4 shrink-0 transition-transform group-hover:translate-x-1"
-                    />
-                  </span>
-                  <span className="mt-3 block text-xs font-semibold uppercase tracking-[0.08em] text-white/72">
-                    Online lessons, GCSE and A Level routes
-                  </span>
-                </Link>
-              </div>
+          <div className="mt-6 flex flex-col gap-5 border-y border-border-soft bg-background px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+            <div>
+              <h3 className="text-xl font-semibold text-brand-blue-strong">
+                Looking for another location?
+              </h3>
+              <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-600">
+                Explore other school communities, register local interest, or
+                learn online through Volna.
+              </p>
+            </div>
+            <div className="flex flex-col items-start gap-2 sm:items-end">
+              <Link
+                href="/schools#location-explorer"
+                className="group inline-flex min-h-10 items-center gap-2 py-1 text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/35 underline-offset-4 transition hover:text-brand-red hover:decoration-brand-red"
+              >
+                <span>View all locations</span>
+                <ArrowRight
+                  aria-hidden="true"
+                  className="size-4 transition-transform group-hover:translate-x-0.5"
+                />
+              </Link>
+              <Link
+                href="/online-lessons"
+                className="group inline-flex min-h-10 items-center gap-2 py-1 text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/35 underline-offset-4 transition hover:text-brand-red hover:decoration-brand-red"
+              >
+                <span>Explore online lessons</span>
+                <ArrowRight
+                  aria-hidden="true"
+                  className="size-4 transition-transform group-hover:translate-x-0.5"
+                />
+              </Link>
             </div>
           </div>
         </div>
