@@ -22,25 +22,27 @@ distinct businesses/projects.
 
 ## Branch Statuses
 
-Current branch statuses are not fully confirmed yet. The website should keep all
-known school locations and pages, including online-only or interest-gathering
-network areas, because the broader network footprint is valuable.
+Some branch statuses and practical details are not fully confirmed yet. The
+website should keep all known school locations and pages, including online-only
+or interest-gathering network areas, because the broader network footprint is
+valuable.
 
 Current direction:
 
-- Only Bracknell is currently represented as an active in-person school in the
-  public data model.
+- Bracknell and Exeter are currently represented as active in-person schools in
+  the public data model.
+- Exeter's active status is owner-confirmed; its venue, timetable, staffing,
+  class groups, and fees remain unpublished until those details are confirmed.
 - Keep full pages for every known location.
 - Keep transparent wording for online-only or interest-gathering branches.
 - Use register-interest CTAs where local in-person provision is not confirmed.
 - Preserve verification notes until current operating information is confirmed.
 - Support adding more locations through the school data model.
-- A further active Devon school is known to exist but should not be published
-  until approved details are supplied.
 
 Future decision needed:
 
-- Confirm each branch's current open/online/opening-soon/closed status.
+- Confirm the remaining branches' current open/online/opening-soon/closed
+  statuses.
 - Confirm whether any new locations should be added before launch.
 
 ## Timetables and Venues

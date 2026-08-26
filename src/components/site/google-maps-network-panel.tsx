@@ -108,9 +108,10 @@ export function GoogleMapsNetworkPanel({
             Start with what is available now
           </h2>
           <p className="mt-4 text-sm leading-6 text-slate-600">
-            Bracknell is shown first because it is the current in-person
-            weekend branch. Other locations stay visible for families who want
-            to register demand locally or ask about online learning.
+            Bracknell and Exeter are shown first because they are the current
+            in-person weekend schools. Other locations stay visible for
+            families who want to register demand locally or ask about online
+            learning.
           </p>
         </div>
 
@@ -120,7 +121,7 @@ export function GoogleMapsNetworkPanel({
               {openCount}
             </p>
             <p className="mt-1 text-sm leading-6 text-slate-600">
-              Current weekend branch
+              Current weekend schools
             </p>
           </div>
           <div>

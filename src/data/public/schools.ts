@@ -104,11 +104,11 @@ const onlineOnlyHighlights = [
   "Registering interest helps the school understand future local demand",
 ];
 
-const confirmationPendingHighlights = [
-  "Exeter and Devon are included as a register-interest area while local details are confirmed",
+const exeterCurrentHighlights = [
+  "Current in-person Russian classes in Exeter, Devon",
   "Russian language, literature, culture, and balanced bilingualism remain the learning focus",
-  "Families can ask about online learning while local provision is being reviewed",
-  "Venue, timetable, staffing, and fees will be published only after confirmation",
+  "Classes for children at different ages and stages of Russian learning",
+  "Venue, timetable, availability, and fees are confirmed directly before joining",
 ];
 
 function getFutureInterestHref(slug: string) {
@@ -139,17 +139,17 @@ function createOnlineBranchDecisionSteps(areaName: string, slug: string) {
     },
     {
       title: "See current locations",
-      body: "Check Bracknell and the wider school network if you are open to travelling for current in-person classes.",
+      body: "Check Bracknell and Exeter if you are open to travelling for current in-person classes.",
       ctaLabel: "See current locations",
       href: "/schools#compare-branches",
     },
   ];
 }
 
-const bracknellAlternativeCta = {
-  label: "Compare with Bracknell",
-  body: "Bracknell is the current listed in-person weekend branch for families able to travel.",
-  href: "/schools/bracknell",
+const currentSchoolsAlternativeCta = {
+  label: "Compare current schools",
+  body: "Bracknell and Exeter are the current in-person school options for families able to travel.",
+  href: "/schools#open-branches",
 };
 
 export const schools: School[] = [
@@ -174,7 +174,7 @@ export const schools: School[] = [
     classGroups,
     highlights: onlineOnlyHighlights,
     bestNextSteps: createOnlineBranchDecisionSteps("High Wycombe", "high-wycombe"),
-    nearbyAlternativeCta: bracknellAlternativeCta,
+    nearbyAlternativeCta: currentSchoolsAlternativeCta,
     enquiryCta: "Ask about High Wycombe",
     mapHref:
       "https://www.google.com/maps/search/?api=1&query=High%20Wycombe%20Buckinghamshire",
@@ -202,7 +202,7 @@ export const schools: School[] = [
     classGroups,
     highlights: onlineOnlyHighlights,
     bestNextSteps: createOnlineBranchDecisionSteps("Hemel Hempstead", "hemel-hempstead"),
-    nearbyAlternativeCta: bracknellAlternativeCta,
+    nearbyAlternativeCta: currentSchoolsAlternativeCta,
     enquiryCta: "Ask about Hemel Hempstead",
     mapHref:
       "https://www.google.com/maps/search/?api=1&query=Hemel%20Hempstead%20Hertfordshire",
@@ -221,7 +221,7 @@ export const schools: School[] = [
     statusDescription:
       "Sunday morning classes for children learning Russian language, literature, culture, and confidence.",
     availabilitySummary:
-      "Bracknell is the current listed in-person weekend branch. Families can ask about spaces, class fit, start dates, and whether Volna is better for GCSE or A Level goals.",
+      "Bracknell is one of the current in-person weekend schools. Families can ask about spaces, class fit, start dates, and whether Volna is better for GCSE or A Level goals.",
     lead: "A Sunday Russian school community for children learning language, literature, culture, reading, writing, and performance.",
     venueName: "Saint Joseph's Primary School",
     address: ["Gipsy Lane"],
@@ -284,7 +284,7 @@ export const schools: School[] = [
     classGroups,
     highlights: onlineOnlyHighlights,
     bestNextSteps: createOnlineBranchDecisionSteps("Chelmsford", "chelmsford"),
-    nearbyAlternativeCta: bracknellAlternativeCta,
+    nearbyAlternativeCta: currentSchoolsAlternativeCta,
     enquiryCta: "Ask about Chelmsford",
     mapHref:
       "https://www.google.com/maps/search/?api=1&query=Chelmsford%20Essex",
@@ -329,7 +329,7 @@ export const schools: School[] = [
     classGroups,
     highlights: onlineOnlyHighlights,
     bestNextSteps: createOnlineBranchDecisionSteps("Southend-on-Sea", "southend-on-sea"),
-    nearbyAlternativeCta: bracknellAlternativeCta,
+    nearbyAlternativeCta: currentSchoolsAlternativeCta,
     enquiryCta: "Ask about Southend-on-Sea",
     mapHref:
       "https://www.google.com/maps/search/?api=1&query=Southend-on-Sea%20Essex",
@@ -343,34 +343,53 @@ export const schools: School[] = [
     name: "Exeter",
     area: "Exeter",
     county: "Devon",
-    status: "online",
-    statusLabel: "Details to be confirmed / register interest",
+    status: "open",
+    statusLabel: "Weekend school",
     statusDescription:
-      "Exeter is listed as a Devon register-interest area while local school details are confirmed. Families can also ask about online Russian learning.",
+      "Current in-person Russian classes for children in Exeter, with timetable and venue details confirmed directly by the school.",
     availabilitySummary:
-      "Exeter is listed as a Devon register-interest area while venue, timetable, and local provision are confirmed.",
-    lead: "A developing Devon route for families interested in Russian language, literature, culture, and balanced bilingualism.",
+      "Exeter is a current in-person school in Devon. Families can ask about spaces, class fit, venue details, and the current timetable.",
+    lead: "An Exeter Russian school community for children developing language, literature, culture, and balanced bilingualism.",
     venueName: "Exeter area",
     address: ["Devon"],
     postcode: "",
-    schedule: "Local provision and timetable to be confirmed",
+    schedule: "Contact the school for the current Exeter timetable",
     scheduleNote:
-      "No local venue or timetable should be treated as confirmed until the school publishes final details.",
+      "Current venue, timetable, class availability, and fees are confirmed directly before joining.",
     lessonPlan: [],
     classGroups,
-    highlights: confirmationPendingHighlights,
-    bestNextSteps: createOnlineBranchDecisionSteps("Exeter", "exeter"),
+    highlights: exeterCurrentHighlights,
+    bestNextSteps: [
+      {
+        title: "Ask about current spaces",
+        body: "Check whether the Exeter school has a suitable current class for your child.",
+        ctaLabel: "Ask about current places",
+        href: getCurrentClassHref("exeter"),
+      },
+      {
+        title: "Discuss class fit",
+        body: "Share your child's age, Russian confidence, reading and writing level, and previous learning experience.",
+        ctaLabel: "Ask about placement",
+        href: getCurrentClassHref("exeter"),
+      },
+      {
+        title: "Confirm the practical details",
+        body: "Confirm the current venue, timetable, fees, availability, and start date directly with the school.",
+        ctaLabel: "Tell us about your child",
+        href: getCurrentClassHref("exeter"),
+      },
+    ],
     nearbyAlternativeCta: {
       label: "See current locations",
-      body: "Compare the current in-person branch, other register-interest areas, and online routes.",
+      body: "Compare current in-person schools, other register-interest areas, and online routes.",
       href: "/schools#compare-branches",
     },
     enquiryCta: "Ask about Exeter",
     mapHref:
       "https://www.google.com/maps/search/?api=1&query=Exeter%20Devon",
     sourceNotes: [
-      "Confirm Exeter's relationship to the current school network before final publication.",
-      "Confirm venue, timetable, staffing, class groups, fees, and launch status before publishing local provision.",
+      "Current in-person status confirmed by the site owner.",
+      "Confirm venue, timetable, staffing, class groups, and fees before publishing those practical details.",
     ],
   },
 ];

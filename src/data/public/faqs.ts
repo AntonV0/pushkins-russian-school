@@ -18,7 +18,7 @@ export const faqGroups: FaqGroup[] = [
       {
         question: "Can I ask about an online-only location?",
         answer:
-          "Yes. Online-only locations stay visible so families can register local interest, ask about online lessons, or compare the current in-person branch.",
+          "Yes. Online-only locations stay visible so families can register local interest, ask about online lessons, or compare the current in-person schools.",
       },
       {
         question: "Are all listed timetables final?",

@@ -84,6 +84,8 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
 
   const isLocalProvisionUnconfirmed = school.status !== "open";
   const hasCurrentVenue = school.status === "open";
+  const hasPublishedVenueAddress = Boolean(school.postcode);
+  const hasPublishedLessonPlan = school.lessonPlan.length > 0;
   const learningOptions = getLearningOptionsForBranchStatus(school.status);
   const highlightedLearningOption =
     school.status === "online" ? "volna-online" : undefined;
@@ -97,7 +99,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
     email: contactDetails.email,
     description: school.lead,
     areaServed: school.county,
-    ...(hasCurrentVenue
+    ...(hasPublishedVenueAddress
       ? {
           address: {
             "@type": "PostalAddress",
@@ -236,7 +238,7 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
               <p className="mt-3 text-sm leading-6 text-slate-600">
                 This location remains part of the Pushkin&apos;s School network.
                 Families can ask about local interest, online learning, or a
-                current in-person branch.
+                current in-person schools.
               </p>
               <div className="mt-6 grid gap-4">
                 {school.bestNextSteps.map((step, index) => (
@@ -288,23 +290,35 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
             <div className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr]">
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.18em] text-brand-red">
-                  Sunday school morning
+                  {hasPublishedLessonPlan
+                    ? "Sunday school morning"
+                    : "Current in-person learning"}
                 </p>
                 <h2 className="mt-3 text-3xl font-semibold leading-tight text-brand-blue-strong">
-                  A weekend rhythm for Russian learning
+                  {hasPublishedLessonPlan
+                    ? "A weekend rhythm for Russian learning"
+                    : `Plan the right start in ${school.name}`}
                 </h2>
                 <p className="mt-4 text-sm leading-6 text-slate-600">
-                  The morning combines assembly, lessons, breaks, and classroom
-                  rhythm so children can build Russian language, literacy, and
-                  confidence in a familiar weekly setting.
+                  {hasPublishedLessonPlan
+                    ? "The morning combines assembly, lessons, breaks, and classroom rhythm so children can build Russian language, literacy, and confidence in a familiar weekly setting."
+                    : "The school confirms the current timetable, venue, class fit, and joining arrangements directly with each family."}
                 </p>
                 <ul className="mt-6 space-y-3 text-sm leading-6 text-slate-700">
-                  {[
-                    "Ask about the right class and start date before attending the school site.",
-                    "Arrive a few minutes before the first assembly so the child can settle.",
-                    "Bring any context that helps placement: age, spoken Russian, reading, writing, and exam aims.",
-                    "Ask the school directly about drop-off, collection, fees, and payment instructions.",
-                  ].map((note) => (
+                  {(hasPublishedLessonPlan
+                    ? [
+                        "Ask about the right class and start date before attending the school site.",
+                        "Arrive a few minutes before the first assembly so the child can settle.",
+                        "Bring any context that helps placement: age, spoken Russian, reading, writing, and exam aims.",
+                        "Ask the school directly about drop-off, collection, fees, and payment instructions.",
+                      ]
+                    : [
+                        "Ask about the right class and start date before attending the school site.",
+                        "Confirm the current venue, day, and arrival time directly with the school.",
+                        "Share useful placement context: age, spoken Russian, reading, writing, and exam aims.",
+                        "Ask directly about drop-off, collection, fees, and payment instructions.",
+                      ]
+                  ).map((note) => (
                   <li
                       key={note}
                       className="flex gap-2 border-l border-brand-accent bg-surface px-4 py-3"
@@ -316,21 +330,45 @@ export default async function SchoolPage({ params }: SchoolPageProps) {
                 </ul>
               </div>
 
-              <ol className="premium-panel divide-y divide-border-soft overflow-hidden rounded-lg border border-border-soft bg-surface">
-                {school.lessonPlan.map((item) => (
-                  <li
-                    key={`${item.time}-${item.activity}`}
-                    className="grid gap-2 px-5 py-4 sm:grid-cols-[9rem_1fr]"
+              {hasPublishedLessonPlan ? (
+                <ol className="premium-panel divide-y divide-border-soft overflow-hidden rounded-lg border border-border-soft bg-surface">
+                  {school.lessonPlan.map((item) => (
+                    <li
+                      key={`${item.time}-${item.activity}`}
+                      className="grid gap-2 px-5 py-4 sm:grid-cols-[9rem_1fr]"
+                    >
+                      <time className="font-mono text-sm font-semibold text-brand-blue-strong">
+                        {item.time}
+                      </time>
+                      <span className="text-sm text-slate-700">
+                        {item.activity}
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              ) : (
+                <aside className="premium-panel rounded-lg border border-border-soft bg-surface p-6 sm:p-8">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
+                    Timetable and venue
+                  </p>
+                  <h3 className="mt-3 text-2xl font-semibold text-brand-blue-strong">
+                    Confirm the current details before joining
+                  </h3>
+                  <p className="mt-4 text-sm leading-6 text-slate-600">
+                    Tell the school about your child and ask for the current
+                    Exeter timetable, venue, fees, availability, and suggested
+                    class.
+                  </p>
+                  <ButtonLink
+                    href={getSchoolEnquiryHref(school)}
+                    className="mt-6"
+                    icon={<ArrowRight className="size-4" />}
+                    iconPosition="end"
                   >
-                    <time className="font-mono text-sm font-semibold text-brand-blue-strong">
-                      {item.time}
-                    </time>
-                    <span className="text-sm text-slate-700">
-                      {item.activity}
-                    </span>
-                  </li>
-                ))}
-              </ol>
+                    Ask about {school.name}
+                  </ButtonLink>
+                </aside>
+              )}
             </div>
           ) : (
             <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Laptop, MapPin, Search, UsersRound } from "lucide-react";
+import { ArrowRight, Laptop, MapPin, Search } from "lucide-react";
 import {
   ButtonLink,
   quietHeroLinkClassName,
@@ -34,7 +34,6 @@ export const metadata: Metadata = {
 export default function SchoolsPage() {
   const openSchools = schools.filter((school) => school.status === "open");
   const otherSchools = schools.filter((school) => school.status !== "open");
-  const currentSchool = openSchools[0];
 
   return (
     <main>
@@ -61,8 +60,9 @@ export default function SchoolsPage() {
         <p>
           Since {schoolStory.foundedYear}, Pushkin&apos;s School has helped
           children keep Russian language, literature, culture, and confidence
-          alive through a five-location supplementary school heritage, with
-          Exeter now listed as a Devon area where details are being confirmed.
+          alive through local supplementary school communities. Current
+          in-person schools operate in Bracknell and Exeter, with other towns
+          retained as part of the school&apos;s heritage and interest network.
         </p>
       </PageHero>
 
@@ -87,11 +87,10 @@ export default function SchoolsPage() {
           >
             <p>
               The school network has included High Wycombe, Hemel Hempstead,
-              Bracknell, Chelmsford, and Southend-on-Sea. Current local
+              Bracknell, Chelmsford, Southend-on-Sea, and Exeter. Current local
               availability can change, but the educational purpose remains the
               same: balanced bilingualism, Russian literacy, culture,
-              performance, and progression. Exeter is listed separately while
-              the Devon provision is confirmed.
+              performance, and progression.
             </p>
           </SectionIntro>
           <div className="grid gap-4 sm:grid-cols-2">
@@ -119,8 +118,8 @@ export default function SchoolsPage() {
             title="See the current locations and learning routes"
           >
             <p>
-              This guide shows what is currently available: one listed
-              in-person weekend branch, local interest areas, and online
+              This guide shows what is currently available: two in-person
+              weekend schools, local interest areas, and online
               learning routes for families who want Russian to continue now.
             </p>
           </SectionIntro>
@@ -146,48 +145,32 @@ export default function SchoolsPage() {
                 tell the school about your child&apos;s Russian and goals.
               </p>
             </SectionIntro>
-            <div className="mt-7 border-l-4 border-brand-red bg-background px-5 py-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
-                Current in-person branch
+            <div className="mt-7 divide-y divide-border-soft border-l-4 border-brand-red bg-background">
+              <p className="px-5 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
+                Current in-person schools
               </p>
-              <h2 className="mt-2 text-xl font-semibold text-brand-blue-strong">
-                {currentSchool
-                  ? `${currentSchool.name}: ${currentSchool.schedule}`
-                  : "Weekend timetable confirmed directly"}
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-slate-600">
-                {currentSchool
-                  ? `${currentSchool.venueName} is the current listed in-person branch. The wider list shows local interest areas and online options.`
-                  : "Current in-person places and local venue details are confirmed directly through the school."}
-              </p>
-              <ButtonLink
-                href={
-                  currentSchool
-                    ? `/schools/${currentSchool.slug}`
-                    : "/contact#enquiry-form"
-                }
-                className="mt-5"
-                icon={<ArrowRight className="size-4" />}
-                iconPosition="end"
-              >
-                {currentSchool ? "View current branch" : "Tell us about your child"}
-              </ButtonLink>
+              {openSchools.map((school) => (
+                <div key={school.slug} className="px-5 py-4">
+                  <h2 className="text-xl font-semibold text-brand-blue-strong">
+                    {school.name}
+                  </h2>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    {school.schedule}. Confirm spaces, class fit, venue details,
+                    and the start date before attending.
+                  </p>
+                  <Link
+                    href={`/schools/${school.slug}`}
+                    className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/35 hover:text-brand-red"
+                  >
+                    <span>View {school.name}</span>
+                    <ArrowRight aria-hidden="true" className="size-4" />
+                  </Link>
+                </div>
+              ))}
             </div>
           </div>
           <div className="grid gap-4">
             {[
-              {
-                label: "Current/open",
-                icon: UsersRound,
-                title: "Find a weekend place",
-                body: currentSchool
-                  ? `${currentSchool.name} is the current in-person branch. Check spaces, class fit, start date, and arrival details before attending.`
-                  : "Ask the school which current weekend options are available.",
-                href: currentSchool
-                  ? currentSchool.bestNextSteps[0]?.href
-                  : "/contact#enquiry-form",
-                cta: "Ask about joining",
-              },
               {
                 label: "Register interest",
                 icon: MapPin,
@@ -265,7 +248,7 @@ export default function SchoolsPage() {
               {otherSchools.length} towns remain part of the local school story
             </h2>
             <p className="mt-4 text-sm leading-6 text-slate-600">
-              Families outside the current weekend branch can still signal
+              Families outside the current weekend schools can still signal
               demand, ask about online learning, and discuss Russian language,
               culture, or a Volna route for GCSE and A Level Russian.
             </p>

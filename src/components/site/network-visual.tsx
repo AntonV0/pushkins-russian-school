@@ -44,7 +44,7 @@ export function NetworkVisual() {
             <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold text-muted">
               <span className="inline-flex items-center gap-2 rounded-full border border-emerald-100 bg-white px-3 py-1 shadow-sm">
                 <span className="size-2 rounded-full bg-emerald-500" />
-                {openCount} current in-person school
+                {openCount} current in-person {openCount === 1 ? "school" : "schools"}
               </span>
               <span className="inline-flex items-center gap-2 rounded-full border border-sky-100 bg-white px-3 py-1 shadow-sm">
                 <span className="size-2 rounded-full bg-sky-500" />
@@ -55,7 +55,7 @@ export function NetworkVisual() {
           {openSchool ? (
             <div className="rounded-lg border border-brand-accent/40 bg-white/95 p-4 shadow-lg">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
-                Current listed weekend school
+                Featured current weekend school
               </p>
               <p className="mt-2 text-xl font-semibold text-brand-blue-strong">
                 {openSchool.name}
