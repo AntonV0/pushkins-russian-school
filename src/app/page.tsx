@@ -132,6 +132,15 @@ const joiningSteps = [
   },
 ];
 
+const homepageCurriculumPillars = [
+  curriculumPillars[0],
+  curriculumPillars[1],
+  {
+    title: "Progression for older learners",
+    body: "As pupils grow, lessons deepen their grammar, literacy and engagement with Russian literature, helping them become more independent readers, writers and speakers.",
+  },
+] as const;
+
 const homepageSchoolSummaries: Record<string, string> = {
   "high-wycombe":
     "Register local interest or ask about online Russian lessons while in-person classes are not currently listed.",
@@ -278,12 +287,11 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-center lg:px-8">
           <div>
             <SectionIntro
-              title="Step inside a Russian classroom"
+              title="Step inside our classrooms"
             >
               <p>
-                See how our experienced teachers guide children through
-                conversation, stories, and creative activities, offering
-                encouragement and support at every stage.
+                Meet our supportive teachers and see how they help children feel
+                comfortable joining in, speaking Russian and learning together.
               </p>
             </SectionIntro>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
@@ -316,20 +324,32 @@ export default function Home() {
       <HomepageSectionMarker number={5}>
         <section className="bg-background site-section-compact">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.72fr_1.28fr] lg:px-8">
-          <SectionIntro
-            eyebrow="Learning approach"
-            title="What children learn at Pushkin's School"
-          >
-            <p>
-              The curriculum is built for children growing up in the UK:
-              practical Russian for communication, structured literacy, cultural
-              knowledge, and a path towards reading Russian literature in the
-              original.
-            </p>
-          </SectionIntro>
+          <div>
+            <SectionIntro
+              eyebrow="Learning approach"
+              title="What children learn at Pushkin's School"
+            >
+              <p>
+                The curriculum is built for children growing up in the UK:
+                practical Russian for communication, structured literacy,
+                cultural knowledge, and a path towards reading Russian
+                literature in the original.
+              </p>
+            </SectionIntro>
+            <Link
+              href="/curriculum"
+              className="group mt-7 inline-flex min-h-11 w-fit items-center gap-2 py-2 text-base font-semibold text-brand-blue-strong underline decoration-brand-red/35 underline-offset-4 transition hover:-translate-y-0.5 hover:text-brand-red hover:decoration-brand-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red/40 focus-visible:ring-offset-4"
+            >
+              <span>Explore our curriculum</span>
+              <ArrowRight
+                aria-hidden="true"
+                className="size-4 transition-transform group-hover:translate-x-0.5"
+              />
+            </Link>
+          </div>
 
           <ol className="relative grid border-y border-border-soft bg-surface md:grid-cols-3 md:divide-x md:divide-border-soft">
-            {curriculumPillars.map((pathway, index) => (
+            {homepageCurriculumPillars.map((pathway, index) => (
               <li
                 key={pathway.title}
                 className="relative border-b border-border-soft px-5 py-7 last:border-b-0 md:border-b-0 md:px-6 md:py-8"
