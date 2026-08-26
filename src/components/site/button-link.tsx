@@ -13,7 +13,7 @@ type ButtonLinkProps = {
 
 const variants = {
   primary:
-    "bg-brand-blue text-white shadow-[0_10px_24px_rgba(20,56,102,0.18)] hover:bg-brand-blue-strong focus:ring-brand-blue/30",
+    "relative overflow-hidden bg-brand-blue text-white shadow-[0_12px_28px_rgba(20,56,102,0.2)] ease-out before:absolute before:inset-0 before:-translate-x-full before:bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.16),transparent)] before:transition-transform before:duration-700 before:ease-out hover:-translate-y-0.5 hover:bg-brand-blue-strong hover:shadow-[0_18px_34px_rgba(20,56,102,0.27)] hover:before:translate-x-full focus:ring-brand-blue/30 motion-reduce:transition-none motion-reduce:before:hidden motion-reduce:hover:translate-y-0",
   secondary:
     "border border-brand-blue/20 bg-white/70 text-brand-blue-strong hover:border-brand-red hover:bg-white hover:text-brand-red focus:ring-brand-red/30",
   light:
@@ -23,6 +23,9 @@ const variants = {
   header:
     "relative overflow-hidden bg-[linear-gradient(135deg,var(--brand-blue-strong)_0%,#092f5f_58%,var(--brand-blue)_100%)] text-white shadow-[0_14px_30px_rgba(0,32,72,0.2)] before:absolute before:inset-0 before:-translate-x-full before:bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.24),transparent)] before:transition-transform before:duration-700 hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(0,32,72,0.28)] hover:before:translate-x-full focus:ring-brand-blue/30",
 };
+
+export const quietActionLinkClassName =
+  "group min-h-0 w-auto justify-start px-0 py-1 text-left transition duration-200 hover:-translate-y-0.5 hover:scale-[1.015] hover:decoration-brand-red/80 sm:min-h-11 sm:justify-center sm:px-5 sm:py-3";
 
 export const quietHeroLinkClassName =
   "min-h-0 w-auto justify-start px-0 py-1 text-left sm:min-h-11 sm:justify-center sm:px-5 sm:py-3";

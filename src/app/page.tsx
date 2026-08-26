@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import {
   ButtonLink,
-  quietHeroLinkClassName,
+  quietActionLinkClassName,
 } from "@/components/site/button-link";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionIntro } from "@/components/site/section-intro";
@@ -191,9 +191,9 @@ export default function Home() {
             <>
               <ButtonLink
                 href="/contact#enquiry-form"
-                className="group relative min-h-12 overflow-hidden px-6 py-3.5 text-[0.95rem] shadow-[0_12px_28px_rgba(20,56,102,0.2)] before:absolute before:inset-0 before:-translate-x-full before:bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent)] before:transition-transform before:duration-700 hover:-translate-y-0.5 hover:shadow-[0_18px_34px_rgba(20,56,102,0.27)] hover:before:translate-x-full"
+                className="min-h-12 px-6 py-3.5 text-[0.95rem]"
                 icon={
-                  <MessageSquareText className="size-4 transition-transform duration-200 group-hover:scale-105" />
+                  <MessageSquareText className="size-4" />
                 }
               >
                 Ask about joining
@@ -201,7 +201,7 @@ export default function Home() {
               <ButtonLink
                 href="/schools"
                 variant="quiet"
-                className={`${quietHeroLinkClassName} group text-[0.95rem] transition duration-200 hover:-translate-y-0.5 hover:scale-[1.015] hover:decoration-brand-red/80`}
+                className={`${quietActionLinkClassName} text-[0.95rem]`}
                 icon={
                   <MapPin className="size-4" />
                 }
@@ -293,8 +293,8 @@ export default function Home() {
               <ButtonLink
                 href="/gallery"
                 variant="quiet"
-                className="min-h-0 w-auto justify-start px-0 py-1.5 text-left !text-base sm:min-h-0 sm:px-0 sm:py-1.5"
-                icon={<ArrowRight className="size-4.5" />}
+                className={`${quietActionLinkClassName} !justify-start !px-0 !text-base`}
+                icon={<ArrowRight className="size-4" />}
                 iconPosition="end"
               >
                 View our gallery
