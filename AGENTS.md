@@ -15,3 +15,10 @@ This is a public portfolio repository for a real business website rebuild.
 - Do not let Next.js silently pick a different port for this project; resolve the port conflict so Codex browser QA and chat references stay stable.
 - Recommended Codex Local Environment action: `Run` -> `npm.cmd run dev`.
 - Recommended Codex Local Environment setup script: `npm install`.
+
+## Design Governance
+
+- Read `DESIGN.md` before any UI or content-design work. It documents the current design language, experiment rules, visual QA, and proposed backlog; it does not authorize production changes.
+- Follow the approval gates in `DESIGN.md`: owner approval of the design direction, then an exact proposed file list, then owner approval of that file scope before implementation.
+- Approval of one component or section does not permit edits to adjacent pages, shared components, global styles or tokens, content registries, dependencies, or assets unless they are explicitly included in the approved file scope.
+- GPT Taste may be installed, enabled, or invoked only when the owner explicitly requests it for that task.
