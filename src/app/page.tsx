@@ -4,11 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
-  BookOpen,
-  ClipboardCheck,
-  Drama,
-  HeartHandshake,
-  Languages,
+  ClipboardPenLine,
   MapPin,
   MessageSquareText,
   School,
@@ -72,8 +68,8 @@ const schoolIntroVideo = {
   poster: "/images/locations/exeter/exeter-classroom-learning.webp",
 };
 const homepageCommunityImage = {
-  src: "/images/archive/extended/wix-missing/bracknell/bracknell-group-video-poster.jpg",
-  alt: "Children, families, and teachers gathered together at Pushkin's School in Bracknell.",
+  src: "/images/locations/bracknell/bracknell-performance-wide.webp",
+  alt: "Children performing for families at Pushkin's School in Bracknell.",
 };
 
 const parentJourney = [
@@ -529,7 +525,7 @@ export default function Home() {
                 id="homepage-final-cta-title"
                 className="mt-3 text-3xl font-semibold leading-tight text-brand-blue-strong sm:text-4xl lg:text-3xl xl:text-4xl"
               >
-                Join Pushkin&apos;s School at a location near you
+                Ready to join Pushkin&apos;s School?
               </h2>
               <p className="mt-4 max-w-xl text-sm leading-6 text-slate-600">
                 Share your child&apos;s age and experience with Russian. We&apos;ll
@@ -545,9 +541,9 @@ export default function Home() {
               <div className="mt-7 flex flex-wrap gap-3">
                 <ButtonLink
                   href="/contact#enquiry-form"
-                  icon={<MessageSquareText className="size-4" />}
+                  icon={<ClipboardPenLine className="size-4" />}
                 >
-                  Ask about joining
+                  Start registration
                 </ButtonLink>
                 <ButtonLink
                   href="/schools#location-explorer"
