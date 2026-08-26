@@ -38,6 +38,11 @@ export const faqGroups: FaqGroup[] = [
       "How children can start in the right learning group.",
     items: [
       {
+        question: "Does my child need to already speak Russian?",
+        answer:
+          "No. The school welcomes children from Russian-speaking homes and children discovering Russian for the first time. Age and current language experience help guide placement.",
+      },
+      {
         question: "Do I need to know the exact class group before contacting the school?",
         answer:
           "No. The form is designed to gather context first. Teachers can then use the child's age, language experience, branch availability, and early lessons to guide the most suitable group or recommend another learning option.",

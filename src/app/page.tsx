@@ -7,7 +7,7 @@ import {
   ClipboardPenLine,
   MapPin,
   MessageSquareText,
-  School,
+  Plus,
 } from "lucide-react";
 import {
   ButtonLink,
@@ -151,6 +151,62 @@ const homepageSchoolSummaries: Record<string, string> = {
   exeter:
     "Ask us about the current timetable, venue, availability and the best group for your child.",
 };
+
+const homepageFaqs = [
+  {
+    question: "Does my child need to already speak Russian?",
+    answer:
+      "No. Children join us with different levels of Russian. Tell us their age and what they currently understand, speak, read or write, and our teachers will help them find a comfortable starting point.",
+  },
+  {
+    question: "Does Pushkin's School offer GCSE or A Level Russian?",
+    answer: (
+      <>
+        Pushkin&apos;s School focuses on weekend Russian language classes. GCSE
+        and A Level Russian are available online through{" "}
+        <Link
+          href="/online-lessons"
+          className="font-semibold text-brand-blue-strong underline decoration-brand-accent/65 underline-offset-4 transition hover:decoration-brand-red"
+        >
+          Volna Online Russian School
+        </Link>
+        .
+      </>
+    ),
+  },
+  {
+    question: "Where can I see school locations, fees and availability?",
+    answer: (
+      <>
+        <Link
+          href="/schools"
+          className="font-semibold text-brand-blue-strong underline decoration-brand-accent/65 underline-offset-4 transition hover:decoration-brand-red"
+        >
+          View our school locations
+        </Link>{" "}
+        to compare branches and find the latest timetable, fee and availability
+        information for each school.
+      </>
+    ),
+  },
+  {
+    question: "Can I register interest in a school that is not currently open?",
+    answer: (
+      <>
+        Yes. Use the{" "}
+        <Link
+          href="/contact#enquiry-form"
+          className="font-semibold text-brand-blue-strong underline decoration-brand-accent/65 underline-offset-4 transition hover:decoration-brand-red"
+        >
+          registration form
+        </Link>{" "}
+        to tell us which area you are interested in. We may contact you if a
+        school opens there in future, and we can suggest online alternatives in
+        the meantime.
+      </>
+    ),
+  },
+] as const;
 
 export const metadata: Metadata = {
   title: "Pushkin's School | Russian School UK for Children",
@@ -501,6 +557,43 @@ export default function Home() {
       </HomepageSectionMarker>
 
       <HomepageSectionMarker number={8}>
+        <section className="border-y border-border-soft bg-background site-section-compact">
+          <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.72fr_1.28fr] lg:px-8">
+            <div>
+              <SectionIntro eyebrow="FAQ" title="What parents ask before joining" />
+              <Link
+                href="/faq"
+                className="group mt-7 inline-flex min-h-11 w-fit items-center gap-2 py-2 text-base font-semibold text-brand-blue-strong underline decoration-brand-red/35 underline-offset-4 transition hover:-translate-y-0.5 hover:text-brand-red hover:decoration-brand-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red/40 focus-visible:ring-offset-4"
+              >
+                <span>See all frequently asked questions</span>
+                <ArrowRight
+                  aria-hidden="true"
+                  className="size-4 transition-transform group-hover:translate-x-0.5"
+                />
+              </Link>
+            </div>
+
+            <div className="divide-y divide-border-soft border-y border-border-soft bg-surface">
+              {homepageFaqs.map((item) => (
+                <details key={item.question} className="group px-5 sm:px-6">
+                  <summary className="-mx-5 flex min-h-16 cursor-pointer list-none items-center justify-between gap-5 px-5 py-4 text-left font-semibold text-brand-blue-strong transition-colors duration-150 ease-out marker:content-none hover:bg-surface-blue/55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-red/40 group-open:hover:bg-transparent sm:-mx-6 sm:px-6 [&::-webkit-details-marker]:hidden">
+                    <span>{item.question}</span>
+                    <Plus
+                      aria-hidden="true"
+                      className="size-5 shrink-0 text-brand-red transition-transform duration-200 group-open:rotate-45"
+                    />
+                  </summary>
+                  <p className="max-w-2xl pb-5 pr-10 pt-1 text-sm leading-6 text-slate-600">
+                    {item.answer}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      </HomepageSectionMarker>
+
+      <HomepageSectionMarker number={9}>
         <section
           className="border-y border-border-soft bg-white"
           aria-labelledby="homepage-final-cta-title"
