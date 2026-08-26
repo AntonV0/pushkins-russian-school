@@ -64,6 +64,9 @@ const heroSupportingAssets = [
   getApprovedMediaAssetById("WIX-HIGH-WYCOMBE-0131") ??
     getGalleryCategoryCoverAsset("performances"),
 ].filter((asset): asset is MediaAsset => Boolean(asset));
+const trustSupportingAsset =
+  getApprovedMediaAssetById("BRACKNELL-DSC03332") ??
+  getGalleryCategoryCoverAsset("creative-work");
 const schoolIntroVideo = {
   src: "/videos/site/pushkins-school-classroom-introduction.mp4",
   poster: "/images/locations/exeter/exeter-classroom-learning.webp",
@@ -75,21 +78,44 @@ const homepageCommunityImage = {
 
 const parentJourney = [
   {
-    title: "Russian that belongs in real life",
-    body: "Children practise speaking, reading, writing, stories, songs, and traditions in a school setting where Russian feels useful, social, and worth keeping.",
-    icon: Languages,
+    title: "Professional, experienced teachers",
+    body: "Our teachers bring years of classroom experience and subject knowledge to every lesson.",
   },
   {
-    title: "A confident bilingual childhood",
-    body: "Lessons support children growing up in the UK, including Russian-speaking homes and pupils who are learning Russian for the first time.",
-    icon: HeartHandshake,
+    title: "Building from what children already know",
+    body: "Lessons begin with familiar Russian, then gently introduce new words, phrases and grammar.",
   },
   {
-    title: "Culture children can take part in",
-    body: "Literature, creative work, celebrations, and performances help pupils build pride, not just vocabulary.",
-    icon: Drama,
+    title: "Friendship through language",
+    body: "Children use Russian socially through shared activities, celebrations, and performances.",
+  },
+  {
+    title: "Russian skills that develop over time",
+    body: "Each stage of learning helps children become more fluent and independent Russian speakers.",
   },
 ];
+
+const proofPointCategories = [
+  "Years of experience",
+  "Local communities",
+  "Ages 3–18",
+  "Teaching approach",
+] as const;
+
+const homepageProofPoints = [
+  {
+    ...schoolProofPoints[0],
+    label:
+      "Pushkin's School has helped hundreds of children speak, read and write Russian with confidence.",
+  },
+  schoolProofPoints[1],
+  {
+    value: "Teaching for every stage",
+    label:
+      "Lessons are adapted to each child’s age and level, with balanced bilingualism as the long-term goal.",
+  },
+  schoolProofPoints[3],
+] as const;
 
 const joiningSteps = [
   {
@@ -153,7 +179,7 @@ export default function Home() {
     <main>
       <HomepageSectionMarker number={1}>
         <PageHero
-          eyebrow="Established weekend Russian education"
+          eyebrow="Weekend Russian language education"
           title="Russian schools for children in the UK"
           variant="home"
           aside={<HeroSchoolVisual />}
@@ -182,116 +208,69 @@ export default function Home() {
           }
         >
           <p className="max-w-2xl text-lg leading-7 text-brand-blue-strong sm:text-2xl sm:leading-9 lg:text-xl lg:leading-8 min-[1180px]:text-2xl min-[1180px]:leading-9">
-            Our weekend Russian school classes connect language, literature,
-            traditions, creative work, performances, and{" "}
-            <strong className="font-semibold">balanced bilingualism</strong>,
-            welcoming children from{" "}
-            <strong className="font-semibold">Russian-speaking homes</strong>{" "}
-            and children{" "}
-            <strong className="font-semibold">
-              learning Russian for the first time
-            </strong>
-            .
+            Our classes help children enjoy and use Russian through
+            conversation, stories and traditions, whether they speak Russian
+            at home or are discovering it for the first time.
           </p>
         </PageHero>
       </HomepageSectionMarker>
 
       <HomepageSectionMarker number={2}>
         <section className="border-b border-border-soft bg-surface py-9 sm:py-11">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="relative border-y border-border-soft py-7 sm:py-8">
-            <div
-              className="absolute bottom-8 left-[0.7rem] top-8 w-px bg-brand-accent/35 lg:hidden"
-              aria-hidden="true"
-            />
-            <div
-              className="absolute left-0 right-0 top-[2.9rem] hidden h-px bg-gradient-to-r from-brand-accent/0 via-brand-accent/75 to-brand-accent/0 lg:block"
-              aria-hidden="true"
-            />
-            <div className="grid gap-7 sm:gap-8 lg:grid-cols-4 lg:gap-8">
-              {schoolProofPoints.map((point, index) => (
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-brand-blue-strong sm:text-4xl">
+                Pushkin&apos;s School at a glance
+              </h2>
+              <Link
+                href="/about"
+                className="group inline-flex min-h-11 w-fit items-center gap-2 py-2 text-base font-semibold text-brand-blue-strong underline decoration-brand-red/35 underline-offset-4 transition hover:-translate-y-0.5 hover:text-brand-red hover:decoration-brand-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red/40 focus-visible:ring-offset-4"
+              >
+                <span>Read our story</span>
+                <ArrowRight
+                  aria-hidden="true"
+                  className="size-4 transition-transform group-hover:translate-x-0.5"
+                />
+              </Link>
+            </div>
+            <div className="grid overflow-hidden rounded-2xl border border-brand-blue/15 bg-brand-blue-strong shadow-[0_24px_60px_rgba(20,56,102,0.16)] lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-stretch">
+              <TrustSupportingVisual />
+
+              <div className="relative overflow-hidden bg-[radial-gradient(circle_at_top_right,rgba(125,174,205,0.2),transparent_42%)]">
                 <div
-                  key={point.value}
-                  className="relative pl-9 lg:pl-0"
-                >
-                  <div className="mb-3 flex items-center gap-3 lg:mb-6">
-                    <span
-                      className="absolute left-0 top-1.5 z-10 flex size-5 items-center justify-center rounded-full bg-surface ring-4 ring-surface lg:static"
-                      aria-hidden="true"
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -right-14 -top-16 size-52 rounded-full border border-white/10"
+                />
+                <div className="relative grid h-full sm:grid-cols-2">
+                  {homepageProofPoints.map((point, index) => (
+                    <article
+                      key={point.value}
+                      className={`flex flex-col justify-center p-6 sm:min-h-[12.5rem] sm:p-7 ${
+                        index > 0 ? "border-t border-white/15" : ""
+                      } ${
+                        index % 2 === 1 ? "sm:border-l sm:border-white/15" : ""
+                      } ${index === 1 ? "sm:border-t-0" : ""}`}
                     >
-                    <span className="size-2.5 rounded-full bg-brand-accent" />
-                    </span>
-                    <span className="font-mono text-xs font-semibold tracking-[0.16em] text-brand-accent">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-                  <p className="text-xl font-semibold leading-snug text-brand-blue-strong">
-                    {point.value}
-                  </p>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">
-                    {point.label}
-                  </p>
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#a9cade]">
+                        {proofPointCategories[index]}
+                      </p>
+                      <h3 className="mt-4 text-xl font-semibold leading-snug text-white">
+                        {point.value}
+                      </h3>
+                      <p className="mt-2 text-sm leading-6 text-white/72">
+                        <ProofPointLabel point={point} inverse />
+                      </p>
+                    </article>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           </div>
-        </div>
         </section>
       </HomepageSectionMarker>
 
       <HomepageSectionMarker number={3}>
-        <section className="bg-background site-section-compact">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:px-8">
-          <div>
-            <SectionIntro
-              eyebrow="Why families choose Pushkin's School"
-              title="A serious Russian school that still feels like childhood"
-            >
-              <p>
-                Parents choose Pushkin&apos;s School because Russian is taught
-                with structure, warmth, and cultural depth. Children are
-                encouraged to use the language, understand it, and feel proud
-                of what it connects them to.
-              </p>
-            </SectionIntro>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink
-                href="/curriculum"
-                variant="secondary"
-                icon={<BookOpen className="size-4" />}
-              >
-                Explore curriculum
-              </ButtonLink>
-            </div>
-          </div>
-
-          <div className="divide-y divide-border-soft border-y border-border-soft bg-surface">
-            {parentJourney.map((item, index) => (
-              <article
-                key={item.title}
-                className="grid gap-4 px-5 py-6 sm:grid-cols-[2.75rem_1fr] sm:px-6"
-              >
-                <span className="flex h-10 items-start justify-start pt-0.5 text-brand-red">
-                  <item.icon aria-hidden="true" className="size-6" strokeWidth={1.7} />
-                </span>
-                <div>
-                  <div className="flex items-baseline gap-3">
-                    <p className="font-mono text-xs font-semibold tracking-[0.16em] text-brand-red/80">
-                      0{index + 1}
-                    </p>
-                    <h3 className="text-2xl font-semibold leading-tight text-brand-blue-strong">
-                      {item.title}
-                    </h3>
-                  </div>
-                  <p className="mt-3 text-sm leading-6 text-slate-600">
-                    {item.body}
-                  </p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-        </section>
+        <PushkinLiterarySection />
       </HomepageSectionMarker>
 
       <HomepageSectionMarker number={4}>
@@ -636,6 +615,67 @@ function HomepageSectionMarker({
   );
 }
 
+function SchoolIdentityVisual() {
+  return (
+    <div className="relative mx-auto mb-6 aspect-[3/2] w-full max-w-md min-[1180px]:col-start-2 min-[1180px]:row-span-2 min-[1180px]:row-start-1 min-[1180px]:mb-0 min-[1180px]:max-w-none min-[1180px]:self-center">
+      <figure className="relative size-full overflow-hidden rounded-2xl border border-brand-blue/10 bg-surface-muted shadow-[0_14px_32px_rgba(20,56,102,0.10)]">
+        <Image
+          src="/images/archive/extended/community-archive/extended-community-archive-img-0194.jpg"
+          alt="Two children standing outside school beside a Pushkin's School sign."
+          fill
+          sizes="(min-width: 1180px) 560px, (min-width: 1024px) 520px, (min-width: 640px) 560px, calc(125vw - 3.75rem)"
+          quality={90}
+          className="scale-[1.25] object-cover object-center"
+        />
+      </figure>
+    </div>
+  );
+}
+
+function PushkinLiterarySection() {
+  const desktopPositions = [
+    "min-[1180px]:col-start-1 min-[1180px]:row-start-1 min-[1180px]:self-start",
+    "min-[1180px]:col-start-3 min-[1180px]:row-start-1 min-[1180px]:self-start min-[1180px]:text-right",
+    "min-[1180px]:col-start-1 min-[1180px]:row-start-2 min-[1180px]:self-end",
+    "min-[1180px]:col-start-3 min-[1180px]:row-start-2 min-[1180px]:self-end min-[1180px]:text-right",
+  ];
+
+  return (
+    <section className="bg-background site-section-compact">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-brand-blue-strong sm:text-4xl min-[1180px]:mx-auto min-[1180px]:text-center">
+          Why families choose Pushkin&apos;s School
+        </h2>
+
+        <div className="relative mt-10 overflow-hidden border-y border-brand-blue/15 py-4 min-[1180px]:grid min-[1180px]:grid-cols-[minmax(0,1fr)_24rem_minmax(0,1fr)] min-[1180px]:grid-rows-2 min-[1180px]:gap-x-8 min-[1180px]:gap-y-12 min-[1180px]:overflow-visible min-[1180px]:border-y-0 min-[1180px]:py-0">
+          <SchoolIdentityVisual />
+
+          <div className="relative grid md:grid-cols-2 md:gap-x-8 min-[1180px]:contents">
+            {parentJourney.map((item, index) => (
+              <article
+                key={item.title}
+                className={`relative border-b border-brand-blue/15 py-7 last:border-b-0 md:[&:nth-last-child(-n+2)]:border-b-0 min-[1180px]:border-b-0 min-[1180px]:py-0 ${desktopPositions[index]}`}
+              >
+                <h3 className="text-2xl font-semibold leading-tight text-brand-blue-strong sm:text-[1.7rem]">
+                  {item.title}
+                </h3>
+                <p
+                  className={`mt-3 max-w-[34ch] text-base leading-7 text-slate-700 min-[1180px]:max-w-[45ch] ${
+                    index % 2 === 1 ? "min-[1180px]:ml-auto" : ""
+                  }`}
+                >
+                  {item.body}
+                </p>
+              </article>
+            ))}
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function HeroSchoolVisual() {
   if (!heroLeadAsset) {
     return <HeroSchoolVisualFallback />;
@@ -671,16 +711,11 @@ function HeroSchoolVisual() {
             />
           )}
         </div>
-        <figcaption className="hidden sm:block">
-          <div className="grid grid-cols-[2.5rem_1fr]">
-            <div className="flex items-center justify-center bg-brand-accent">
-              <School aria-hidden="true" className="size-5.5 text-white" />
-            </div>
-            <p className="max-w-xl bg-white/72 px-4 py-3 text-base font-semibold leading-6 text-brand-blue-strong sm:px-5 min-[1180px]:whitespace-nowrap min-[1180px]:px-4 min-[1180px]:text-sm min-[1180px]:leading-5">
-              Located across Buckinghamshire, Hertfordshire, Berkshire, Essex,
-              and Devon.
-            </p>
-          </div>
+        <figcaption className="hidden bg-white/72 px-5 py-3 text-base leading-6 text-brand-blue-strong sm:block min-[1180px]:whitespace-nowrap min-[1180px]:px-4 min-[1180px]:text-sm min-[1180px]:leading-5">
+          We&apos;ve taught across{" "}
+          <strong className="font-semibold">
+            Buckinghamshire, Hertfordshire, Berkshire, Essex, and Devon.
+          </strong>
         </figcaption>
       </figure>
       <div className="hidden grid-cols-2 gap-3 sm:grid">
@@ -707,6 +742,84 @@ function HeroSchoolVisual() {
       </div>
     </div>
   );
+}
+
+function TrustSupportingVisual() {
+  if (!trustSupportingAsset) {
+    return null;
+  }
+
+  return (
+    <figure className="overflow-hidden bg-surface-muted">
+      <div className="relative min-h-64 sm:min-h-[20rem] lg:h-full lg:min-h-[25rem]">
+        <Image
+          src={trustSupportingAsset.approvedPublicPath}
+          alt={trustSupportingAsset.altText}
+          fill
+          sizes="(min-width: 1024px) 430px, 100vw"
+          className="object-cover"
+        />
+      </div>
+    </figure>
+  );
+}
+
+function ProofPointLabel({
+  point,
+  inverse = false,
+}: {
+  point: (typeof homepageProofPoints)[number];
+  inverse?: boolean;
+}) {
+  const links = "links" in point ? point.links : undefined;
+
+  if (!links) {
+    return point.label;
+  }
+
+  const parts: ReactNode[] = [];
+  let cursor = 0;
+
+  links.forEach((link) => {
+    const linkStart = point.label.indexOf(link.label, cursor);
+
+    if (linkStart === -1) {
+      return;
+    }
+
+    if (linkStart > cursor) {
+      parts.push(point.label.slice(cursor, linkStart));
+    }
+
+    const external = "external" in link && link.external;
+
+    parts.push(
+      <Link
+        key={link.href}
+        href={link.href}
+        target={external ? "_blank" : undefined}
+        rel={external ? "noreferrer" : undefined}
+        aria-label={
+          external ? `${link.label} (opens in a new tab)` : undefined
+        }
+        className={
+          inverse
+            ? "font-medium text-white decoration-white/70 underline-offset-4 transition hover:underline focus-visible:underline focus-visible:outline-none"
+            : "font-medium text-brand-blue-strong decoration-brand-accent/60 underline-offset-4 transition hover:underline focus-visible:underline focus-visible:outline-none"
+        }
+      >
+        {link.label}
+      </Link>,
+    );
+
+    cursor = linkStart + link.label.length;
+  });
+
+  if (cursor < point.label.length) {
+    parts.push(point.label.slice(cursor));
+  }
+
+  return parts;
 }
 
 function HeroSchoolVisualFallback() {

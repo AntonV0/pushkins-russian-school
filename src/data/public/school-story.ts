@@ -41,20 +41,48 @@ export const parentValueProps = [
 
 export const schoolProofPoints = [
   {
-    value: "Founded in 2009",
-    label: "A long-running Russian supplementary school community in England.",
+    value: "Teaching since 2009",
+    label:
+      "Pushkin's School helps children aged 3-18 speak, read, write, and grow confident in Russian.",
   },
   {
-    value: "Five-school network",
-    label: "A heritage of schools in High Wycombe, Hemel Hempstead, Bracknell, Chelmsford, and Southend-on-Sea.",
+    value: "A network of local schools",
+    label:
+      "Our schools have welcomed children in High Wycombe, Hemel Hempstead, Bracknell, Chelmsford, Southend-on-Sea, and Exeter.",
+    links: [
+      { label: "High Wycombe", href: "/schools/high-wycombe" },
+      { label: "Hemel Hempstead", href: "/schools/hemel-hempstead" },
+      { label: "Bracknell", href: "/schools/bracknell" },
+      { label: "Chelmsford", href: "/schools/chelmsford" },
+      { label: "Southend-on-Sea", href: "/schools/southend-on-sea" },
+      { label: "Exeter", href: "/schools/exeter" },
+    ],
   },
   {
     value: "Hundreds of pupils",
-    label: "Children have learned Russian language, literature, and culture through the school.",
+    label:
+      "Across generations, children have strengthened their Russian and gained skills they can continue to build on.",
   },
   {
-    value: "Moscow-linked curriculum",
+    value: "Expert-developed curriculum",
     label: "Developed with RUDN University, the Pushkin State Institute, and the Scientific Methodical Russian Speech Centre.",
+    links: [
+      {
+        label: "RUDN University",
+        href: "https://eng.rudn.ru/",
+        external: true,
+      },
+      {
+        label: "the Pushkin State Institute",
+        href: "https://www.pushkin.institute/",
+        external: true,
+      },
+      {
+        label: "the Scientific Methodical Russian Speech Centre",
+        href: "https://specped.ru/",
+        external: true,
+      },
+    ],
   },
 ] as const;
 
