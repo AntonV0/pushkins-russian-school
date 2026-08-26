@@ -119,16 +119,16 @@ const homepageProofPoints = [
 
 const joiningSteps = [
   {
-    title: "Share your child's Russian background",
-    body: "Tell us their age, school year, confidence with speaking, reading, and writing, and whether Russian is used at home.",
+    title: "Complete the registration form",
+    body: "Select your preferred school and share some initial details about your child.",
   },
   {
-    title: "Find the right class or route",
-    body: "We match the child to the most suitable current location, register-interest area, or online route through Volna where that is a better fit.",
+    title: "Hear from our headteacher",
+    body: "Our headteacher sends a longer safeguarding form and invites your child to attend on the next scheduled school day.",
   },
   {
-    title: "Start and adjust if needed",
-    body: "Placement can be reviewed after the first weeks so children are challenged, supported, and not placed only by age.",
+    title: "Begin the first three weeks",
+    body: "The introductory payment covers three weeks, during which teachers place your child with learners at a similar Russian level.",
   },
 ];
 
@@ -460,54 +460,43 @@ export default function Home() {
       </HomepageSectionMarker>
 
       <HomepageSectionMarker number={7}>
-        <section className="border-y border-border-soft bg-surface site-section-compact">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.74fr_1.26fr] lg:px-8">
-          <div>
-            <SectionIntro
-              eyebrow="Joining"
-              title="How we find the right starting point"
-            >
-              <p>
-                Every child arrives with a different relationship to Russian.
-                Some speak it at home, some understand it quietly, and some are
-                learning for the first time. The first step is to understand
-                that background.
-              </p>
-            </SectionIntro>
-            <div className="mt-7">
-              <ButtonLink
-                href="/admissions"
-                variant="secondary"
-                icon={<ClipboardCheck className="size-4" />}
-              >
-                Admissions and fees
-              </ButtonLink>
+        <section className="bg-surface site-section-compact">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+            <div className="max-w-3xl">
+              <SectionIntro title="From registration to the first three weeks">
+                <p>
+                  A clear process for completing the necessary forms and helping
+                  your child settle into a suitable group.
+                </p>
+              </SectionIntro>
             </div>
+            <Link
+              href="/admissions"
+              className="group inline-flex min-h-11 w-fit items-center gap-2 py-2 text-base font-semibold text-brand-blue-strong underline decoration-brand-red/35 underline-offset-4 transition hover:-translate-y-0.5 hover:text-brand-red hover:decoration-brand-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red/40 focus-visible:ring-offset-4 lg:mb-1"
+            >
+              <span>View admissions and fees</span>
+              <ArrowRight
+                aria-hidden="true"
+                className="size-4 transition-transform group-hover:translate-x-0.5"
+              />
+            </Link>
           </div>
-          <ol className="grid border-y border-border-soft bg-background md:grid-cols-3 md:divide-x md:divide-border-soft">
+          <ol className="mt-12 grid gap-y-10 md:grid-cols-3 md:gap-x-10 lg:gap-x-14">
             {joiningSteps.map((step, index) => (
               <li
                 key={step.title}
-                className="relative border-b border-border-soft px-5 py-6 last:border-b-0 md:border-b-0 md:px-6"
+                className="min-w-0"
               >
-                <div className="flex items-center gap-3">
-                  <span className="font-mono text-sm font-semibold text-brand-red">
-                    0{index + 1}
-                  </span>
-                  <span className="h-px flex-1 bg-brand-accent/35" aria-hidden="true" />
-                </div>
-                <h3 className="mt-5 text-xl font-semibold leading-tight text-brand-blue-strong">
+                <span className="font-mono text-5xl font-semibold tracking-[-0.07em] text-brand-blue/20">
+                  0{index + 1}
+                </span>
+                <h3 className="mt-6 text-2xl font-semibold leading-tight text-brand-blue-strong">
                   {step.title}
                 </h3>
-                <p className="mt-3 text-sm leading-6 text-slate-600">
+                <p className="mt-4 text-base leading-7 text-slate-700">
                   {step.body}
                 </p>
-                {index < joiningSteps.length - 1 ? (
-                  <ArrowRight
-                    aria-hidden="true"
-                    className="absolute -right-3 top-5 z-10 hidden size-6 bg-background p-1 text-brand-accent md:block"
-                  />
-                ) : null}
               </li>
             ))}
           </ol>
