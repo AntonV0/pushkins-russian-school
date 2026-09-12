@@ -79,8 +79,8 @@ const schoolIntroVideo = {
   poster: "/images/locations/exeter/exeter-classroom-learning.webp",
 };
 const homepageCommunityImage = {
-  src: "/images/locations/bracknell/bracknell-performance-wide.webp",
-  alt: "Children performing for families at Pushkin's School in Bracknell.",
+  src: "/images/site/homepage-community-bracknell.webp",
+  alt: "Children, families, and teachers gathered together at Pushkin's School in Bracknell.",
 };
 const homepageLocationImageAssets: Record<string, MediaAsset | undefined> = {
   bracknell: getApprovedMediaAssetById("BRACKNELL-DSC03270"),
@@ -756,15 +756,15 @@ export default function Home() {
                 Ready to join Pushkin&apos;s School?
               </h2>
               <p className="mt-4 max-w-xl text-sm leading-6 text-slate-600">
-                Share your child&apos;s age and experience with Russian. We&apos;ll
-                guide you through enrolment at your nearest school, with{" "}
+                Tell us whether you are interested in Bracknell, Exeter, another
+                local area, or{" "}
                 <Link
                   href="/online-lessons"
                   className="font-semibold text-brand-blue-strong underline decoration-brand-accent/65 underline-offset-4 transition hover:decoration-brand-red"
                 >
                   online lessons
-                </Link>{" "}
-                also available if they better fit your family&apos;s schedule.
+                </Link>
+                . We&apos;ll reply with the current options.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <ButtonLink
