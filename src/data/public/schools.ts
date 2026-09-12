@@ -87,6 +87,15 @@ const sundayPlan: LessonPlanItem[] = [
   { time: "12:15-13:00", activity: "Lesson 3" },
 ];
 
+const bracknellSundayPlan: LessonPlanItem[] = [
+  { time: "9:30-9:40", activity: "Assembly and warm-up" },
+  { time: "9:40-10:40", activity: "Lesson 1" },
+  { time: "10:40-11:00", activity: "Lunch break" },
+  { time: "11:00-11:40", activity: "Lesson 2" },
+  { time: "11:40-11:45", activity: "Break" },
+  { time: "11:45-12:30", activity: "Lesson 3" },
+];
+
 const sharedHighlights = [
   "Russian language, literature, culture, and creative learning",
   "Balanced bilingualism for children growing up in the UK",
@@ -226,8 +235,8 @@ export const schools: School[] = [
     venueName: "Saint Joseph's Primary School",
     address: ["Gipsy Lane"],
     postcode: "RG12 9AP",
-    schedule: "Sundays, 10:00 to 13:00",
-    lessonPlan: sundayPlan,
+    schedule: "Sundays, 09:30 to 12:30",
+    lessonPlan: bracknellSundayPlan,
     classGroups,
     highlights: sharedHighlights,
     bestNextSteps: [
