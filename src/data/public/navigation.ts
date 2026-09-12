@@ -19,6 +19,25 @@ export const supportNavigation: NavigationItem[] = [
 ];
 
 export const footerNavigation: NavigationItem[] = [
-  ...primaryNavigation,
-  ...supportNavigation,
+  { label: "Schools", href: "/schools" },
+  { label: "Admissions", href: "/admissions" },
+  { label: "Contact", href: "/contact" },
+  { label: "Online", href: "/online-lessons" },
+  { label: "Curriculum", href: "/curriculum" },
+  { label: "About", href: "/about" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Policies", href: "/policies" },
+];
+
+export const legalNavigation: NavigationItem[] = [
+  { label: "Privacy & cookies", href: "/policies/privacy-and-cookies" },
+  {
+    label: "Safeguarding",
+    href: "/policies/safeguarding-and-child-protection",
+  },
+  {
+    label: "Terms & complaints",
+    href: "/policies/parent-terms-and-complaints",
+  },
 ];

@@ -1,0 +1,10 @@
+@media (width < 40rem) {
+  .brand {
+    max-width: 100%;
+  }
+
+  /* Let the subtitle fit the footer column without shrinking the wordmark. */
+  .brand > span:last-child > span:last-child {
+    white-space: normal;
+  }
+}
