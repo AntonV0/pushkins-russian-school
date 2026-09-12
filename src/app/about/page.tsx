@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { ArrowRight, BookOpen, CheckCircle2, ClipboardCheck, MapPin, UsersRound } from "lucide-react";
+import { ArrowRight, BookOpen, CheckCircle2, MapPin, UsersRound } from "lucide-react";
 import {
   ButtonLink,
   quietHeroLinkClassName,
@@ -10,11 +10,7 @@ import { PageCta } from "@/components/site/page-cta";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionIntro } from "@/components/site/section-intro";
 import { VisualStoryPanel } from "@/components/site/visual-story-panel";
-import {
-  curriculumMaterials,
-  educationPrinciples,
-  placementSteps,
-} from "@/data/public/curriculum";
+import { educationPrinciples } from "@/data/public/curriculum";
 import {
   parentValueProps,
   schoolLifeHighlights,
@@ -37,8 +33,8 @@ const aboutSupportingAssets = [
 
 const nextStepNotes = [
   "Tell us about your child's Russian, confidence, reading and writing, and family goals.",
-  "Ask about the current location, online route, or future local classes that could fit your family.",
-  "The school can guide placement without expecting parents to diagnose the perfect class alone.",
+  "Explore Bracknell and Exeter for current in-person classes.",
+  "If a local school is not currently available, we can note your interest and explain the online route.",
 ];
 
 const schoolStoryCards = [
@@ -56,19 +52,36 @@ const schoolStoryCards = [
   },
   {
     label: "Through culture",
-    icon: ClipboardCheck,
+    icon: BookOpen,
     title: "Pushkin is more than a name",
     body: "The school takes inspiration from Alexander Pushkin and the ambition that pupils can move towards reading Russian works in the original.",
   },
 ];
 
+const aboutFutureSections = [
+  {
+    title: "Meet the school leadership",
+    body: "A concise introduction to the headteacher and educational leadership could make the school feel more personal once approved biographies and photographs are available.",
+  },
+  {
+    title: "A visual school timeline",
+    body: "Verified milestones from 2009 to the present could show how the school developed across locations without turning the page into a long written history.",
+  },
+  {
+    title: "Parent and former-pupil stories",
+    body: "Short, permission-approved experiences could provide stronger social proof than additional claims written by the school itself.",
+  },
+  {
+    title: "Educational partners and materials",
+    body: "A reviewed evidence section could explain the curriculum relationships and specialist textbooks in greater depth, with clear source links where appropriate.",
+  },
+] as const;
+
 export const metadata: Metadata = {
   title: "About",
   description:
     "About Pushkin's School of Russian Language and Literature: founded in 2009 to help children in the UK build balanced bilingualism, Russian culture, and literacy.",
-  alternates: {
-    canonical: "/about",
-  },
+  alternates: { canonical: "/about" },
   openGraph: {
     title: "About Pushkin's School",
     description:
@@ -86,7 +99,7 @@ export default function AboutPage() {
         actions={
           <>
             <ButtonLink href="/schools" icon={<MapPin className="size-4" />}>
-              Explore schools
+              Explore our schools
             </ButtonLink>
             <ButtonLink
               href="/contact#enquiry-form"
@@ -95,7 +108,7 @@ export default function AboutPage() {
               icon={<ArrowRight className="size-4" />}
               iconPosition="end"
             >
-              Tell us about your child
+              Start registration
             </ButtonLink>
           </>
         }
@@ -111,17 +124,17 @@ export default function AboutPage() {
         }
       >
         <p>
-          {schoolStory.history} It was created for families who want Russian
-          to remain part of their child&apos;s everyday confidence, literacy,
+          {schoolStory.history}{" "}It was created for families who want Russian to
+          remain part of their child&apos;s everyday communication, literacy,
           culture, and future study.
         </p>
       </PageHero>
 
       <section className="bg-background site-section-compact">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.82fr_1.18fr] lg:px-8">
           <div>
             <SectionIntro
-              eyebrow="School story"
+              eyebrow="Our purpose"
               title="Founded in 2009 to keep Russian strong for children in the UK"
             >
               <p>
@@ -130,66 +143,60 @@ export default function AboutPage() {
                 culturally alive across childhood.
               </p>
             </SectionIntro>
-            <div className="mt-8 space-y-5 text-base leading-7 text-slate-700">
-              <p>
-                {schoolStory.curriculum}
-              </p>
-              <p>
-                {schoolStory.materials}
-              </p>
-            </div>
-          </div>
-          <div className="border-y border-border-soft">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-red">
-              The shape of the story
+            <p className="mt-7 max-w-xl text-base leading-7 text-slate-700">
+              {schoolStory.philosophy}
             </p>
-            <div className="mt-6 divide-y divide-border-soft">
-              {schoolStoryCards.map((item) => (
-                <article
-                  key={item.title}
-                  className="grid gap-3 py-5 first:pt-0 last:pb-0 sm:grid-cols-[8rem_1fr]"
-                >
-                  <p className="flex items-center gap-2 text-sm font-semibold text-brand-red">
-                    <item.icon aria-hidden="true" className="size-4" />
-                    {item.label}
+          </div>
+          <div className="divide-y divide-border-soft border-y border-border-soft">
+            {schoolStoryCards.map((item) => (
+              <article
+                key={item.title}
+                className="grid gap-4 py-6 sm:grid-cols-[8rem_1fr]"
+              >
+                <p className="flex items-center gap-2 text-sm font-semibold text-brand-red">
+                  <item.icon aria-hidden="true" className="size-4" />
+                  {item.label}
+                </p>
+                <div>
+                  <h2 className="text-xl font-semibold leading-tight text-brand-blue-strong">
+                    {item.title}
+                  </h2>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                    {item.body}
                   </p>
-                  <div>
-                    <h2 className="text-xl font-semibold leading-tight text-brand-blue-strong">
-                      {item.title}
-                    </h2>
-                    <p className="mt-3 text-sm leading-6 text-slate-600">
-                      {item.body}
-                    </p>
-                  </div>
-                </article>
-              ))}
-            </div>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="border-y border-border-soft bg-surface site-section">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
+      <section className="border-y border-border-soft bg-surface site-section-compact">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.72fr_1.28fr] lg:px-8">
           <div>
             <SectionIntro
-              eyebrow="What families notice"
-              title="What parents are choosing"
+              eyebrow="What families are choosing"
+              title="More than a weekly language lesson"
             >
               <p>
-                Parents are not only choosing weekend lessons. They are choosing
-                a place where Russian culture, literature, identity, and
-                confident bilingualism are treated as a serious part of
-                childhood.
+                Parents are choosing a place where Russian communication,
+                literacy, culture and identity can remain a meaningful part of
+                childhood in the UK.
               </p>
             </SectionIntro>
-            <p className="mt-8 max-w-xl text-base leading-7 text-slate-700">
-              {schoolStory.culturalLife}
+            <p className="mt-7 max-w-xl text-base leading-7 text-slate-700">
+              Children can arrive as confident speakers, passive bilinguals or
+              beginners in reading and writing. The common aim is to help each
+              child use and develop the Russian they have now.
             </p>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-x-8 gap-y-7 sm:grid-cols-2">
             {parentValueProps.map((item) => (
               <article key={item.title} className="border-l border-brand-accent pl-5">
-                <CheckCircle2 aria-hidden="true" className="mb-3 size-5 text-brand-red" />
+                <CheckCircle2
+                  aria-hidden="true"
+                  className="mb-3 size-5 text-brand-red"
+                />
                 <h2 className="text-xl font-semibold leading-tight text-brand-blue-strong">
                   {item.title}
                 </h2>
@@ -203,112 +210,42 @@ export default function AboutPage() {
       </section>
 
       <section className="bg-background site-section-compact">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
-          <div>
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.28fr]">
             <SectionIntro
-              eyebrow="Curriculum and placement"
-              title="A Moscow-linked curriculum that still starts with the child"
+              eyebrow="Experience and foundations"
+              title="A school history supported by a specialist curriculum"
             >
               <p>
-                Common class groups, teacher judgement, and an understanding of
-                UK-raised bilingual children help new pupils start in a
-                sensible place.
+                {schoolStory.curriculum}{" "}{schoolStory.materials}
               </p>
             </SectionIntro>
-          </div>
-          <div className="grid gap-8">
-            <div className="relative border-l border-brand-accent pl-6">
-              {placementSteps.map((step, index) => (
-                <article key={step.title} className="relative pb-8 last:pb-0">
-                  <span className="absolute -left-[2.05rem] top-1 flex size-5 items-center justify-center rounded-full border border-brand-accent bg-background">
-                    <ClipboardCheck aria-hidden="true" className="size-3 text-brand-red" />
-                  </span>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
-                    Step {index + 1}
+            <div className="grid overflow-hidden rounded-lg border border-brand-blue/15 bg-surface sm:grid-cols-2">
+              {schoolProofPoints.map((item, index) => (
+                <article
+                  key={item.value}
+                  className={`p-6 ${index > 1 ? "border-t border-brand-blue/12" : ""} ${
+                    index % 2 === 1 ? "sm:border-l sm:border-brand-blue/12" : ""
+                  } ${index === 1 ? "border-t sm:border-t-0" : ""}`}
+                >
+                  <p className="text-xl font-semibold text-brand-blue-strong">
+                    {item.value}
                   </p>
-                  <h2 className="mt-2 text-xl font-semibold text-brand-blue-strong">
-                    {step.title}
-                  </h2>
                   <p className="mt-3 text-sm leading-6 text-slate-600">
-                    {step.body}
+                    {item.label}
                   </p>
                 </article>
               ))}
             </div>
-            <div className="rounded-lg border border-border-soft bg-surface p-5">
-              <h2 className="text-lg font-semibold text-brand-blue-strong">
-                Teaching spine
-              </h2>
-              <ul className="mt-4 divide-y divide-border-soft text-sm leading-6 text-slate-700">
-                {[...curriculumMaterials, ...schoolLifeHighlights].map((item) => (
-                  <li key={item} className="py-3 first:pt-0 last:pb-0">
-                    <span className="flex gap-2">
-                      <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
-                      <span>{item}</span>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
-        </div>
-      </section>
-
-      <section className="border-y border-border-soft bg-surface site-section-compact">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
-          <SectionIntro
-            eyebrow="Education philosophy"
-            title="Language learning that connects home, school, Moscow, and culture"
-          >
-            <p>
-              {schoolStory.philosophy} This is why language, literature,
-              performance, grammar, and culture are taught together.
-            </p>
-          </SectionIntro>
-          <div className="divide-y divide-border-soft border-y border-border-soft">
-            {educationPrinciples.map((item) => (
-              <article
-                key={item.title}
-                className="grid gap-4 py-6 sm:grid-cols-[4rem_1fr]"
-              >
-                <CheckCircle2 aria-hidden="true" className="size-5 text-brand-red" />
-                <div>
-                  <h2 className="text-xl font-semibold text-brand-blue-strong">
-                    {item.title}
-                  </h2>
-                  <p className="mt-3 text-sm leading-6 text-slate-600">
-                    {item.body}
-                  </p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-background site-section-compact">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
-          <SectionIntro
-            eyebrow="Proof points"
-            title="A school history parents can understand quickly"
-          >
-            <p>
-              The school story is simple: a long-running Russian school
-              founded in 2009, with a five-school heritage, a Moscow-linked
-              curriculum, performances, and progression for children growing
-              up in England. GCSE and A Level Russian are handled through the
-              related Volna Online Russian School route.
-            </p>
-          </SectionIntro>
-          <div className="grid gap-5 sm:grid-cols-3">
-            {schoolProofPoints.map((item) => (
-              <article key={item.value} className="border-t border-brand-accent pt-5">
-                <BookOpen aria-hidden="true" className="mb-3 size-5 text-brand-red" />
-                <h2 className="text-xl font-semibold text-brand-blue-strong">
-                  {item.value}
+          <div className="mt-10 grid gap-6 border-t border-border-soft pt-8 md:grid-cols-3">
+            {educationPrinciples.map((principle) => (
+              <article key={principle.title} className="border-l border-brand-accent pl-5">
+                <h2 className="text-lg font-semibold text-brand-blue-strong">
+                  {principle.title}
                 </h2>
                 <p className="mt-3 text-sm leading-6 text-slate-600">
-                  {item.label}
+                  {principle.body}
                 </p>
               </article>
             ))}
@@ -316,34 +253,118 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section className="border-y border-white/10 bg-brand-blue-strong site-section-compact text-white">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.72fr_1.28fr] lg:px-8">
+          <SectionIntro
+            eyebrow="School life"
+            title="Language becomes part of something children share"
+            tone="dark"
+          >
+            <p>
+              {schoolStory.pushkin}{" "}Creative work, stories, cultural projects
+              and performances give children visible reasons to use what they
+              are learning.
+            </p>
+          </SectionIntro>
+          <div>
+            <ul className="divide-y divide-white/15 border-y border-white/15">
+              {[0, 1, 2, 4].map((index) => (
+                <li
+                  key={schoolLifeHighlights[index]}
+                  className="flex gap-3 py-4 text-sm leading-6 text-white/75"
+                >
+                  <CheckCircle2
+                    aria-hidden="true"
+                    className="mt-1 size-4 shrink-0 text-brand-red"
+                  />
+                  <span>{schoolLifeHighlights[index]}</span>
+                </li>
+              ))}
+            </ul>
+            <ButtonLink
+              href="/gallery"
+              variant="light"
+              className="mt-7"
+              icon={<ArrowRight className="size-4" />}
+              iconPosition="end"
+            >
+              Explore school life
+            </ButtonLink>
+          </div>
+        </div>
+      </section>
+
       <PageCta
-        eyebrow="Parent confidence"
-        title="Tell us about your child and the right class can follow"
+        eyebrow="Your next step"
+        title="Explore the school that could work for your family"
         tone="light"
         actions={
-          <ButtonLink
-            href="/contact#enquiry-form"
-            icon={<ArrowRight className="size-4" />}
-            iconPosition="end"
-          >
-            Tell us about your child
-          </ButtonLink>
+          <>
+            <ButtonLink
+              href="/contact#enquiry-form"
+              icon={<ArrowRight className="size-4" />}
+              iconPosition="end"
+            >
+              Start registration
+            </ButtonLink>
+            <ButtonLink
+              href="/schools"
+              variant="secondary"
+              icon={<MapPin className="size-4" />}
+            >
+              Compare school locations
+            </ButtonLink>
+          </>
         }
       >
-        <p>
-          Share your child&apos;s age, Russian confidence, home-language
-          background, and goals. The school can then suggest the most suitable
-          route.
-        </p>
-        <ul className="mt-4 grid gap-2 text-sm leading-6 text-slate-600">
+        <ul className="grid gap-2 text-sm leading-6 text-slate-600">
           {nextStepNotes.map((note) => (
             <li key={note} className="flex gap-2 border-l border-brand-accent pl-4">
-              <CheckCircle2 aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
+              <CheckCircle2
+                aria-hidden="true"
+                className="mt-1 size-4 shrink-0 text-brand-red"
+              />
               <span>{note}</span>
             </li>
           ))}
         </ul>
       </PageCta>
+
+      {process.env.NODE_ENV === "development" ? (
+      <section className="border-t border-border-soft bg-surface-blue/35 site-section-compact">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <p className="inline-flex rounded-full border border-brand-red/20 bg-white/70 px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.17em] text-brand-red">
+            Temporary planning section
+          </p>
+          <div className="mt-7">
+            <SectionIntro
+              eyebrow="Ideas to consider"
+              title="Possible additions to the About page"
+            >
+              <p>
+                These are the strongest remaining opportunities once the core
+                school story has been reviewed and verified.
+              </p>
+            </SectionIntro>
+          </div>
+          <div className="mt-9 grid gap-5 md:grid-cols-2">
+            {aboutFutureSections.map((idea) => (
+              <article
+                key={idea.title}
+                className="border-l-2 border-brand-accent bg-background px-5 py-5"
+              >
+                <h2 className="text-lg font-semibold text-brand-blue-strong">
+                  {idea.title}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  {idea.body}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+      ) : null}
     </main>
   );
 }
