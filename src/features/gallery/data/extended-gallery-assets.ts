@@ -1,7 +1,7 @@
 import type { MediaAsset } from "./media-assets";
 
-// Limited-use archive manifest: keep these images gallery-only until a fresh
-// public-use review explicitly promotes individual assets.
+// Extended archive manifest. Assets remain gallery-only unless an individual
+// record documents a fresh public-use promotion.
 export const extendedGalleryMediaAssets: MediaAsset[] = [
   {
     id: "IMG-0007",
@@ -15,12 +15,12 @@ export const extendedGalleryMediaAssets: MediaAsset[] = [
     branchSlug: "exeter",
     galleryCategorySlug: "classroom-learning",
     category: "classroom",
-    consentStatus: "approved-limited-use",
-    qualityRating: "archive",
-    recommendedUse: "gallery",
+    consentStatus: "approved-for-public-web",
+    qualityRating: "feature",
+    recommendedUse: "supporting",
     notes: [
-      "Extended gallery batch 1: small archive tile, separate from the featured 52-image set.",
-      "Use at modest sizes only; do not promote to hero, about, or location lead imagery without a fresh review.",
+      "Selected by the school owner for the homepage Exeter location card on 2026-09-01.",
+      "Approved for publication after visual review of the Exeter classroom candidates.",
     ],
   },
   {

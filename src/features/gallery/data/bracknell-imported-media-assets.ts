@@ -60,6 +60,17 @@ const bracknellPhotoDescriptors: BracknellPhotoDescriptor[] = [
 ];
 
 const approvedHomepageSelections = {
+  DSC03270: {
+    approvedPublicPath:
+      "/images/site/homepage-location-bracknell-classroom.webp",
+    consentStatus: "approved-for-public-web",
+    qualityRating: "feature",
+    recommendedUse: "supporting",
+    notes: [
+      "Selected by the school owner for the homepage Bracknell location card on 2026-09-01.",
+      "Approved for publication after visual review of the Bracknell intake candidates.",
+    ],
+  },
   DSC03280: {
     approvedPublicPath:
       "/images/site/homepage-hero-bracknell-classroom.webp",
