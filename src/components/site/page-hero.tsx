@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { CtaGroup } from "./cta-group";
+import styles from "./home-hero.module.css";
 
 type PageHeroProps = {
   eyebrow: string;
@@ -20,7 +21,7 @@ const sectionPadding = {
 };
 
 const titleSize = {
-  home: "text-4xl sm:text-[2.65rem] md:text-5xl lg:text-[2.65rem] min-[1100px]:text-[3.25rem] min-[1180px]:text-[4rem]",
+  home: "text-4xl sm:text-[2.65rem] md:text-5xl lg:text-[2.65rem]",
   standard: "text-3xl sm:text-4xl lg:text-5xl",
   compact: "text-3xl sm:text-4xl",
 };
@@ -42,10 +43,10 @@ export function PageHero({
 
   return (
     <section
-      className={`border-b border-border-soft bg-[linear-gradient(180deg,rgba(255,255,255,0.86),rgba(255,255,255,0.58))] ${sectionPadding[variant]} ${className}`}
+      className={`border-b border-border-soft bg-[linear-gradient(180deg,rgba(255,255,255,0.86),rgba(255,255,255,0.58))] ${sectionPadding[variant]} ${isHome ? styles.hero : ""} ${className}`}
     >
       <div
-        className={`mx-auto grid max-w-7xl ${gridGap} px-6 lg:px-8 ${
+        className={`mx-auto grid max-w-7xl ${isHome ? "home-content-container" : ""} ${gridGap} px-6 lg:px-8 ${
           aside
             ? isHome
               ? `lg:min-h-[clamp(28rem,calc(100svh-16rem),34rem)] lg:grid-cols-[0.98fr_1.02fr] min-[1180px]:min-h-[clamp(30rem,calc(100svh-18rem),38rem)] ${asideAlignment}`
@@ -71,7 +72,7 @@ export function PageHero({
             {children}
           </div>
           {actions ? (
-            <CtaGroup className="mt-6 sm:mt-8">{actions}</CtaGroup>
+            <CtaGroup className={`mt-6 sm:mt-8 ${isHome ? styles.actions : ""}`}>{actions}</CtaGroup>
           ) : null}
         </div>
         {aside ? <div className="min-w-0">{aside}</div> : null}

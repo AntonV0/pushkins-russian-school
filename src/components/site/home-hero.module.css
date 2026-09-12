@@ -1,0 +1,63 @@
+@media (width < 64rem) {
+  .hero {
+    padding-block: clamp(28px, 5vw, 40px);
+  }
+
+  .hero > div {
+    gap: 24px;
+  }
+
+  .hero h1 {
+    max-width: 22ch;
+    font-size: clamp(2rem, calc(1.25rem + 3.2vw), 2.65rem);
+    line-height: 1.08;
+  }
+
+  .hero h1 + div {
+    margin-top: 16px;
+  }
+
+  .hero h1 + div > p {
+    font-size: clamp(1.125rem, calc(1rem + 0.625vw), 1.25rem);
+    line-height: 1.55;
+  }
+
+  .actions {
+    margin-top: 24px;
+  }
+
+  .actions > a {
+    min-height: 44px;
+  }
+
+  .leadImage {
+    min-height: 0;
+    aspect-ratio: 8 / 5;
+  }
+}
+
+@media (width < 430px) {
+  .leadImage {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (width < 540px) {
+  .actions > a {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (min-width: 540px) and (width < 64rem) {
+  .actions {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .actions > a {
+    width: auto;
+  }
+}

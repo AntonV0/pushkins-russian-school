@@ -13,11 +13,11 @@ import {
   ButtonLink,
   quietActionLinkClassName,
 } from "@/components/site/button-link";
-import { DevBreakpointStrip } from "@/components/site/dev-breakpoint-strip";
+import heroStyles from "@/components/site/home-hero.module.css";
 import { PageHero } from "@/components/site/page-hero";
+import { DevBreakpointStrip } from "@/components/site/dev-breakpoint-strip";
 import { SectionIntro } from "@/components/site/section-intro";
 import { VideoPosterPlayer } from "@/components/site/video-poster-player";
-import { curriculumPillars } from "@/data/public/curriculum";
 import { schoolProofPoints } from "@/data/public/school-story";
 import {
   approvedMediaAssets,
@@ -26,6 +26,7 @@ import {
   type MediaAsset,
 } from "@/features/gallery/data/media-assets";
 import { schools } from "@/data/public/schools";
+import { curriculumPillars } from "@/data/public/curriculum";
 
 function getApprovedMediaAssetById(id: string) {
   return approvedMediaAssets.find((asset) => asset.id === id);
@@ -128,30 +129,6 @@ const joiningSteps = [
     body: "The introductory payment covers three weeks, during which teachers place your child with learners at a similar Russian level.",
   },
 ];
-
-const homepageCurriculumPillars = [
-  curriculumPillars[0],
-  curriculumPillars[1],
-  {
-    title: "Progression for older learners",
-    body: "As pupils grow, lessons deepen their grammar, literacy and engagement with Russian literature, helping them become more independent readers, writers and speakers.",
-  },
-] as const;
-
-const homepageSchoolSummaries: Record<string, string> = {
-  "high-wycombe":
-    "Register local interest or ask about online Russian lessons while in-person classes are not currently listed.",
-  "hemel-hempstead":
-    "Register local interest in Hertfordshire or discuss online Russian lessons.",
-  bracknell:
-    "Structured Sunday classes with a regular classroom rhythm and a welcoming school community.",
-  chelmsford:
-    "Register local interest in Essex or ask about Volna online lessons.",
-  "southend-on-sea":
-    "Register local interest in Essex or discuss online learning routes.",
-  exeter:
-    "Ask us about the current timetable, venue, availability and the best group for your child.",
-};
 
 const homepageFaqs = [
   {
@@ -330,7 +307,6 @@ export default function Home() {
           </div>
         </section>
       </HomepageSectionMarker>
-
       <HomepageSectionMarker number={3}>
         <PushkinLiterarySection />
       </HomepageSectionMarker>
@@ -425,6 +401,8 @@ export default function Home() {
         </div>
         </section>
       </HomepageSectionMarker>
+
+
 
       <HomepageSectionMarker number={6}>
         <section className="border-y border-border-soft bg-surface site-section-compact">
@@ -752,7 +730,7 @@ function HeroSchoolVisual() {
       aria-label="School life photographs"
     >
       <figure className="premium-panel overflow-hidden rounded-lg border border-border-soft bg-surface">
-        <div className="relative min-h-48 bg-surface-muted sm:min-h-[17rem] lg:min-h-[18rem]">
+        <div className={`${heroStyles.leadImage} relative min-h-48 bg-surface-muted sm:min-h-[17rem] lg:min-h-[18rem]`}>
           {heroLeadImageSrcSet ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -776,14 +754,14 @@ function HeroSchoolVisual() {
             />
           )}
         </div>
-        <figcaption className="hidden bg-white/72 px-5 py-3 text-base leading-6 text-brand-blue-strong sm:block min-[1180px]:whitespace-nowrap min-[1180px]:px-4 min-[1180px]:text-sm min-[1180px]:leading-5">
+        <figcaption className="hidden bg-white/72 px-5 py-3 text-sm leading-5 text-brand-blue-strong sm:block min-[1180px]:px-4">
           We&apos;ve taught across{" "}
           <strong className="font-semibold">
             Buckinghamshire, Hertfordshire, Berkshire, Essex, and Devon.
           </strong>
         </figcaption>
       </figure>
-      <div className="hidden grid-cols-2 gap-3 sm:grid">
+      <div className="hidden grid-cols-2 gap-3 lg:grid">
         {heroSupportingAssets.map((asset) => (
           <div
             key={asset.id}
@@ -921,3 +899,27 @@ function HeroSchoolVisualFallback() {
     </div>
   );
 }
+
+const homepageCurriculumPillars = [
+  curriculumPillars[0],
+  curriculumPillars[1],
+  {
+    title: "Progression for older learners",
+    body: "As pupils grow, lessons deepen their grammar, literacy and engagement with Russian literature, helping them become more independent readers, writers and speakers.",
+  },
+] as const;
+
+const homepageSchoolSummaries: Record<string, string> = {
+  "high-wycombe":
+    "Register local interest or ask about online Russian lessons while in-person classes are not currently listed.",
+  "hemel-hempstead":
+    "Register local interest in Hertfordshire or discuss online Russian lessons.",
+  bracknell:
+    "Structured Sunday classes with a regular classroom rhythm and a welcoming school community.",
+  chelmsford:
+    "Register local interest in Essex or ask about Volna online lessons.",
+  "southend-on-sea":
+    "Register local interest in Essex or discuss online learning routes.",
+  exeter:
+    "Ask us about the current timetable, venue, availability and the best group for your child.",
+};
