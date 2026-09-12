@@ -13,6 +13,7 @@ import {
   ButtonLink,
   quietActionLinkClassName,
 } from "@/components/site/button-link";
+import identityStyles from "@/components/site/home-identity.module.css";
 import trustStyles from "@/components/site/home-trust.module.css";
 import heroStyles from "@/components/site/home-hero.module.css";
 import { PageHero } from "@/components/site/page-hero";
@@ -624,15 +625,15 @@ function HomepageSectionMarker({
 
 function SchoolIdentityVisual() {
   return (
-    <div className="relative mx-auto mb-6 aspect-[3/2] w-full max-w-md min-[1180px]:col-start-2 min-[1180px]:row-span-2 min-[1180px]:row-start-1 min-[1180px]:mb-0 min-[1180px]:max-w-none min-[1180px]:self-center">
-      <figure className="relative size-full overflow-hidden rounded-2xl border border-brand-blue/10 bg-surface-muted shadow-[0_14px_32px_rgba(20,56,102,0.10)]">
+    <div className={identityStyles.visual}>
+      <figure className="relative size-full overflow-hidden rounded-2xl border border-brand-blue/10 bg-surface-muted shadow-[var(--elevation-panel)]">
         <Image
           src="/images/archive/extended/community-archive/extended-community-archive-img-0194.jpg"
           alt="Two children standing outside school beside a Pushkin's School sign."
           fill
-          sizes="(min-width: 1180px) 560px, (min-width: 1024px) 520px, (min-width: 640px) 560px, calc(125vw - 3.75rem)"
+          sizes="(min-width: 1280px) 480px, (min-width: 1024px) 840px, (min-width: 720px) 672px, calc(100vw - 48px)"
           quality={90}
-          className="scale-[1.25] object-cover object-center"
+          className="object-cover"
         />
       </figure>
     </div>
@@ -640,43 +641,29 @@ function SchoolIdentityVisual() {
 }
 
 function PushkinLiterarySection() {
-  const desktopPositions = [
-    "min-[1180px]:col-start-1 min-[1180px]:row-start-1 min-[1180px]:self-start",
-    "min-[1180px]:col-start-3 min-[1180px]:row-start-1 min-[1180px]:self-start min-[1180px]:text-right",
-    "min-[1180px]:col-start-1 min-[1180px]:row-start-2 min-[1180px]:self-end",
-    "min-[1180px]:col-start-3 min-[1180px]:row-start-2 min-[1180px]:self-end min-[1180px]:text-right",
-  ];
-
   return (
-    <section className="bg-background site-section-compact">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-brand-blue-strong sm:text-4xl min-[1180px]:mx-auto min-[1180px]:text-center">
-          Why families choose Pushkin&apos;s School
-        </h2>
-
-        <div className="relative mt-10 overflow-hidden border-y border-brand-blue/15 py-4 min-[1180px]:grid min-[1180px]:grid-cols-[minmax(0,1fr)_24rem_minmax(0,1fr)] min-[1180px]:grid-rows-2 min-[1180px]:gap-x-8 min-[1180px]:gap-y-12 min-[1180px]:overflow-visible min-[1180px]:border-y-0 min-[1180px]:py-0">
+    <section aria-labelledby="why-families-title" className="bg-background site-section-compact">
+      <div className="home-content-container mx-auto max-w-7xl px-6 lg:px-8">
+        <div className={identityStyles.heading}>
+          <span aria-hidden="true" className={identityStyles.accent} />
+          <h2 id="why-families-title" className="text-3xl font-semibold tracking-tight text-brand-blue-strong sm:text-4xl">
+            Why families choose Pushkin&apos;s School
+          </h2>
+        </div>
+        <div className={identityStyles.layout}>
           <SchoolIdentityVisual />
-
-          <div className="relative grid md:grid-cols-2 md:gap-x-8 min-[1180px]:contents">
-            {parentJourney.map((item, index) => (
-              <article
-                key={item.title}
-                className={`relative border-b border-brand-blue/15 py-7 last:border-b-0 md:[&:nth-last-child(-n+2)]:border-b-0 min-[1180px]:border-b-0 min-[1180px]:py-0 ${desktopPositions[index]}`}
-              >
-                <h3 className="text-2xl font-semibold leading-tight text-brand-blue-strong sm:text-[1.7rem]">
+          <div className={identityStyles.benefits}>
+            {parentJourney.map((item) => (
+              <article key={item.title} className={identityStyles.benefit}>
+                <h3 className="text-2xl font-semibold leading-tight text-brand-blue-strong">
                   {item.title}
                 </h3>
-                <p
-                  className={`mt-3 max-w-[34ch] text-base leading-7 text-slate-700 min-[1180px]:max-w-[45ch] ${
-                    index % 2 === 1 ? "min-[1180px]:ml-auto" : ""
-                  }`}
-                >
+                <p className="text-base leading-7 text-slate-700">
                   {item.body}
                 </p>
               </article>
             ))}
           </div>
-
         </div>
       </div>
     </section>

@@ -1,0 +1,111 @@
+.heading {
+  max-width: 44rem;
+}
+
+.heading h2 {
+  font-size: clamp(1.875rem, calc(1.5rem + 1vw), 2.25rem);
+  line-height: 1.15;
+}
+
+.accent {
+  display: block;
+  width: 2.75rem;
+  height: 2px;
+  margin-bottom: 1rem;
+  background: var(--brand-red);
+}
+
+.layout {
+  margin-top: 1.5rem;
+}
+
+.visual {
+  position: relative;
+  width: 100%;
+  max-width: 52.5rem;
+  aspect-ratio: 2 / 1;
+  margin-inline: auto;
+}
+
+.visual img {
+  object-fit: cover;
+  object-position: 50% 45%;
+}
+
+@media (768px <= width < 1280px) {
+  .visual { aspect-ratio: 12 / 5; }
+}
+
+.benefits {
+  display: grid;
+  margin-top: 1.75rem;
+}
+
+.benefit {
+  min-width: 0;
+  padding-block: 1.25rem;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.benefit:first-child { padding-top: 0; }
+.benefit:last-child { border-bottom: 0; padding-bottom: 0; }
+.benefit p { max-width: 55ch; margin-top: 0.75rem; }
+
+@media (width >= 640px) {
+  .layout { margin-top: 2rem; }
+  .benefits { margin-top: 2rem; }
+  .benefit { padding-block: 1.5rem; }
+}
+
+@media (width >= 768px) {
+  .benefits {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2rem;
+  }
+
+  .benefit {
+    display: grid;
+    grid-row: span 2;
+    grid-template-rows: subgrid;
+    align-content: start;
+  }
+
+  .benefit:nth-child(-n + 2) { padding-top: 0; }
+  .benefit:nth-last-child(-n + 2) { border-bottom: 0; padding-bottom: 0; }
+  .benefit > * { align-self: start; }
+}
+
+@media (1024px <= width < 1280px) {
+  .heading,
+  .layout {
+    max-width: 52.5rem;
+    margin-inline: auto;
+  }
+
+  .benefit h3 {
+    max-width: 20ch;
+  }
+
+  .benefit:nth-child(3) h3 {
+    max-width: 18ch;
+  }
+}
+
+@media (width >= 1280px) {
+  .heading { margin-inline: auto; text-align: center; max-width: 48rem; }
+  .accent { margin-inline: auto; }
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 24rem minmax(0, 1fr);
+    column-gap: 2rem;
+    margin-top: 2.5rem;
+  }
+  .visual { grid-column: 2; grid-row: 1 / span 4; align-self: center; aspect-ratio: 3 / 2; }
+  .visual img { transform: scale(1.25); object-position: center; }
+  .benefits { display: contents; }
+  .benefit { border: 0; padding: 0; }
+  .benefit:nth-child(odd) { grid-column: 1; }
+  .benefit:nth-child(even) { grid-column: 3; }
+  .benefit:nth-child(-n + 2) { grid-row: 1 / span 2; padding-bottom: 2rem; }
+  .benefit:nth-child(n + 3) { grid-row: 3 / span 2; }
+}
