@@ -25,8 +25,16 @@ export function VideoPosterPlayer({
   const videoRef = useRef<HTMLVideoElement>(null);
   const startTimeoutRef = useRef<number | null>(null);
   const controlsTimeoutRef = useRef<number | null>(null);
+  const transferFocusRef = useRef(false);
   const [playbackState, setPlaybackState] = useState<PlaybackState>("idle");
   const [showControls, setShowControls] = useState(false);
+
+  useEffect(() => {
+    if (showControls && transferFocusRef.current) {
+      videoRef.current?.focus({ preventScroll: true });
+      transferFocusRef.current = false;
+    }
+  }, [showControls]);
 
   useEffect(() => {
     return () => {
@@ -95,6 +103,7 @@ export function VideoPosterPlayer({
     <div className="relative">
       <video
         ref={videoRef}
+        tabIndex={showControls ? 0 : -1}
         className={className}
         controls={showControls}
         playsInline
@@ -123,7 +132,10 @@ export function VideoPosterPlayer({
           }`}
           aria-label={`${overlayTitle}. ${overlayDescription}`}
           aria-disabled={playbackState === "revealing"}
-          onClick={playVideo}
+          onClick={(event) => {
+            transferFocusRef.current = event.detail === 0;
+            void playVideo();
+          }}
         >
           <span
             className={`relative z-10 block size-full text-center transition-opacity duration-180 ease-out ${
