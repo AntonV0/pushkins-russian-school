@@ -13,6 +13,7 @@ import {
   ButtonLink,
   quietActionLinkClassName,
 } from "@/components/site/button-link";
+import { DevBreakpointStrip } from "@/components/site/dev-breakpoint-strip";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionIntro } from "@/components/site/section-intro";
 import { VideoPosterPlayer } from "@/components/site/video-poster-player";
@@ -237,6 +238,7 @@ export default function Home() {
 
   return (
     <main>
+      {process.env.NODE_ENV === "development" ? <DevBreakpointStrip /> : null}
       <HomepageSectionMarker number={1}>
         <PageHero
           eyebrow="Weekend Russian language education"
