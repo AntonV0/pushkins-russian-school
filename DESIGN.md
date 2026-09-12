@@ -4,9 +4,9 @@ Last audited: 6 August 2026
 
 ## 1. Purpose and scope
 
-This document is the primary design-governance reference for Pushkin's School. It records the current design language, project-specific design principles, approval gates, experiment rules, and a proposed improvement backlog.
+This document is the primary design-governance reference for Pushkin's School. It records the current design language, project-specific design principles, implementation workflow, experiment rules, and a proposed improvement backlog.
 
-`DESIGN.md` governs future UI and content-design work, but it does not itself authorize a production change. A future agent must inspect the current implementation and obtain the approvals in [Approval workflow](#8-approval-workflow) before editing a production component, route, layout, stylesheet, token, font, content registry, dependency, or asset.
+`DESIGN.md` guides future UI and content-design work. A future agent should inspect the current implementation and follow the workflow in [Design workflow](#8-design-workflow) before editing a production component, route, layout, stylesheet, token, font, content registry, dependency, or asset.
 
 This audit describes the working tree as rendered locally on 6 August 2026, including the owner's existing staged and unstaged homepage work. It is a description of that baseline, not approval to retain, revise, stage, or publish it.
 
@@ -270,28 +270,26 @@ These are recommendations for owner approval, not settled brand decisions.
 - Treat all images of children, staff, venues, documents, and student work as privacy and permission decisions. Follow `ASSET-WORKFLOW.md`; keep raw sources out of the public repository.
 - Alt text must communicate the relevant activity/context without naming unidentified children, inferring sensitive traits, or exposing private information.
 
-## 8. Approval workflow
+## 8. Design workflow
 
-Use this exact sequence for future design work:
+Use this sequence for future design work:
 
-**Audit and documentation**
-→ **Owner approves a design direction**
-→ **Codex proposes one tightly scoped component or group of sections**
-→ **Codex lists the exact files it wants to change**
-→ **Owner approves the file scope**
-→ **Codex implements and captures screenshots**
+**Audit the current implementation**
+→ **Identify the intended user outcome and affected surfaces**
+→ **Implement the requested design or content change**
+→ **Capture screenshots and test responsive behaviour**
+→ **Review the diff for regressions and unrelated changes**
 → **Owner accepts, requests revisions or asks to revert**
 
-Documentation does not grant permission to edit production UI. Approval of a direction does not imply approval of file scope. Approval of one component or experiment does not permit edits to adjacent pages, shared components, global tokens, copy, content registries, dependencies, or assets.
+Keep implementation boundaries deliberate. Changes should remain aligned with the user-requested outcome, and adjacent pages, shared components, global tokens, content registries, dependencies, and assets should only change when they are relevant to that outcome.
 
-Before implementation, record:
+Before implementation, establish:
 
-- the baseline commit or otherwise agreed identical source state;
-- the visible section/component identity and functional requirements;
-- the exact files allowed to change;
-- whether copy, data, shared UI, global styling, imagery, or behaviour is in or out of scope;
+- the current source state;
+- the visible section or component identity and functional requirements;
+- whether copy, data, shared UI, global styling, imagery, or behaviour is affected;
 - desktop, mobile, and intermediate QA viewports;
-- the revert boundary.
+- a clear revert boundary.
 
 ## 9. Homepage sections 5, 6, and 7
 
