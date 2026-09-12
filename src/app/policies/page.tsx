@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
-import { contactDetails } from "@/data/public/contact";
+import { PolicyEmailContact } from "@/components/site/policy-email-contact";
 import { policies } from "@/data/public/policies";
 
 export const metadata: Metadata = {
@@ -77,7 +77,7 @@ export default function PoliciesPage() {
             <p className="text-sm leading-6 text-slate-600">
               Questions about a policy or need an accessible copy?
             </p>
-            <a href={`mailto:${contactDetails.email}`} className="text-brand-blue underline">{contactDetails.email}</a>
+            <PolicyEmailContact />
           </div>
         </div>
       </section>

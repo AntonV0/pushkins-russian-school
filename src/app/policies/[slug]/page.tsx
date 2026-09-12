@@ -6,7 +6,7 @@ import { Fragment } from "react";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { JsonLd } from "@/components/site/json-ld";
 import { PolicyContentsNav } from "@/components/site/policy-contents-nav";
-import { contactDetails } from "@/data/public/contact";
+import { PolicyEmailContact } from "@/components/site/policy-email-contact";
 import {
   getPolicyBySlug,
   policies,
@@ -272,7 +272,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
               Email the school with the policy title and your question.
             </p>
             <div className="mt-3">
-              <a href={`mailto:${contactDetails.email}`} className="text-brand-blue underline">{contactDetails.email}</a>
+              <PolicyEmailContact />
             </div>
           </div>
           <div className="flex flex-wrap gap-3">
