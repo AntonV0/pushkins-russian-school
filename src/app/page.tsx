@@ -154,18 +154,18 @@ const homepageProofPoints = [
 
 const joiningSteps = [
   {
-    title: "Complete the registration form",
-    body: "Select your preferred school and share some initial details about your child.",
+    title: "Tell us about your child",
+    body: "Share your child’s age, preferred location, and current experience with speaking, reading, and writing Russian.",
   },
   {
-    title: "Hear from our headteacher",
-    body: "Our headteacher sends a longer safeguarding form and invites your child to attend on the next scheduled school day.",
+    title: "We usually contact you within 24 hours",
+    body: "We’ll reply by email or phone to confirm availability, answer your questions, and complete the enrolment process.",
   },
   {
-    title: "Begin the first three weeks",
-    body: "The introductory payment covers three weeks, during which teachers place your child with learners at a similar Russian level.",
+    title: "Begin with three introductory sessions",
+    body: "Your child joins the recommended group for three weekend sessions. This gives them time to settle in and allows teachers to confirm that the level and pace are right before the rest of the term.",
   },
-];
+] as const;
 
 const homepageCurriculumPrototype = [
   {
@@ -615,46 +615,62 @@ export default function Home() {
 
       <HomepageSectionMarker number={8}>
         <section className="bg-surface site-section-compact">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
-            <div className="max-w-3xl">
-              <SectionIntro title="From registration to the first three weeks">
-                <p>
-                  A clear process for completing the necessary forms and helping
-                  your child settle into a suitable group.
-                </p>
-              </SectionIntro>
-            </div>
-            <Link
-              href="/admissions"
-              className="group inline-flex min-h-11 w-fit items-center gap-2 py-2 text-base font-semibold text-brand-blue-strong underline decoration-brand-red/35 underline-offset-4 transition hover:-translate-y-0.5 hover:text-brand-red hover:decoration-brand-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red/40 focus-visible:ring-offset-4 lg:mb-1"
-            >
-              <span>View admissions and fees</span>
-              <ArrowRight
-                aria-hidden="true"
-                className="size-4 transition-transform group-hover:translate-x-0.5"
-              />
-            </Link>
-          </div>
-          <ol className="mt-12 grid gap-y-10 md:grid-cols-3 md:gap-x-10 lg:gap-x-14">
-            {joiningSteps.map((step, index) => (
-              <li
-                key={step.title}
-                className="min-w-0"
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="grid gap-7 border-b border-brand-blue-strong/15 pb-9 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end lg:pb-10">
+              <h2 className="text-balance text-3xl font-semibold leading-tight tracking-tight text-brand-blue-strong sm:text-4xl">
+                How enrolment works
+              </h2>
+              <Link
+                href="/admissions"
+                className="group inline-flex min-h-11 w-fit items-center gap-2 py-2 text-base font-semibold text-brand-blue-strong underline decoration-brand-red/35 underline-offset-4 transition hover:-translate-y-0.5 hover:text-brand-red hover:decoration-brand-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red/40 focus-visible:ring-offset-4"
               >
-                <span className="font-mono text-5xl font-semibold tracking-[-0.07em] text-brand-blue/20">
-                  0{index + 1}
-                </span>
-                <h3 className="mt-6 text-2xl font-semibold leading-tight text-brand-blue-strong">
-                  {step.title}
-                </h3>
-                <p className="mt-4 text-base leading-7 text-slate-700">
-                  {step.body}
-                </p>
-              </li>
-            ))}
-          </ol>
-        </div>
+                <span>View admissions and fees</span>
+                <ArrowRight
+                  aria-hidden="true"
+                  className="size-4 transition-transform group-hover:translate-x-0.5"
+                />
+              </Link>
+            </div>
+
+            <ol className="mt-10 grid border-b border-brand-blue-strong/15 lg:grid-cols-3 lg:items-stretch lg:gap-0 xl:grid-cols-[0.9fr_1fr_1.1fr] xl:items-end">
+              {joiningSteps.map((step, index) => {
+                const stepClassName =
+                  index === 0
+                    ? "lg:border-l-0 lg:px-7 xl:min-h-[18.5rem] xl:pl-0 xl:pr-9"
+                    : index === 1
+                      ? "lg:border-l lg:border-l-border-soft lg:px-7 xl:min-h-[20rem] xl:px-9"
+                      : "lg:border-l lg:border-l-border-soft lg:px-8 xl:min-h-[21.5rem] xl:px-10";
+                const ruleClassName =
+                  index === 0
+                    ? "lg:border-t lg:border-t-brand-blue-strong/20"
+                    : index === 1
+                      ? "lg:border-t lg:border-t-brand-blue-strong/30"
+                      : "lg:border-t lg:border-t-brand-blue-strong/40";
+
+                return (
+                  <li
+                    key={step.title}
+                    className={`grid grid-cols-[3rem_minmax(0,1fr)] gap-x-5 border-t border-t-border-soft py-7 first:border-t-0 lg:flex lg:min-h-[22rem] lg:flex-col lg:justify-between lg:py-9 lg:first:border-t ${stepClassName} ${ruleClassName}`}
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="font-mono text-4xl font-semibold leading-none tracking-[-0.08em] text-brand-blue-strong/30"
+                    >
+                      0{index + 1}
+                    </span>
+                    <div className="pt-1 lg:mt-8 lg:pt-0">
+                      <h3 className="text-xl font-semibold leading-snug text-brand-blue-strong sm:text-2xl">
+                        {step.title}
+                      </h3>
+                      <p className="mt-3 max-w-md text-base leading-7 text-slate-600">
+                        {step.body}
+                      </p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
         </section>
       </HomepageSectionMarker>
 
