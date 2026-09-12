@@ -4,9 +4,10 @@ type BrandMarkProps = {
   className?: string;
   compact?: boolean;
   short?: boolean;
+  variant?: "default" | "header";
 };
 
-export function BrandMark({ className = "", compact = false, short = false }: BrandMarkProps) {
+export function BrandMark({ className = "", compact = false, short = false, variant = "default" }: BrandMarkProps) {
   return (
     <span
       className={`inline-flex items-center ${short ? "gap-1.5" : "gap-2.5"} ${className}`}
@@ -14,7 +15,7 @@ export function BrandMark({ className = "", compact = false, short = false }: Br
     >
       <span
         className={`relative block shrink-0 ${
-          short ? "h-10 w-12" : "h-[3.75rem] w-[4.25rem] sm:h-[4.5rem] sm:w-[5rem]"
+          short ? "h-10 w-12" : variant === "header" ? "h-[3.75rem] w-[4.375rem]" : "h-[3.75rem] w-[4.25rem] sm:h-[4.5rem] sm:w-[5rem]"
         }`}
         aria-hidden="true"
       >
@@ -30,13 +31,13 @@ export function BrandMark({ className = "", compact = false, short = false }: Br
       {!compact ? (
         <span
           className={`flex min-w-0 flex-col justify-center leading-none ${
-            short ? "h-10 translate-y-1" : "h-[3.75rem] translate-y-1 sm:h-[4.5rem]"
+            short ? "h-10 translate-y-1" : variant === "header" ? "h-[3.75rem] translate-y-1" : "h-[3.75rem] translate-y-1 sm:h-[4.5rem]"
           }`}
           aria-hidden="true"
         >
           <span
             className={`block font-logo-display font-normal leading-[0.86] tracking-normal text-brand-blue ${
-              short ? "text-[1.55rem]" : "text-[1.9rem] sm:text-[2.3rem]"
+              short ? "text-[1.55rem]" : variant === "header" ? "text-[2rem]" : "text-[1.9rem] sm:text-[2.3rem]"
             }`}
           >
             Pushkin&apos;s School

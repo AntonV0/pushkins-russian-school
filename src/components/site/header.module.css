@@ -1,0 +1,263 @@
+.header .tabletCta {
+  display: none;
+}
+
+.header a:focus-visible,
+.header button:focus-visible {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 3px;
+}
+
+@media (min-width: 68.75rem) {
+  .header .tabletCta {
+    display: inline-flex;
+  }
+
+  .row {
+    height: 79px;
+    transition: height 260ms cubic-bezier(0.33, 1, 0.68, 1);
+  }
+
+  .brand > span {
+    transition: height 260ms cubic-bezier(0.33, 1, 0.68, 1),
+      width 260ms cubic-bezier(0.33, 1, 0.68, 1);
+  }
+
+  .brand > span > span {
+    transition: font-size 260ms cubic-bezier(0.33, 1, 0.68, 1);
+  }
+}
+
+@media (min-width: 68.75rem) and (width < 1280px) {
+  .row {
+    height: 71px;
+  }
+
+  .brand > span {
+    height: 3.25rem;
+  }
+
+  .brand > span:first-child {
+    width: 3.75rem;
+  }
+
+  .brand > span:last-child > span:first-child {
+    font-size: 1.875rem;
+  }
+
+  .brand > span:last-child > span:last-child {
+    font-size: 0.78125rem;
+  }
+}
+
+@media (width < 68.75rem) {
+  .row {
+    height: 67px;
+  }
+
+  .tabletBrand > span:first-child {
+    width: 54px;
+    height: 45px;
+  }
+
+  .tabletBrand > span:last-child > span:first-child {
+    font-size: 1.75rem;
+  }
+
+  .tabletBrand > span:last-child > span:last-child {
+    font-size: 0.75rem;
+  }
+
+  .menuTrigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 200ms;
+    min-height: 44px;
+    width: 88px;
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--brand-blue-strong);
+    box-shadow: none;
+    font-size: 0.875rem;
+  }
+
+  .menuTrigger > svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .menuTrigger:hover,
+  .menuTrigger[aria-expanded="true"] {
+    background: var(--surface-blue);
+  }
+
+  .menuPanel {
+    position: absolute;
+    right: 0;
+    z-index: 30;
+    max-height: calc(100dvh - 88px);
+    overflow-y: auto;
+    border: 1px solid var(--border-soft);
+    top: calc(100% + 12px);
+    width: 22rem;
+    padding: 12px;
+    border-radius: 4px;
+    background: var(--surface);
+    box-shadow: 0 12px 28px rgba(0, 32, 72, 0.12);
+  }
+
+  .menuLink {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 10px 14px;
+    border-radius: 2px;
+    color: var(--brand-blue-strong);
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: background-color 200ms;
+  }
+
+  .menuLink:hover,
+  .menuLink:focus-visible,
+  .menuLink[aria-current="page"] {
+    background: var(--surface-blue);
+  }
+
+  .supportLink {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .header .tabletCta {
+    display: none;
+  }
+
+  .menuIntro {
+    display: block;
+  }
+
+  /* Room for branding, both actions and a comfortable gap between them. */
+  @container site-header-row (min-width: 700px) {
+    .header .tabletCta {
+      display: inline-flex;
+    }
+
+    .menuIntro {
+      display: none;
+    }
+  }
+}
+
+@media (width < 40rem) {
+  .menuTrigger {
+    width: 44px;
+    padding-inline: 6px;
+  }
+
+  .menuTrigger > span {
+    display: none;
+  }
+
+  .row {
+    position: relative;
+    height: 63px;
+    padding-inline: 16px;
+    padding-block: 8px;
+  }
+
+  .tabletBrand > span:first-child {
+    width: 48px;
+    height: 40px;
+  }
+
+  .tabletBrand > span:last-child > span:first-child {
+    font-size: 1.625rem;
+    white-space: nowrap;
+  }
+
+  .tabletBrand > span:last-child > span:last-child {
+    font-size: 0.72rem;
+  }
+
+  .menuWrap {
+    position: static;
+  }
+
+  .menuPanel {
+    top: calc(100% + 1px);
+    right: 12px;
+    width: min(22rem, calc(100% - 24px));
+    max-height: calc(100dvh - 80px);
+  }
+}
+
+@media (width < 430px) {
+  .actions {
+    gap: 4px;
+  }
+
+  .menuTrigger > span {
+    display: none;
+  }
+
+  .row {
+    height: 59px;
+    padding-block: 6px;
+  }
+
+  .tabletBrand > span:last-child > span:last-child {
+    display: none;
+  }
+
+  .tabletBrand > span:first-child {
+    width: 42px;
+    height: 38px;
+  }
+
+  .tabletBrand > span:last-child > span:first-child {
+    font-size: 1.45rem;
+  }
+
+  .menuTrigger {
+    width: 44px;
+    padding-inline: 6px;
+  }
+}
+
+@media (width < 360px) {
+
+  .row {
+    padding-inline: 10px;
+    gap: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .row,
+  .brand > span,
+  .brand > span > span,
+  .header a,
+  .header a::before,
+  .header a::after,
+  .menuTrigger {
+    transition: none;
+  }
+
+  .header a:hover,
+  .header a:active {
+    translate: none;
+    transform: none;
+  }
+
+  .header a::before {
+    display: none;
+  }
+}
