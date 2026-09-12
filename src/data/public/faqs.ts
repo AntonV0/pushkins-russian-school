@@ -114,9 +114,9 @@ export const faqGroups: FaqGroup[] = [
       "How public documents, gallery images, and first-contact details are handled carefully.",
     items: [
       {
-        question: "Why are some policy downloads not shown yet?",
+        question: "Which school policies can families read online?",
         answer:
-          "Policy summaries are available first. Public downloads are linked only when documents are ready for families to use.",
+          "The website provides the school's Privacy and Cookies Notice, Safeguarding and Child Protection Policy, and Parent Terms, Fees, Cancellations and Complaints.",
       },
       {
         question: "Why are some gallery spaces waiting for photos?",

@@ -1,345 +1,83 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, ExternalLink, FileText, HelpCircle, MapPin, ShieldCheck } from "lucide-react";
-import {
-  ButtonLink,
-  quietHeroLinkClassName,
-} from "@/components/site/button-link";
-import {
-  getPolicyAction,
-  getPolicyStatusTone,
-  hasReviewedPublicPolicyPdf,
-  type Policy,
-  policies,
-  policyGroups,
-} from "@/data/public/policies";
+import { ArrowRight } from "lucide-react";
+import { Breadcrumbs } from "@/components/site/breadcrumbs";
+import { contactDetails } from "@/data/public/contact";
+import { policies } from "@/data/public/policies";
 
 export const metadata: Metadata = {
   title: "Policies",
   description:
-    "Safeguarding, welfare, conduct, and parent policy information for Pushkin's School families.",
+    "Privacy, safeguarding and parent terms for Pushkin's School of Russian Language and Literature.",
   alternates: {
     canonical: "/policies",
   },
   openGraph: {
-    title: "Pushkin's School Policies",
+    title: "Policies | Pushkin's School",
     description:
-      "Safeguarding, welfare, conduct, and parent policy information for Pushkin's School families.",
+      "Read the school's privacy notice, safeguarding policy and practical parent terms.",
     url: "/policies",
   },
 };
 
-const policyAssuranceNotes = [
-  "Key safeguarding, welfare, data, conduct, and complaints information is grouped clearly for families.",
-  "Policy summaries are available now, with formal school documents added when ready.",
-  "Official statutory guidance opens from source pages so parents can check the current reference.",
-];
-
-const publicationPrinciples = [
-  {
-    label: "Clear parent guidance",
-    description:
-      "Each policy has a plain summary and a practical note about when families are most likely to need it.",
-  },
-  {
-    label: "Checked documents",
-    description:
-      "Formal PDFs appear after owner, version, update date, and next update date have been confirmed.",
-  },
-  {
-    label: "Current references",
-    description:
-      "External guidance links point to official publication pages rather than copied local files.",
-  },
-];
-
-const policyContactLinks = [
-  {
-    label: "Ask a policy question",
-    href: "/contact#enquiry-form",
-    description:
-      "Send a practical parent question to the school team through the enquiry form.",
-  },
-  {
-    label: "Compare school locations",
-    href: "/schools",
-    description:
-      "Check branch, timetable, and location information before choosing the right contact path.",
-  },
-];
-
-function getParentPolicyStatusLabel(policy: Policy) {
-  if (hasReviewedPublicPolicyPdf(policy)) {
-    return "Download available";
-  }
-
-  const action = getPolicyAction(policy);
-
-  if (action?.kind === "external") {
-    return "Official guidance";
-  }
-
-  return "Summary available";
-}
+const directoryDescriptions: Record<string, string> = {
+  "privacy-and-cookies":
+    "How we collect, use and protect personal information about pupils, families and website visitors.",
+  "safeguarding-and-child-protection":
+    "How we keep children safe and how to raise a safeguarding concern.",
+  "parent-terms-and-complaints":
+    "Joining the school, paying fees, missed lessons, cancellations and complaints.",
+};
 
 export default function PoliciesPage() {
-  const currentExternalGuidanceLinks = policies.filter(
-    (policy) => getPolicyAction(policy)?.kind === "external",
-  );
-  const familyPolicyCount = policyGroups
-    .filter((group) => group.audience.toLowerCase().includes("famil"))
-    .reduce((count, group) => count + group.policies.length, 0);
-
   return (
     <main>
-      <section className="border-b border-border-soft bg-surface/72 py-7 sm:py-12">
-        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-end lg:px-8">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
-              Policies
-            </p>
-            <h1 className="mt-4 max-w-3xl text-balance text-4xl font-semibold leading-[1.05] text-brand-blue-strong sm:text-5xl">
-              Policies for a safe, well-run school community
-            </h1>
-            <p className="mt-5 max-w-2xl text-base leading-7 text-slate-700 sm:text-lg">
-              Families can find safeguarding, welfare, conduct, privacy, and
-              complaints information in one calm place. Formal documents are
-              added for download when the school has confirmed they are ready.
-            </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <ButtonLink href="#policy-library" icon={<FileText className="size-4" />}>
-                Browse policies
-              </ButtonLink>
-              <ButtonLink
-                href="/contact#enquiry-form"
-                variant="quiet"
-                className={quietHeroLinkClassName}
-                icon={<HelpCircle className="size-4" />}
-              >
-                Ask a policy question
-              </ButtonLink>
-            </div>
-          </div>
-          <aside className="border-y border-border-soft py-5 lg:border-l lg:border-y-0 lg:pl-8">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
-              Document index
-            </p>
-            <p className="mt-3 max-w-xl text-sm leading-6 text-slate-600">
-              Start with the relevant policy group, then open the plain summary
-              or official guidance link where one is available.
-            </p>
-            <dl className="mt-5 divide-y divide-border-soft border-y border-border-soft text-sm">
-              {[
-                { label: "Groups", value: policyGroups.length },
-                { label: "Policy summaries", value: policies.length },
-                {
-                  label: "Family-facing policies",
-                  value: familyPolicyCount,
-                },
-                {
-                  label: "Official guidance links",
-                  value: currentExternalGuidanceLinks.length,
-                },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  className="grid grid-cols-[1fr_auto] gap-4 py-3 first:pt-0 last:pb-0"
-                >
-                  <dt className="text-sm leading-6 text-slate-600">
-                    <ShieldCheck aria-hidden="true" className="mr-1 inline size-4 align-[-0.2em] text-brand-red" />
-                    {item.label}
-                  </dt>
-                  <dd className="text-sm font-semibold leading-6 text-brand-blue-strong">
-                    {item.value}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </aside>
-        </div>
-      </section>
-
-      <section id="policy-library" className="bg-background py-10 sm:py-12">
+      <section className="border-b border-border-soft bg-surface/72 pt-10 pb-8 sm:pt-14 sm:pb-10">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
-              Policy care
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold text-brand-blue-strong">
-              Grouped for families, staff, and statutory reference
-            </h2>
-            <p className="mt-4 text-sm leading-6 text-slate-600">
-              This page treats policies as part of everyday trust: visible,
-              organised, and careful about what becomes a downloadable public
-              document.
-            </p>
-          </div>
-          <div className="mt-7 divide-y divide-border-soft border-y border-border-soft">
-            {policyGroups.map((group) => (
-              <section
-                key={group.title}
-                className="grid gap-6 py-8 lg:grid-cols-[0.42fr_1fr]"
-                aria-labelledby={`${group.title
-                  .toLowerCase()
-                  .replace(/[^a-z0-9]+/g, "-")}-policies`}
-              >
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
-                    {group.audience}
-                  </p>
-                  <h2
-                    id={`${group.title
-                      .toLowerCase()
-                      .replace(/[^a-z0-9]+/g, "-")}-policies`}
-                    className="mt-2 text-2xl font-semibold text-brand-blue-strong"
-                  >
-                    {group.title}
-                  </h2>
-                  <p className="mt-3 text-sm leading-6 text-slate-600">
-                    {group.description}
-                  </p>
-                  <p className="mt-4 border-l border-brand-accent pl-4 text-sm leading-6 text-slate-700">
-                    {group.title === "Useful Guidance"
-                      ? "Official guidance opens from source publication pages."
-                      : "Formal school downloads are added once they are ready for families to use."}
-                  </p>
-                </div>
-                <ul className="divide-y divide-border-soft text-sm">
-                  {group.policies.map((policy) => {
-                    const action = getPolicyAction(policy);
-
-                    return (
-                      <li key={policy.slug} className="py-4 first:pt-0 last:pb-0">
-                        <div className="grid gap-3 sm:grid-cols-[1fr_auto] sm:items-start">
-                          <div>
-                            <Link
-                              href={`/policies/${policy.slug}`}
-                              className="font-medium text-brand-blue-strong hover:text-brand-red"
-                            >
-                              {policy.title}
-                            </Link>
-                            <p className="mt-1 text-xs leading-5 text-muted">
-                              {policy.documentType} / {policy.owner}
-                            </p>
-                          </div>
-                          <span
-                            className={`inline-flex max-w-full items-center rounded-full border px-3 py-1 text-xs font-semibold leading-5 ${getPolicyStatusTone(policy)}`}
-                          >
-                            {getParentPolicyStatusLabel(policy)}
-                          </span>
-                        </div>
-                        <p className="mt-2 text-sm leading-6 text-slate-600">
-                          {policy.parentGuidance}
-                        </p>
-                        <div className="mt-3 flex flex-wrap items-center gap-3">
-                          <Link
-                            href={`/policies/${policy.slug}`}
-                            className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-muted hover:text-brand-red"
-                          >
-                            <FileText aria-hidden="true" className="size-3.5" />
-                            <span>View summary</span>
-                          </Link>
-                          {action ? (
-                            <a
-                              href={action.href}
-                              target={action.isExternal ? "_blank" : undefined}
-                              rel={
-                                action.isExternal
-                                  ? "noopener noreferrer"
-                                  : undefined
-                              }
-                              download={action.isExternal ? undefined : true}
-                              className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-brand-blue-strong hover:text-brand-red"
-                            >
-                              <span>{action.label}</span>
-                              {action.isExternal ? (
-                                <ExternalLink aria-hidden="true" className="size-3.5" />
-                              ) : (
-                                <ArrowRight aria-hidden="true" className="size-3.5" />
-                              )}
-                            </a>
-                          ) : null}
-                        </div>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </section>
-            ))}
-          </div>
-          <div className="mt-10 grid gap-6 border-y border-border-soft py-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <div>
-              <h2 className="text-xl font-semibold text-brand-blue-strong">
-                What parents can expect
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-slate-600">
-                Summaries stay easy to scan, next steps stay clear, and document
-                downloads are kept controlled so families are not sent outdated
-                or informal files.
-              </p>
-            </div>
-            <dl className="grid gap-4 sm:grid-cols-3">
-              {publicationPrinciples.map((principle) => (
-                <div key={principle.label}>
-                  <dt className="flex items-center gap-2 text-sm font-semibold text-brand-blue-strong">
-                    <CheckCircle2 aria-hidden="true" className="size-4 text-brand-red" />
-                    {principle.label}
-                  </dt>
-                  <dd className="mt-2 text-sm leading-6 text-slate-600">
-                    {principle.description}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </div>
+          <Breadcrumbs items={[{ label: "Policies" }]} />
+          <h1 className="text-balance text-4xl font-semibold leading-[1.05] text-brand-blue-strong sm:text-5xl">
+            Our school policies
+          </h1>
+          <p className="mt-5 max-w-3xl text-base leading-7 text-slate-700 sm:text-lg sm:leading-8">
+            Information about privacy, safeguarding and the terms for joining
+            and attending the school.
+          </p>
         </div>
       </section>
 
-      <section
-        className="border-t border-border-soft bg-background site-section-compact"
-        aria-labelledby="policy-readiness-notes"
-      >
-        <div className="mx-auto grid max-w-7xl gap-0 divide-y divide-border-soft px-6 md:grid-cols-3 md:divide-x md:divide-y-0 lg:px-8">
-          <h2 id="policy-readiness-notes" className="sr-only">
-            Policy publication notes
+      <section className="bg-background pt-6 pb-8 sm:pb-10" aria-labelledby="policy-list-title">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <h2 id="policy-list-title" className="sr-only">
+            Public policies
           </h2>
-          {policyAssuranceNotes.map((note) => (
-            <div
-              key={note}
-              className="flex gap-2 py-4 text-sm leading-6 text-slate-700 md:px-5 md:first:pl-0 md:last:pr-0"
-            >
-              <ShieldCheck aria-hidden="true" className="mt-1 size-4 shrink-0 text-brand-red" />
-              <span>{note}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-t border-border-soft bg-surface py-10 sm:py-12">
-        <div className="mx-auto grid max-w-7xl gap-5 px-6 md:grid-cols-[1fr_auto] md:items-center lg:px-8">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
-              Need help now?
-            </p>
-            <h2 className="mt-3 text-2xl font-semibold text-brand-blue-strong">
-              Questions about a policy?
-            </h2>
-            <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600">
-              Families can ask practical questions, check branch details, or
-              use the enquiry form to reach the school team directly.
-            </p>
-          </div>
-          <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap md:justify-end">
-            {policyContactLinks.map((link) => (
-              <ButtonLink
-                key={link.href}
-                href={link.href}
-                variant="secondary"
-                icon={link.href === "/schools" ? <MapPin className="size-4" /> : <HelpCircle className="size-4" />}
-              >
-                {link.label}
-              </ButtonLink>
+          <ul className="divide-y divide-border-soft border-y border-border-soft">
+            {policies.map((policy) => (
+              <li key={policy.slug}>
+                <Link
+                  href={`/policies/${policy.slug}`}
+                  aria-labelledby={`${policy.slug}-title`}
+                  className="group -mx-3 grid gap-3 rounded-sm px-3 py-6 transition-colors duration-200 hover:bg-surface-blue focus-visible:bg-surface-blue focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue! motion-reduce:transition-none sm:py-7 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-12"
+                >
+                  <h2 className="text-xl font-semibold leading-snug text-brand-blue-strong sm:text-2xl">
+                    <span
+                      className="flex min-h-11 items-center justify-between gap-4 underline decoration-brand-blue/25 underline-offset-4 transition-colors duration-200 group-hover:decoration-brand-blue group-focus-visible:decoration-brand-blue motion-reduce:transition-none"
+                    >
+                      <span id={`${policy.slug}-title`}>{policy.title}</span>
+                      <ArrowRight aria-hidden="true" className="size-5 shrink-0 transition-transform duration-200 ease-out group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:translate-x-0! motion-reduce:transition-none" />
+                    </span>
+                  </h2>
+                  <p className="max-w-2xl text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">
+                    {directoryDescriptions[policy.slug] ?? policy.description}
+                  </p>
+                </Link>
+              </li>
             ))}
+          </ul>
+          <div className="mt-6 flex flex-col gap-3">
+            <p className="text-sm leading-6 text-slate-600">
+              Questions about a policy or need an accessible copy?
+            </p>
+            <a href={`mailto:${contactDetails.email}`} className="text-brand-blue underline">{contactDetails.email}</a>
           </div>
         </div>
       </section>

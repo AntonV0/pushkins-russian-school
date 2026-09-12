@@ -1,5 +1,5 @@
 import { curriculumPillars } from "./curriculum";
-import { policies, policyGroups } from "./policies";
+import { policies } from "./policies";
 import { schoolStory } from "./school-story";
 import { networkSummary } from "./schools";
 
@@ -44,13 +44,13 @@ export const trustSignals: TrustSignal[] = [
     id: "policy-library",
     kind: "policy-transparency",
     title: "Policy transparency",
-    value: `${policyGroups.length} policy groups`,
+    value: `${policies.length} public policies`,
     summary:
-      "Safeguarding, parent, staff, and useful guidance policies are organised so families can see the document structure while formal PDFs are prepared.",
+      "Privacy, safeguarding, and parent terms give families the essential public information without exposing internal operational documents.",
     status: "publishable",
     href: "/policies",
     evidenceNote:
-      `Generated from ${policies.length} policy records. Formal school PDFs are linked only after approval.`,
+      `Generated from ${policies.length} consolidated, family-facing policy records.`,
   },
   {
     id: "curriculum-pathways",
