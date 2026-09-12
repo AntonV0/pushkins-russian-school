@@ -11,7 +11,9 @@ import styles from "./header.module.css";
 
 export function Header() {
   const pathname = usePathname();
+  const homeLinkRef = useRef<HTMLAnchorElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
   const mobileMenuId = useId();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,6 +37,22 @@ export function Header() {
   }, []);
 
   useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 68.75rem)");
+    const closeOnDesktop = () => {
+      if (!desktop.matches) return;
+
+      // Keep keyboard focus visible when the mobile controls disappear.
+      if (mobileMenuRef.current?.contains(document.activeElement)) {
+        homeLinkRef.current?.focus({ preventScroll: true });
+      }
+      setIsMenuOpen(false);
+    };
+
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => desktop.removeEventListener("change", closeOnDesktop);
+  }, []);
+
+  useEffect(() => {
     if (!isMenuOpen) {
       return;
     }
@@ -42,6 +60,7 @@ export function Header() {
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setIsMenuOpen(false);
+        mobileMenuButtonRef.current?.focus();
       }
     };
 
@@ -68,6 +87,7 @@ export function Header() {
     <header data-scrolled={isScrolled} className={`${styles.header} sticky top-0 z-40 border-b border-border-soft/80 bg-background/94 shadow-[0_1px_0_rgba(255,255,255,0.75)_inset] backdrop-blur-xl`}>
       <div className={`${styles.row} site-header-row mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-2 sm:gap-4 sm:py-2.5 min-[1100px]:px-8 min-[1100px]:py-1.5`}>
         <Link
+          ref={homeLinkRef}
           href="/"
           aria-label="Pushkin's School home"
           className="group min-w-0"
@@ -133,8 +153,14 @@ export function Header() {
           <div
             ref={mobileMenuRef}
             className={`${styles.menuWrap} relative min-[1100px]:hidden`}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget)) {
+                setIsMenuOpen(false);
+              }
+            }}
           >
             <button
+              ref={mobileMenuButtonRef}
               type="button"
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={isMenuOpen}
