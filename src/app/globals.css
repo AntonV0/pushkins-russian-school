@@ -13,6 +13,12 @@
   --border-soft: #d7e0ea;
   --muted: #5b6778;
   --ring: #d01010;
+  --elevation-panel: 0 8px 24px rgba(11, 38, 72, 0.055);
+  --elevation-feature: 0 12px 30px rgba(20, 56, 102, 0.09);
+  --elevation-button: 0 3px 8px rgba(20, 56, 102, 0.14);
+  --elevation-button-hover: 0 5px 12px rgba(20, 56, 102, 0.18);
+  --elevation-dark-media: 0 12px 30px rgba(0, 14, 35, 0.18);
+  --elevation-media-control: 0 6px 18px rgba(0, 32, 72, 0.26);
   --section-y: clamp(3.5rem, 7vw, 5.5rem);
   --section-y-compact: clamp(2.75rem, 5.5vw, 4.25rem);
 }
@@ -132,7 +138,7 @@ nextjs-portal {
 .premium-panel {
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.75) inset,
-    0 14px 34px rgba(11, 38, 72, 0.055);
+    var(--elevation-panel);
 }
 
 .site-header-row {
@@ -257,5 +263,13 @@ nextjs-portal {
   .video-play-ring {
     animation: none;
     opacity: 0.32;
+  }
+}
+
+@media (width < 640px) {
+  :root {
+    --elevation-panel: 0 5px 16px rgba(11, 38, 72, 0.05);
+    --elevation-feature: 0 8px 24px rgba(20, 56, 102, 0.075);
+    --elevation-dark-media: 0 8px 24px rgba(0, 14, 35, 0.16);
   }
 }
