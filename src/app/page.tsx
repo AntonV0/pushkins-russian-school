@@ -5,6 +5,7 @@ import Link from "next/link";
 import {
   ArrowRight,
   ClipboardPenLine,
+  ExternalLink,
   MapPin,
   MessageSquareText,
   Plus,
@@ -247,15 +248,31 @@ const homepageFaqs = [
     question: "Does Pushkin's School offer GCSE or A Level Russian?",
     answer: (
       <>
-        Pushkin&apos;s School focuses on weekend Russian language classes. GCSE
-        and A Level Russian are available online through{" "}
-        <Link
-          href="/online-lessons"
-          className="font-semibold text-brand-blue-strong underline decoration-brand-accent/65 underline-offset-4 transition hover:decoration-brand-red"
+        Pushkin&apos;s School focuses on weekend Russian language classes. For{" "}
+        <a
+          href="https://www.volnaschool.com/gcse-classes"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GCSE Russian courses on Volna (opens in a new tab)"
+          className="inline-flex items-center gap-1 font-semibold text-brand-blue-strong underline decoration-brand-accent/65 underline-offset-4 transition hover:decoration-brand-red"
         >
-          Volna Online Russian School
-        </Link>
-        .
+          GCSE Russian
+          <ExternalLink aria-hidden="true" className="size-3 shrink-0" />
+        </a>{" "}
+        and{" "}
+        <a
+          href="https://www.volnaschool.com/a-level-courses"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="A Level Russian courses on Volna (opens in a new tab)"
+          className="inline-flex items-center gap-1 font-semibold text-brand-blue-strong underline decoration-brand-accent/65 underline-offset-4 transition hover:decoration-brand-red"
+        >
+          A Level Russian
+          <ExternalLink aria-hidden="true" className="size-3 shrink-0" />
+        </a>
+        , Volna Online Russian School offers focused exam preparation with
+        Edexcel-trained teachers, small groups, flexible private tuition and
+        mock exams.
       </>
     ),
   },
@@ -678,7 +695,7 @@ export default function Home() {
         <section className="border-y border-border-soft bg-background site-section-compact">
           <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.72fr_1.28fr] lg:px-8">
             <div>
-              <SectionIntro eyebrow="FAQ" title="What parents ask before joining" />
+              <SectionIntro title="What parents ask before joining" />
               <Link
                 href="/faq"
                 className="group mt-7 inline-flex min-h-11 w-fit items-center gap-2 py-2 text-base font-semibold text-brand-blue-strong underline decoration-brand-red/35 underline-offset-4 transition hover:-translate-y-0.5 hover:text-brand-red hover:decoration-brand-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red/40 focus-visible:ring-offset-4"
