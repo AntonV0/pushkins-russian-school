@@ -1,6 +1,8 @@
 export const contactDetails = {
   schoolName: "Pushkin's School of Russian Language and Literature",
-  email: "info@pushkinsrussianschool.co.uk",
+  email: "elena@pushkinsschool.co.uk",
+  phone: "07881764892",
+  phoneDisplay: "07881 764892",
   phoneLabel: "Enquiries by email",
   enquiryFormNote:
     "Email directly if you prefer, or use the form to tell the school about your child and the Russian learning route you are looking for.",
