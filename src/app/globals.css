@@ -273,3 +273,13 @@ nextjs-portal {
     --elevation-dark-media: 0 8px 24px rgba(0, 14, 35, 0.16);
   }
 }
+
+/* Opt-in homepage content rail: 720px including 24px side gutters.
+   Desktop widths continue to use each section's existing container. */
+@media (width < 64rem) {
+  .home-content-container {
+    max-width: 45rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+}
