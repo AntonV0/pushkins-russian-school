@@ -13,6 +13,7 @@ import {
   ButtonLink,
   quietActionLinkClassName,
 } from "@/components/site/button-link";
+import curriculumStyles from "@/components/site/home-curriculum.module.css";
 import classroomStyles from "@/components/site/home-classroom.module.css";
 import identityStyles from "@/components/site/home-identity.module.css";
 import trustStyles from "@/components/site/home-trust.module.css";
@@ -29,7 +30,6 @@ import {
   type MediaAsset,
 } from "@/features/gallery/data/media-assets";
 import { schools } from "@/data/public/schools";
-import { curriculumPillars } from "@/data/public/curriculum";
 
 function getApprovedMediaAssetById(id: string) {
   return approvedMediaAssets.find((asset) => asset.id === id);
@@ -132,6 +132,24 @@ const joiningSteps = [
     body: "The introductory payment covers three weeks, during which teachers place your child with learners at a similar Russian level.",
   },
 ];
+
+const homepageCurriculumPrototype = [
+  {
+    label: "Communication",
+    title: "From understanding to expression",
+    body: "Speaking and listening develop alongside vocabulary and grammar, helping children express their own ideas more clearly in Russian.",
+  },
+  {
+    label: "Literacy",
+    title: "Developing reading and writing together",
+    body: "Children progress from letters and sounds towards reading with greater confidence and writing more clearly in Russian, with activities matched to their current skills.",
+  },
+  {
+    label: "Literature",
+    title: "Exploring Russian literature",
+    body: "Stories, poetry and theatre deepen vocabulary and comprehension, helping children engage with Russian literature through reading, discussion and performance.",
+  },
+] as const;
 
 const homepageFaqs = [
   {
@@ -306,54 +324,68 @@ export default function Home() {
       </HomepageSectionMarker>
 
       <HomepageSectionMarker number={5}>
-        <section className="bg-background site-section-compact">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.72fr_1.28fr] lg:px-8">
-          <div>
-            <SectionIntro
-              eyebrow="Learning approach"
-              title="What children learn at Pushkin's School"
-            >
-              <p>
-                The curriculum is built for children growing up in the UK:
-                practical Russian for communication, structured literacy,
-                cultural knowledge, and a path towards reading Russian
-                literature in the original.
-              </p>
-            </SectionIntro>
-            <Link
-              href="/curriculum"
-              className="group mt-7 inline-flex min-h-11 w-fit items-center gap-2 py-2 text-base font-semibold text-brand-blue-strong underline decoration-brand-red/35 underline-offset-4 transition hover:-translate-y-0.5 hover:text-brand-red hover:decoration-brand-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red/40 focus-visible:ring-offset-4"
-            >
-              <span>Explore our curriculum</span>
-              <ArrowRight
-                aria-hidden="true"
-                className="size-4 transition-transform group-hover:translate-x-0.5"
-              />
-            </Link>
-          </div>
-
-          <ol className="relative grid border-y border-border-soft bg-surface md:grid-cols-3 md:divide-x md:divide-border-soft">
-            {homepageCurriculumPillars.map((pathway, index) => (
-              <li
-                key={pathway.title}
-                className="relative border-b border-border-soft px-5 py-7 last:border-b-0 md:border-b-0 md:px-6 md:py-8"
-              >
-                <div className="mb-6 flex items-center gap-3">
-                  <span className="flex size-9 items-center justify-center rounded-full border border-brand-blue/20 bg-white font-mono text-xs font-semibold text-brand-blue-strong">
-                    0{index + 1}
-                  </span>
-                  <span className="h-px flex-1 bg-brand-accent/35" aria-hidden="true" />
-                </div>
-                <h3 className="text-xl font-semibold leading-tight text-brand-blue-strong">
-                  {pathway.title}
-                </h3>
-                <p className="mt-4 text-sm leading-6 text-slate-600">
-                  {pathway.body}
+        <section className="border-y border-border-soft bg-background site-section-compact">
+          <div className={`home-content-container mx-auto max-w-7xl px-6 lg:px-8 ${curriculumStyles.section}`}>
+            <div className={`grid gap-7 border-b border-border-soft pb-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-12 ${curriculumStyles.intro}`}>
+              <SectionIntro title="What children learn at Pushkin's School">
+                <p>
+                  Our curriculum was developed through cooperation with{" "}
+                  <Link
+                    href="https://eng.rudn.ru/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="RUDN University (opens in a new tab)"
+                    className="font-medium text-brand-blue-strong underline decoration-brand-accent/50 underline-offset-4 transition hover:decoration-brand-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red/40 focus-visible:ring-offset-2"
+                  >
+                    RUDN University
+                  </Link>
+                  ,{" "}
+                  <Link
+                    href="https://www.pushkin.institute/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="The Pushkin State Institute (opens in a new tab)"
+                    className="font-medium text-brand-blue-strong underline decoration-brand-accent/50 underline-offset-4 transition hover:decoration-brand-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red/40 focus-visible:ring-offset-2"
+                  >
+                    the Pushkin State Institute
+                  </Link>{" "}
+                  and{" "}
+                  <Link
+                    href="https://specped.ru/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="The Scientific Methodical Russian Speech Centre (opens in a new tab)"
+                    className="font-medium text-brand-blue-strong underline decoration-brand-accent/50 underline-offset-4 transition hover:decoration-brand-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red/40 focus-visible:ring-offset-2"
+                  >
+                    the Scientific Methodical Russian Speech Centre
+                  </Link>{" "}
+                  in Moscow. Pushkin&apos;s School adapts this foundation for
+                  children growing up in the UK and learning Russian alongside
+                  their wider education.
                 </p>
-              </li>
-            ))}
-          </ol>
-        </div>
+              </SectionIntro>
+              <Link
+                href="/curriculum"
+                className="group inline-flex min-h-11 w-fit items-center gap-2 py-2 text-base font-semibold text-brand-blue-strong underline decoration-brand-red/35 underline-offset-4 transition hover:-translate-y-0.5 hover:text-brand-red hover:decoration-brand-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red/40 focus-visible:ring-offset-4 lg:justify-self-end"
+              >
+                <span>Explore our curriculum</span>
+                <ArrowRight
+                  aria-hidden="true"
+                  className="size-4 transition-transform group-hover:translate-x-0.5"
+                />
+              </Link>
+            </div>
+
+            <div className={curriculumStyles.panel}>
+              {homepageCurriculumPrototype.map((strand) => (
+                <article key={strand.label} className={curriculumStyles.strand}>
+                  <p className={curriculumStyles.label}>{strand.label}</p>
+                  <h3>{strand.title}</h3>
+                  <p className={curriculumStyles.body}>{strand.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
         </section>
       </HomepageSectionMarker>
 
@@ -877,15 +909,6 @@ function HomeTrustPanel() {
             </div>
   );
 }
-
-const homepageCurriculumPillars = [
-  curriculumPillars[0],
-  curriculumPillars[1],
-  {
-    title: "Progression for older learners",
-    body: "As pupils grow, lessons deepen their grammar, literacy and engagement with Russian literature, helping them become more independent readers, writers and speakers.",
-  },
-] as const;
 
 const homepageSchoolSummaries: Record<string, string> = {
   "high-wycombe":
