@@ -48,7 +48,7 @@ confirmed for launch.
 | Bracknell | Open / weekend school | [ ] Open [ ] Closed [ ] Online [ ] Opening soon [ ] Other | Saint Joseph's Primary School | Gipsy Lane, RG12 9AP | Sundays, 09:30 to 12:30 | Enquire about Bracknell places | [ ] Use central fees [ ] Hide fees [ ] Branch-specific fees needed [ ] Confirm no public bank details | [x] Yes, publish exact times [ ] No, use "times to be confirmed" |
 | Chelmsford | Online only / register interest | [ ] Open [ ] Closed [ ] Online [ ] Opening soon [ ] Other | Local venue not published while in-person provision is unconfirmed | Essex network area | Register interest for future local classes. Legacy source also contains Covid-era Volna wording and old Sunday venue details. | Register interest in Chelmsford classes | [ ] Use central fees [ ] Hide fees [ ] Branch-specific fees needed [ ] Confirm Volna pricing/free-trial wording separately | [ ] Yes, publish exact times [ ] No, use "times to be confirmed" |
 | Southend-on-Sea | Online only / register interest | [ ] Open [ ] Closed [ ] Online [ ] Opening soon [ ] Other | Local venue not published while in-person provision is unconfirmed | Essex network area | Register interest for future local classes; old source included an online-only/planned-opening note. | Register interest in Southend-on-Sea classes | [ ] Use central fees [ ] Hide fees [ ] Branch-specific fees needed [ ] Confirm no public bank details | [ ] Yes, publish exact times [ ] No, use "times to be confirmed" |
-| Exeter | Open / weekend school | [x] Open [ ] Closed [ ] Online [ ] Opening soon [ ] Other | Current Exeter venue to confirm before publication | Devon network area; exact address withheld | Current timetable confirmed directly with families | Enquire about Exeter places | [ ] Use central fees [ ] Hide fees [ ] Branch-specific fees needed [ ] Confirm no public bank details | [ ] Yes, publish exact times [x] No, confirm current times directly |
+| Exeter | Open / weekend school | [x] Open [ ] Closed [ ] Online [ ] Opening soon [ ] Other | Current Exeter venue to confirm before publication | Devon network area; exact address withheld | Saturdays, 09:30 to 12:30; first school day 12 September 2026 | Enquire about Exeter places | [ ] Use central fees [ ] Hide fees [ ] Branch-specific fees needed [ ] Confirm no public bank details | [x] Yes, publish exact times [ ] No, confirm current times directly |
 
 ### Branch Review Notes
 
@@ -56,9 +56,10 @@ confirmed for launch.
   interest-gathering locations, so families can register interest without the
   site implying a local venue is active.
 - Bracknell and Exeter are currently represented as active in-person schools in
-  the public data model. Exeter's active status is owner-confirmed, while its
-  venue, timetable, staffing, class groups, and fees remain to be confirmed
-  before those practical details are published.
+  the public data model. Exeter's active status, Saturday 09:30 to 12:30
+  timetable, and 12 September 2026 first school day are owner-confirmed for
+  publication. Its venue, staffing, class groups, and fees remain to be
+  confirmed before those practical details are published.
 - High Wycombe has a timetable conflict in source material and needs a clear
   final answer before exact public times are shown.
 - Chelmsford has Covid-era online wording and Volna references in the audit

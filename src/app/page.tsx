@@ -33,6 +33,7 @@ import {
   getHeroReadyMedia,
   type MediaAsset,
 } from "@/features/gallery/data/media-assets";
+import { extendedGalleryMediaAssets } from "@/features/gallery/data/extended-gallery-assets";
 import { schools } from "@/data/public/schools";
 
 function getApprovedMediaAssetById(id: string) {
@@ -79,6 +80,35 @@ const schoolIntroVideo = {
 const homepageCommunityImage = {
   src: "/images/locations/bracknell/bracknell-performance-wide.webp",
   alt: "Children performing for families at Pushkin's School in Bracknell.",
+};
+const homepageLocationImageAssets: Record<string, MediaAsset | undefined> = {
+  bracknell: getApprovedMediaAssetById("BRACKNELL-DSC03270"),
+  exeter: extendedGalleryMediaAssets.find((asset) => asset.id === "IMG-0007"),
+};
+const homepageLocationImagePresentation: Record<
+  string,
+  { objectPosition: string }
+> = {
+  bracknell: { objectPosition: "center 43%" },
+  exeter: { objectPosition: "center 38%" },
+};
+const homepageSchoolTermDetails: Record<
+  string,
+  { venue: string; schedule: string; startDate: string; summary: string }
+> = {
+  bracknell: {
+    venue: "Saint Joseph's Primary School · Gipsy Lane · RG12 9AP",
+    schedule: "Sundays, 09:30 to 12:30",
+    startDate: "First school day · 20 September 2026",
+    summary: "Ask about current places and the right starting group for your child.",
+  },
+  exeter: {
+    venue: "Exeter area · venue details provided after enquiry",
+    schedule: "Saturdays, 09:30 to 12:30",
+    startDate: "First school day · 12 September 2026",
+    summary:
+      "Ask about current availability and a suitable learning group for your child.",
+  },
 };
 
 const parentJourney = [
@@ -450,89 +480,136 @@ export default function Home() {
       </HomepageSectionMarker>
 
       <HomepageSectionMarker number={7}>
-        <section className="border-y border-border-soft bg-surface site-section-compact">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <SectionIntro
-            eyebrow="School locations"
-            title="Join us in Bracknell or Exeter"
-          >
-            <p>
-              We currently teach children in person in Bracknell, Berkshire,
-              and Exeter, Devon. Explore each school below, or view other
-              locations if neither is nearby.
-            </p>
-          </SectionIntro>
-
-          <div className="mt-9 grid gap-6 lg:grid-cols-2">
-            {currentSchools.map((school) => (
-              <article
-                key={school.slug}
-                className="flex h-full flex-col border-t-4 border-brand-red bg-background px-6 py-6 shadow-[0_14px_35px_rgba(0,32,72,0.08)] sm:px-7 sm:py-7"
-              >
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-red">
-                  Current in-person school
-                </p>
-                <h3 className="mt-3 text-3xl font-semibold text-brand-blue-strong">
-                  {school.name}
-                </h3>
-                <p className="mt-2 text-sm font-semibold text-brand-accent">
-                  {school.area}, {school.county}
-                </p>
-                <p className="mt-5 text-lg font-semibold leading-7 text-brand-blue-strong">
-                  {school.slug === "exeter"
-                    ? "Weekend Russian classes in Exeter"
-                    : school.schedule}
-                </p>
-                <p className="mt-3 text-sm leading-6 text-slate-600">
-                  {homepageSchoolSummaries[school.slug] ??
-                    school.availabilitySummary}
-                </p>
-                <ButtonLink
-                  href={`/schools/${school.slug}`}
-                  className="mt-6 self-start"
-                  icon={<ArrowRight className="size-4" />}
-                  iconPosition="end"
-                >
-                  View {school.name} school
-                </ButtonLink>
-              </article>
-            ))}
-          </div>
-
-          <div className="mt-6 flex flex-col gap-5 border-y border-border-soft bg-background px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-            <div>
-              <h3 className="text-xl font-semibold text-brand-blue-strong">
-                Looking for another location?
-              </h3>
-              <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-600">
-                Explore other school communities, register local interest, or
-                learn online through Volna.
+        <section className="border-y border-border-soft bg-background py-12 lg:py-14">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="max-w-3xl">
+              <SectionIntro title="Weekend classes in Bracknell and Exeter" />
+              <p className="mt-4 max-w-[42rem] text-base leading-7 text-slate-600">
+                Both schools meet from 09:30 to 12:30 — Sundays in Bracknell
+                and Saturdays in Exeter.
               </p>
             </div>
-            <div className="flex flex-col items-start gap-2 sm:items-end">
-              <Link
-                href="/schools#location-explorer"
-                className="group inline-flex min-h-10 items-center gap-2 py-1 text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/35 underline-offset-4 transition hover:text-brand-red hover:decoration-brand-red"
-              >
-                <span>View all locations</span>
-                <ArrowRight
-                  aria-hidden="true"
-                  className="size-4 transition-transform group-hover:translate-x-0.5"
-                />
-              </Link>
-              <Link
-                href="/online-lessons"
-                className="group inline-flex min-h-10 items-center gap-2 py-1 text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/35 underline-offset-4 transition hover:text-brand-red hover:decoration-brand-red"
-              >
-                <span>Explore online lessons</span>
-                <ArrowRight
-                  aria-hidden="true"
-                  className="size-4 transition-transform group-hover:translate-x-0.5"
-                />
-              </Link>
+
+            <div className="mt-7 overflow-hidden border border-border-soft bg-surface shadow-[var(--elevation-panel)]">
+              <div className="grid divide-y divide-border-soft lg:grid-cols-2 lg:divide-x lg:divide-y-0">
+                {currentSchools.map((school) => {
+                  const imageAsset = homepageLocationImageAssets[school.slug];
+                  const imagePresentation =
+                    homepageLocationImagePresentation[school.slug];
+                  const termDetails = homepageSchoolTermDetails[school.slug];
+
+                  return (
+                    <article
+                      key={school.slug}
+                      className="flex min-w-0 flex-col bg-surface"
+                    >
+                      {imageAsset ? (
+                        <figure className="relative aspect-[2/1] overflow-hidden border-b border-border-soft bg-surface-muted">
+                          <Image
+                            src={imageAsset.approvedPublicPath}
+                            alt={imageAsset.altText}
+                            fill
+                            sizes="(min-width: 1024px) 608px, calc(100vw - 3rem)"
+                            quality={90}
+                            className="object-cover"
+                            style={{
+                              objectPosition:
+                                imagePresentation?.objectPosition ?? "center",
+                            }}
+                          />
+                        </figure>
+                      ) : null}
+
+                      <div className="flex flex-1 flex-col px-6 py-6 sm:px-8 sm:py-7 lg:px-10">
+                        <div className="flex items-center gap-2.5">
+                          <span
+                            aria-hidden="true"
+                            className="size-2 rounded-full bg-emerald-600"
+                          />
+                          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-blue-strong">
+                            Current in-person school
+                          </p>
+                        </div>
+
+                        <h3 className="mt-4 text-3xl font-semibold tracking-tight text-brand-blue-strong sm:text-4xl">
+                          {school.name}, {school.county}
+                        </h3>
+                        <p className="mt-3 inline-flex w-fit max-w-full items-center gap-2 rounded-lg border border-border-soft bg-surface-blue/55 px-3 py-2 text-sm font-semibold leading-5 text-brand-blue-strong lg:min-h-[3.625rem] xl:min-h-0">
+                          <MapPin
+                            aria-hidden="true"
+                            className="size-4 shrink-0 text-brand-accent"
+                          />
+                          <span>{termDetails?.venue}</span>
+                        </p>
+
+                        <div className="mt-5 border-l-2 border-brand-accent/45 pl-4">
+                          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-slate-500">
+                            2026–27 school year
+                          </p>
+                          <p className="mt-2 text-lg font-semibold leading-7 text-brand-blue-strong">
+                            {termDetails?.schedule}
+                          </p>
+                          <p className="mt-1 text-sm font-medium leading-6 text-slate-600">
+                            {termDetails?.startDate}
+                          </p>
+                        </div>
+
+                        <p className="mt-4 max-w-xl text-sm leading-6 text-slate-600">
+                          {termDetails?.summary}
+                        </p>
+
+                        <div className="mt-auto pt-5">
+                          <ButtonLink
+                            href={`/schools/${school.slug}`}
+                            className="self-start"
+                            icon={<ArrowRight className="size-4" />}
+                            iconPosition="end"
+                          >
+                            See {school.name} school details
+                          </ButtonLink>
+                        </div>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+
+              <div className="flex flex-col gap-5 border-t border-border-soft bg-surface-blue/45 px-6 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+                <div>
+                  <h3 className="text-lg font-semibold text-brand-blue-strong">
+                    Not near Bracknell or Exeter?
+                  </h3>
+                  <p className="mt-1 max-w-2xl text-sm leading-6 text-slate-600">
+                    If travelling to either school is difficult, you can
+                    register interest in another area or consider online
+                    lessons.
+                  </p>
+                </div>
+                <div className="flex shrink-0 flex-col items-start gap-2 sm:items-end">
+                  <Link
+                    href="/schools#location-explorer"
+                    className="group inline-flex min-h-10 items-center gap-2 py-1 text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/35 underline-offset-4 transition hover:text-brand-red hover:decoration-brand-red"
+                  >
+                    <span>View other locations</span>
+                    <ArrowRight
+                      aria-hidden="true"
+                      className="size-4 transition-transform group-hover:translate-x-0.5"
+                    />
+                  </Link>
+                  <Link
+                    href="/online-lessons"
+                    className="group inline-flex min-h-10 items-center gap-2 py-1 text-sm font-semibold text-brand-blue-strong underline decoration-brand-red/35 underline-offset-4 transition hover:text-brand-red hover:decoration-brand-red"
+                  >
+                    <span>Explore online lessons</span>
+                    <ArrowRight
+                      aria-hidden="true"
+                      className="size-4 transition-transform group-hover:translate-x-0.5"
+                    />
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
         </section>
       </HomepageSectionMarker>
 
@@ -967,18 +1044,3 @@ function HomeTrustPanel() {
             </div>
   );
 }
-
-const homepageSchoolSummaries: Record<string, string> = {
-  "high-wycombe":
-    "Register local interest or ask about online Russian lessons while in-person classes are not currently listed.",
-  "hemel-hempstead":
-    "Register local interest in Hertfordshire or discuss online Russian lessons.",
-  bracknell:
-    "Structured Sunday classes with a regular classroom rhythm and a welcoming school community.",
-  chelmsford:
-    "Register local interest in Essex or ask about Volna online lessons.",
-  "southend-on-sea":
-    "Register local interest in Essex or discuss online learning routes.",
-  exeter:
-    "Ask us about the current timetable, venue, availability and the best group for your child.",
-};
