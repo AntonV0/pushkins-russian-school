@@ -283,3 +283,65 @@ nextjs-portal {
     padding-inline: 1.5rem;
   }
 }
+
+@media print {
+  @page {
+    margin: 16mm;
+  }
+
+  body {
+    background: #fff;
+    color: #111827;
+    font-size: 10.5pt;
+  }
+
+  body > header,
+  body > footer,
+  .policy-no-print,
+  .policy-page nav,
+  .policy-page aside,
+  .policy-page details,
+  .policy-page main + * {
+    display: none !important;
+  }
+
+  .policy-page > section {
+    border-color: #cbd5e1 !important;
+    background: #fff !important;
+    padding-block: 1rem !important;
+  }
+
+  .policy-page > section > div,
+  .policy-page article {
+    max-width: none !important;
+    padding-inline: 0 !important;
+  }
+
+  .policy-page article {
+    display: block !important;
+    border: 0 !important;
+    background: #fff !important;
+  }
+
+  .policy-page article > section {
+    break-inside: avoid;
+    border-color: #cbd5e1 !important;
+    background: #fff !important;
+    padding-block: 1rem !important;
+  }
+
+  .policy-page a {
+    color: inherit !important;
+    text-decoration-color: #64748b !important;
+  }
+
+  .policy-page h1,
+  .policy-page h2,
+  .policy-page h3 {
+    color: #082850 !important;
+  }
+
+  body.dev-section-markers .policy-page > section::before {
+    content: none !important;
+  }
+}

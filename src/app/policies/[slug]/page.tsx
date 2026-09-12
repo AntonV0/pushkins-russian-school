@@ -6,6 +6,7 @@ import { Fragment } from "react";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { JsonLd } from "@/components/site/json-ld";
 import { PolicyContentsNav } from "@/components/site/policy-contents-nav";
+import { PolicyPrintButton } from "@/components/site/policy-print-button";
 import { PolicyEmailContact } from "@/components/site/policy-email-contact";
 import {
   getPolicyBySlug,
@@ -276,7 +277,7 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
             </div>
           </div>
           <div className="flex flex-wrap gap-3">
-
+            <PolicyPrintButton />
           </div>
         </div>
       </section>
