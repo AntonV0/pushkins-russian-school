@@ -14,10 +14,25 @@ export function Header() {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const mobileMenuId = useId();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const registerInterestHref = pathname === "/contact" ? "#enquiry-form" : "/contact#enquiry-form";
 
   const isActive = (href: string) =>
     href === "/" ? pathname === href : pathname === href || pathname.startsWith(`${href}/`);
+
+  useEffect(() => {
+    const updateScrolled = () => {
+      // Separate thresholds prevent toggling as the header changes height.
+      setIsScrolled((current) => window.scrollY > (current ? 8 : 40));
+    };
+
+    const frame = window.requestAnimationFrame(updateScrolled);
+    window.addEventListener("scroll", updateScrolled, { passive: true });
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", updateScrolled);
+    };
+  }, []);
 
   useEffect(() => {
     if (!isMenuOpen) {
@@ -50,7 +65,7 @@ export function Header() {
   }, [isMenuOpen]);
 
   return (
-    <header className={`${styles.header} sticky top-0 z-40 border-b border-border-soft/80 bg-background/94 shadow-[0_1px_0_rgba(255,255,255,0.75)_inset] backdrop-blur-xl`}>
+    <header data-scrolled={isScrolled} className={`${styles.header} sticky top-0 z-40 border-b border-border-soft/80 bg-background/94 shadow-[0_1px_0_rgba(255,255,255,0.75)_inset] backdrop-blur-xl`}>
       <div className={`${styles.row} site-header-row mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-2 sm:gap-4 sm:py-2.5 min-[1100px]:px-8 min-[1100px]:py-1.5`}>
         <Link
           href="/"

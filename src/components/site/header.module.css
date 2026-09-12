@@ -26,6 +26,26 @@
   .brand > span > span {
     transition: font-size 260ms cubic-bezier(0.33, 1, 0.68, 1);
   }
+
+  .header[data-scrolled="true"] .row {
+    height: 63px;
+  }
+
+  .header[data-scrolled="true"] .brand > span {
+    height: 2.75rem;
+  }
+
+  .header[data-scrolled="true"] .brand > span:first-child {
+    width: 3.25rem;
+  }
+
+  .header[data-scrolled="true"] .brand > span:last-child > span:first-child {
+    font-size: 1.75rem;
+  }
+
+  .header[data-scrolled="true"] .brand > span:last-child > span:last-child {
+    font-size: 0.75rem;
+  }
 }
 
 @media (min-width: 68.75rem) and (width < 1280px) {
@@ -47,6 +67,22 @@
 
   .brand > span:last-child > span:last-child {
     font-size: 0.78125rem;
+  }
+
+  .header[data-scrolled="true"] .row {
+    height: 59px;
+  }
+
+  .header[data-scrolled="true"] .brand > span {
+    height: 2.5rem;
+  }
+
+  .header[data-scrolled="true"] .brand > span:first-child {
+    width: 3rem;
+  }
+
+  .header[data-scrolled="true"] .brand > span:last-child > span:first-child {
+    font-size: 1.625rem;
   }
 }
 
