@@ -7,6 +7,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { primaryNavigation, supportNavigation } from "@/data/public/navigation";
 import { BrandMark } from "./brand-mark";
 import { ButtonLink } from "./button-link";
+import { LanguageSelector } from "./language-selector";
 import styles from "./header.module.css";
 
 export function Header() {
@@ -141,6 +142,7 @@ export function Header() {
         </nav>
 
         <div className={`${styles.actions} flex shrink-0 items-center gap-3`}>
+          <LanguageSelector />
           <ButtonLink
             href={registerInterestHref}
             variant="header"

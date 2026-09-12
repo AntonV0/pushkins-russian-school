@@ -8,6 +8,96 @@
   outline-offset: 3px;
 }
 
+.languageWrap {
+  position: relative;
+}
+
+.languageTrigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 0 8px;
+  min-width: 60px;
+  min-height: 44px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--brand-blue-strong);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 150ms, border-color 150ms, color 150ms;
+}
+
+.languageTrigger:hover {
+  background: #f1f3f5;
+}
+
+.languageTrigger:active,
+.languageTrigger[aria-expanded="true"] {
+  background: var(--brand-blue-strong);
+  border-color: var(--brand-blue-strong);
+  color: white;
+}
+
+.languageChevron {
+  display: none;
+}
+
+.languagePanel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 12px);
+  z-index: 40;
+  width: 224px;
+  padding: 10px;
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  background: var(--surface);
+  box-shadow: 0 12px 28px rgba(0, 32, 72, 0.12);
+  animation: languagePanelReveal 120ms ease-out;
+}
+
+@keyframes languagePanelReveal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.languagePanel button {
+  display: flex;
+  width: 100%;
+  min-height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 8px;
+  border-radius: 3px;
+  color: var(--brand-blue-strong);
+  font-size: 0.875rem;
+  text-align: left;
+  cursor: pointer;
+}
+
+.languagePanel button[aria-current] {
+  font-weight: 600;
+}
+
+.languagePanel button:not(:disabled):hover {
+  background: #f1f3f5;
+}
+
+.languagePanel button:not(:disabled):active {
+  background: #e5e9ed;
+}
+
+.languagePanel button:disabled {
+  color: var(--muted);
+  cursor: default;
+}
+
+.languageStatus {
+  font-size: 0.75rem;
+}
+
 @media (min-width: 68.75rem) {
   .header .tabletCta {
     display: inline-flex;
@@ -45,6 +135,12 @@
 
   .header[data-scrolled="true"] .brand > span:last-child > span:last-child {
     font-size: 0.75rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .languageChevron {
+    display: block;
   }
 }
 
@@ -239,6 +335,12 @@
     gap: 4px;
   }
 
+  .languageTrigger {
+    min-width: 44px;
+    padding-inline: 4px;
+    gap: 4px;
+  }
+
   .menuTrigger > span {
     display: none;
   }
@@ -268,6 +370,9 @@
 }
 
 @media (width < 360px) {
+  .languageTrigger {
+    padding-inline: 2px;
+  }
 
   .row {
     padding-inline: 10px;
@@ -276,6 +381,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .languagePanel {
+    animation: none;
+  }
 
   .row,
   .brand > span,
@@ -283,6 +391,7 @@
   .header a,
   .header a::before,
   .header a::after,
+  .languageTrigger,
   .menuTrigger {
     transition: none;
   }
