@@ -13,6 +13,10 @@ import {
   ButtonLink,
   quietActionLinkClassName,
 } from "@/components/site/button-link";
+import {
+  CelebrationShowcase,
+  type CelebrationSlide,
+} from "@/components/site/celebration-showcase";
 import curriculumStyles from "@/components/site/home-curriculum.module.css";
 import classroomStyles from "@/components/site/home-classroom.module.css";
 import identityStyles from "@/components/site/home-identity.module.css";
@@ -150,6 +154,58 @@ const homepageCurriculumPrototype = [
     body: "Stories, poetry and theatre deepen vocabulary and comprehension, helping children engage with Russian literature through reading, discussion and performance.",
   },
 ] as const;
+
+const homepageCelebrationSlides = [
+  {
+    assetId: "IMG-0054",
+    objectPosition: "center",
+    label: "Performing together",
+    caption:
+      "At school events, children take the stage and perform in Russian, with families in the audience.",
+  },
+  {
+    assetId: "IMG-0069",
+    objectPosition: "center",
+    label: "Children's artwork",
+    caption:
+      "Art activities give children a colourful way to respond to stories and ideas.",
+  },
+  {
+    assetId: "IMG-0035",
+    objectPosition: "center",
+    label: "Culture and tradition",
+    caption:
+      "Traditional objects and decorations give children a tangible connection to Russian culture.",
+  },
+  {
+    assetId: "IMG-0037",
+    objectPosition: "center",
+    label: "Hands-on making",
+    caption:
+      "Small craft activities encourage children to experiment with materials and make something of their own.",
+  },
+  {
+    assetId: "WIX-LOOSE-0013",
+    objectPosition: "center 70%",
+    label: "Seasonal celebrations",
+    caption:
+      "Games, costumes and shared traditions bring children and families together beyond the weekly classes.",
+  },
+].flatMap((slide): CelebrationSlide[] => {
+  const asset = getApprovedMediaAssetById(slide.assetId);
+
+  return asset
+    ? [
+        {
+          src: asset.approvedPublicPath,
+          alt: asset.altText,
+          label: slide.label,
+          caption: slide.caption,
+          objectPosition: slide.objectPosition,
+        },
+      ]
+    : [];
+});
 
 const homepageFaqs = [
   {
@@ -389,9 +445,11 @@ export default function Home() {
         </section>
       </HomepageSectionMarker>
 
-
-
       <HomepageSectionMarker number={6}>
+        <CelebrationShowcase slides={homepageCelebrationSlides} />
+      </HomepageSectionMarker>
+
+      <HomepageSectionMarker number={7}>
         <section className="border-y border-border-soft bg-surface site-section-compact">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionIntro
@@ -478,7 +536,7 @@ export default function Home() {
         </section>
       </HomepageSectionMarker>
 
-      <HomepageSectionMarker number={7}>
+      <HomepageSectionMarker number={8}>
         <section className="bg-surface site-section-compact">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
@@ -523,7 +581,7 @@ export default function Home() {
         </section>
       </HomepageSectionMarker>
 
-      <HomepageSectionMarker number={8}>
+      <HomepageSectionMarker number={9}>
         <section className="border-y border-border-soft bg-background site-section-compact">
           <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.72fr_1.28fr] lg:px-8">
             <div>
@@ -560,7 +618,7 @@ export default function Home() {
         </section>
       </HomepageSectionMarker>
 
-      <HomepageSectionMarker number={9}>
+      <HomepageSectionMarker number={10}>
         <section
           className="border-y border-border-soft bg-white"
           aria-labelledby="homepage-final-cta-title"

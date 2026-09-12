@@ -1,0 +1,27 @@
+.title { font-size: clamp(1.875rem, calc(1.5rem + 1vw), 2.25rem); line-height: 1.15; }
+.mobileCaption { display: grid; padding: 1.25rem; border-top: 1px solid rgb(255 255 255 / .15); }
+.captionSlide { grid-area: 1 / 1; min-width: 0; }
+.captionHeading { display: flex; align-items: start; justify-content: space-between; gap: .75rem; }
+.controls { display: grid; grid-template-columns: 1fr; gap: .5rem; margin-top: 1rem; }
+.mobileAction { grid-row: 3; justify-self: center; }
+.desktopAction { display: none; }
+.indicators { display: flex; min-height: 44px; justify-self: center; }
+.arrows { display: flex; gap: .5rem; justify-self: center; }
+@media (440px <= width < 640px) {
+  .controls { grid-template-columns: minmax(0, 1fr) auto; }
+  .indicators { grid-column: 1; grid-row: 1; justify-self: start; }
+  .arrows { grid-column: 2; grid-row: 1; justify-self: end; }
+  .mobileAction { grid-column: 1 / -1; grid-row: 2; }
+}
+@media (width >= 640px) {
+  .mobileCaption, .mobileAction { display: none; }
+  .controls { grid-template-columns: minmax(0, 1fr) auto; gap: .5rem 1rem; }
+  .indicators { justify-self: start; }
+  .arrows { grid-column: 2; grid-row: 1; justify-self: end; }
+  .desktopAction { display: block; grid-column: 1 / -1; justify-self: center; }
+}
+@media (width >= 768px) {
+  .controls { grid-template-columns: 1fr auto 1fr; }
+  .desktopAction { grid-column: 2; grid-row: 1; }
+  .arrows { grid-column: 3; }
+}
