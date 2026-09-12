@@ -13,6 +13,7 @@ import {
   ButtonLink,
   quietActionLinkClassName,
 } from "@/components/site/button-link";
+import classroomStyles from "@/components/site/home-classroom.module.css";
 import identityStyles from "@/components/site/home-identity.module.css";
 import trustStyles from "@/components/site/home-trust.module.css";
 import heroStyles from "@/components/site/home-hero.module.css";
@@ -278,7 +279,7 @@ export default function Home() {
 
       <HomepageSectionMarker number={4}>
         <section className="border-y border-border-soft bg-surface site-section-compact">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-center lg:px-8">
+        <div className={`home-content-container mx-auto grid max-w-7xl gap-6 px-6 sm:gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-center lg:gap-10 lg:px-8 ${classroomStyles.section}`}>
           <div>
             <SectionIntro
               title="Step inside our classrooms"
@@ -288,17 +289,6 @@ export default function Home() {
                 comfortable joining in, speaking Russian and learning together.
               </p>
             </SectionIntro>
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink
-                href="/gallery"
-                variant="quiet"
-                className={`${quietActionLinkClassName} !justify-start !px-0 !text-base`}
-                icon={<ArrowRight className="size-4" />}
-                iconPosition="end"
-              >
-                View our gallery
-              </ButtonLink>
-            </div>
           </div>
 
           <figure className="premium-panel overflow-hidden rounded-lg border border-border-soft bg-background">

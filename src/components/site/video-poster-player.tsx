@@ -91,7 +91,8 @@ export function VideoPosterPlayer({
   }
 
   return (
-    <div className="relative bg-brand-blue-strong">
+    <div className="bg-brand-blue-strong">
+    <div className="relative">
       <video
         ref={videoRef}
         className={className}
@@ -131,7 +132,7 @@ export function VideoPosterPlayer({
                 : "opacity-100"
             }`}
           >
-            <span className="absolute left-1/2 top-1/2 flex size-[4.25rem] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-brand-blue-strong/88 text-white shadow-[0_18px_48px_rgba(0,32,72,0.42),0_0_0_1px_rgba(255,255,255,0.18)_inset] backdrop-blur transition duration-300 group-hover:scale-105 group-hover:border-white sm:size-20">
+            <span className="absolute left-1/2 top-1/2 flex size-[4.25rem] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-brand-blue-strong/88 text-white shadow-[var(--elevation-media-control)] backdrop-blur transition duration-300 group-hover:scale-105 group-hover:border-white sm:size-20">
               <span
                 aria-hidden="true"
                 className="video-play-ring absolute inset-0 rounded-full border border-white/55"
@@ -146,7 +147,7 @@ export function VideoPosterPlayer({
                 className="relative ml-1 size-7 fill-current drop-shadow-sm sm:size-8"
               />
             </span>
-            <span className="absolute left-1/2 top-[calc(50%+3.25rem)] w-[calc(100%-2rem)] max-w-sm -translate-x-1/2 rounded-lg border border-white/24 bg-brand-blue-strong/76 px-5 py-3 shadow-[0_18px_42px_rgba(0,32,72,0.34)] backdrop-blur-md transition-[background-color,border-color,box-shadow] duration-300 ease-out group-hover:border-white/75 group-hover:bg-brand-blue-strong/84 group-hover:shadow-[0_0_0_1px_rgba(255,255,255,0.16),0_0_28px_rgba(255,255,255,0.2),0_20px_44px_rgba(0,32,72,0.34)]">
+            <span className="hidden sm:block absolute left-1/2 top-[calc(50%+3.25rem)] w-[calc(100%-2rem)] max-w-sm -translate-x-1/2 rounded-lg border border-white/24 bg-brand-blue-strong/76 px-5 py-3 shadow-[var(--elevation-media-control)] backdrop-blur-md transition-[background-color,border-color,box-shadow] duration-300 ease-out group-hover:border-white/75 group-hover:bg-brand-blue-strong/84">
               <span className="mx-auto mb-2 block h-px w-12 bg-white/80" />
               <span className="block text-base font-semibold sm:text-lg">
                 {overlayTitle}
@@ -158,6 +159,13 @@ export function VideoPosterPlayer({
           </span>
         </button>
       ) : null}
+    </div>
+    <div className="@container border-t border-white/15 px-5 text-center text-white sm:hidden">
+      <div className="py-3 @min-[285px]:py-4">
+      <p className="text-base font-semibold leading-6">{overlayTitle}</p>
+      <p className="mt-1 hidden text-sm leading-6 text-white/80 @min-[285px]:block">{overlayDescription}</p>
+      </div>
+    </div>
     </div>
   );
 }

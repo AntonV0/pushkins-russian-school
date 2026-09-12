@@ -1,0 +1,4 @@
+.section h2 {
+  font-size: clamp(1.875rem, calc(1.5rem + 1vw), 2.25rem);
+  line-height: 1.15;
+}
