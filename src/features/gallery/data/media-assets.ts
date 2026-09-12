@@ -84,6 +84,27 @@ export type MediaIntakeField = {
 
 const coreApprovedMediaAssets: MediaAsset[] = [
   {
+    id: "HOMEPAGE-BRACKNELL-COMMUNITY-GROUP",
+    sourceFilename: "bracknell-group-video-poster.jpg",
+    sourceRelativePath:
+      "public/images/archive/extended/wix-missing/bracknell/bracknell-group-video-poster.jpg",
+    sourceCollection: "site",
+    approvedPublicPath: "/images/site/homepage-community-bracknell.webp",
+    altText:
+      "Children, families, and teachers gathered together at Pushkin's School in Bracknell.",
+    caption: "The Pushkin's School community gathered in Bracknell.",
+    branchSlug: "bracknell",
+    galleryCategorySlug: "community-archive",
+    category: "community-archive",
+    consentStatus: "approved-for-public-web",
+    qualityRating: "feature",
+    recommendedUse: "supporting",
+    notes: [
+      "Restored to the homepage final CTA with owner approval on 2026-08-26.",
+      "Optimised from an ignored Wix recovery source; the raw source remains untracked.",
+    ],
+  },
+  {
     id: "IMG-0061",
     sourceFilename: "20200202_093324.jpg",
     sourceRelativePath: "Pushkin Images/Chelmsford/20200202_093324.jpg",
