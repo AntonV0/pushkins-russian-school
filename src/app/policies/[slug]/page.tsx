@@ -5,6 +5,7 @@ import { ArrowRight, ExternalLink } from "lucide-react";
 import { Fragment } from "react";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { JsonLd } from "@/components/site/json-ld";
+import { PolicyContentsNav } from "@/components/site/policy-contents-nav";
 import { contactDetails } from "@/data/public/contact";
 import {
   getPolicyBySlug,
@@ -228,7 +229,8 @@ export default async function PolicyPage({ params }: PolicyPageProps) {
       </section>
 
       <section className="bg-background py-10 sm:py-14">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:items-start lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[16rem_minmax(0,1fr)] lg:items-start lg:px-8">
+          <PolicyContentsNav sections={policy.sections} />
 
           <article className="min-w-0 divide-y divide-border-soft border-y border-border-soft bg-surface px-5 sm:px-8">
             {policy.sections.map((section) => (
