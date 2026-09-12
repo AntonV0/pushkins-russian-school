@@ -1,6 +1,7 @@
 "use client";
 
 import { Send } from "lucide-react";
+import Link from "next/link";
 import type { ReactNode } from "react";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
@@ -330,7 +331,14 @@ export function EnquiryForm({
 
       <div className="mt-6 flex flex-col gap-3 border-t border-border-soft pt-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-xl text-xs leading-5 text-slate-500">
-          {enquiryPrivacyNotice} For urgent or direct contact, email{" "}
+          {enquiryPrivacyNotice}{" "}
+          <Link
+            href="/policies/privacy-and-cookies"
+            className="font-semibold text-brand-blue-strong underline decoration-brand-red/40 hover:text-brand-red"
+          >
+            Read the Privacy and Cookies Notice
+          </Link>
+          . For urgent or direct contact, email{" "}
           <a
             href={`mailto:${contactDetails.email}`}
             className="font-semibold text-brand-blue-strong underline decoration-brand-red/40 hover:text-brand-red"
