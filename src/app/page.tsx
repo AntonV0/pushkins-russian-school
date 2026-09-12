@@ -13,6 +13,7 @@ import {
   ButtonLink,
   quietActionLinkClassName,
 } from "@/components/site/button-link";
+import trustStyles from "@/components/site/home-trust.module.css";
 import heroStyles from "@/components/site/home-hero.module.css";
 import { PageHero } from "@/components/site/page-hero";
 import { DevBreakpointStrip } from "@/components/site/dev-breakpoint-strip";
@@ -255,55 +256,18 @@ export default function Home() {
       </HomepageSectionMarker>
 
       <HomepageSectionMarker number={2}>
-        <section className="border-b border-border-soft bg-surface py-9 sm:py-11">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-              <h2 className="max-w-3xl text-3xl font-semibold tracking-tight text-brand-blue-strong sm:text-4xl">
-                Pushkin&apos;s School at a glance
+        <section id="school-at-a-glance" className="border-b border-border-soft bg-surface py-9 sm:py-11" aria-labelledby="school-at-a-glance-title">
+          <div className="home-content-container mx-auto max-w-7xl px-6 lg:px-8">
+            <div className={trustStyles.heading}>
+              <h2 id="school-at-a-glance-title">
+                <span>Pushkin&apos;s School</span>{" "}
+                <span className={trustStyles.subtitle}>at a glance</span>
               </h2>
-              <Link
-                href="/about"
-                className="group inline-flex min-h-11 w-fit items-center gap-2 py-2 text-base font-semibold text-brand-blue-strong underline decoration-brand-red/35 underline-offset-4 transition hover:-translate-y-0.5 hover:text-brand-red hover:decoration-brand-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red/40 focus-visible:ring-offset-4"
-              >
-                <span>Read our story</span>
-                <ArrowRight
-                  aria-hidden="true"
-                  className="size-4 transition-transform group-hover:translate-x-0.5"
-                />
+              <Link href="/about" className={trustStyles.link}>
+                Read our story <ArrowRight size={17} aria-hidden="true" />
               </Link>
             </div>
-            <div className="grid overflow-hidden rounded-2xl border border-brand-blue/15 bg-brand-blue-strong shadow-[0_24px_60px_rgba(20,56,102,0.16)] lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-stretch">
-              <TrustSupportingVisual />
-
-              <div className="relative overflow-hidden bg-[radial-gradient(circle_at_top_right,rgba(125,174,205,0.2),transparent_42%)]">
-                <div
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -right-14 -top-16 size-52 rounded-full border border-white/10"
-                />
-                <div className="relative grid h-full sm:grid-cols-2">
-                  {homepageProofPoints.map((point, index) => (
-                    <article
-                      key={point.value}
-                      className={`flex flex-col justify-center p-6 sm:min-h-[12.5rem] sm:p-7 ${
-                        index > 0 ? "border-t border-white/15" : ""
-                      } ${
-                        index % 2 === 1 ? "sm:border-l sm:border-white/15" : ""
-                      } ${index === 1 ? "sm:border-t-0" : ""}`}
-                    >
-                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#a9cade]">
-                        {proofPointCategories[index]}
-                      </p>
-                      <h3 className="mt-4 text-xl font-semibold leading-snug text-white">
-                        {point.value}
-                      </h3>
-                      <p className="mt-2 text-sm leading-6 text-white/72">
-                        <ProofPointLabel point={point} inverse />
-                      </p>
-                    </article>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <div className={trustStyles.panel}><HomeTrustPanel /></div>
           </div>
         </section>
       </HomepageSectionMarker>
@@ -794,13 +758,13 @@ function TrustSupportingVisual() {
 
   return (
     <figure className="overflow-hidden bg-surface-muted">
-      <div className="relative min-h-64 sm:min-h-[20rem] lg:h-full lg:min-h-[25rem]">
+      <div className="relative aspect-[4/3] min-[430px]:aspect-auto min-[430px]:h-[clamp(17rem,45vw,23.75rem)] lg:h-full lg:min-h-[25rem]">
         <Image
           src={trustSupportingAsset.approvedPublicPath}
           alt={trustSupportingAsset.altText}
           fill
-          sizes="(min-width: 1024px) 430px, 100vw"
-          className="object-cover"
+          sizes="(min-width: 1280px) 500px, (min-width: 1024px) 36vw, (min-width: 720px) 672px, calc(100vw - 48px)"
+          className="object-cover object-top lg:object-center"
         />
       </div>
     </figure>
@@ -897,6 +861,43 @@ function HeroSchoolVisualFallback() {
         ))}
       </div>
     </div>
+  );
+}
+
+function HomeTrustPanel() {
+  return (
+            <div className="grid overflow-hidden rounded-2xl border border-brand-blue/15 bg-brand-blue-strong shadow-[var(--elevation-feature)] lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:items-stretch xl:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)]">
+              <TrustSupportingVisual />
+
+              <div className="relative overflow-hidden bg-[radial-gradient(circle_at_top_right,rgba(125,174,205,0.2),transparent_42%)]">
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -right-14 -top-16 size-52 rounded-full border border-white/10"
+                />
+                <div className={`${trustStyles.proofGrid} relative grid h-full sm:grid-cols-2`}>
+                  {homepageProofPoints.map((point, index) => (
+                    <article
+                      key={point.value}
+                      className={`${trustStyles.proofCard} flex flex-col p-5 sm:min-h-[12.5rem] sm:p-6 md:p-7 lg:p-6 xl:p-7 ${
+                        index > 0 ? "border-t border-white/15" : ""
+                      } ${
+                        index % 2 === 1 ? "sm:border-l sm:border-white/15" : ""
+                      } ${index === 1 ? "sm:border-t-0" : ""}`}
+                    >
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#a9cade]">
+                        {proofPointCategories[index]}
+                      </p>
+                      <h3 className="mt-3 text-xl font-semibold leading-snug text-white sm:mt-4">
+                        {point.value}
+                      </h3>
+                      <p className="mt-2 text-sm leading-6 text-white/72">
+                        <ProofPointLabel point={point} inverse />
+                      </p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </div>
   );
 }
 

@@ -1,0 +1,102 @@
+.heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.heading h2 {
+  margin: 0;
+  color: var(--brand-blue-strong);
+  font-size: clamp(34px, 3vw, 42px);
+  line-height: 1.12;
+  font-weight: 600;
+  letter-spacing: -.035em;
+}
+
+.heading h2::before {
+  content: "";
+  display: block;
+  width: 44px;
+  height: 2px;
+  margin-bottom: 16px;
+  background: var(--brand-red);
+}
+
+.subtitle {
+  display: inline;
+  font-weight: 400;
+}
+
+.link {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--brand-blue-strong);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-color: #d0101055;
+  transition: color 150ms;
+}
+
+.link:hover { color: var(--brand-red); }
+.link:focus-visible {
+  outline: 2px solid var(--brand-red);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.panel > div > div { isolation: isolate; }
+.panel > div > div::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+  width: 330px;
+  height: 330px;
+  right: -125px;
+  top: -145px;
+  border-radius: 50%;
+  border: 1px solid #ffffff0c;
+  box-shadow: 0 0 0 30px #ffffff05, 0 0 0 60px #ffffff04;
+}
+
+@media (width < 1024px) {
+  .heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (width < 640px) {
+  .heading h2 { font-size: 30px; }
+  .subtitle { display: block; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link { transition: none; }
+}
+
+/* Share the label and heading tracks within each pair of cards. */
+@media (width >= 640px) {
+  .proofGrid {
+    grid-template-rows: repeat(2, auto auto 1fr);
+  }
+
+  .proofGrid > .proofCard {
+    display: grid;
+    grid-row: span 3;
+    grid-template-rows: subgrid;
+  }
+
+  .proofCard > * {
+    align-self: start;
+  }
+}

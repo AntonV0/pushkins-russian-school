@@ -93,8 +93,8 @@ proof points.
 
 | Trust signal | Current state | Business confirmation needed | Public wording decision |
 | --- | --- | --- | --- |
-| Founding year | Pending review; no official year confirmed in tracked data | [ ] Official founding/opening year: ______ [ ] Evidence checked | [ ] "Since YYYY" [ ] "Established for X years" [ ] Do not publish yet |
-| Years established wording | Pending review | [ ] Confirm whether to calculate years dynamically [ ] Confirm launch-year wording | [ ] Use exact year [ ] Use approximate wording [ ] Hide |
+| Founding year | 2009; approved in the public trust registry and corroborated by the related Volna School history | [x] Official founding/opening year: 2009 [x] Evidence checked | [x] "Since 2009" [x] "Founded in 2009" [ ] Do not publish yet |
+| Years established wording | Use the fixed founding year rather than a dynamically calculated number of years | [x] Confirm launch-year wording | [x] Use exact year [ ] Use approximate wording [ ] Hide |
 | Testimonials | Awaiting approved copy | [ ] Wording approved [ ] Consent approved [ ] Attribution style approved | [ ] Full name [ ] First name [ ] Initials [ ] Anonymous |
 | Partnerships/collaborators | Historic references require review | [ ] Relationship current [ ] Logo/name permission approved [ ] Wording approved | [ ] Publish named partners [ ] General wording only [ ] Hide |
 | Staff bios/photos | Review before publishing | [ ] Roles approved [ ] Bios approved [ ] Photos approved [ ] Privacy approach approved | [ ] Named bios [ ] Role-only bios [ ] No staff section |
